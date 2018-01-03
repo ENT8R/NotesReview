@@ -1,6 +1,8 @@
 const x2js = new X2JS();
 
 $(document).ready(function() {
+  $('.modal').modal();
+  
   $('#search').click(function() {
     query();
   });

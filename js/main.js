@@ -1,6 +1,8 @@
 const x2js = new X2JS();
 
 $(document).ready(function() {
+  $('.modal').modal();
+  
   $('#search').click(function() {
     query();
   });
@@ -67,7 +69,19 @@ function query() {
         return Materialize.toast('Nothing found!', 6000);
       }
 
-      $('#found-notes').html('Found notes: ' + result.osm.note.length);
+      L.Control.Watermark = L.Control.extend({
+        onAdd: function(map) {
+          const element = L.DomUtil.create('p');
+          element.innerHTML = 'Found notes: ' + result.osm.note.length;
+          return element;
+        }
+      });
+      L.control.watermark = function(opts) {
+        return new L.Control.Watermark(opts);
+      }
+      L.control.watermark({
+        position: 'bottomleft'
+      }).addTo(map);
 
       for (let i = 0; i < result.osm.note.length; i++) {
         geoJSON.push({
