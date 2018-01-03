@@ -2,7 +2,7 @@ const x2js = new X2JS();
 
 $(document).ready(function() {
   $('.modal').modal();
-  
+
   $('#search').click(function() {
     query();
   });
@@ -97,7 +97,11 @@ function query() {
       const geoJSONLayer = L.geoJSON(geoJSON, {
         onEachFeature: function(feature, layer) {
           if (feature.properties) {
-            layer.bindPopup('<a href="https://www.openstreetmap.org/note/' + feature.properties.id + '" target="_blank">' + feature.properties.id + ' on OSM</a>');
+            let comment = feature.properties.comments.comment;
+            if (!comment.html) {
+              comment = feature.properties.comments.comment[0];
+            }
+            layer.bindPopup('<p>' + comment.html + '</p><div class="divider"></div><a href="https://www.openstreetmap.org/note/' + feature.properties.id + '" target="_blank">' + feature.properties.id + ' on OSM</a>');
           }
         }
       });

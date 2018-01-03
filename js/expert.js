@@ -2,7 +2,7 @@ const x2js = new X2JS();
 
 $(document).ready(function() {
   $('.modal').modal();
-  
+
   $('#search').click(function() {
     query();
   });
@@ -68,8 +68,6 @@ function query() {
         if (!comment.html) {
           comment = note.comments.comment[0];
         }
-        console.log(note);
-        console.log(comment);
 
         $('#notes').append(
           '<div class="col s12 m6 l4">' +
