@@ -1,7 +1,7 @@
 const x2js = new X2JS();
 
 $(document).ready(function() {
-  $("#search").click(function() {
+  $('#search').click(function() {
     query();
   });
 });
@@ -17,23 +17,25 @@ init();
 
 function init() {
   const url = new URL(window.location.href);
-  const query = url.searchParams.get("query");
-  const limit = url.searchParams.get("limit");
+  const query = url.searchParams.get('query');
+  const limit = url.searchParams.get('limit');
   if (query) $('#query').val(query);
   if (limit) $('#limit').val(limit);
   if (query || limit) {
     const uri = window.location.toString();
-    if (uri.indexOf("?") > 0) {
-      window.history.replaceState({}, document.title, uri.substring(0, uri.indexOf("?")));
+    if (uri.indexOf('?') > 0) {
+      window.history.replaceState({}, document.title, uri.substring(0, uri.indexOf('?')));
     }
   }
 }
 
 function query() {
-  $('.progress').show();
-
   const query = $('#query').val();
   const limit = $('#limit').val();
+
+  if (!query) return Materialize.toast('Please specify a query!');
+
+  $('.progress').show();
 
   const url = 'https://api.openstreetmap.org/api/0.6/notes/search?q=' + query + '&limit=' + limit + '&closed=0';
 
@@ -49,11 +51,11 @@ function query() {
 
       for (let i = 0; i < result.osm.note.length; i++) {
         geoJSON.push({
-          "type": "Feature",
-          "properties": result.osm.note[i],
-          "geometry": {
-            "type": "Point",
-            "coordinates": [result.osm.note[i]._lon, result.osm.note[i]._lat]
+          'type': 'Feature',
+          'properties': result.osm.note[i],
+          'geometry': {
+            'type': 'Point',
+            'coordinates': [result.osm.note[i]._lon, result.osm.note[i]._lat]
           }
         })
       }
@@ -74,6 +76,6 @@ function query() {
     }
   };
 
-  http.open("GET", url, true);
+  http.open('GET', url, true);
   http.send();
 }
