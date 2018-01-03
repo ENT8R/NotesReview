@@ -4,6 +4,16 @@ $(document).ready(function() {
   $('#search').click(function() {
     query();
   });
+
+  $('#map-view').click(function() {
+    window.open("https://ent8r.github.io/NotesReview/?query=" + $('#query').val() + "&limit=" + $('#limit').val());
+  });
+
+  $(document).keypress(function(e) {
+    if (e.which == 13) {
+      query();
+    }
+  });
 });
 
 init();
@@ -25,12 +35,16 @@ function init() {
 function query() {
   const query = $('#query').val();
   const limit = $('#limit').val();
+  const searchClosed = $('#search-closed').is(':checked');
 
-  if (!query) return Materialize.toast('Please specify a query!');
+  let closed = '0';
+  if (searchClosed) closed = '-1';
+
+  if (!query) return Materialize.toast('Please specify a query!', 6000);
 
   $('.progress').show();
 
-  const url = 'https://api.openstreetmap.org/api/0.6/notes/search?q=' + query + '&limit=' + limit + '&closed=0';
+  const url = 'https://api.openstreetmap.org/api/0.6/notes/search?q=' + query + '&limit=' + limit + '&closed=' + closed;
 
   const http = new XMLHttpRequest();
   http.onreadystatechange = function() {
@@ -39,27 +53,34 @@ function query() {
 
       const result = x2js.xml_str2json(this.responseText);
 
+      if (!result.osm.note) {
+        $('.progress').hide();
+        return Materialize.toast('Nothing found!', 6000);
+      }
+
       $('#found-notes').html('Found notes: ' + result.osm.note.length);
 
       for (let i = 0; i < result.osm.note.length; i++) {
         let note = result.osm.note[i];
-        let comment = note.comments.comment.html;
-        if (!comment) {
-          comment = note.comments.comment[0].html;
+        let comment = note.comments.comment;
+        if (!comment.html) {
+          comment = note.comments.comment[0];
         }
+        console.log(note);
+        console.log(comment);
 
         $('#notes').append(
-        '<div class="col s12 m6 l4">' +
+          '<div class="col s12 m6 l4">' +
           '<div class="card blue-grey darken-1">' +
-            '<div class="card-content white-text">' +
-              '<span class="card-title">' + note.id + '</span>' +
-              '<p>' + comment + '</p>' +
-            '</div>' +
-            '<div class="card-action">' +
-              '<a href="https://www.openstreetmap.org/note/' + note.id + '" target="_blank">' + note.id + ' on OSM</a>' +
-            '</div>' +
+          '<div class="card-content white-text">' +
+          '<span class="card-title">' + note.id + ' (' + comment.user + ')</span>' +
+          '<p>' + comment.html + '</p>' +
           '</div>' +
-        '</div>')
+          '<div class="card-action">' +
+          '<a href="https://www.openstreetmap.org/note/' + note.id + '" target="_blank">View Note ' + note.id + ' on OSM</a>' +
+          '</div>' +
+          '</div>' +
+          '</div>');
       }
 
       $('.progress').hide();

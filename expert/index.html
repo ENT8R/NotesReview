@@ -28,21 +28,32 @@
   </div>
 
   <div class="row">
-    <div class="input-field col s4">
+    <div class="input-field col s3">
       <i class="material-icons prefix">search</i>
       <input id="query" type="text">
       <label for="query">Query</label>
     </div>
 
-    <div class="input-field col s4">
+    <div class="input-field col s2">
       <i class="material-icons prefix">format_list_numbered</i>
       <input id="limit" type="number" value="100">
       <label for="limit">Limit</label>
     </div>
 
-    <a id="search" class="btn-floating btn-large waves-effect waves-light indigo"><i class="material-icons">search</i></a>
+    <p class="col s2">
+      <input type="checkbox" class="filled-in" id="search-closed" />
+      <label for="search-closed">Search also for closed notes</label>
+    </p>
 
-    <div id="found-notes"></div>
+    <p class="col s1">
+      <a id="search" class="btn-floating btn-large waves-effect waves-light indigo"><i class="material-icons">search</i></a>
+    </p>
+
+    <p class="col s2">
+      <a href="#" id="map-view">Show on a map</a>
+    </p>
+
+    <p id="found-notes" class="col s2"></p>
   </div>
 
   <div id="notes" class="row"></div>

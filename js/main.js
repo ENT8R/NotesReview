@@ -4,6 +4,16 @@ $(document).ready(function() {
   $('#search').click(function() {
     query();
   });
+
+  $('#list-view').click(function() {
+    window.open("https://ent8r.github.io/NotesReview/expert/?query=" + $('#query').val() + "&limit=" + $('#limit').val());
+  });
+
+  $(document).keypress(function(e) {
+    if (e.which == 13) {
+      query();
+    }
+  });
 });
 
 const map = L.map('map').setView([40, 10], 3);
@@ -32,20 +42,30 @@ function init() {
 function query() {
   const query = $('#query').val();
   const limit = $('#limit').val();
+  const searchClosed = $('#search-closed').is(':checked');
 
-  if (!query) return Materialize.toast('Please specify a query!');
+  let closed = '0';
+  if (searchClosed) closed = '-1';
+
+  if (!query) return Materialize.toast('Please specify a query!', 6000);
 
   $('.progress').show();
 
-  const url = 'https://api.openstreetmap.org/api/0.6/notes/search?q=' + query + '&limit=' + limit + '&closed=0';
+  const url = 'https://api.openstreetmap.org/api/0.6/notes/search?q=' + query + '&limit=' + limit + '&closed=' + closed;
 
   const http = new XMLHttpRequest();
   http.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
+      markers.remove();
       map.removeLayer(markers);
 
       const result = x2js.xml_str2json(this.responseText);
       let geoJSON = [];
+
+      if (!result.osm.note) {
+        $('.progress').hide();
+        return Materialize.toast('Nothing found!', 6000);
+      }
 
       $('#found-notes').html('Found notes: ' + result.osm.note.length);
 
@@ -57,7 +77,7 @@ function query() {
             'type': 'Point',
             'coordinates': [result.osm.note[i]._lon, result.osm.note[i]._lat]
           }
-        })
+        });
       }
 
       const geoJSONLayer = L.geoJSON(geoJSON, {
