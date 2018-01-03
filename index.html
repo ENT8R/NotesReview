@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="A website for performing micro-tasks to improve the OpenStreetMap">
+  <meta name="keywords" content="OSM, OpenStreetMap, notes, OpenStreetMap Notes, ENT8R">
+  <meta name="author" content="ENT8R">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>OSM NotesReview</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.2.0/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.2.0/dist/MarkerCluster.Default.css">
+
+  <link rel="shortcut icon" type="image/x-icon" href="assets/icon.png">
+
+  <style>
+    #map {
+      height: 85vh;
+    }
+
+    .progress {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="progress">
+    <div class="indeterminate"></div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s4">
+      <i class="material-icons prefix">search</i>
+      <input id="query" type="text">
+      <label for="query">Query</label>
+    </div>
+
+    <div class="input-field col s4">
+      <i class="material-icons prefix">format_list_numbered</i>
+      <input id="limit" type="number" value="100">
+      <label for="limit">Limit</label>
+    </div>
+
+    <a id="search" class="btn-floating btn-large waves-effect waves-light indigo"><i class="material-icons">search</i></a>
+
+    <div id="found-notes"></div>
+  </div>
+
+  <div id="map"></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.2.0/dist/leaflet.markercluster.js"></script>
+  <script src="js/xml2json.min.js"></script>
+  <script src="js/index.js"></script>
+
+</body>
+
+</html>
