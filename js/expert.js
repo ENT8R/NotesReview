@@ -60,28 +60,48 @@ function query() {
         return Materialize.toast('Nothing found!', 6000);
       }
 
-      $('#found-notes').html('Found notes: ' + result.osm.note.length);
+      let ids = [];
+      let notes = [];
 
       for (let i = 0; i < result.osm.note.length; i++) {
-        let note = result.osm.note[i];
-        let comment = note.comments.comment;
-        if (!comment.html) {
-          comment = note.comments.comment[0];
-        }
+        if (ids.indexOf(result.osm.note[i].id) == -1) {
+          ids.push(result.osm.note[i].id);
 
+          let note = result.osm.note[i];
+          let comment = note.comments.comment;
+          if (!comment.html) {
+            comment = note.comments.comment[0];
+          }
+
+          notes.push({
+            id: note.id,
+            user: comment.user,
+            text: comment.html
+          });
+        }
+      }
+
+      notes.sort(function(a, b) {
+        return a.id - b.id
+      });
+      notes.reverse();
+
+      for (let i = 0; i < notes.length; i++) {
         $('#notes').append(
           '<div class="col s12 m6 l4">' +
           '<div class="card blue-grey darken-1">' +
           '<div class="card-content white-text">' +
-          '<span class="card-title">' + note.id + ' (' + comment.user + ')</span>' +
-          '<p>' + comment.html + '</p>' +
+          '<span class="card-title">' + notes[i].id + ' (' + notes[i].user + ')</span>' +
+          '<p>' + notes[i].text + '</p>' +
           '</div>' +
           '<div class="card-action">' +
-          '<a href="https://www.openstreetmap.org/note/' + note.id + '" target="_blank">View Note ' + note.id + ' on OSM</a>' +
+          '<a href="https://www.openstreetmap.org/note/' + notes[i].id + '" target="_blank">View Note ' + notes[i].id + ' on OSM</a>' +
           '</div>' +
           '</div>' +
           '</div>');
       }
+
+      $('#found-notes').html('Found notes: ' + ids.length);
 
       $('.progress').hide();
     }

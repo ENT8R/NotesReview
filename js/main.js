@@ -60,19 +60,36 @@ function query() {
     if (this.readyState == 4 && this.status == 200) {
       markers.remove();
       map.removeLayer(markers);
+      if (L.control.watermark) L.control.watermark.remove();
 
       const result = x2js.xml_str2json(this.responseText);
+
       let geoJSON = [];
+      let ids = [];
 
       if (!result.osm.note) {
         $('.progress').hide();
         return Materialize.toast('Nothing found!', 6000);
       }
 
+      for (let i = 0; i < result.osm.note.length; i++) {
+        if (ids.indexOf(result.osm.note[i].id) == -1) {
+          ids.push(result.osm.note[i].id);
+          geoJSON.push({
+            'type': 'Feature',
+            'properties': result.osm.note[i],
+            'geometry': {
+              'type': 'Point',
+              'coordinates': [result.osm.note[i]._lon, result.osm.note[i]._lat]
+            }
+          });
+        }
+      }
+
       L.Control.Watermark = L.Control.extend({
         onAdd: function(map) {
           const element = L.DomUtil.create('p');
-          element.innerHTML = 'Found notes: ' + result.osm.note.length;
+          element.innerHTML = 'Found notes: ' + ids.length;
           return element;
         }
       });
@@ -82,17 +99,6 @@ function query() {
       L.control.watermark({
         position: 'bottomleft'
       }).addTo(map);
-
-      for (let i = 0; i < result.osm.note.length; i++) {
-        geoJSON.push({
-          'type': 'Feature',
-          'properties': result.osm.note[i],
-          'geometry': {
-            'type': 'Point',
-            'coordinates': [result.osm.note[i]._lon, result.osm.note[i]._lat]
-          }
-        });
-      }
 
       const geoJSONLayer = L.geoJSON(geoJSON, {
         onEachFeature: function(feature, layer) {
