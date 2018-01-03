@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 const map = L.map('map').setView([40, 10], 3);
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
 const markers = L.markerClusterGroup();
@@ -35,7 +35,7 @@ function query() {
   const query = $('#query').val();
   const limit = $('#limit').val();
 
-  const url = 'http://api.openstreetmap.org/api/0.6/notes/search?q=' + query + '&limit=' + limit + '&closed=0';
+  const url = 'https://api.openstreetmap.org/api/0.6/notes/search?q=' + query + '&limit=' + limit + '&closed=0';
 
   const http = new XMLHttpRequest();
   http.onreadystatechange = function() {
@@ -61,7 +61,7 @@ function query() {
       const geoJSONLayer = L.geoJSON(geoJSON, {
         onEachFeature: function(feature, layer) {
           if (feature.properties) {
-            layer.bindPopup('<a href="http://www.openstreetmap.org/note/' + feature.properties.id + '" target="_blank">' + feature.properties.id + ' on OSM</a>');
+            layer.bindPopup('<a href="https://www.openstreetmap.org/note/' + feature.properties.id + '" target="_blank">' + feature.properties.id + ' on OSM</a>');
           }
         }
       });

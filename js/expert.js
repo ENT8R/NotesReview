@@ -28,7 +28,7 @@ function query() {
   const query = $('#query').val();
   const limit = $('#limit').val();
 
-  const url = 'http://api.openstreetmap.org/api/0.6/notes/search?q=' + query + '&limit=' + limit + '&closed=0';
+  const url = 'https://api.openstreetmap.org/api/0.6/notes/search?q=' + query + '&limit=' + limit + '&closed=0';
 
   const http = new XMLHttpRequest();
   http.onreadystatechange = function() {
@@ -54,7 +54,7 @@ function query() {
               '<p>' + comment + '</p>' +
             '</div>' +
             '<div class="card-action">' +
-              '<a href="http://www.openstreetmap.org/note/' + note.id + '" target="_blank">' + note.id + ' on OSM</a>' +
+              '<a href="https://www.openstreetmap.org/note/' + note.id + '" target="_blank">' + note.id + ' on OSM</a>' +
             '</div>' +
           '</div>' +
         '</div>')
