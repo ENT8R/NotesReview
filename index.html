@@ -19,11 +19,15 @@
 
   <style>
     #map {
-      height: 85vh;
+      height: 89vh;
     }
 
     .progress {
       display: none;
+    }
+
+    .row {
+      margin-bottom: 0px;
     }
   </style>
 </head>
@@ -57,7 +61,7 @@
     </p>
 
     <p class="col s1">
-      <a href="#" id="list-view">Show in a list</a>
+      <a class="link">Show in a list</a>
     </p>
 
     <p class="col s1 center">
@@ -67,15 +71,31 @@
 
   <div id="help" class="modal">
     <div class="modal-content">
-      <h4>Help</h4>
+      <h4 class="center">Help</h4>
       <ul class="browser-default">
         <li>View the project on <a href="https://github.com/ENT8R/NotesReview" target="_blank">Github</a></li>
         <li>Visit the <a href="https://github.com/ENT8R/NotesReview/issues" target="_blank">issue tracker</a></li>
         <li>Contact the <a href="mailto:info.ent8r@gmail.com">developer</a></li>
+        <li><a href="#link" class="modal-trigger">Share</a> your query</li>
       </ul>
     </div>
     <div class="modal-footer">
       <a class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+
+  <div id="link" class="modal">
+    <div class="modal-content">
+      <h4 class="center">Permalink</h4>
+      <p>Copy this Link to share the current query:</p>
+      <input id="permalink" type="text" readonly>
+      <p>
+        <input type="checkbox" class="filled-in" id="start-query"/>
+        <label for="start-query">Start query directly after opening the link</label>
+      </p>
+    </div>
+    <div class="modal-footer">
+      <a class="modal-action modal-close waves-effect waves-green btn-flat">Finish</a>
     </div>
   </div>
 

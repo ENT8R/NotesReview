@@ -4,21 +4,30 @@ $(document).ready(function() {
   $('.modal').modal();
 
   $('#search').click(function() {
-    query();
+    search();
   });
 
-  $('#list-view').click(function() {
-    window.open("https://ent8r.github.io/NotesReview/expert/?query=" + $('#query').val() + "&limit=" + $('#limit').val());
+  $('#query').change(function() {
+    updateLink();
   });
+  $('#limit').change(function() {
+    updateLink();
+  });
+  $('#start-query').change(function() {
+    updateLink();
+  });
+  updateLink();
 
   $(document).keypress(function(e) {
     if (e.which == 13) {
-      query();
+      search();
     }
   });
 });
 
-const map = L.map('map').setView([40, 10], 3);
+const map = L.map('map', {
+  minZoom: 2
+}).setView([40, 10], 3);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
@@ -29,10 +38,15 @@ init();
 
 function init() {
   const url = new URL(window.location.href);
+
   const query = url.searchParams.get('query');
   const limit = url.searchParams.get('limit');
+  const start = url.searchParams.get('start');
+
   if (query) $('#query').val(query);
   if (limit) $('#limit').val(limit);
+  if (start) search();
+
   if (query || limit) {
     const uri = window.location.toString();
     if (uri.indexOf('?') > 0) {
@@ -41,7 +55,7 @@ function init() {
   }
 }
 
-function query() {
+function search() {
   const query = $('#query').val();
   const limit = $('#limit').val();
   const searchClosed = $('#search-closed').is(':checked');
@@ -60,7 +74,6 @@ function query() {
     if (this.readyState == 4 && this.status == 200) {
       markers.remove();
       map.removeLayer(markers);
-      if (L.control.watermark) L.control.watermark.remove();
 
       const result = x2js.xml_str2json(this.responseText);
 
@@ -122,4 +135,28 @@ function query() {
 
   http.open('GET', url, true);
   http.send();
+}
+
+function updateLink() {
+  let url = "https://ent8r.github.io/NotesReview/expert/?";
+  const query = $('#query').val();
+  const limit = $('#limit').val();
+  const start = $('#start-query').is(':checked')
+
+  let data = {};
+  if (query) data.query = query;
+  if (limit) data.limit = limit;
+  if (start) data.start = start;
+
+  url += encodeQueryData(data);
+
+  $('.link').attr('href', url);
+  $('#permalink').val(url);
+}
+
+function encodeQueryData(data) {
+  let ret = [];
+  for (let d in data)
+    ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+  return ret.join('&');
 }
