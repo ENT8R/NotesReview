@@ -57,13 +57,19 @@ function init() {
 
 function search() {
   const query = $('#query').val();
-  const limit = $('#limit').val();
+  let limit = $('#limit').val();
   const searchClosed = $('#search-closed').is(':checked');
 
   let closed = '0';
   if (searchClosed) closed = '-1';
 
   if (!query) return Materialize.toast('Please specify a query!', 6000);
+
+  if (limit > 10000) {
+    limit = 10000;
+    $('#limit').val(10000);
+    Materialize.toast('Automatically set limit to 10000, because higher values are not allowed', 6000);
+  }
 
   $('.progress').show();
 
