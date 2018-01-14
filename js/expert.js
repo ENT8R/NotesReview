@@ -83,9 +83,6 @@ function search() {
         if (ids.indexOf(result.features[i].properties.id) == -1) {
           const note = result.features[i].properties;
           const comment = note.comments[0];
-
-          console.log(note);
-
           ids.push(note.id);
           notes.push({
             id: note.id,
