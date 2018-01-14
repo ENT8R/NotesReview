@@ -1,6 +1,6 @@
 {
   "name": "notes-review",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A program for reviewing OSM Notes",
   "scripts": {
     "start": "python -m SimpleHTTPServer",
