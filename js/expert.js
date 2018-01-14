@@ -1,5 +1,3 @@
-const x2js = new X2JS();
-
 $(document).ready(function() {
   $('.modal').modal();
 
@@ -64,16 +62,16 @@ function search() {
 
   $('.progress').show();
 
-  const url = 'https://api.openstreetmap.org/api/0.6/notes/search?q=' + query + '&limit=' + limit + '&closed=' + closed;
+  const url = 'https://api.openstreetmap.org/api/0.6/notes/search.json?q=' + query + '&limit=' + limit + '&closed=' + closed;
 
   const http = new XMLHttpRequest();
   http.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       $('#notes').empty();
 
-      const result = x2js.xml_str2json(this.responseText);
+      const result = JSON.parse(this.responseText);
 
-      if (!result.osm.note) {
+      if (result.features.length == 0) {
         $('.progress').hide();
         return Materialize.toast('Nothing found!', 6000);
       }
@@ -81,16 +79,14 @@ function search() {
       let ids = [];
       let notes = [];
 
-      for (let i = 0; i < result.osm.note.length; i++) {
-        if (ids.indexOf(result.osm.note[i].id) == -1) {
-          ids.push(result.osm.note[i].id);
+      for (let i = 0; i < result.features.length; i++) {
+        if (ids.indexOf(result.features[i].properties.id) == -1) {
+          const note = result.features[i].properties;
+          const comment = note.comments[0];
 
-          let note = result.osm.note[i];
-          let comment = note.comments.comment;
-          if (!comment.html) {
-            comment = note.comments.comment[0];
-          }
+          console.log(note);
 
+          ids.push(note.id);
           notes.push({
             id: note.id,
             user: comment.user,

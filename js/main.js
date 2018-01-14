@@ -1,5 +1,3 @@
-const x2js = new X2JS();
-
 $(document).ready(function() {
   $('.modal').modal();
 
@@ -26,13 +24,12 @@ $(document).ready(function() {
 });
 
 const map = L.map('map', {
-  minZoom: 2
+  minZoom: 2,
+  maxZoom: 22
 }).setView([40, 10], 3);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+setTileLayer();
 
-const markers = L.markerClusterGroup();
+let watermark;
 
 init();
 
@@ -73,38 +70,46 @@ function search() {
 
   $('.progress').show();
 
-  const url = 'https://api.openstreetmap.org/api/0.6/notes/search?q=' + query + '&limit=' + limit + '&closed=' + closed;
+  const url = 'https://api.openstreetmap.org/api/0.6/notes/search.json?q=' + query + '&limit=' + limit + '&closed=' + closed;
 
   const http = new XMLHttpRequest();
   http.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      markers.remove();
-      map.removeLayer(markers);
 
-      const result = x2js.xml_str2json(this.responseText);
+      map.eachLayer(function(layer) {
+        map.removeLayer(layer);
+      });
 
-      let geoJSON = [];
-      let ids = [];
+      if (watermark) map.removeControl(watermark);
 
-      if (!result.osm.note) {
+      setTileLayer();
+
+      const markers = L.markerClusterGroup();
+
+      const result = JSON.parse(this.responseText);
+
+      if (result.features.length == 0) {
         $('.progress').hide();
         return Materialize.toast('Nothing found!', 6000);
       }
 
-      for (let i = 0; i < result.osm.note.length; i++) {
-        if (ids.indexOf(result.osm.note[i].id) == -1) {
-          ids.push(result.osm.note[i].id);
-          geoJSON.push({
-            'type': 'Feature',
-            'properties': result.osm.note[i],
-            'geometry': {
-              'type': 'Point',
-              'coordinates': [result.osm.note[i]._lon, result.osm.note[i]._lat]
-            }
-          });
-        }
-      }
+      let ids = [];
 
+      //Prepare the GeoJSON layer and bind the popups
+      const geoJSONLayer = L.geoJSON(result, {
+        filter: function(feature, layer) {
+          return ids.indexOf(feature.properties.id) == -1;
+        },
+        onEachFeature: function(feature, layer) {
+          if (feature.properties) {
+            ids.push(feature.properties.id);
+            let comment = feature.properties.comments[0];
+            layer.bindPopup('<p>' + comment.html + '</p><div class="divider"></div><a href="https://www.openstreetmap.org/note/' + feature.properties.id + '" target="_blank">' + feature.properties.id + ' on OSM</a>');
+          }
+        }
+      });
+
+      //Display how much notes were found
       L.Control.Watermark = L.Control.extend({
         onAdd: function(map) {
           const element = L.DomUtil.create('p');
@@ -115,22 +120,11 @@ function search() {
       L.control.watermark = function(opts) {
         return new L.Control.Watermark(opts);
       }
-      L.control.watermark({
+      watermark = L.control.watermark({
         position: 'bottomleft'
       }).addTo(map);
 
-      const geoJSONLayer = L.geoJSON(geoJSON, {
-        onEachFeature: function(feature, layer) {
-          if (feature.properties) {
-            let comment = feature.properties.comments.comment;
-            if (!comment.html) {
-              comment = feature.properties.comments.comment[0];
-            }
-            layer.bindPopup('<p>' + comment.html + '</p><div class="divider"></div><a href="https://www.openstreetmap.org/note/' + feature.properties.id + '" target="_blank">' + feature.properties.id + ' on OSM</a>');
-          }
-        }
-      });
-
+      //Display all notes on the map and zoom the map to show them all
       markers.addLayer(geoJSONLayer);
       map.addLayer(markers);
       map.fitBounds(markers.getBounds());
@@ -165,4 +159,11 @@ function encodeQueryData(data) {
   for (let d in data)
     ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
   return ret.join('&');
+}
+
+function setTileLayer() {
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 22,
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
 }
