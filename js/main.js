@@ -33,6 +33,7 @@ let watermark;
 
 init();
 
+//Get the URL params and use them to e.g. initiate a new search with the given values
 function init() {
   const url = new URL(window.location.href);
 
@@ -52,6 +53,7 @@ function init() {
   }
 }
 
+//Search for all notes with a specific keyword either worldwide of if the bounding box is smaller than 0.25 square degree, in that bbox
 function search() {
   const query = $('#query').val();
   let limit = $('#limit').val();
@@ -70,7 +72,20 @@ function search() {
 
   $('.progress').show();
 
-  const url = 'https://api.openstreetmap.org/api/0.6/notes/search.json?q=' + query + '&limit=' + limit + '&closed=' + closed;
+  let useNormalApi = false;
+  let url = 'https://api.openstreetmap.org/api/0.6/notes/search.json?q=' + query + '&limit=' + limit + '&closed=' + closed;
+
+  // (maxlat - minlat) * (maxlon - minlon) < 0.25
+  const bounds = map.getBounds();
+  const boundString = bounds.toBBoxString();
+  const BBoxSize = BBoxToSquareDegree(bounds);
+  if (BBoxSize < 0.25) {
+    useNormalApi = true;
+    url = 'https://api.openstreetmap.org/api/0.6/notes.json?bbox=' + boundString + '&limit=' + limit + '&closed=' + closed;
+  }
+  else {
+    Materialize.toast('Worldwide query enabled. Zoom in further to get a faster query for a limited area.', 6000);
+  }
 
   const http = new XMLHttpRequest();
   http.onreadystatechange = function() {
@@ -97,9 +112,7 @@ function search() {
 
       //Prepare the GeoJSON layer and bind the popups
       const geoJSONLayer = L.geoJSON(result, {
-        filter: function(feature, layer) {
-          return ids.indexOf(feature.properties.id) == -1;
-        },
+        filter: filterGeoJSON,
         onEachFeature: function(feature, layer) {
           if (feature.properties) {
             ids.push(feature.properties.id);
@@ -108,6 +121,13 @@ function search() {
           }
         }
       });
+
+      function filterGeoJSON(feature, layer) {
+        if (useNormalApi) {
+          return ids.indexOf(feature.properties.id) == -1 && feature.properties.comments[0].text.includes(query);
+        }
+        return ids.indexOf(feature.properties.id) == -1;
+      }
 
       //Display how much notes were found
       L.Control.Watermark = L.Control.extend({
@@ -166,4 +186,8 @@ function setTileLayer() {
     maxZoom: 22,
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
+}
+
+function BBoxToSquareDegree(bounds) {
+  return (bounds.getNorth() - bounds.getSouth()) * (bounds.getEast() - bounds.getWest());
 }
