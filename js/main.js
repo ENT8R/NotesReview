@@ -104,9 +104,7 @@ function search() {
     Materialize.toast('Automatically set limit to 10000, because higher values are not allowed', 6000);
   }
 
-  $('.progress').show();
-  $('#search').hide();
-  $('#cancel').show();
+  toggleButtons();
 
   let useNormalApi = false;
   let url = 'https://api.openstreetmap.org/api/0.6/notes/search.json?q=' + query + '&limit=' + limit + '&closed=' + closed;
@@ -118,17 +116,6 @@ function search() {
 
   http.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-
-      map.eachLayer(function(layer) {
-        map.removeLayer(layer);
-      });
-
-      if (watermark) map.removeControl(watermark);
-
-      setTileLayer();
-
-      const markers = L.markerClusterGroup();
-
       const result = JSON.parse(this.responseText);
 
       if (result.features.length == 0) {
@@ -175,6 +162,10 @@ function search() {
       if (geoJSONLayer.getLayers().length == 0) {
         return nothingFound();
       }
+
+      removeLayersAndSetTiles();
+
+      const markers = L.markerClusterGroup();
       markers.addLayer(geoJSONLayer);
       map.addLayer(markers);
       map.fitBounds(markers.getBounds());
@@ -193,7 +184,10 @@ function cancelRequest() {
 }
 
 function toggleButtons() {
-  $('.progress').toggle();
+  if ($('.progress').css('visibility') == 'hidden')
+    $('.progress').css('visibility', 'visible');
+  else
+    $('.progress').css('visibility', 'hidden');
   $('#search').toggle();
   $('#cancel').toggle();
 }
@@ -201,6 +195,14 @@ function toggleButtons() {
 function nothingFound() {
   toggleButtons();
   return Materialize.toast('Nothing found!', 6000);
+}
+
+function removeLayersAndSetTiles() {
+  map.eachLayer(function(layer) {
+    map.removeLayer(layer);
+  });
+  if (watermark) map.removeControl(watermark);
+  setTileLayer();
 }
 
 function updateLink() {
