@@ -4,6 +4,9 @@ $(document).ready(function() {
   $('#search').click(function() {
     search();
   });
+  $('#cancel').click(function() {
+    cancelRequest();
+  });
 
   $('#query').change(function() {
     updateLink();
@@ -22,6 +25,8 @@ $(document).ready(function() {
     }
   });
 });
+
+const http = new XMLHttpRequest();
 
 init();
 
@@ -60,11 +65,10 @@ function search() {
     Materialize.toast('Automatically set limit to 10000, because higher values are not allowed', 6000);
   }
 
-  $('.progress').show();
+  toggleButtons();
 
   const url = 'https://api.openstreetmap.org/api/0.6/notes/search.json?q=' + query + '&limit=' + limit + '&closed=' + closed;
 
-  const http = new XMLHttpRequest();
   http.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       $('#notes').empty();
@@ -72,7 +76,7 @@ function search() {
       const result = JSON.parse(this.responseText);
 
       if (result.features.length == 0) {
-        $('.progress').hide();
+        toggleButtons();
         return Materialize.toast('Nothing found!', 6000);
       }
 
@@ -114,12 +118,23 @@ function search() {
 
       $('#found-notes').html('Found notes: ' + ids.length);
 
-      $('.progress').hide();
+      toggleButtons();
     }
   };
 
   http.open('GET', url, true);
   http.send();
+}
+
+function cancelRequest() {
+  http.abort();
+  toggleButtons();
+}
+
+function toggleButtons() {
+  $('.progress').toggle();
+  $('#search').toggle();
+  $('#cancel').toggle();
 }
 
 function updateLink() {

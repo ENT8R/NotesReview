@@ -4,6 +4,9 @@ $(document).ready(function() {
   $('#search').click(function() {
     search();
   });
+  $('#cancel').click(function() {
+    cancelRequest();
+  });
 
   $('#query').change(function() {
     updateLink();
@@ -23,11 +26,32 @@ $(document).ready(function() {
   });
 });
 
+const http = new XMLHttpRequest();
+
 const map = L.map('map', {
   minZoom: 2,
   maxZoom: 22
-}).setView([40, 10], 3);
+});
 setTileLayer();
+
+let BBoxSize;
+
+map.on('move', function(event) {
+  const bounds = map.getBounds();
+  BBoxSize = BBoxToSquareDegree(bounds);
+  if (BBoxSize < 0.25) {
+    $('#search').tooltip('remove');
+    $('#fast-search').show();
+  } else {
+    $('#fast-search').hide();
+    $('#search').tooltip({
+      delay: 50,
+      tooltip: 'Worldwide query enabled. Zoom in further to get a faster query for a limited area.'
+    });
+  }
+});
+
+map.setView([40, 10], 3);
 
 let watermark;
 
@@ -71,23 +95,17 @@ function search() {
   }
 
   $('.progress').show();
+  $('#search').hide();
+  $('#cancel').show();
 
   let useNormalApi = false;
   let url = 'https://api.openstreetmap.org/api/0.6/notes/search.json?q=' + query + '&limit=' + limit + '&closed=' + closed;
 
-  // (maxlat - minlat) * (maxlon - minlon) < 0.25
-  const bounds = map.getBounds();
-  const boundString = bounds.toBBoxString();
-  const BBoxSize = BBoxToSquareDegree(bounds);
   if (BBoxSize < 0.25) {
     useNormalApi = true;
-    url = 'https://api.openstreetmap.org/api/0.6/notes.json?bbox=' + boundString + '&limit=' + limit + '&closed=' + closed;
-  }
-  else {
-    Materialize.toast('Worldwide query enabled. Zoom in further to get a faster query for a limited area.', 6000);
+    url = 'https://api.openstreetmap.org/api/0.6/notes.json?bbox=' + map.getBounds().toBBoxString() + '&limit=' + limit + '&closed=' + closed;
   }
 
-  const http = new XMLHttpRequest();
   http.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
 
@@ -104,7 +122,7 @@ function search() {
       const result = JSON.parse(this.responseText);
 
       if (result.features.length == 0) {
-        $('.progress').hide();
+        toggleButtons();
         return Materialize.toast('Nothing found!', 6000);
       }
 
@@ -149,12 +167,23 @@ function search() {
       map.addLayer(markers);
       map.fitBounds(markers.getBounds());
 
-      $('.progress').hide();
+      toggleButtons();
     }
   };
 
   http.open('GET', url, true);
   http.send();
+}
+
+function cancelRequest() {
+  http.abort();
+  toggleButtons();
+}
+
+function toggleButtons() {
+  $('.progress').toggle();
+  $('#search').toggle();
+  $('#cancel').toggle();
 }
 
 function updateLink() {
@@ -189,5 +218,6 @@ function setTileLayer() {
 }
 
 function BBoxToSquareDegree(bounds) {
+  // (maxlat - minlat) * (maxlon - minlon) < 0.25
   return (bounds.getNorth() - bounds.getSouth()) * (bounds.getEast() - bounds.getWest());
 }
