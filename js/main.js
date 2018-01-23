@@ -132,8 +132,7 @@ function search() {
       const result = JSON.parse(this.responseText);
 
       if (result.features.length == 0) {
-        toggleButtons();
-        return Materialize.toast('Nothing found!', 6000);
+        return nothingFound();
       }
 
       let ids = [];
@@ -173,6 +172,9 @@ function search() {
       }).addTo(map);
 
       //Display all notes on the map and zoom the map to show them all
+      if (geoJSONLayer.getLayers().length == 0) {
+        return nothingFound();
+      }
       markers.addLayer(geoJSONLayer);
       map.addLayer(markers);
       map.fitBounds(markers.getBounds());
@@ -194,6 +196,11 @@ function toggleButtons() {
   $('.progress').toggle();
   $('#search').toggle();
   $('#cancel').toggle();
+}
+
+function nothingFound() {
+  toggleButtons();
+  return Materialize.toast('Nothing found!', 6000);
 }
 
 function updateLink() {
