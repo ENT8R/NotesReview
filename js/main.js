@@ -17,6 +17,9 @@ $(document).ready(function() {
   $('#start-query').change(function() {
     updateLink();
   });
+  $('#show-map').change(function() {
+    updateLink();
+  });
   updateLink();
 
   $(document).keypress(function(e) {
@@ -37,6 +40,8 @@ setTileLayer();
 let BBoxSize;
 
 map.on('move', function(event) {
+  updateLink();
+
   const bounds = map.getBounds();
   BBoxSize = BBoxToSquareDegree(bounds);
   if (BBoxSize < 0.25) {
@@ -64,12 +69,17 @@ function init() {
   const query = url.searchParams.get('query');
   const limit = url.searchParams.get('limit');
   const start = url.searchParams.get('start');
+  let position;
+  if (url.searchParams.has('map')) {
+    position = url.searchParams.get('map').split('/');
+  }
 
   if (query) $('#query').val(query);
   if (limit) $('#limit').val(limit);
+  if (position) map.setView([position[1], position[2]], position[0]);
   if (start) search();
 
-  if (query || limit) {
+  if (query || limit || position) {
     const uri = window.location.toString();
     if (uri.indexOf('?') > 0) {
       window.history.replaceState({}, document.title, uri.substring(0, uri.indexOf('?')));
@@ -187,15 +197,18 @@ function toggleButtons() {
 }
 
 function updateLink() {
-  let url = "https://ent8r.github.io/NotesReview/expert/?";
+  let url = "https://ent8r.github.io/NotesReview/?";
   const query = $('#query').val();
   const limit = $('#limit').val();
-  const start = $('#start-query').is(':checked')
+  const start = $('#start-query').is(':checked');
+  const showMap = $('#show-map').is(':checked');
+  const position = map.getZoom() + '/' + map.getCenter().lat + '/' + map.getCenter().lng;
 
   let data = {};
   if (query) data.query = query;
   if (limit) data.limit = limit;
   if (start) data.start = start;
+  if (showMap && position) data.map = position;
 
   url += encodeQueryData(data);
 
@@ -206,7 +219,7 @@ function updateLink() {
 function encodeQueryData(data) {
   let ret = [];
   for (let d in data)
-    ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+    ret.push(d + '=' + data[d]);
   return ret.join('&');
 }
 
