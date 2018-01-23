@@ -142,6 +142,7 @@ function toggleButtons() {
 
 function updateLink() {
   let url = "https://ent8r.github.io/NotesReview/?";
+  let expertUrl = "https://ent8r.github.io/NotesReview/expert/?";
   const query = $('#query').val();
   const limit = $('#limit').val();
   const start = $('#start-query').is(':checked')
@@ -152,9 +153,10 @@ function updateLink() {
   if (start) data.start = start;
 
   url += encodeQueryData(data);
+  expertUrl += encodeQueryData(data);
 
   $('.link').attr('href', url);
-  $('#permalink').val(url);
+  $('#permalink').val(expertUrl);
 }
 
 function encodeQueryData(data) {

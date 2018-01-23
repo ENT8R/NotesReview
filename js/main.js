@@ -207,6 +207,7 @@ function removeLayersAndSetTiles() {
 
 function updateLink() {
   let url = "https://ent8r.github.io/NotesReview/?";
+  let expertUrl = "https://ent8r.github.io/NotesReview/expert/?";
   const query = $('#query').val();
   const limit = $('#limit').val();
   const start = $('#start-query').is(':checked');
@@ -220,8 +221,9 @@ function updateLink() {
   if (showMap && position) data.map = position;
 
   url += encodeQueryData(data);
+  expertUrl += encodeQueryData(data);
 
-  $('.link').attr('href', url);
+  $('.link').attr('href', expertUrl);
   $('#permalink').val(url);
 }
 
