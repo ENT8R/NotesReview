@@ -202,7 +202,7 @@ function updateLink() {
   const limit = $('#limit').val();
   const start = $('#start-query').is(':checked');
   const showMap = $('#show-map').is(':checked');
-  const position = map.getZoom() + '/' + map.getCenter().lat + '/' + map.getCenter().lng;
+  const position = map.getZoom().toFixed(0) + '/' + map.getCenter().lat.toFixed(4) + '/' + map.getCenter().lng.toFixed(4);
 
   let data = {};
   if (query) data.query = query;
