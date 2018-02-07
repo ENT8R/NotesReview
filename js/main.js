@@ -138,7 +138,7 @@ function search() {
 
       function filterGeoJSON(feature, layer) {
         if (useNormalApi) {
-          return ids.indexOf(feature.properties.id) == -1 && feature.properties.comments[0].text.toUpperCase().includes(query.toUpperCase());
+          return ids.indexOf(feature.properties.id) == -1 && feature.properties.comments[0].text.toLocaleUpperCase().includes(query.toLocaleUpperCase());
         }
         return ids.indexOf(feature.properties.id) == -1;
       }
