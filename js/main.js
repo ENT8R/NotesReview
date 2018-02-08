@@ -132,6 +132,21 @@ function search() {
             ids.push(feature.properties.id);
             let comment = feature.properties.comments[0];
             layer.bindPopup('<p>' + comment.html + '</p><div class="divider"></div><a href="https://www.openstreetmap.org/note/' + feature.properties.id + '" target="_blank">' + feature.properties.id + ' on OSM</a>');
+
+            if (searchClosed) {
+              let iconURL;
+              if (feature.properties.status == 'open') {
+                iconURL = 'assets/open.svg';
+              } else if (feature.properties.status == 'closed') {
+                iconURL = 'assets/closed.svg';
+              }
+              layer.setIcon(new L.Icon({
+                iconUrl: iconURL,
+                iconSize: [40, 40],
+                iconAnchor: [20, 45],
+                popupAnchor: [0, -30]
+              }));
+            }
           }
         }
       });
