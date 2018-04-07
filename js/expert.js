@@ -132,10 +132,7 @@ function cancelRequest() {
 }
 
 function toggleButtons() {
-  if ($('.progress').css('visibility') == 'hidden')
-    $('.progress').css('visibility', 'visible');
-  else
-    $('.progress').css('visibility', 'hidden');
+  $('.progress').css('visibility') == 'hidden' ? $('.progress').css('visibility', 'visible') : $('.progress').css('visibility', 'hidden');
   $('#search').toggle();
   $('#cancel').toggle();
 }
