@@ -1,0 +1,28 @@
+{
+    "root": true,
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "script",
+        "ecmaFeatures": {
+            "impliedStrict": true
+        }
+    },
+    "env": {
+        "browser": true,
+    },
+    "extends": ["eslint:recommended"],
+    "rules": {
+        "semi": 1,
+        "semi-style": 2,
+        "semi-spacing": 1,
+        "camelcase": 2,
+        "quotes": ["warn", "single", {
+            "avoidEscape": true,
+            "allowTemplateLiterals": false
+        }],
+        "brace-style": 2,
+        "indent": ["error", 2],
+        "no-eval": 2,
+        "no-implied-eval": 2,
+    }
+}

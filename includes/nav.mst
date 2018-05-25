@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="input-field col s6 l3">
+    <i class="material-icons prefix">search</i>
+    <input id="query" type="text" class="update-link">
+    <label for="query">Query</label>
+  </div>
+
+  <div class="input-field col s6 l2">
+    <i class="material-icons prefix">format_list_numbered</i>
+    <input id="limit" type="number" value="100" class="update-link">
+    <label for="limit">Limit</label>
+  </div>
+
+  {{#map}}
+  <p class="col s4 l1">
+    <a id="link">Show in a list</a>
+  </p>
+  {{/map}}
+  {{^map}}
+  <p class="col s4 l1">
+    <a id="link">Show on a map</a>
+  </p>
+  {{/map}}
+
+  <p class="col s8 l3">
+    <a id="search" class="waves-effect waves-light btn indigo"><i class="material-icons left">search</i>Search
+      {{#map}}<i id="fast-search" class="material-icons right">flash_on</i>{{/map}}
+    </a>
+    <a id="cancel" class="waves-effect waves-light btn indigo"><i class="material-icons left">clear</i>Cancel</a>
+  </p>
+
+  <p class="col s6 l2">
+    <label>
+      <input type="checkbox" class="filled-in" id="search-closed" />
+      <span>Include closed notes</span>
+    </label>
+  </p>
+
+  <p class="col s6 l1 center">
+    <a href="#help" class="modal-trigger"><i class="material-icons">help</i></a>
+    <a href="#permalink-modal" class="modal-trigger"><i class="material-icons">share</i></a>
+  </p>
+
+  <p id="found-notes" class="col s1"></p>
+  
+</div>

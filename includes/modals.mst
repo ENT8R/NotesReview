@@ -1,0 +1,38 @@
+<div id="help" class="modal">
+  <div class="modal-content">
+    <h4 class="center">Help</h4>
+    <ul class="browser-default">
+      <li>View the project on <a href="https://github.com/ENT8R/NotesReview" target="_blank">Github</a></li>
+      <li>Visit the <a href="https://github.com/ENT8R/NotesReview/issues" target="_blank">issue tracker</a></li>
+      <li>Contact the <a href="mailto:info.ent8r@gmail.com">developer</a></li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+  </div>
+</div>
+
+<div id="permalink-modal" class="modal">
+  <div class="modal-content">
+    <h4 class="center">Permalink</h4>
+    <p>Copy this Link to share the current query:</p>
+    <input id="permalink" type="text" readonly>
+    <p>
+      <label>
+        <input type="checkbox" class="filled-in update-link" id="start-query" checked="checked" />
+        <span>Start query directly after opening the link</span>
+      </label>
+    </p>
+    {{#map}}
+    <p>
+      <label>
+        <input type="checkbox" class="filled-in update-link" id="show-map" checked="checked" />
+        <span>Share current view of the map</span>
+      </label>
+    </p>
+    {{/map}}
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Finish</a>
+  </div>
+</div>

@@ -1,11 +1,21 @@
 {
-  "name": "notes-review",
+  "name": "NotesReview",
   "version": "1.1.0",
   "description": "A program for reviewing OSM Notes",
   "scripts": {
-    "start": "python -m SimpleHTTPServer",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build && python -m SimpleHTTPServer",
+    "build": "node build.js",
+    "lint": "eslint js/**.js",
+    "test": "npm run lint"
   },
   "author": "ENT8R <info.ent8r@gmail.com>",
-  "license": "GPL-3.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ENT8R/NotesReview.git"
+  },
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "html-minifier": "^3.5.16",
+    "mustache": "^2.3.0"
+  }
 }
