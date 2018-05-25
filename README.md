@@ -12,4 +12,4 @@ If you feel like an expert you can also try the [expert mode](https://ent8r.gith
 - Just report it in the [issue section](https://github.com/ENT8R/NotesReview/issues/) of this repository
 
 ### Screenshot
-![NotesReview](https://raw.githubusercontent.com/ENT8R/ent8r.github.io/master/images/notesreview.PNG)
+![NotesReview](https://raw.githubusercontent.com/ENT8R/ent8r.github.io/master/images/notesreview.png)
