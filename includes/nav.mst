@@ -1,28 +1,28 @@
+<div id="preloader" class="progress">
+  <div class="indeterminate"></div>
+</div>
+
 <div class="row">
-  <div class="input-field col s6 l3">
-    <i class="material-icons prefix">search</i>
+  <div class="input-field col s12 l3">
     <input id="query" type="text" class="update-link">
     <label for="query">Query</label>
   </div>
 
-  <div class="input-field col s6 l2">
-    <i class="material-icons prefix">format_list_numbered</i>
+  <div class="input-field col s12 l1">
     <input id="limit" type="number" value="100" class="update-link">
     <label for="limit">Limit</label>
   </div>
 
-  {{#map}}
   <p class="col s4 l1">
+    {{#map}}
     <a id="link">Show in a list</a>
-  </p>
-  {{/map}}
-  {{^map}}
-  <p class="col s4 l1">
+    {{/map}}
+    {{^map}}
     <a id="link">Show on a map</a>
+    {{/map}}
   </p>
-  {{/map}}
 
-  <p class="col s8 l3">
+  <p class="col s8 l2">
     <a id="search" class="waves-effect waves-light btn indigo"><i class="material-icons left">search</i>Search
       {{#map}}<i id="fast-search" class="material-icons right">flash_on</i>{{/map}}
     </a>
@@ -41,6 +41,6 @@
     <a href="#permalink-modal" class="modal-trigger"><i class="material-icons">share</i></a>
   </p>
 
-  <p id="found-notes" class="col s1"></p>
-  
+  <p id="found-notes" class="col s12 l2"></p>
+
 </div>

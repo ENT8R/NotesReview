@@ -12,7 +12,7 @@ const UI = (function() {
   me.limitInput = document.getElementById('limit');
 
   //Get the URL params and use them to e.g. initiate a new search with the given values
-  me.searchParams = function() {
+  function searchParams() {
     const url = new URL(window.location.href);
 
     const query = url.searchParams.get('query');
@@ -33,7 +33,7 @@ const UI = (function() {
       Maps.get().setView([position[1], position[2]], position[0]);
     }
     if (start) {
-      search();
+      startSearch();
     }
 
     if (query || limit || position) {
@@ -42,13 +42,35 @@ const UI = (function() {
         window.history.replaceState({}, document.title, uri.substring(0, uri.indexOf('?')));
       }
     }
-  };
+  }
 
   me.toggleButtons = function() {
     const preloader = document.getElementById('preloader');
     Effects.togglePreloader(preloader);
     Effects.toggle(UI.searchButton);
     Effects.toggle(UI.cancelButton);
+  };
+
+  me.tooltip = function() {
+    if (Mode.get() === Mode.MAPS) {
+      const tooltip = M.Tooltip.getInstance(UI.searchButton);
+      const fastSearch = document.getElementById('fast-search');
+
+      if (Maps.getBBoxSize() < 0.25) {
+        fastSearch.style.display = 'block';
+        if (tooltip) {
+          tooltip.destroy();
+        }
+      } else {
+        fastSearch.style.display = 'none';
+        if (!tooltip) {
+          M.Tooltip.init(UI.searchButton, {
+            enterDelay: 50,
+            html: 'Worldwide query enabled. Zoom in further to get a faster query for a limited area.'
+          });
+        }
+      }
+    }
   };
 
   me.nothingFound = function() {
@@ -59,7 +81,7 @@ const UI = (function() {
   me.init = function() {
     // Buttons
     UI.searchButton.addEventListener('click', function() {
-      search();
+      startSearch();
     });
     UI.cancelButton.addEventListener('click', function() {
       Request.cancel();
@@ -75,13 +97,19 @@ const UI = (function() {
 
     // Keyboard listeners
     document.addEventListener('keydown', function(e) {
-      if (e.which === 13) {
-        search();
+      if (e.which === 13 && !Request.isRunning) {
+        startSearch();
+      } else if (Request.isRunning) {
+        Request.cancel();
       }
     });
 
     // Materialize elements
     M.Modal.init(document.querySelectorAll('.modal'));
+
+    // other things
+    UI.tooltip();
+    searchParams();
   };
 
   return me;
@@ -114,11 +142,24 @@ const Effects = (function() {
 const Request = (function() { // eslint-disable-line no-unused-vars
   const me = {};
 
+  let isRunning = false;
+  me.isRunning = isRunning;
+
   const http = new XMLHttpRequest();
 
+  me.buildURL = function(query, limit, closed, bbox) {
+    if (!bbox) {
+      return 'https://api.openstreetmap.org/api/0.6/notes/search.json?q=' + query + '&limit=' + limit + '&closed=' + closed;
+    } else {
+      return 'https://api.openstreetmap.org/api/0.6/notes.json?bbox=' + query + '&limit=' + limit + '&closed=' + closed;
+    }
+  };
+
   me.get = function(url, callback) {
+    isRunning = true;
     http.onreadystatechange = function() {
       if (http.readyState === 4 && http.status === 200) {
+        isRunning = false;
         const result = JSON.parse(http.responseText);
         if (callback && typeof callback === 'function') {
           callback(result);
@@ -143,8 +184,8 @@ const Mode = (function() {
 
   let mode;
 
-  me.EXPERT = 'expert';
   me.MAPS = 'maps';
+  me.EXPERT = 'expert';
 
   me.get = function() {
     return mode;
@@ -196,21 +237,40 @@ const Permalink = (function() { // eslint-disable-line no-unused-vars
 
   function encodeQueryData(data) {
     let ret = [];
-    for (let d in data)
+    for (let d in data) {
       ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+    }
     return ret.join('&');
   }
 
   return me;
 })();
 
-function search() {
+function startSearch() {
+  const query = UI.queryInput.value;
+  let limit = UI.limitInput.value;
+  const searchClosed = document.getElementById('search-closed').checked;
+
+  let closed = '0';
+  if (searchClosed) {
+    closed = '-1';
+  }
+
+  if (!query) {
+    return M.toast({html: 'Please specify a query!'});
+  }
+
+  if (limit > 10000) {
+    limit = 10000;
+    UI.limitInput.value = 10000;
+    M.toast({html: 'Automatically set limit to 10000, because higher values are not allowed'});
+  }
+
+  UI.toggleButtons();
+
   if (Mode.get() === Mode.EXPERT) {
-    Expert.search();
+    Expert.search(query, limit, closed);
   } else {
-    Maps.search();
+    Maps.search(query, limit, closed);
   }
 }
-
-// init modules
-UI.init();

@@ -1,5 +1,3 @@
-/* globals M */
-
 /* globals UI */
 /* globals Permalink */
 /* globals Mode */
@@ -7,31 +5,10 @@
 const Expert = (function() { // eslint-disable-line no-unused-vars
   const me = {};
 
-  me.search = function() {
-    const query = UI.queryInput.value;
-    let limit = UI.limitInput.value;
-    const searchClosed = document.getElementById('search-closed').checked;
-
-    let closed = '0';
-    if (searchClosed) closed = '-1';
-
-    if (!query) {
-      return M.toast({html: 'Please specify a query!'});
-    }
-
-    if (limit > 10000) {
-      limit = 10000;
-      UI.limitInput.value = 10000;
-      M.toast({html: 'Automatically set limit to 10000, because higher values are not allowed'});
-    }
-
-    UI.toggleButtons();
-
-    const url = 'https://api.openstreetmap.org/api/0.6/notes/search.json?q=' + query + '&limit=' + limit + '&closed=' + closed;
+  me.search = function(query, limit, closed) {
+    const url = Request.buildURL(query, limit, closed, false);
 
     Request.get(url, function(result) {
-      document.getElementById('notes').innerHTML = '';
-
       if (result.features.length === 0) {
         UI.nothingFound();
       }
@@ -57,8 +34,9 @@ const Expert = (function() { // eslint-disable-line no-unused-vars
       });
       notes.reverse();
 
+      const html = [];
       for (let i = 0; i < notes.length; i++) {
-        document.getElementById('notes').innerHTML +=
+        html.push(
           '<div class="col s12 m6 l4">' +
             '<div class="card blue-grey darken-1">' +
               '<div class="card-content white-text">' +
@@ -69,12 +47,14 @@ const Expert = (function() { // eslint-disable-line no-unused-vars
                 '<a href="https://www.openstreetmap.org/note/' + notes[i].id + '" target="_blank">View Note ' + notes[i].id + ' on OSM</a>' +
               '</div>' +
             '</div>' +
-          '</div>';
+          '</div>');
       }
 
-      document.getElementById('found-notes').textContent = 'Found notes: ' + ids.length;
-
       UI.toggleButtons();
+      
+      document.getElementById('notes').innerHTML = html.join('');
+      //Display how much notes were found
+      document.getElementById('found-notes').textContent = 'Found notes: ' + ids.length;
     });
   };
 
@@ -84,4 +64,4 @@ const Expert = (function() { // eslint-disable-line no-unused-vars
 // init modules
 Mode.set(Mode.EXPERT);
 Permalink.update();
-UI.searchParams();
+UI.init();

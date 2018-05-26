@@ -1,42 +1,18 @@
 /* globals L */
-/* globals M */
 
 /* globals UI */
 /* globals Permalink */
 /* globals Mode */
 
-let BBoxSize;
-let watermark;
-
-//Search for all notes with a specific keyword either worldwide of if the bounding box is smaller than 0.25 square degree, in that bbox
-function search() {
-  const query = UI.queryInput.value;
-  let limit = UI.limitInput.value;
-  const searchClosed = document.getElementById('search-closed').checked;
-
-  let closed = '0';
-  if (searchClosed) {
-    closed = '-1';
-  }
-
-  if (!query) {
-    return M.toast({html: 'Please specify a query!'});
-  }
-
-  if (limit > 10000) {
-    limit = 10000;
-    UI.limitInput.value = 10000;
-    M.toast({html: 'Automatically set limit to 10000, because higher values are not allowed'});
-  }
-
-  UI.toggleButtons();
+//Search for all notes with a specific keyword either worldwide or if the bounding box is smaller than 0.25 square degree, in that bbox
+function search(query, limit, closed) {
 
   let useNormalApi = false;
-  let url = 'https://api.openstreetmap.org/api/0.6/notes/search.json?q=' + query + '&limit=' + limit + '&closed=' + closed;
+  let url = Request.buildURL(query, limit, closed, false);
 
-  if (BBoxSize < 0.25) {
+  if (Maps.getBBoxSize() < 0.25) {
     useNormalApi = true;
-    url = 'https://api.openstreetmap.org/api/0.6/notes.json?bbox=' + Maps.getBBox() + '&limit=' + limit + '&closed=' + closed;
+    url = Request.buildURL(Maps.getBBox(), limit, closed, true);
   }
 
   Request.get(url, function(result) {
@@ -57,7 +33,7 @@ function search() {
           let comment = feature.properties.comments[0];
           layer.bindPopup('<p>' + comment.html + '</p><div class="divider"></div><a href="https://www.openstreetmap.org/note/' + feature.properties.id + '" target="_blank">' + feature.properties.id + ' on OSM</a>');
 
-          if (searchClosed) {
+          if (closed === '-1') {
             let iconURL;
             if (feature.properties.status === 'open') {
               iconURL = 'assets/open.svg';
@@ -75,24 +51,12 @@ function search() {
       }
     });
 
-    //Display how much notes were found
-    L.Control.Watermark = L.Control.extend({
-      onAdd: function() {
-        const element = L.DomUtil.create('p');
-        element.textContent = 'Found notes: ' + ids.length;
-        return element;
-      }
-    });
-    L.control.watermark = function(opts) {
-      return new L.Control.Watermark(opts);
-    };
-    watermark = L.control.watermark({
-      position: 'bottomleft'
-    }).addTo(Maps.get());
-
     if (geoJSONLayer.getLayers().length === 0) {
       return UI.nothingFound();
     }
+
+    //Display how much notes were found
+    document.getElementById('found-notes').textContent = 'Found notes: ' + ids.length;
 
     Maps.removeLayers();
 
@@ -137,9 +101,6 @@ const Maps = (function() {
     map.eachLayer(function(layer) {
       map.removeLayer(layer);
     });
-    if (watermark) {
-      map.removeControl(watermark);
-    }
     Maps.tiles();
   };
 
@@ -152,38 +113,21 @@ const Maps = (function() {
     return map.getBounds().toBBoxString();
   };
 
+  me.getBBoxSize = function() {
+    const bounds = map.getBounds();
+    return Maps.BBoxToSquareDegree(bounds);
+  };
+
   me.init = function() {
     map = L.map('map', {
       minZoom: 2,
       maxZoom: 22
-    });
+    }).setView([40, 10], 3);
 
     map.on('move', function() {
       Permalink.update();
-
-      const tooltip = M.Tooltip.getInstance(UI.searchButton);
-      const fastSearch = document.getElementById('fast-search');
-
-      const bounds = map.getBounds();
-      BBoxSize = Maps.BBoxToSquareDegree(bounds);
-
-      if (BBoxSize < 0.25) {
-        if (tooltip) {
-          tooltip.destroy();
-        }
-        fastSearch.style.display = 'block';
-      } else {
-        fastSearch.style.display = 'none';
-        if (!tooltip) {
-          M.Tooltip.init(UI.searchButton, {
-            enterDelay: 50,
-            html: 'Worldwide query enabled. Zoom in further to get a faster query for a limited area.'
-          });
-        }
-      }
+      UI.tooltip();
     });
-
-    map.setView([40, 10], 3);
 
     Maps.tiles();
   };
@@ -195,4 +139,4 @@ const Maps = (function() {
 Mode.set(Mode.MAPS);
 Maps.init();
 Permalink.update();
-UI.searchParams();
+UI.init();

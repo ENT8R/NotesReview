@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' https://unpkg.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://unpkg.com https://*.tile.openstreetmap.org data:; connect-src https://api.openstreetmap.org/api/0.6/notes/search.json">
+        content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://unpkg.com https://*.tile.openstreetmap.org data:; connect-src https://api.openstreetmap.org">
 
   <title>OSM NotesReview</title>
 
@@ -27,10 +27,6 @@
 </head>
 
 <body>
-
-  <div id="preloader" class="progress">
-    <div class="indeterminate"></div>
-  </div>
 
   {{> nav}}
 
