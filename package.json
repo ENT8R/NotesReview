@@ -1,6 +1,6 @@
 {
   "name": "NotesReview",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A program for reviewing OSM Notes",
   "scripts": {
     "start": "npm run build && python -m SimpleHTTPServer",
@@ -15,7 +15,7 @@
   },
   "license": "GPL-3.0",
   "devDependencies": {
-    "eslint": "^4.19.1",
+    "eslint": "^5.0.0",
     "html-minifier": "^3.5.16",
     "mustache": "^2.3.0"
   }

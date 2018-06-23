@@ -1,3 +1,5 @@
+'use strict';
+
 /* globals M */
 /* globals Maps */
 /* globals Expert */
@@ -76,6 +78,30 @@ const UI = (function() {
   me.nothingFound = function() {
     UI.toggleButtons();
     return M.toast({html: 'Nothing found!'});
+  };
+
+  me.getNoteActions = function(comment, id, position) {
+    const regex = [
+      /(?:https?:\/\/)?(?:www\.)?openstreetmap\.org\/(node|way|relation)\/[0-9]{0,}/,
+      /(node|way|relation)\/[0-9]{0,}/,
+      /(node|way|relation) #[0-9]{0,}/,
+      /(n|w|r)\/[0-9]{0,} /
+    ];
+
+    let text = '' +
+    '<a href="https://www.openstreetmap.org/note/' + id + '" target="_blank">View Note ' + id + ' on OSM</a>';
+
+    const matches = comment.match(regex[0]) || comment.match(regex[1]) || comment.match(regex[2]) || comment.match(regex[3]);
+
+    if (matches) {
+      const element = matches[0].match(regex[1])[0];
+      // Level0
+      text += '<br><a href="http://level0.osmz.ru/?url=' + element + '&center=' + position.reverse().join(',') + '" target="_blank">Edit ' + element + ' with Level0</a>';
+      // iD
+      text += '<br><a href="http://www.openstreetmap.org/edit?editor=id&' + element.replace('/', '=') + '" target="_blank">Edit ' + element + ' with iD</a>';
+    }
+
+    return text;
   };
 
   me.init = function() {

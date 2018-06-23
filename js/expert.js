@@ -1,3 +1,5 @@
+'use strict';
+
 /* globals UI */
 /* globals Permalink */
 /* globals Mode */
@@ -17,14 +19,18 @@ const Expert = (function() { // eslint-disable-line no-unused-vars
       let notes = [];
 
       for (let i = 0; i < result.features.length; i++) {
-        if (ids.indexOf(result.features[i].properties.id) === -1) {
-          const note = result.features[i].properties;
+        const feature = result.features[i];
+        if (ids.indexOf(feature.properties.id) === -1) {
+          const note = feature.properties;
           const comment = note.comments[0];
+          const geometry = feature.geometry;
+
           ids.push(note.id);
           notes.push({
             id: note.id,
             user: comment.user,
-            text: comment.html
+            text: comment.html,
+            position: geometry.coordinates
           });
         }
       }
@@ -44,14 +50,14 @@ const Expert = (function() { // eslint-disable-line no-unused-vars
                 '<p>' + notes[i].text + '</p>' +
               '</div>' +
               '<div class="card-action">' +
-                '<a href="https://www.openstreetmap.org/note/' + notes[i].id + '" target="_blank">View Note ' + notes[i].id + ' on OSM</a>' +
+                UI.getNoteActions(notes[i].text, notes[i].id, notes[i].position) +
               '</div>' +
             '</div>' +
           '</div>');
       }
 
       UI.toggleButtons();
-      
+
       document.getElementById('notes').innerHTML = html.join('');
       //Display how much notes were found
       document.getElementById('found-notes').textContent = 'Found notes: ' + ids.length;

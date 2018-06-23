@@ -54,3 +54,7 @@ a {
 .card .card-content p {
   word-wrap: break-word;
 }
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+  text-transform: none;
+}

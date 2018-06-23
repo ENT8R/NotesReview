@@ -1,3 +1,5 @@
+'use strict';
+
 /* globals L */
 
 /* globals UI */
@@ -31,7 +33,11 @@ function search(query, limit, closed) {
         if (feature.properties) {
           ids.push(feature.properties.id);
           let comment = feature.properties.comments[0];
-          layer.bindPopup('<p>' + comment.html + '</p><div class="divider"></div><a href="https://www.openstreetmap.org/note/' + feature.properties.id + '" target="_blank">' + feature.properties.id + ' on OSM</a>');
+          layer.bindPopup(
+            '<p>' + comment.html + '</p>' +
+            '<div class="divider"></div>' +
+            UI.getNoteActions(comment.html, feature.properties.id, feature.geometry.coordinates)
+          );
 
           if (closed === '-1') {
             let iconURL;
