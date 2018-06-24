@@ -16,7 +16,8 @@ const templates = {
 
 const partials = {
   'modals': fs.readFileSync('./includes/modals.mst', 'utf8'),
-  'nav': fs.readFileSync('./includes/nav.mst', 'utf8')
+  'nav': fs.readFileSync('./includes/nav.mst', 'utf8'),
+  'head': fs.readFileSync('./includes/head.mst', 'utf8')
 };
 
 for (let i = 0; i < files.length; i++) {

@@ -58,3 +58,36 @@ a {
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
   text-transform: none;
 }
+
+/*-------------------------------------------*/
+
+/*------------------ Icons -----------------*/
+
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+}
+
+.icon-close {
+  background-image: url("../icons/close.svg");
+}
+
+.icon-flash {
+  background-image: url("../icons/flash.svg");
+}
+
+.icon-help {
+  background-image: url("../icons/help.svg");
+}
+
+.icon-search {
+  background-image: url("../icons/search.svg");
+}
+
+.icon-share {
+  background-image: url("../icons/share.svg");
+}
+
+/*-------------------------------------------*/

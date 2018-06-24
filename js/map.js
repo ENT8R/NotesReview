@@ -30,20 +30,22 @@ function search(query, limit, closed) {
         return filterGeoJSON(feature, useNormalApi, ids, query);
       },
       onEachFeature: function(feature, layer) {
-        if (feature.properties) {
-          ids.push(feature.properties.id);
-          let comment = feature.properties.comments[0];
+        const note = feature.properties;
+        if (note) {
+          ids.push(note.id);
+          let comment = note.comments[0];
           layer.bindPopup(
+            UI.getAmountOfCommentsBadge(note.comments) +
             '<p>' + comment.html + '</p>' +
             '<div class="divider"></div>' +
-            UI.getNoteActions(comment.html, feature.properties.id, feature.geometry.coordinates)
+            UI.getNoteActions(comment.html, note.id, feature.geometry.coordinates)
           );
 
           if (closed === '-1') {
             let iconURL;
-            if (feature.properties.status === 'open') {
+            if (note.status === 'open') {
               iconURL = 'assets/open.svg';
-            } else if (feature.properties.status === 'closed') {
+            } else if (note.status === 'closed') {
               iconURL = 'assets/closed.svg';
             }
             layer.setIcon(new L.Icon({

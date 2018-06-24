@@ -30,7 +30,8 @@ const Expert = (function() { // eslint-disable-line no-unused-vars
             id: note.id,
             user: comment.user,
             text: comment.html,
-            position: geometry.coordinates
+            position: geometry.coordinates,
+            comments: note.comments
           });
         }
       }
@@ -46,7 +47,10 @@ const Expert = (function() { // eslint-disable-line no-unused-vars
           '<div class="col s12 m6 l4">' +
             '<div class="card blue-grey darken-1">' +
               '<div class="card-content white-text">' +
-                '<span class="card-title">' + notes[i].id + ' (' + notes[i].user + ')</span>' +
+                '<span class="card-title">' +
+                  notes[i].id + ' (' + notes[i].user + ')' +
+                  UI.getAmountOfCommentsBadge(notes[i].comments) +
+                '</span>' +
                 '<p>' + notes[i].text + '</p>' +
               '</div>' +
               '<div class="card-action">' +

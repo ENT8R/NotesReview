@@ -59,7 +59,7 @@ const UI = (function() {
       const fastSearch = document.getElementById('fast-search');
 
       if (Maps.getBBoxSize() < 0.25) {
-        fastSearch.style.display = 'block';
+        fastSearch.style.display = 'inline-block';
         if (tooltip) {
           tooltip.destroy();
         }
@@ -96,11 +96,32 @@ const UI = (function() {
     if (matches) {
       const element = matches[0].match(regex[1])[0];
       // Level0
-      text += '<br><a href="http://level0.osmz.ru/?url=' + element + '&center=' + position.reverse().join(',') + '" target="_blank">Edit ' + element + ' with Level0</a>';
+      text += '<br>' +
+              '<a' +
+              ' href="http://level0.osmz.ru/?url=' + element + '&center=' + position.reverse().join(',') + '"' +
+              ' target="_blank">Edit ' + element + ' with Level0</a>';
       // iD
-      text += '<br><a href="http://www.openstreetmap.org/edit?editor=id&' + element.replace('/', '=') + '" target="_blank">Edit ' + element + ' with iD</a>';
+      text += '<br>' +
+              '<a' +
+              ' href="http://www.openstreetmap.org/edit?editor=id&' + element.replace('/', '=') + '"' +
+              ' target="_blank">Edit ' + element + ' with iD</a>';
     }
 
+    return text;
+  };
+
+  me.getAmountOfCommentsBadge = function(comments) {
+    const length = comments.length - 1;
+    let text = '';
+
+    if (length > 0) {
+      let caption = 'comments';
+      if (length === 1) {
+        caption = 'comment';
+      }
+
+      text = '<span class="new badge blue" data-badge-caption="' + caption + '">' + length + '</span>';
+    }
     return text;
   };
 

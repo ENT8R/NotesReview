@@ -23,10 +23,10 @@
   </p>
 
   <p class="col s8 l2">
-    <a id="search" class="waves-effect waves-light btn indigo"><i class="material-icons left">search</i>Search
-      {{#map}}<i id="fast-search" class="material-icons right">flash_on</i>{{/map}}
+    <a id="search" class="waves-effect waves-light btn indigo"><span class="icon icon-search"></span>Search
+      {{#map}}<span id="fast-search" class="icon icon-flash"></span>{{/map}}
     </a>
-    <a id="cancel" class="waves-effect waves-light btn indigo"><i class="material-icons left">clear</i>Cancel</a>
+    <a id="cancel" class="waves-effect waves-light btn indigo"><span class="icon icon-close"></span>Cancel</a>
   </p>
 
   <p class="col s6 l2">
@@ -37,8 +37,8 @@
   </p>
 
   <p class="col s6 l1 center">
-    <a href="#help" class="modal-trigger"><i class="material-icons">help</i></a>
-    <a href="#permalink-modal" class="modal-trigger"><i class="material-icons">share</i></a>
+    <a href="#help" class="modal-trigger"><span class="icon icon-help"></span></a>
+    <a href="#permalink-modal" class="modal-trigger"><span class="icon icon-share"></span></a>
   </p>
 
   <p id="found-notes" class="col s12 l2"></p>
