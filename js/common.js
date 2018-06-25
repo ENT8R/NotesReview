@@ -92,7 +92,7 @@ const UI = (function() {
     let text = '' +
     '<a href="https://www.openstreetmap.org/note/' + id + '" target="_blank">View Note ' + id + ' on OSM</a>';
 
-    const matches = comment.match(regex[0]) || comment.match(regex[1]) || comment.match(regex[2]) || comment.match(regex[3]);
+    const matches = comment.match(regex[0]) || comment.match(regex[1]) || comment.match(regex[2]);
 
     if (matches) {
       const element = matches[0].match(regex[1])[0];
