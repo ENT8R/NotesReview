@@ -84,7 +84,8 @@ const UI = (function() {
     const regex = [
       /(?:https?:\/\/)?(?:www\.)?openstreetmap\.org\/(node|way|relation)\/[0-9]{0,}/,
       /(node|way|relation)\/[0-9]{0,}/,
-      /(node|way|relation) #[0-9]{0,}/,
+      // TODO: this needs some more thoughts
+      // /(node|way|relation) #[0-9]{0,}/,
       /(n|w|r)\/[0-9]{0,} /
     ];
 
