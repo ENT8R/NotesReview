@@ -44,6 +44,8 @@ const UI = (function() {
         window.history.replaceState({}, document.title, uri.substring(0, uri.indexOf('?')));
       }
     }
+
+    Permalink.update();
   }
 
   me.toggleButtons = function() {
