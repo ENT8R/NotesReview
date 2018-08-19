@@ -239,6 +239,7 @@ const Localizer = (function() {
   const I18N_ATTRIBUTE = 'data-i18n';
 
   let translations;
+  let fallback;
 
   function replaceI18n(elem, tag) {
     // localize main content
@@ -259,8 +260,7 @@ const Localizer = (function() {
   }
 
   me.getMessage = function(tag, string) {
-    const t = translations[getLanguage()];
-    const value = getProperty(tag, t);
+    const value = getProperty(tag, translations, fallback);
     if (typeof string !== 'undefined') {
       return value.replace('%s', string);
     }
@@ -272,32 +272,45 @@ const Localizer = (function() {
     return language.split('-')[0];
   }
 
-  function getProperty(propertyName, object) {
+  function getProperty(propertyName, t, f) {
     const parts = propertyName.split('.');
-    let property = object;
+    let property = t;
     for (let i = 0; i < parts.length; i++) {
-      property = property[parts[i]];
+      if (typeof property[parts[i]] !== 'undefined') {
+        property = property[parts[i]];
+      } else {
+        property = f[parts[i]];
+      }
     }
     return property;
   }
 
   me.init = function(callback) {
-    const path = 'https://ent8r.github.io/NotesReview/locales/strings.json';
-    Request.get(new XMLHttpRequest(), path, function(result) {
-      if (!translations) {
-        translations = result;
-      }
-      document.querySelectorAll(`[${I18N_ATTRIBUTE}]`).forEach((currentElem) => {
-        const contentString = currentElem.getAttribute(I18N_ATTRIBUTE);
-        replaceI18n(currentElem, contentString);
+    //const path = 'https://ent8r.github.io/NotesReview/locales/';
+    const path = './locales/';
+    Request.get(new XMLHttpRequest(), path + 'en.json', function(en) {
+      let locale = 'en';
+      fallback = en;
+      Request.get(new XMLHttpRequest(), path + getLanguage() + '.json', function(strings, error) {
+        if (!strings && error !== null) {
+          translations = fallback;
+        } else if (!translations) {
+          translations = strings;
+          locale = getLanguage();
+        }
+
+        document.querySelectorAll(`[${I18N_ATTRIBUTE}]`).forEach((currentElem) => {
+          const contentString = currentElem.getAttribute(I18N_ATTRIBUTE);
+          replaceI18n(currentElem, contentString);
+        });
+
+        // replace html lang attribut after translation
+        document.querySelector('html').setAttribute('lang', locale);
+
+        if (typeof callback === 'function') {
+          callback();
+        }
       });
-
-      // replace html lang attribut after translation
-      document.querySelector('html').setAttribute('lang', getLanguage());
-
-      if (typeof callback === 'function') {
-        callback();
-      }
     });
   };
 
@@ -353,11 +366,17 @@ const Request = (function() {
     http = req || new XMLHttpRequest();
     isRunning = true;
     http.onreadystatechange = function() {
-      if (http.readyState === 4 && http.status === 200) {
+      if (http.readyState === 4) {
         isRunning = false;
-        const result = JSON.parse(http.responseText);
-        if (callback && typeof callback === 'function') {
-          callback(result);
+        if (http.status === 200) {
+          const result = JSON.parse(http.responseText);
+          if (callback && typeof callback === 'function') {
+            callback(result);
+          }
+        } else if (http.status === 404) {
+          if (callback && typeof callback === 'function') {
+            callback(null, new Error('The file could not be found!'));
+          }
         }
       }
     };

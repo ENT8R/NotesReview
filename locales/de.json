@@ -1,0 +1,62 @@
+{
+  "help": {
+    "github": "Schau dir das Projekt auf <a href='https://github.com/ENT8R/NotesReview' target='_blank'>Github</a> an",
+    "issues": "Besuche den <a href='https://github.com/ENT8R/NotesReview/issues' target='_blank'>Issue Tracker</a>",
+    "email": "Kontaktiere den <a href='mailto:info.ent8r@gmail.com'>Entwickler</a>"
+  },
+  "action": {
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "finish": "Fertig",
+    "search": "Suchen"
+  },
+  "header": {
+    "permalink": "Permalink",
+    "help": "Hilfe",
+    "query": "Abfrage",
+    "limit": "Limit"
+  },
+  "description": {
+    "permalink": "Kopiere diesen Link um die aktuelle Abfrage zu teilen:",
+    "startQuery": "Abfrage sofort beim Öffnen ausführen",
+    "shareView": "Aktuelle Kartenansicht mitgeben",
+    "showList": "Als Liste zeigen",
+    "showMap": "Auf Karte zeigen",
+    "includeClosed": "Geschlossene Notizen einbeziehen",
+    "worldwideQuery": "Weltweite Abfrage ist aktiv. Zoome weiter, um eine schnellere Abfrage für einen begrenzten Bereich zu erhalten.",
+    "nothingFound": "Nichts gefunden!",
+    "specifyQuery": "Bitte gebe eine Abfrage ein!",
+    "autoLimit": "Limit automatisch auf 10000 gesetzt, da höhere Werte nicht erlaubt sind",
+    "sort": {
+      "desc": "Neueste zuerst"
+    }
+  },
+  "note": {
+    "anonymous": "anonym",
+    "found": "Gefundene Notizen: ",
+    "viewOnOsm": "Notiz %s auf OSM",
+    "edit": {
+      "level0": "%s mit Level0 bearbeiten",
+      "id": "%s mit iD bearbeiten"
+    },
+    "comment": "Kommentar",
+    "comments": "Kommentare"
+  },
+  "map": {
+    "attribution": "&copy; <a href='https://osm.org/copyright'>OpenStreetMap</a> Mitwirkende"
+  },
+  "age": {
+    "second": "Sekunde alt",
+    "seconds": "Sekunden alt",
+    "minute": "Minute alt",
+    "minutes": "Minuten alt",
+    "hour": "Stunde alt",
+    "hours": "Stunden alt",
+    "day": "Tag alt",
+    "days": "Tage alt",
+    "month": "Monat alt",
+    "months": "Monate alt",
+    "year": "Jahr alt",
+    "years": "Jahre alt"
+  }
+}

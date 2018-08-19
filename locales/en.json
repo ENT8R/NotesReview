@@ -1,0 +1,62 @@
+{
+  "help": {
+    "github": "View the project on <a href='https://github.com/ENT8R/NotesReview' target='_blank'>Github</a>",
+    "issues": "Visit the <a href='https://github.com/ENT8R/NotesReview/issues' target='_blank'>issue tracker</a>",
+    "email": "Contact the <a href='mailto:info.ent8r@gmail.com'>developer</a>"
+  },
+  "action": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "finish": "Finish",
+    "search": "Search"
+  },
+  "header": {
+    "permalink": "Permalink",
+    "help": "Help",
+    "query": "Query",
+    "limit": "Limit"
+  },
+  "description": {
+    "permalink": "Copy this link to share the current query:",
+    "startQuery": "Start query directly after opening the link",
+    "shareView": "Share current view of the map",
+    "showList": "Show in a list",
+    "showMap": "Show on a map",
+    "includeClosed": "Include closed notes",
+    "worldwideQuery": "Worldwide query enabled. Zoom in further to get a faster query for a limited area.",
+    "nothingFound": "Nothing found!",
+    "specifyQuery": "Please specify a query!",
+    "autoLimit": "Automatically set limit to 10000, because higher values are not allowed",
+    "sort": {
+      "desc": "Newest first"
+    }
+  },
+  "note": {
+    "anonymous": "anonymous",
+    "found": "Found notes: ",
+    "viewOnOsm": "View Note %s on OSM",
+    "edit": {
+      "level0": "Edit %s with Level0",
+      "id": "Edit %s with iD"
+    },
+    "comment": "comment",
+    "comments": "comments"
+  },
+  "map": {
+    "attribution": "&copy; <a href='https://osm.org/copyright'>OpenStreetMap</a> contributors"
+  },
+  "age": {
+    "second": "second old",
+    "seconds": "seconds old",
+    "minute": "minute old",
+    "minutes": "minutes old",
+    "hour": "hour old",
+    "hours": "hours old",
+    "day": "day old",
+    "days": "days old",
+    "month": "month old",
+    "months": "months old",
+    "year": "year old",
+    "years": "years old"
+  }
+}
