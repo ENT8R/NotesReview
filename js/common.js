@@ -131,7 +131,8 @@ const UI = (function() {
 
   me.getAgeOfNoteBadge = function(date) {
     const today = new Date();
-    date = new Date(date);
+    //see https://stackoverflow.com/a/3257513
+    date = new Date(date.replace(/-/g, '/'));
     const difference = Math.abs(today.getTime() - date.getTime());
 
     const age = {
