@@ -264,7 +264,7 @@ const Localizer = (function() {
   }
 
   me.init = function(callback) {
-    const path = Mode.get() === Mode.Maps ? './locales/strings.json' : '../locales/strings.json';
+    const path = 'https://ent8r.github.io/NotesReview/locales/strings.json';
     Request.get(new XMLHttpRequest(), path, function(result) {
       if (!translations) {
         translations = result;
@@ -401,9 +401,8 @@ const Permalink = (function() { // eslint-disable-line no-unused-vars
   const me = {};
 
   me.update = function() {
-    const host = window.location.protocol + '//' + window.location.hostname;
-    let url = host + '/?';
-    let expertUrl = host + '/expert/?';
+    let url = 'https://ent8r.github.io/NotesReview/?';
+    let expertUrl = 'https://ent8r.github.io/NotesReview/expert/?';
 
     const query = UI.queryInput.value;
     const limit = UI.limitInput.value;
