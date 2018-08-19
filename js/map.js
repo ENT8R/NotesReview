@@ -3,6 +3,7 @@
 /* globals L */
 
 /* globals UI */
+/* globals Localizer */
 /* globals Permalink */
 /* globals Mode */
 
@@ -12,12 +13,32 @@ function search(query, limit, closed) {
   let useNormalApi = false;
   let url = Request.buildURL(query, limit, closed, false);
 
-  if (Maps.getBBoxSize() < 0.25) {
+  const size = Maps.getBBoxSize();
+
+  if (size <= 4) {
     useNormalApi = true;
-    url = Request.buildURL(Maps.getBBox(), limit, closed, true);
+    url = [];
+
+    if (size < 0.25) {
+      url = Request.buildURL(Maps.getBBox(), limit, closed, true);
+    } else if (size >= 0.25 && size <= 1) {
+      const split = Maps.splitBBox(Maps.getBounds());
+      for (let i = 0; i < split.length; i++) {
+        url.push(Request.buildURL(split[i].toBBoxString(), limit, closed, true));
+      }
+    } else if (size >= 1 && size <= 4) {
+      let split = [];
+      const firstSplit = Maps.splitBBox(Maps.getBounds());
+      for (let i = 0; i < firstSplit.length; i++) {
+        split = split.concat(Maps.splitBBox(firstSplit[i]));
+      }
+      for (let i = 0; i < split.length; i++) {
+        url.push(Request.buildURL(split[i].toBBoxString(), limit, closed, true));
+      }
+    }
   }
 
-  Request.get(url, function(result) {
+  Request.getAsGeoJSON(url, function(result) {
     if (result.features.length === 0) {
       return UI.nothingFound();
     }
@@ -33,8 +54,9 @@ function search(query, limit, closed) {
         const note = feature.properties;
         if (note) {
           ids.push(note.id);
-          let comment = note.comments[0];
+          const comment = note.comments[0];
           layer.bindPopup(
+            UI.getAgeOfNoteBadge(note.date_created) +
             UI.getAmountOfCommentsBadge(note.comments) +
             '<p>' + comment.html + '</p>' +
             '<div class="divider"></div>' +
@@ -64,7 +86,7 @@ function search(query, limit, closed) {
     }
 
     //Display how much notes were found
-    document.getElementById('found-notes').textContent = 'Found notes: ' + ids.length;
+    document.getElementById('found-notes').textContent = Localizer.getMessage('note.found') + ids.length;
 
     Maps.removeLayers();
 
@@ -74,7 +96,9 @@ function search(query, limit, closed) {
     //Display all notes on the map and zoom the map to show them all
     const map = Maps.get();
     map.addLayer(markers);
-    map.fitBounds(markers.getBounds());
+    map.flyToBounds(markers.getBounds(), {
+      duration: 1
+    });
 
     UI.toggleButtons();
   });
@@ -101,7 +125,7 @@ const Maps = (function() {
   me.tiles = function() {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 22,
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      attribution: Localizer.getMessage('map.attribution')
     }).addTo(map);
   };
 
@@ -121,9 +145,32 @@ const Maps = (function() {
     return map.getBounds().toBBoxString();
   };
 
+  me.getBounds = function() {
+    return map.getBounds();
+  };
+
   me.getBBoxSize = function() {
     const bounds = map.getBounds();
     return Maps.BBoxToSquareDegree(bounds);
+  };
+
+  me.splitBBox = function(bbox) {
+    const boxes = [];
+
+    let lon = (bbox.getWest() + bbox.getEast()) / 2;
+    let lat = (bbox.getSouth() + bbox.getNorth()) / 2;
+    if(lon -180 > 0) {
+      lon -= 360;
+    } else if (lon + 180 < 0) {
+      lon += 360;
+    }
+
+    boxes.push(L.latLngBounds(L.latLng(bbox.getSouth(), bbox.getWest()), L.latLng(lat, lon)));
+    boxes.push(L.latLngBounds(L.latLng(bbox.getSouth(), lon), L.latLng(lat, bbox.getEast())));
+    boxes.push(L.latLngBounds(L.latLng(lat, lon), L.latLng(bbox.getNorth(), bbox.getEast())));
+    boxes.push(L.latLngBounds(L.latLng(lat, bbox.getWest()), L.latLng(bbox.getNorth(), lon)));
+
+    return boxes;
   };
 
   me.init = function() {
@@ -145,6 +192,8 @@ const Maps = (function() {
 
 // init modules
 Mode.set(Mode.MAPS);
-Maps.init();
-Permalink.update();
-UI.init();
+Localizer.init(function() {
+  Maps.init();
+  Permalink.update();
+  UI.init();
+});

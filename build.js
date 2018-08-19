@@ -4,6 +4,8 @@ const Mustache = require('mustache');
 const htmlMinify = require('html-minifier').minify;
 const fs = require('fs');
 
+const version = '1.2.0';
+
 const files = [
   'index',
   'expert'
@@ -27,6 +29,7 @@ for (let i = 0; i < files.length; i++) {
   const values = {};
   values[name] = true;
   values.map = (name === 'index');
+  values.version = `NotesReview ${version}`;
 
   const rendered = htmlMinify(Mustache.to_html(templates[template], values, partials), {
     removeComments: true,

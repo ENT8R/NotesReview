@@ -1,38 +1,39 @@
 <div id="help" class="modal">
   <div class="modal-content">
-    <h4 class="center">Help</h4>
+    <h4 class="center" data-i18n="header.help">Help</h4>
     <ul class="browser-default">
-      <li>View the project on <a href="https://github.com/ENT8R/NotesReview" target="_blank">Github</a></li>
-      <li>Visit the <a href="https://github.com/ENT8R/NotesReview/issues" target="_blank">issue tracker</a></li>
-      <li>Contact the <a href="mailto:info.ent8r@gmail.com">developer</a></li>
+      <li data-i18n="[html]help.github">View the project on <a href="https://github.com/ENT8R/NotesReview" target="_blank">Github</a></li>
+      <li data-i18n="[html]help.issues">Visit the <a href="https://github.com/ENT8R/NotesReview/issues" target="_blank">issue tracker</a></li>
+      <li data-i18n="[html]help.email">Contact the <a href="mailto:info.ent8r@gmail.com">developer</a></li>
     </ul>
+    <p>{{version}}</p>
   </div>
   <div class="modal-footer">
-    <a class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" data-i18n="action.close">Close</a>
   </div>
 </div>
 
 <div id="permalink-modal" class="modal">
   <div class="modal-content">
-    <h4 class="center">Permalink</h4>
-    <p>Copy this Link to share the current query:</p>
+    <h4 class="center" data-i18n="header.permalink">Permalink</h4>
+    <p data-i18n="description.permalink">Copy this link to share the current query:</p>
     <input id="permalink" type="text" readonly>
     <p>
       <label>
         <input type="checkbox" class="filled-in update-link" id="start-query" checked="checked" />
-        <span>Start query directly after opening the link</span>
+        <span data-i18n="description.startQuery">Start query directly after opening the link</span>
       </label>
     </p>
     {{#map}}
     <p>
       <label>
         <input type="checkbox" class="filled-in update-link" id="show-map" checked="checked" />
-        <span>Share current view of the map</span>
+        <span data-i18n="description.shareView">Share current view of the map</span>
       </label>
     </p>
     {{/map}}
   </div>
   <div class="modal-footer">
-    <a class="modal-action modal-close waves-effect waves-green btn-flat">Finish</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" data-i18n="action.finish">Finish</a>
   </div>
 </div>

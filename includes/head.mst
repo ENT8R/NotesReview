@@ -1,21 +1,33 @@
 <head>
   <meta charset="UTF-8">
 
-  <meta name="description" content="A website for performing micro-tasks to improve the OpenStreetMap">
-  <meta name="keywords" content="OSM, OpenStreetMap, notes, OpenStreetMap Notes">
+  <meta name="description" content="An interface for searching OSM notes with a specific keyword">
+  <meta name="keywords" content="OSM, OpenStreetMap, notes, OpenStreetMap Notes, NotesReview, review">
   <meta name="author" content="ENT8R">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com;{{#map}} img-src 'self' https://unpkg.com https://*.tile.openstreetmap.org data:;{{/map}} connect-src https://api.openstreetmap.org">
+        content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com;{{#map}} img-src 'self' https://unpkg.com https://*.tile.openstreetmap.org data:;{{/map}} connect-src 'self' https://api.openstreetmap.org">
 
   <title>NotesReview</title>
 
-  <link rel="stylesheet" href="https://unpkg.com/materialize-css@1.0.0-rc.2/dist/css/materialize.min.css">
+  <link rel="stylesheet"
+        href="https://unpkg.com/materialize-css@1.0.0-rc.2/dist/css/materialize.min.css"
+        integrity="sha384-h7QwJFwh+HNDUUY7cIv9QpZTGo8z8kjEBQtPsTpN/+CfVkyFhvbt/i1Irqo7ohv3"
+        crossorigin="anonymous">
   {{#map}}
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css">
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+        integrity="sha384-odo87pn1N9OSsaqUCAOYH8ICyVxDZ4wtbGpSYO1oyg6LxyOjDuTeXTrVLuxUtFzv"
+        crossorigin="anonymous">
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css"
+        integrity="sha384-lPzjPsFQL6te2x+VxmV6q1DpRxpRk0tmnl2cpwAO5y04ESyc752tnEWPKDfl1olr"
+        crossorigin="anonymous">
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css"
+        integrity="sha384-5kMSQJ6S4Qj5i09mtMNrWpSi8iXw230pKU76xTmrpezGnNJQzj0NzXjQLLg+jE7k"
+        crossorigin="anonymous">
   {{/map}}
   <link rel="stylesheet" href="{{^map}}../{{/map}}css/common.css">
 

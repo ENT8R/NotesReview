@@ -13,6 +13,8 @@ const UI = (function() {
   me.queryInput = document.getElementById('query');
   me.limitInput = document.getElementById('limit');
 
+  me.sortOrder = document.getElementById('sort-order');
+
   //Get the URL params and use them to e.g. initiate a new search with the given values
   function searchParams() {
     const url = new URL(window.location.href);
@@ -34,7 +36,7 @@ const UI = (function() {
     if (position && typeof Maps !== 'undefined') {
       Maps.get().setView([position[1], position[2]], position[0]);
     }
-    if (start) {
+    if (start === 'true') {
       startSearch();
     }
 
@@ -60,7 +62,7 @@ const UI = (function() {
       const tooltip = M.Tooltip.getInstance(UI.searchButton);
       const fastSearch = document.getElementById('fast-search');
 
-      if (Maps.getBBoxSize() < 0.25) {
+      if (Maps.getBBoxSize() < 4) {
         fastSearch.style.display = 'inline-block';
         if (tooltip) {
           tooltip.destroy();
@@ -70,7 +72,7 @@ const UI = (function() {
         if (!tooltip) {
           M.Tooltip.init(UI.searchButton, {
             enterDelay: 50,
-            html: 'Worldwide query enabled. Zoom in further to get a faster query for a limited area.'
+            html: Localizer.getMessage('description.worldwideQuery')
           });
         }
       }
@@ -79,7 +81,7 @@ const UI = (function() {
 
   me.nothingFound = function() {
     UI.toggleButtons();
-    return M.toast({html: 'Nothing found!'});
+    return M.toast({html: Localizer.getMessage('description.nothingFound')});
   };
 
   me.getNoteActions = function(comment, id, position) {
@@ -91,8 +93,7 @@ const UI = (function() {
       /(n|w|r)\/[0-9]{0,} /
     ];
 
-    let text = '' +
-    '<a href="https://www.openstreetmap.org/note/' + id + '" target="_blank">View Note ' + id + ' on OSM</a>';
+    let text = '<a href="https://www.openstreetmap.org/note/' + id + '" target="_blank">'  + Localizer.getMessage('note.viewOnOsm', id) + '</a>';
 
     const matches = comment.match(regex[0]) || comment.match(regex[1]) || comment.match(regex[2]);
 
@@ -102,12 +103,12 @@ const UI = (function() {
       text += '<br>' +
               '<a' +
               ' href="http://level0.osmz.ru/?url=' + element + '&center=' + position.reverse().join(',') + '"' +
-              ' target="_blank">Edit ' + element + ' with Level0</a>';
+              ' target="_blank">' + Localizer.getMessage('note.edit.level0', element) + '</a>';
       // iD
       text += '<br>' +
               '<a' +
               ' href="http://www.openstreetmap.org/edit?editor=id&' + element.replace('/', '=') + '"' +
-              ' target="_blank">Edit ' + element + ' with iD</a>';
+              ' target="_blank">' + Localizer.getMessage('note.edit.id', element) + '</a>';
     }
 
     return text;
@@ -118,14 +119,58 @@ const UI = (function() {
     let text = '';
 
     if (length > 0) {
-      let caption = 'comments';
+      let caption = Localizer.getMessage('note.comments');
       if (length === 1) {
-        caption = 'comment';
+        caption = Localizer.getMessage('note.comment');
       }
 
       text = '<span class="new badge blue" data-badge-caption="' + caption + '">' + length + '</span>';
     }
     return text;
+  };
+
+  me.getAgeOfNoteBadge = function(date) {
+    const today = new Date();
+    date = new Date(date);
+    const difference = Math.abs(today.getTime() - date.getTime());
+
+    const age = {
+      seconds: Math.round(difference / (1000)),
+      minutes: Math.round(difference / (1000 * 60)),
+      hours: Math.round(difference / (1000 * 60 * 60)),
+      days: Math.round(difference / (1000 * 60 * 60 * 24)),
+      months: Math.round(difference / (1000 * 60 * 60 * 24 * 30)),
+      years: Math.round(difference / (1000 * 60 * 60 * 24 * 365.25)),
+    };
+
+    let caption;
+    let amount;
+    let color = 'green darken-2';
+
+    if (age.seconds < 60) {
+      caption = age.seconds === 1 ? Localizer.getMessage('age.second') : Localizer.getMessage('age.seconds');
+      amount = age.seconds;
+    } else if (age.minutes < 60) {
+      caption = age.minutes === 1 ? Localizer.getMessage('age.minute') : Localizer.getMessage('age.minutes');
+      amount = age.minutes;
+    } else if (age.hours < 24) {
+      caption = age.hours === 1 ? Localizer.getMessage('age.hour') : Localizer.getMessage('age.hours');
+      amount = age.hours;
+    } else if (age.days <= 31) {
+      caption = age.days === 1 ? Localizer.getMessage('age.day') : Localizer.getMessage('age.days');
+      amount = age.days;
+      color = 'green';
+    } else if (age.months < 12) {
+      caption = age.months === 1 ? Localizer.getMessage('age.month') : Localizer.getMessage('age.months');
+      amount = age.months;
+      color = amount < 6 ? 'yellow darken-2' : 'amber darken-2';
+    } else {
+      caption = age.years === 1 ? Localizer.getMessage('age.year') : Localizer.getMessage('age.years');
+      amount = age.years;
+      color = amount <= 1 ? 'orange' : 'red';
+    }
+
+    return '<span class="new badge ' + color + '" data-badge-caption="' + caption + '">' + amount + '</span>';
   };
 
   me.init = function() {
@@ -136,6 +181,11 @@ const UI = (function() {
     UI.cancelButton.addEventListener('click', function() {
       Request.cancel();
     });
+    if (UI.sortOrder) {
+      UI.sortOrder.addEventListener('change', function() {
+        Expert.changeOrder();
+      });
+    }
 
     // Permalink update triggers
     const updateLinkTriggers = document.getElementsByClassName('update-link');
@@ -158,8 +208,79 @@ const UI = (function() {
     M.Modal.init(document.querySelectorAll('.modal'));
 
     // other things
-    UI.tooltip();
     searchParams();
+    UI.tooltip();
+  };
+
+  return me;
+})();
+
+const Localizer = (function() {
+  const me = {};
+
+  const I18N_ATTRIBUTE = 'data-i18n';
+
+  let translations;
+
+  function replaceI18n(elem, tag) {
+    // localize main content
+    if (tag !== '') {
+      const isHTML = tag.startsWith('[html]');
+      if (isHTML) {
+        tag = tag.replace('[html]', '');
+      }
+      const translatedMessage = Localizer.getMessage(tag);
+      if (translatedMessage !== '') {
+        if (isHTML) {
+          elem.innerHTML = translatedMessage;
+        } else {
+          elem.textContent = translatedMessage;
+        }
+      }
+    }
+  }
+
+  me.getMessage = function(tag, string) {
+    const t = translations[getLanguage()];
+    const value = getProperty(tag, t);
+    if (typeof string !== 'undefined') {
+      return value.replace('%s', string);
+    }
+    return value;
+  };
+
+  function getLanguage() {
+    const language = navigator.language || navigator.userLanguage;
+    return language.split('-')[0];
+  }
+
+  function getProperty(propertyName, object) {
+    const parts = propertyName.split('.');
+    let property = object;
+    for (let i = 0; i < parts.length; i++) {
+      property = property[parts[i]];
+    }
+    return property;
+  }
+
+  me.init = function(callback) {
+    const path = Mode.get() === Mode.Maps ? './locales/strings.json' : '../locales/strings.json';
+    Request.get(new XMLHttpRequest(), path, function(result) {
+      if (!translations) {
+        translations = result;
+      }
+      document.querySelectorAll(`[${I18N_ATTRIBUTE}]`).forEach((currentElem) => {
+        const contentString = currentElem.getAttribute(I18N_ATTRIBUTE);
+        replaceI18n(currentElem, contentString);
+      });
+
+      // replace html lang attribut after translation
+      document.querySelector('html').setAttribute('lang', getLanguage());
+
+      if (typeof callback === 'function') {
+        callback();
+      }
+    });
   };
 
   return me;
@@ -189,13 +310,18 @@ const Effects = (function() {
   return me;
 })();
 
-const Request = (function() { // eslint-disable-line no-unused-vars
+const Request = (function() {
   const me = {};
 
   let isRunning = false;
   me.isRunning = isRunning;
 
-  const http = new XMLHttpRequest();
+  const result = {
+    type: 'FeatureCollection',
+    features: []
+  };
+
+  let http;
 
   me.buildURL = function(query, limit, closed, bbox) {
     if (!bbox) {
@@ -205,7 +331,8 @@ const Request = (function() { // eslint-disable-line no-unused-vars
     }
   };
 
-  me.get = function(url, callback) {
+  me.get = function(req, url, callback) {
+    http = req || new XMLHttpRequest();
     isRunning = true;
     http.onreadystatechange = function() {
       if (http.readyState === 4 && http.status === 200) {
@@ -219,6 +346,28 @@ const Request = (function() { // eslint-disable-line no-unused-vars
 
     http.open('GET', url, true);
     http.send();
+  };
+
+  me.getAsGeoJSON = function(urls, callback) {
+    if (typeof urls === 'string') {
+      urls = [urls];
+    }
+
+    if (urls.length > 0) {
+      Request.get(new XMLHttpRequest(), urls[0], function(data) {
+        result.features = result.features.concat(data.features);
+        urls.shift();
+
+        if (urls.length === 0) {
+          if (callback && typeof callback === 'function') {
+            callback(result);
+          }
+          result.features = [];
+        } else {
+          Request.getAsGeoJSON(urls, callback);
+        }
+      });
+    }
   };
 
   me.cancel = function() {
@@ -252,8 +401,9 @@ const Permalink = (function() { // eslint-disable-line no-unused-vars
   const me = {};
 
   me.update = function() {
-    let url = 'https://ent8r.github.io/NotesReview/?';
-    let expertUrl = 'https://ent8r.github.io/NotesReview/expert/?';
+    const host = window.location.protocol + '//' + window.location.hostname;
+    let url = host + '/?';
+    let expertUrl = host + '/expert/?';
 
     const query = UI.queryInput.value;
     const limit = UI.limitInput.value;
@@ -307,13 +457,13 @@ function startSearch() {
   }
 
   if (!query) {
-    return M.toast({html: 'Please specify a query!'});
+    return M.toast({html: Localizer.getMessage('description.specifyQuery')});
   }
 
   if (limit > 10000) {
     limit = 10000;
     UI.limitInput.value = 10000;
-    M.toast({html: 'Automatically set limit to 10000, because higher values are not allowed'});
+    M.toast({html: Localizer.getMessage('description.autoLimit')});
   }
 
   UI.toggleButtons();

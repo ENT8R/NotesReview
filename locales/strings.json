@@ -1,0 +1,127 @@
+{
+  "en": {
+    "help": {
+      "github": "View the project on <a href='https://github.com/ENT8R/NotesReview' target='_blank'>Github</a>",
+      "issues": "Visit the <a href='https://github.com/ENT8R/NotesReview/issues' target='_blank'>issue tracker</a>",
+      "email": "Contact the <a href='mailto:info.ent8r@gmail.com'>developer</a>"
+    },
+    "action": {
+      "cancel": "Cancel",
+      "close": "Close",
+      "finish": "Finish",
+      "search": "Search"
+    },
+    "header": {
+      "permalink": "Permalink",
+      "help": "Help",
+      "query": "Query",
+      "limit": "Limit"
+    },
+    "description": {
+      "permalink": "Copy this link to share the current query:",
+      "startQuery": "Start query directly after opening the link",
+      "shareView": "Share current view of the map",
+      "showList": "Show in a list",
+      "showMap": "Show on a map",
+      "includeClosed": "Include closed notes",
+      "worldwideQuery": "Worldwide query enabled. Zoom in further to get a faster query for a limited area.",
+      "nothingFound": "Nothing found!",
+      "specifyQuery": "Please specify a query!",
+      "autoLimit": "Automatically set limit to 10000, because higher values are not allowed",
+      "sort": {
+        "desc": "Newest first"
+      }
+    },
+    "note": {
+      "anonymous": "anonymous",
+      "found": "Found notes: ",
+      "viewOnOsm": "View Note %s on OSM",
+      "edit": {
+        "level0": "Edit %s with Level0",
+        "id": "Edit %s with iD"
+      },
+      "comment": "comment",
+      "comments": "comments"
+    },
+    "map": {
+      "attribution": "&copy; <a href='https://osm.org/copyright'>OpenStreetMap</a> contributors"
+    },
+    "age": {
+      "second": "second old",
+      "seconds": "seconds old",
+      "minute": "minute old",
+      "minutes": "minutes old",
+      "hour": "hour old",
+      "hours": "hours old",
+      "day": "day old",
+      "days": "days old",
+      "month": "month old",
+      "months": "months old",
+      "year": "year old",
+      "years": "years old"
+    }
+  },
+
+  "de": {
+    "help": {
+      "github": "Schau dir das Projekt auf <a href='https://github.com/ENT8R/NotesReview' target='_blank'>Github</a> an",
+      "issues": "Besuche den <a href='https://github.com/ENT8R/NotesReview/issues' target='_blank'>Issue Tracker</a>",
+      "email": "Kontaktiere den <a href='mailto:info.ent8r@gmail.com'>Entwickler</a>"
+    },
+    "action": {
+      "cancel": "Abbrechen",
+      "close": "Schließen",
+      "finish": "Fertig",
+      "search": "Suchen"
+    },
+    "header": {
+      "permalink": "Permalink",
+      "help": "Hilfe",
+      "query": "Abfrage",
+      "limit": "Limit"
+    },
+    "description": {
+      "permalink": "Kopiere diesen Link um die aktuelle Abfrage zu teilen:",
+      "startQuery": "Abfrage sofort beim Öffnen ausführen",
+      "shareView": "Aktuelle Kartenansicht mitgeben",
+      "showList": "Als Liste zeigen",
+      "showMap": "Auf Karte zeigen",
+      "includeClosed": "Geschlossene Notizen einbeziehen",
+      "worldwideQuery": "Weltweite Abfrage ist aktiv. Zoome weiter, um eine schnellere Abfrage für einen begrenzten Bereich zu erhalten.",
+      "nothingFound": "Nichts gefunden!",
+      "specifyQuery": "Bitte gebe eine Abfrage ein!",
+      "autoLimit": "Limit automatisch auf 10000 gesetzt, da höhere Werte nicht erlaubt sind",
+      "sort": {
+        "desc": "Neueste zuerst"
+      }
+    },
+    "note": {
+      "anonymous": "anonym",
+      "found": "Gefundene Notizen: ",
+      "viewOnOsm": "Notiz %s auf OSM",
+      "edit": {
+        "level0": "%s mit Level0 bearbeiten",
+        "id": "%s mit iD bearbeiten"
+      },
+      "comment": "Kommentar",
+      "comments": "Kommentare"
+    },
+    "map": {
+      "attribution": "&copy; <a href='https://osm.org/copyright'>OpenStreetMap</a> Mitwirkende"
+    },
+    "age": {
+      "second": "Sekunde alt",
+      "seconds": "Sekunden alt",
+      "minute": "Minute alt",
+      "minutes": "Minuten alt",
+      "hour": "Stunde alt",
+      "hours": "Stunden alt",
+      "day": "Tag alt",
+      "days": "Tage alt",
+      "month": "Monat alt",
+      "months": "Monate alt",
+      "year": "Jahr alt",
+      "years": "Jahre alt"
+    }
+  }
+}
