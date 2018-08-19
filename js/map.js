@@ -55,8 +55,10 @@ function search(query, limit, closed) {
         if (note) {
           ids.push(note.id);
           const comment = note.comments[0];
+          const age = UI.getAgeOfNote(note.date_created);
+
           layer.bindPopup(
-            UI.getAgeOfNoteBadge(note.date_created) +
+            age.badge +
             UI.getAmountOfCommentsBadge(note.comments) +
             '<p>' + comment.html + '</p>' +
             '<div class="divider"></div>' +
@@ -64,17 +66,26 @@ function search(query, limit, closed) {
           );
 
           if (closed === '-1') {
-            let iconURL;
+            let iconUrl;
             if (note.status === 'open') {
-              iconURL = 'assets/open.svg';
+              iconUrl = 'assets/open.svg';
             } else if (note.status === 'closed') {
-              iconURL = 'assets/closed.svg';
+              iconUrl = 'assets/closed.svg';
             }
             layer.setIcon(new L.Icon({
-              iconUrl: iconURL,
+              iconUrl: iconUrl,
               iconSize: [40, 40],
               iconAnchor: [20, 45],
               popupAnchor: [0, -30]
+            }));
+          } else {
+            layer.setIcon(new L.Icon({
+              iconUrl: 'assets/markers/' + age.icon,
+              shadowUrl: 'assets/markers/marker-shadow.png',
+              iconSize: [25, 41],
+              iconAnchor: [12, 41],
+              popupAnchor: [1, -34],
+              shadowSize: [41, 41]
             }));
           }
         }

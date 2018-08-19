@@ -129,7 +129,7 @@ const UI = (function() {
     return text;
   };
 
-  me.getAgeOfNoteBadge = function(date) {
+  me.getAgeOfNote = function(date) {
     const today = new Date();
     //see https://stackoverflow.com/a/3257513
     date = new Date(date.replace(/-/g, '/'));
@@ -147,6 +147,7 @@ const UI = (function() {
     let caption;
     let amount;
     let color = 'green darken-2';
+    let icon = 'green-darken-2.svg';
 
     if (age.seconds < 60) {
       caption = age.seconds === 1 ? Localizer.getMessage('age.second') : Localizer.getMessage('age.seconds');
@@ -161,17 +162,33 @@ const UI = (function() {
       caption = age.days === 1 ? Localizer.getMessage('age.day') : Localizer.getMessage('age.days');
       amount = age.days;
       color = 'green';
+      icon = 'green.svg';
     } else if (age.months < 12) {
       caption = age.months === 1 ? Localizer.getMessage('age.month') : Localizer.getMessage('age.months');
       amount = age.months;
-      color = amount < 6 ? 'yellow darken-2' : 'amber darken-2';
+      if (amount < 6) {
+        color = 'yellow darken-2';
+        icon = 'yellow-darken-2.svg';
+      } else {
+        color = 'amber darken-2';
+        icon = 'amber-darken-2.svg';
+      }
     } else {
       caption = age.years === 1 ? Localizer.getMessage('age.year') : Localizer.getMessage('age.years');
       amount = age.years;
-      color = amount <= 1 ? 'orange' : 'red';
+      if (amount <= 1) {
+        color = 'orange';
+        icon = 'orange.svg';
+      } else {
+        color = 'red';
+        icon = 'red.svg';
+      }
     }
 
-    return '<span class="new badge ' + color + '" data-badge-caption="' + caption + '">' + amount + '</span>';
+    return {
+      badge: '<span class="new badge ' + color + '" data-badge-caption="' + caption + '">' + amount + '</span>',
+      icon: icon
+    };
   };
 
   me.init = function() {

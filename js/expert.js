@@ -76,7 +76,7 @@ const Expert = (function() { // eslint-disable-line no-unused-vars
             '<div class="card-content white-text">' +
               '<span class="card-title">' +
                 note.id + ' (' + note.user + ')' +
-                UI.getAgeOfNoteBadge(note.date) +
+                UI.getAgeOfNote(note.date).badge +
                 UI.getAmountOfCommentsBadge(note.comments) +
               '</span>' +
               '<p>' + note.text + '</p>' +
