@@ -8,6 +8,14 @@ Head over to [NotesReview](https://ent8r.github.io/NotesReview/) and type in a k
 
 If you feel like an expert you can also try the [expert mode](https://ent8r.github.io/NotesReview/expert/) which allows you to see all notes in a list instead of a map.
 
+### Translating the website
+
+You can translate NotesReview at POEditor. You can add a translation in your own language or improve other translations.
+
+Follow [**this link** to improve the translations](https://poeditor.com/join/project/oVilUChBdf):
+
+[![POEditor](https://poeditor.com/public/images/logo_small.png)](https://poeditor.com/join/project/oVilUChBdf)
+
 ### Found an issue?
 - Just report it in the [issue section](https://github.com/ENT8R/NotesReview/issues/) of this repository
 
