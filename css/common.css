@@ -19,6 +19,10 @@ a {
   background-color: #ffe0b2;
 }
 
+.leaflet-control-geocoder-icon:focus {
+  background-color: #e0e0e0;
+}
+
 button:focus,
 .progress .indeterminate {
   background-color: #ff9800;

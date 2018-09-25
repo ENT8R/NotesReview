@@ -15,7 +15,27 @@ const UI = (function() {
 
   me.sortOrder = document.getElementById('sort-order');
 
-  //Get the URL params and use them to e.g. initiate a new search with the given values
+  function storage() {
+    if (Mode.get() === Mode.MAPS) {
+      if (!new URL(window.location.href).searchParams.has('map')) {
+        const lat = localStorage.getItem('lat');
+        const lon = localStorage.getItem('lon');
+        const zoom = localStorage.getItem('zoom');
+        if (lat && lon && zoom) {
+          Maps.get().setView([lat, lon], zoom);
+        }
+      }
+
+      window.addEventListener('beforeunload', function() {
+        const map = Maps.get();
+        localStorage.setItem('lat', map.getCenter().lat.toFixed(4));
+        localStorage.setItem('lon', map.getCenter().lng.toFixed(4));
+        localStorage.setItem('zoom', map.getZoom().toFixed(0));
+      });
+    }
+  }
+
+  // get the URL params and use them to e.g. initiate a new search with the given values
   function searchParams() {
     const url = new URL(window.location.href);
 
@@ -225,6 +245,7 @@ const UI = (function() {
     M.Modal.init(document.querySelectorAll('.modal'));
 
     // other things
+    storage();
     searchParams();
     UI.tooltip();
   };
@@ -488,6 +509,11 @@ function startSearch() {
   let closed = '0';
   if (searchClosed) {
     closed = '-1';
+  }
+
+  // don't start a new search if the geocoding input is focused
+  if (Mode.get() === Mode.MAPS && document.querySelector('.leaflet-control-geocoder-form input') == document.activeElement) {
+    return;
   }
 
   if (!query) {

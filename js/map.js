@@ -138,12 +138,6 @@ const Maps = (function() {
       maxZoom: 22,
       attribution: Localizer.getMessage('map.attribution')
     }).addTo(map);
-
-    L.Control.geocoder({
-      collapsed: false,
-      placeholder: Localizer.getMessage('action.search'),
-      errorMessage: Localizer.getMessage('description.nothingFound')
-    }).addTo(map);
   };
 
   me.removeLayers = function() {
@@ -200,6 +194,12 @@ const Maps = (function() {
       Permalink.update();
       UI.tooltip();
     });
+
+    L.Control.geocoder({
+      collapsed: false,
+      placeholder: Localizer.getMessage('action.search'),
+      errorMessage: Localizer.getMessage('description.nothingFound')
+    }).addTo(map);
 
     Maps.tiles();
   };
