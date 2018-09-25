@@ -12,25 +12,26 @@
 
 /*------------------ Color ------------------*/
 a {
-  color: #ff9800
+  color: #ff9800;
 }
 
 .progress {
   background-color: #ffe0b2;
 }
 
+button:focus,
 .progress .indeterminate {
   background-color: #ff9800;
 }
 
-.input-field input[type="text"]:focus+label,
-.input-field input[type="number"]:focus+label,
+input[type=text]:focus+label,
+input[type=number]:focus+label,
 .input-field .prefix.active {
   color: #ff9800 !important;
 }
 
-.input-field input[type="text"]:focus,
-.input-field input[type="number"]:focus {
+input[type=text]:focus,
+input[type=number]:focus {
   border-bottom: 1px solid #ff9800 !important;
   box-shadow: 0 1px 0 0 #ff9800 !important;
 }

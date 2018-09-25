@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "leaflet": "^1.3.4",
+    "leaflet-control-geocoder": "^1.6.0",
     "leaflet.markercluster": "^1.4.1",
     "materialize-css": "^1.0.0"
   }

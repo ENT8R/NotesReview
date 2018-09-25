@@ -26,6 +26,9 @@
   <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"
           integrity="sha384-RLIyj5q1b5XJTn0tqUhucRZe40nFTocRP91R/NkRJHwAe4XxnTV77FXy/vGLiec2"
           crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder@1.6.0/dist/Control.Geocoder.js"
+          integrity="sha384-cnF1FD8RGZuZ7AIcWqJBkFHszIRKyjEc1eO6Asjlyw7/24m/upnUmcpDSxf74w+x"
+          crossorigin="anonymous"></script>
 
   <script src="js/common.js"></script>
   <script src="js/map.js"></script>
