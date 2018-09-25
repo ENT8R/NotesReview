@@ -16,15 +16,15 @@
       </div>
     </div>
 
-  <script src="https://unpkg.com/materialize-css@1.0.0-rc.2/dist/js/materialize.min.js"
-          integrity="sha384-0YzW9kCmHLU47UFZKT+QTw/q4BuEi/Md50qIr72O1dxS09jpoV8CuML9GzX5tZrv"
+  <script src="https://unpkg.com/materialize-css@1.0.0/dist/js/materialize.min.js"
+          integrity="sha384-ZOED+d9HxogEQwD+jFvux96iGQR9TxfJO+mPF2ZS0TuKH6eWrmvPsDpO6I0OWdiX"
           crossorigin="anonymous"></script>
 
-  <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
-          integrity="sha384-GpAGrorfdflUEy8Ytywe9vwoZWj9qvDdi1XibsGSNUA80HuXzamaNlVTbi5NgIfL"
+  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+          integrity="sha384-/I247jMyT/djAL4ijcbNXfX+PA8OZmkwzUr6Gotpgjz1Rxti1ZECG9Ne0Dj1pXrx"
           crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"
-          integrity="sha384-1artbd0pdGdZ72+IcKWkY1So1xu4Hzygfd0cVLSs7f5lBZZ/FhyEZc4UyQR3DT9c"
+  <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"
+          integrity="sha384-RLIyj5q1b5XJTn0tqUhucRZe40nFTocRP91R/NkRJHwAe4XxnTV77FXy/vGLiec2"
           crossorigin="anonymous"></script>
 
   <script src="js/common.js"></script>

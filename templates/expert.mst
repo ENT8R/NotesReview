@@ -11,8 +11,8 @@
 
   <div id="notes" class="row"></div>
 
-  <script src="https://unpkg.com/materialize-css@1.0.0-rc.2/dist/js/materialize.min.js"
-          integrity="sha384-0YzW9kCmHLU47UFZKT+QTw/q4BuEi/Md50qIr72O1dxS09jpoV8CuML9GzX5tZrv"
+  <script src="https://unpkg.com/materialize-css@1.0.0/dist/js/materialize.min.js"
+          integrity="sha384-ZOED+d9HxogEQwD+jFvux96iGQR9TxfJO+mPF2ZS0TuKH6eWrmvPsDpO6I0OWdiX"
           crossorigin="anonymous"></script>
 
   <script src="../js/common.js"></script>

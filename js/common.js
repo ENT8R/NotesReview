@@ -80,13 +80,13 @@ const UI = (function() {
   };
 
   me.nothingFound = function() {
-    UI.toggleButtons();
     return M.toast({html: Localizer.getMessage('description.nothingFound')});
   };
 
   me.getNoteActions = function(comment, id, position) {
     const regex = [
       /(?:https?:\/\/)?(?:www\.)?openstreetmap\.org\/(node|way|relation)\/[0-9]{0,}/,
+      /(?:https?:\/\/)?(?:www\.)?osm\.org\/(node|way|relation)\/[0-9]{0,}/,
       /(node|way|relation)\/[0-9]{0,}/,
       // TODO: this needs some more thoughts
       // /(node|way|relation) #[0-9]{0,}/,
@@ -95,10 +95,9 @@ const UI = (function() {
 
     let text = '<a href="https://www.openstreetmap.org/note/' + id + '" target="_blank">'  + Localizer.getMessage('note.viewOnOsm', id) + '</a>';
 
-    const matches = comment.match(regex[0]) || comment.match(regex[1]) || comment.match(regex[2]);
-
-    if (matches) {
-      const element = matches[0].match(regex[1])[0];
+    const matches = comment.match(regex[0]) || comment.match(regex[1]) || comment.match(regex[2]) || comment.match(regex[3]);
+    if (matches !== null) {
+      const element = matches[0].match(regex[2])[0];
       // Level0
       text += '<br>' +
               '<a' +
@@ -492,7 +491,13 @@ function startSearch() {
   }
 
   if (!query) {
-    return M.toast({html: Localizer.getMessage('description.specifyQuery')});
+    if (Mode.get() === Mode.MAPS) {
+      if (Maps.getBBoxSize() > 4) {
+        return M.toast({html: Localizer.getMessage('description.specifyQuery')});
+      }
+    } else {
+      return M.toast({html: Localizer.getMessage('description.specifyQuery')});
+    }
   }
 
   if (limit > 10000) {
