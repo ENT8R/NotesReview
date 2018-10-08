@@ -107,27 +107,53 @@ const UI = (function() {
     const regex = [
       /(?:https?:\/\/)?(?:www\.)?openstreetmap\.org\/(node|way|relation)\/[0-9]{0,}/,
       /(?:https?:\/\/)?(?:www\.)?osm\.org\/(node|way|relation)\/[0-9]{0,}/,
+
       /(node|way|relation)\/[0-9]{0,}/,
-      // TODO: this needs some more thoughts
-      // /(node|way|relation) #[0-9]{0,}/,
+      /(node|way|relation) #[0-9]{0,}/,
       /(n|w|r)\/[0-9]{0,} /
     ];
 
     let text = '<a href="https://www.openstreetmap.org/note/' + id + '" target="_blank">'  + Localizer.getMessage('note.viewOnOsm', id) + '</a>';
 
-    const matches = comment.match(regex[0]) || comment.match(regex[1]) || comment.match(regex[2]) || comment.match(regex[3]);
+    let matches = null;
+
+    for (let i = 0; i < regex.length; i++) {
+      const m = comment.match(regex[i]);
+      if (m !== null) {
+        matches = m;
+        break;
+      }
+    }
+
     if (matches !== null) {
-      const element = matches[0].match(regex[2])[0];
-      // Level0
-      text += '<br>' +
-              '<a' +
-              ' href="http://level0.osmz.ru/?url=' + element + '&center=' + position.reverse().join(',') + '"' +
-              ' target="_blank">' + Localizer.getMessage('note.edit.level0', element) + '</a>';
-      // iD
-      text += '<br>' +
-              '<a' +
-              ' href="http://www.openstreetmap.org/edit?editor=id&' + element.replace('/', '=') + '"' +
-              ' target="_blank">' + Localizer.getMessage('note.edit.id', element) + '</a>';
+      for (let i = 2; i <= 4; i++) {
+        const m = matches[0].match(regex[i]);
+        if (m !== null) {
+          const element = m[0];
+          let type;
+          let id;
+          if (element.includes('/')) {
+            type = element.split('/')[0];
+            id = element.split('/')[1];
+          } else if (element.includes('#')) {
+            type = element.split('#')[0].trim();
+            id = element.split('#')[1];
+          }
+
+          // Level0
+          text += '<br>' +
+                  '<a' +
+                  ' href="http://level0.osmz.ru/?url=' + type + '/' + id + '&center=' + position.reverse().join(',') + '"' +
+                  ' target="_blank">' + Localizer.getMessage('note.edit.level0', element) + '</a>';
+          // iD
+          text += '<br>' +
+                  '<a' +
+                  ' href="http://www.openstreetmap.org/edit?editor=id&' + type + '=' + id + '"' +
+                  ' target="_blank">' + Localizer.getMessage('note.edit.id', element) + '</a>';
+
+          return text;
+        }
+      }
     }
 
     return text;
@@ -375,7 +401,7 @@ const Request = (function() {
 
   me.buildURL = function(query, limit, closed, bbox) {
     if (!bbox) {
-      return 'https://api.openstreetmap.org/api/0.6/notes/search.json?q=' + query + '&limit=' + limit + '&closed=' + closed;
+      return 'https://api.openstreetmap.org/api/0.6/notes/search.json?q=' + encodeURIComponent(query) + '&limit=' + limit + '&closed=' + closed;
     } else {
       return 'https://api.openstreetmap.org/api/0.6/notes.json?bbox=' + query + '&limit=' + limit + '&closed=' + closed;
     }
