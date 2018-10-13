@@ -362,8 +362,7 @@ const Localizer = (function() {
   }
 
   me.init = function(callback) {
-    const path = 'http://localhost:8000/locales/';
-    // const path = 'https://ent8r.github.io/NotesReview/locales/';
+    const path = 'https://ent8r.github.io/NotesReview/locales/';
     Request.get(new XMLHttpRequest(), path + 'en.json', function(en) {
       let locale = 'en';
       fallback = en;
