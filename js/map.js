@@ -8,10 +8,10 @@
 /* globals Mode */
 
 //Search for all notes with a specific keyword either worldwide or if the bounding box is smaller than 0.25 square degree, in that bbox
-function search(query, limit, closed) {
+function search(query, limit, closed, user, from, to) {
 
   let useNormalApi = false;
-  let url = Request.buildURL(query, limit, closed, false);
+  let url = Request.buildURL(query, limit, closed, user, from, to, false);
 
   const size = Maps.getBBoxSize();
 
@@ -20,11 +20,11 @@ function search(query, limit, closed) {
     url = [];
 
     if (size < 0.25) {
-      url = Request.buildURL(Maps.getBBox(), limit, closed, true);
+      url = Request.buildURL(Maps.getBBox(), limit, closed, user, from, to, true);
     } else if (size >= 0.25 && size <= 1) {
       const split = Maps.splitBBox(Maps.getBounds());
       for (let i = 0; i < split.length; i++) {
-        url.push(Request.buildURL(split[i].toBBoxString(), limit, closed, true));
+        url.push(Request.buildURL(split[i].toBBoxString(), limit, closed, user, from, to, true));
       }
     } else if (size >= 1 && size <= 4) {
       let split = [];
@@ -33,7 +33,7 @@ function search(query, limit, closed) {
         split = split.concat(Maps.splitBBox(firstSplit[i]));
       }
       for (let i = 0; i < split.length; i++) {
-        url.push(Request.buildURL(split[i].toBBoxString(), limit, closed, true));
+        url.push(Request.buildURL(split[i].toBBoxString(), limit, closed, user, from, to, true));
       }
     }
   }

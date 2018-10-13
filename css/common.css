@@ -24,13 +24,23 @@ a {
 }
 
 button:focus,
-.progress .indeterminate {
+
+.progress .indeterminate,
+
+.datepicker-date-display,
+.datepicker-table td.is-selected {
   background-color: #ff9800;
 }
 
 input[type=text]:focus+label,
 input[type=number]:focus+label,
-.input-field .prefix.active {
+.input-field .prefix.active,
+
+.datepicker-cancel,
+.datepicker-clear,
+.datepicker-today,
+.datepicker-done,
+.datepicker-table td.is-today {
   color: #ff9800 !important;
 }
 
@@ -50,6 +60,10 @@ input[type=number]:focus {
 /*------------------ Map --------------------*/
 #map {
   height: 100vh;
+}
+
+.no-padding {
+  padding: 0;
 }
 
 /*-------------------------------------------*/

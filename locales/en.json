@@ -1,20 +1,25 @@
 {
   "help": {
-    "github": "View the project on <a href='https://github.com/ENT8R/NotesReview' target='_blank'>Github</a>",
-    "issues": "Visit the <a href='https://github.com/ENT8R/NotesReview/issues' target='_blank'>issue tracker</a>",
-    "email": "Contact the <a href='mailto:info.ent8r@gmail.com'>developer</a>"
+    "github": "View the project on <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\">Github</a>",
+    "issues": "Visit the <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\">issue tracker</a>",
+    "email": "Contact the <a href=\"mailto:info.ent8r@gmail.com\">developer</a>"
   },
   "action": {
     "cancel": "Cancel",
+    "clear": "Clear",
     "close": "Close",
     "finish": "Finish",
+    "ok": "OK",
     "search": "Search"
   },
   "header": {
     "permalink": "Permalink",
     "help": "Help",
     "query": "Query",
-    "limit": "Limit"
+    "limit": "Limit",
+    "user": "User",
+    "from": "From",
+    "to": "To"
   },
   "description": {
     "permalink": "Copy this link to share the current query:",
@@ -25,7 +30,6 @@
     "includeClosed": "Include closed notes",
     "worldwideQuery": "Worldwide query enabled. Zoom in further to get a faster query for a limited area.",
     "nothingFound": "Nothing found!",
-    "specifyQuery": "Please specify a query!",
     "autoLimit": "Automatically set limit to 10000, because higher values are not allowed",
     "sort": {
       "desc": "Newest first"
@@ -43,7 +47,7 @@
     "comments": "comments"
   },
   "map": {
-    "attribution": "&copy; <a href='https://osm.org/copyright'>OpenStreetMap</a> contributors"
+    "attribution": "&copy; <a href=\"https://osm.org/copyright\">OpenStreetMap</a> contributors"
   },
   "age": {
     "second": "second old",
@@ -58,5 +62,62 @@
     "months": "months old",
     "year": "year old",
     "years": "years old"
+  },
+  "date": {
+    "months": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "monthsShort": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "weekdays": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "weekdaysShort": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "weekdaysAbbrev": [
+      "S",
+      "M",
+      "T",
+      "W",
+      "T",
+      "F",
+      "S"
+    ]
   }
 }

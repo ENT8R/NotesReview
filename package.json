@@ -1,7 +1,7 @@
 {
   "name": "NotesReview",
-  "version": "1.2.0",
-  "description": "A program for reviewing OSM Notes",
+  "version": "1.3.0",
+  "description": "A website for reviewing OSM Notes",
   "scripts": {
     "start": "npm run build && python -m SimpleHTTPServer",
     "build": "node build.js",

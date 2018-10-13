@@ -10,8 +10,8 @@ const Expert = (function() { // eslint-disable-line no-unused-vars
 
   let notes = [];
 
-  me.search = function(query, limit, closed) {
-    const url = Request.buildURL(query, limit, closed, false);
+  me.search = function(query, limit, closed, user, from, to) {
+    const url = Request.buildURL(query, limit, closed, user, from, to, false);
 
     Request.get(new XMLHttpRequest(), url, function(result) {
       if (result.features.length === 0) {

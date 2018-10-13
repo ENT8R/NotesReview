@@ -11,7 +11,7 @@
       <div class="col s12 l3">
         {{> nav}}
       </div>
-      <div class="col s12 l9">
+      <div class="col s12 l9 no-padding">
         <div id="map"></div>
       </div>
     </div>

@@ -4,7 +4,7 @@ const Mustache = require('mustache');
 const htmlMinify = require('html-minifier').minify;
 const fs = require('fs');
 
-const version = '1.2.0';
+const version = '1.3.0';
 
 const files = [
   'index',

@@ -12,6 +12,9 @@ const UI = (function() {
 
   me.queryInput = document.getElementById('query');
   me.limitInput = document.getElementById('limit');
+  me.userInput = document.getElementById('user');
+  me.fromInput = document.getElementById('from');
+  me.toInput = document.getElementById('to');
 
   me.sortOrder = document.getElementById('sort-order');
 
@@ -42,6 +45,10 @@ const UI = (function() {
     const query = url.searchParams.get('query');
     const limit = url.searchParams.get('limit');
     const start = url.searchParams.get('start');
+    const user = url.searchParams.get('user');
+    const from = url.searchParams.get('from');
+    const to = url.searchParams.get('to');
+
     let position;
     if (url.searchParams.has('map')) {
       position = url.searchParams.get('map').split('/');
@@ -53,6 +60,15 @@ const UI = (function() {
     if (limit) {
       UI.limitInput.value = limit;
     }
+    if (user) {
+      UI.userInput.value = user;
+    }
+    if (from) {
+      UI.fromInput.value = from;
+    }
+    if (to) {
+      UI.toInput.value = to;
+    }
     if (position && typeof Maps !== 'undefined') {
       Maps.get().setView([position[1], position[2]], position[0]);
     }
@@ -60,7 +76,7 @@ const UI = (function() {
       startSearch();
     }
 
-    if (query || limit || position) {
+    if (query || limit || user || from || to || position) {
       const uri = window.location.toString();
       if (uri.indexOf('?') > 0) {
         window.history.replaceState({}, document.title, uri.substring(0, uri.indexOf('?')));
@@ -269,6 +285,20 @@ const UI = (function() {
 
     // Materialize elements
     M.Modal.init(document.querySelectorAll('.modal'));
+    M.Datepicker.init(document.querySelectorAll('.datepicker'), {
+      format: 'yyyy-mm-d',
+      firstDay: 1,
+      i18n: {
+        cancel: Localizer.getMessage('action.cancel'),
+        clear: Localizer.getMessage('action.clear'),
+        done: Localizer.getMessage('action.ok'),
+        months: Localizer.getMessage('date.months'),
+        monthsShort: Localizer.getMessage('date.monthsShort'),
+        weekdays: Localizer.getMessage('date.weekdays'),
+        weekdaysShort: Localizer.getMessage('date.weekdaysShort'),
+        weekdaysAbbrev: Localizer.getMessage('date.weekdaysAbbrev')
+      }
+    });
 
     // other things
     storage();
@@ -332,7 +362,8 @@ const Localizer = (function() {
   }
 
   me.init = function(callback) {
-    const path = 'https://ent8r.github.io/NotesReview/locales/';
+    const path = 'http://localhost:8000/locales/';
+    // const path = 'https://ent8r.github.io/NotesReview/locales/';
     Request.get(new XMLHttpRequest(), path + 'en.json', function(en) {
       let locale = 'en';
       fallback = en;
@@ -399,12 +430,23 @@ const Request = (function() {
 
   let http;
 
-  me.buildURL = function(query, limit, closed, bbox) {
-    if (!bbox) {
-      return 'https://api.openstreetmap.org/api/0.6/notes/search.json?q=' + encodeURIComponent(query) + '&limit=' + limit + '&closed=' + closed;
-    } else {
-      return 'https://api.openstreetmap.org/api/0.6/notes.json?bbox=' + query + '&limit=' + limit + '&closed=' + closed;
+  me.buildURL = function(query, limit, closed, user, from, to, bbox) {
+    let url = 'https://api.openstreetmap.org/api/0.6/notes/search.json?';
+    if (bbox) {
+      url = 'https://api.openstreetmap.org/api/0.6/notes.json?';
     }
+    const data = {
+      limit: limit,
+      closed: closed
+    };
+    if (query) data.q = query;
+    if (bbox) data.bbox = query;
+    if (user) data.display_name = user; // eslint-disable-line camelcase
+    if (from) data.from = from;
+    if (to) data.to = to;
+
+    url += Request.encodeQueryData(data);
+    return url;
   };
 
   me.get = function(req, url, callback) {
@@ -457,6 +499,14 @@ const Request = (function() {
     UI.toggleButtons();
   };
 
+  me.encodeQueryData = function(data) {
+    let ret = [];
+    for (let d in data) {
+      ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+    }
+    return ret.join('&');
+  };
+
   return me;
 })();
 
@@ -488,11 +538,17 @@ const Permalink = (function() { // eslint-disable-line no-unused-vars
 
     const query = UI.queryInput.value;
     const limit = UI.limitInput.value;
+    const user = UI.userInput.value;
+    const from = UI.fromInput.value;
+    const to = UI.toInput.value;
     const start = document.getElementById('start-query').checked;
 
-    let data = {};
+    const data = {};
     if (query) data.query = query;
     if (limit) data.limit = limit;
+    if (user) data.user = user;
+    if (from) data.from = from;
+    if (to) data.to = to;
     if (start) data.start = start;
 
     if (Mode.get() === Mode.MAPS) {
@@ -504,8 +560,8 @@ const Permalink = (function() { // eslint-disable-line no-unused-vars
       if (showMap && position) data.map = position;
     }
 
-    url += encodeQueryData(data);
-    expertUrl += encodeQueryData(data);
+    url += Request.encodeQueryData(data);
+    expertUrl += Request.encodeQueryData(data);
 
     if (Mode.get() === Mode.EXPERT) {
       document.getElementById('link').href = url;
@@ -516,14 +572,6 @@ const Permalink = (function() { // eslint-disable-line no-unused-vars
     }
   };
 
-  function encodeQueryData(data) {
-    let ret = [];
-    for (let d in data) {
-      ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
-    }
-    return ret.join('&');
-  }
-
   return me;
 })();
 
@@ -531,6 +579,9 @@ function startSearch() {
   const query = UI.queryInput.value;
   let limit = UI.limitInput.value;
   const searchClosed = document.getElementById('search-closed').checked;
+  const user = UI.userInput.value;
+  const from = UI.fromInput.value;
+  const to = UI.toInput.value;
 
   let closed = '0';
   if (searchClosed) {
@@ -542,16 +593,6 @@ function startSearch() {
     return;
   }
 
-  if (!query) {
-    if (Mode.get() === Mode.MAPS) {
-      if (Maps.getBBoxSize() > 4) {
-        return M.toast({html: Localizer.getMessage('description.specifyQuery')});
-      }
-    } else {
-      return M.toast({html: Localizer.getMessage('description.specifyQuery')});
-    }
-  }
-
   if (limit > 10000) {
     limit = 10000;
     UI.limitInput.value = 10000;
@@ -561,8 +602,8 @@ function startSearch() {
   UI.toggleButtons();
 
   if (Mode.get() === Mode.EXPERT) {
-    Expert.search(query, limit, closed);
+    Expert.search(query, limit, closed, user, from, to);
   } else {
-    Maps.search(query, limit, closed);
+    Maps.search(query, limit, closed, user, from ,to);
   }
 }
