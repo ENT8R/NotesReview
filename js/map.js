@@ -60,7 +60,7 @@ function search(query, limit, closed, user, from, to) {
 
           layer.bindPopup(
             '<div class="card white z-depth-0">' +
-              '<div class="card-content black-text">' +
+              '<div class="card-content black-text no-padding">' +
                 '<span class="card-title">' +
                   note.id + ' (' + user + ')' +
                   age.badge +
@@ -68,7 +68,7 @@ function search(query, limit, closed, user, from, to) {
                 '</span>' +
                 '<p>' + comment.html + '</p>' +
               '</div>' +
-              '<div class="card-action">' +
+              '<div class="card-action no-padding">' +
                 UI.getNoteActions(comment.html, note.id, feature.geometry.coordinates) +
               '</div>' +
             '</div>'
