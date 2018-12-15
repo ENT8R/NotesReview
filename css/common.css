@@ -11,7 +11,8 @@
 }
 
 /*------------------ Color ------------------*/
-a {
+a,
+.leaflet-container a {
   color: #ff9800;
 }
 

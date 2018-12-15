@@ -56,13 +56,22 @@ function search(query, limit, closed, user, from, to) {
           ids.push(note.id);
           const comment = note.comments[0];
           const age = UI.getAgeOfNote(note.date_created);
+          const user = comment.user || Localizer.getMessage('note.anonymous');
 
           layer.bindPopup(
-            age.badge +
-            UI.getAmountOfCommentsBadge(note.comments) +
-            '<p>' + comment.html + '</p>' +
-            '<div class="divider"></div>' +
-            UI.getNoteActions(comment.html, note.id, feature.geometry.coordinates)
+            '<div class="card white z-depth-0">' +
+              '<div class="card-content black-text">' +
+                '<span class="card-title">' +
+                  note.id + ' (' + user + ')' +
+                  age.badge +
+                  UI.getAmountOfCommentsBadge(note.comments) +
+                '</span>' +
+                '<p>' + comment.html + '</p>' +
+              '</div>' +
+              '<div class="card-action">' +
+                UI.getNoteActions(comment.html, note.id, feature.geometry.coordinates) +
+              '</div>' +
+            '</div>'
           );
 
           if (closed === '-1') {
