@@ -164,7 +164,7 @@ const UI = (function() {
           // iD
           text += '<br>' +
                   '<a' +
-                  ' href="http://www.openstreetmap.org/edit?editor=id&' + type + '=' + id + '"' +
+                  ' href="https://www.openstreetmap.org/edit?editor=id&' + type + '=' + id + '"' +
                   ' target="_blank">' + Localizer.getMessage('note.edit.id', element) + '</a>';
 
           return text;
