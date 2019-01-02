@@ -33,7 +33,7 @@
 
   <p class="col s6 {{#map}}l6{{/map}}{{^map}}l2{{/map}}">
     <label>
-      <input type="checkbox" class="filled-in" id="search-closed" />
+      <input type="checkbox" class="filled-in update-link" id="search-closed">
       <span data-i18n="description.includeClosed">Include closed notes</span>
     </label>
   </p>

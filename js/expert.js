@@ -5,10 +5,10 @@
 /* globals Permalink */
 /* globals Mode */
 
+let notes = [];
+
 const Expert = (function() { // eslint-disable-line no-unused-vars
   const me = {};
-
-  let notes = [];
 
   me.search = function(query, limit, closed, user, from, to) {
     const url = Request.buildURL(query, limit, closed, user, from, to, false);
@@ -83,11 +83,19 @@ const Expert = (function() { // eslint-disable-line no-unused-vars
             '</div>' +
             '<div class="card-action">' +
               UI.getNoteActions(note.text, note.id, note.position) +
+              '<a class="waves-effect waves-light btn orange more modal-trigger" data-note="' + i + '" data-target="information">' + Localizer.getMessage('action.more') + '</a>' +
             '</div>' +
           '</div>' +
         '</div>');
     }
     document.getElementById('notes').innerHTML = html.join('');
+
+    const more = document.getElementsByClassName('more');
+    for (let i = 0; i < more.length; i++) {
+      more[i].addEventListener('click', function() {
+        UI.information(notes[more[i].dataset.note]);
+      });
+    }
 
     if (typeof callback === 'function') {
       callback();

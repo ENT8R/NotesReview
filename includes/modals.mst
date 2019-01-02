@@ -37,3 +37,13 @@
     <a class="modal-action modal-close waves-effect waves-green btn-flat" data-i18n="action.finish">Finish</a>
   </div>
 </div>
+
+<div id="information" class="modal">
+  <div class="modal-content">
+    <div id="information-content"></div>
+    <div id="information-map"></div>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" data-i18n="action.close">Close</a>
+  </div>
+</div>

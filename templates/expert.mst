@@ -15,6 +15,10 @@
           integrity="sha384-ZOED+d9HxogEQwD+jFvux96iGQR9TxfJO+mPF2ZS0TuKH6eWrmvPsDpO6I0OWdiX"
           crossorigin="anonymous"></script>
 
+  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+          integrity="sha384-jV/9OyZzm1ZMHG4pfYVMmnnCtVUlZdWgZ8mNSX3CPFM4HSK2KUSP8xzLljzMDkWd"
+          crossorigin="anonymous"></script>
+
   <script src="../js/common.js"></script>
   <script src="../js/expert.js"></script>
 

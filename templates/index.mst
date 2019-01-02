@@ -20,9 +20,10 @@
           integrity="sha384-ZOED+d9HxogEQwD+jFvux96iGQR9TxfJO+mPF2ZS0TuKH6eWrmvPsDpO6I0OWdiX"
           crossorigin="anonymous"></script>
 
-  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
-          integrity="sha384-/I247jMyT/djAL4ijcbNXfX+PA8OZmkwzUr6Gotpgjz1Rxti1ZECG9Ne0Dj1pXrx"
+  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+          integrity="sha384-jV/9OyZzm1ZMHG4pfYVMmnnCtVUlZdWgZ8mNSX3CPFM4HSK2KUSP8xzLljzMDkWd"
           crossorigin="anonymous"></script>
+
   <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"
           integrity="sha384-RLIyj5q1b5XJTn0tqUhucRZe40nFTocRP91R/NkRJHwAe4XxnTV77FXy/vGLiec2"
           crossorigin="anonymous"></script>

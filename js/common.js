@@ -1,5 +1,6 @@
 'use strict';
 
+/* globals L */
 /* globals M */
 /* globals Maps */
 /* globals Expert */
@@ -12,6 +13,7 @@ const UI = (function() {
 
   me.queryInput = document.getElementById('query');
   me.limitInput = document.getElementById('limit');
+  me.searchClosed = document.getElementById('search-closed');
   me.userInput = document.getElementById('user');
   me.fromInput = document.getElementById('from');
   me.toInput = document.getElementById('to');
@@ -44,6 +46,7 @@ const UI = (function() {
 
     const query = url.searchParams.get('query');
     const limit = url.searchParams.get('limit');
+    const closed = url.searchParams.get('closed');
     const start = url.searchParams.get('start');
     const user = url.searchParams.get('user');
     const from = url.searchParams.get('from');
@@ -59,6 +62,9 @@ const UI = (function() {
     }
     if (limit) {
       UI.limitInput.value = limit;
+    }
+    if (closed === 'true') {
+      UI.searchClosed.checked = true;
     }
     if (user) {
       UI.userInput.value = user;
@@ -76,11 +82,9 @@ const UI = (function() {
       startSearch();
     }
 
-    if (query || limit || user || from || to || position) {
-      const uri = window.location.toString();
-      if (uri.indexOf('?') > 0) {
-        window.history.replaceState({}, document.title, uri.substring(0, uri.indexOf('?')));
-      }
+    const uri = window.location.toString();
+    if (uri.indexOf('?') > 0) {
+      window.history.replaceState({}, document.title, uri.substring(0, uri.indexOf('?')));
     }
 
     Permalink.update();
@@ -252,6 +256,27 @@ const UI = (function() {
     };
   };
 
+  let map;
+  me.information = function(note) {
+    M.Modal.getInstance(document.getElementById('information')).open();
+    const position = note.position.slice().reverse();
+
+    if (!map) {
+      map = L.map('information-map');
+    } else {
+      map.eachLayer(function(layer) {
+        map.removeLayer(layer);
+      });
+    }
+    map.setView(position, 14);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 22,
+      attribution: Localizer.getMessage('map.attribution')
+    }).addTo(map);
+
+    L.marker(position).addTo(map);
+  };
+
   me.init = function() {
     // Buttons
     UI.searchButton.addEventListener('click', function() {
@@ -284,7 +309,13 @@ const UI = (function() {
     });
 
     // Materialize elements
-    M.Modal.init(document.querySelectorAll('.modal'));
+    M.Modal.init(document.querySelectorAll('.modal'), {
+      onCloseEnd: function(e) {
+        if (e.id === 'information') {
+          document.getElementById('information-content').innerHTML = '';
+        }
+      }
+    });
     M.Datepicker.init(document.querySelectorAll('.datepicker'), {
       format: 'yyyy-mm-d',
       firstDay: 1,
@@ -298,6 +329,10 @@ const UI = (function() {
         weekdaysShort: Localizer.getMessage('date.weekdaysShort'),
         weekdaysAbbrev: Localizer.getMessage('date.weekdaysAbbrev')
       }
+    });
+
+    window.addEventListener('load', function() {
+      startSearch();
     });
 
     // other things
@@ -537,6 +572,7 @@ const Permalink = (function() { // eslint-disable-line no-unused-vars
 
     const query = UI.queryInput.value;
     const limit = UI.limitInput.value;
+    const closed = UI.searchClosed.checked;
     const user = UI.userInput.value;
     const from = UI.fromInput.value;
     const to = UI.toInput.value;
@@ -545,6 +581,7 @@ const Permalink = (function() { // eslint-disable-line no-unused-vars
     const data = {};
     if (query) data.query = query;
     if (limit) data.limit = limit;
+    if (closed) data.closed = closed;
     if (user) data.user = user;
     if (from) data.from = from;
     if (to) data.to = to;
@@ -577,7 +614,7 @@ const Permalink = (function() { // eslint-disable-line no-unused-vars
 function startSearch() {
   const query = UI.queryInput.value;
   let limit = UI.limitInput.value;
-  const searchClosed = document.getElementById('search-closed').checked;
+  const searchClosed = UI.searchClosed.checked;
   const user = UI.userInput.value;
   const from = UI.fromInput.value;
   const to = UI.toInput.value;
