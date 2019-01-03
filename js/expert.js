@@ -23,11 +23,14 @@ const Expert = (function() { // eslint-disable-line no-unused-vars
 
       for (let i = 0; i < result.features.length; i++) {
         const feature = result.features[i];
-        if (ids.indexOf(feature.properties.id) === -1) {
-          const note = feature.properties;
-          const comment = note.comments[0];
-          const geometry = feature.geometry;
 
+        const note = feature.properties;
+        const geometry = feature.geometry;
+        const comment = note.comments[0];
+        if (ids.indexOf(note.id) === -1) {
+          if (['anonymous', Localizer.getMessage('note.anonymous')].includes(user) && typeof comment.user !== 'undefined') {
+            continue;
+          }
           ids.push(note.id);
           notes.push({
             id: note.id,

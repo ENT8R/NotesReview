@@ -475,7 +475,7 @@ const Request = (function() {
     };
     if (query) data.q = query;
     if (bbox) data.bbox = query;
-    if (user) data.display_name = user; // eslint-disable-line camelcase
+    if (user && !['anonymous', Localizer.getMessage('note.anonymous')].includes(user)) data.display_name = user; // eslint-disable-line camelcase
     if (from) data.from = from;
     if (to) data.to = to;
 
