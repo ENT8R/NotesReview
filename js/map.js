@@ -20,13 +20,16 @@ function search(query, limit, closed, user, from, to) {
     url = [];
 
     if (size < 0.25) {
+      // Search only in one bounding box
       url = Request.buildURL(Maps.getBBox(), limit, closed, user, from, to, true);
     } else if (size >= 0.25 && size <= 1) {
+      // Split the bounding box into four parts and make the requests after each other
       const split = Maps.splitBBox(Maps.getBounds());
       for (let i = 0; i < split.length; i++) {
         url.push(Request.buildURL(split[i].toBBoxString(), limit, closed, user, from, to, true));
       }
     } else if (size >= 1 && size <= 4) {
+      // Split the bounding box into sixteen parts and make the requests after each other
       let split = [];
       const firstSplit = Maps.splitBBox(Maps.getBounds());
       for (let i = 0; i < firstSplit.length; i++) {
@@ -45,10 +48,10 @@ function search(query, limit, closed, user, from, to) {
 
     let ids = [];
 
-    //Prepare the GeoJSON layer and bind the popups
+    // Prepare the GeoJSON layer and bind the popups
     const geoJSONLayer = L.geoJSON(result, {
       filter: function(feature) {
-        return filterGeoJSON(feature, useNormalApi, ids, query);
+        return filterGeoJSON(feature.properties, useNormalApi, ids, query, user, from, to);
       },
       onEachFeature: function(feature, layer) {
         const note = feature.properties;
@@ -124,11 +127,18 @@ function search(query, limit, closed, user, from, to) {
   });
 }
 
-function filterGeoJSON(feature, useNormalApi, ids, query) {
+function filterGeoJSON(note, useNormalApi, ids, query, user, from, to) {
   if (useNormalApi) {
-    return ids.indexOf(feature.properties.id) === -1 && feature.properties.comments[0].text.toLocaleUpperCase().includes(query.toLocaleUpperCase());
+    from = from === '' ? new Date(0) : new Date(from);
+    to = to === '' ? new Date() : new Date(to);
+    const created = new Date(note.date_created.replace(/-/g, '/'));
+
+    return (ids.indexOf(note.id) === -1) && // Check whether the note is not yet in the array
+           (note.comments[0].text.toLocaleUpperCase().includes(query.toLocaleUpperCase())) && // Check whether the query is included in the comment
+           (created > from && created < to) && // Check whether the note was created during the correct range
+           (user !== '' ? user.localeCompare(note.comments[0].user || Localizer.getMessage('note.anonymous')) === 0 : true); // Check whether the specified user also created the note
   }
-  return ids.indexOf(feature.properties.id) === -1;
+  return ids.indexOf(note.id) === -1;
 }
 
 const Maps = (function() {

@@ -195,10 +195,9 @@ const UI = (function() {
   };
 
   me.getAgeOfNote = function(date) {
-    const today = new Date();
-    //see https://stackoverflow.com/a/3257513
+    // See https://stackoverflow.com/a/3257513
     date = new Date(date.replace(/-/g, '/'));
-    const difference = Math.abs(today.getTime() - date.getTime());
+    const difference = Math.abs(new Date().getTime() - date.getTime());
 
     const age = {
       seconds: Math.round(difference / (1000)),
@@ -251,7 +250,7 @@ const UI = (function() {
     }
 
     return {
-      badge: '<span class="new badge ' + color + '" data-badge-caption="' + caption + '">' + amount + '</span>',
+      badge: `<span class="new badge ${color}" data-badge-caption="${caption}" title="${date.toLocaleDateString()}">${amount}</span>`,
       icon: icon
     };
   };
@@ -319,6 +318,7 @@ const UI = (function() {
     M.Datepicker.init(document.querySelectorAll('.datepicker'), {
       format: 'yyyy-mm-d',
       firstDay: 1,
+      showClearBtn: true,
       i18n: {
         cancel: Localizer.getMessage('action.cancel'),
         clear: Localizer.getMessage('action.clear'),
@@ -335,7 +335,7 @@ const UI = (function() {
       startSearch();
     });
 
-    // other things
+    // Other things
     storage();
     searchParams();
     UI.tooltip();
@@ -353,7 +353,7 @@ const Localizer = (function() {
   let fallback;
 
   function replaceI18n(elem, tag) {
-    // localize main content
+    // Localize main content
     if (tag !== '') {
       const isHTML = tag.startsWith('[html]');
       if (isHTML) {
@@ -414,7 +414,7 @@ const Localizer = (function() {
           replaceI18n(currentElem, contentString);
         });
 
-        // replace html lang attribut after translation
+        // Replace html lang attribut after translation
         document.querySelector('html').setAttribute('lang', locale);
 
         if (typeof callback === 'function') {
@@ -612,6 +612,11 @@ const Permalink = (function() { // eslint-disable-line no-unused-vars
 })();
 
 function startSearch() {
+  // Don't start a new search if the geocoding input is focused
+  if (Mode.get() === Mode.MAPS && document.querySelector('.leaflet-control-geocoder-form input') == document.activeElement) {
+    return;
+  }
+
   const query = UI.queryInput.value;
   let limit = UI.limitInput.value;
   const searchClosed = UI.searchClosed.checked;
@@ -622,11 +627,6 @@ function startSearch() {
   let closed = '0';
   if (searchClosed) {
     closed = '-1';
-  }
-
-  // don't start a new search if the geocoding input is focused
-  if (Mode.get() === Mode.MAPS && document.querySelector('.leaflet-control-geocoder-form input') == document.activeElement) {
-    return;
   }
 
   if (limit > 10000) {

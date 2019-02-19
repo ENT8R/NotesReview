@@ -27,6 +27,13 @@ const Expert = (function() { // eslint-disable-line no-unused-vars
         const note = feature.properties;
         const geometry = feature.geometry;
         const comment = note.comments[0];
+
+        /* Exclude invalid notes
+        See also https://github.com/openstreetmap/openstreetmap-website/issues/2146 */
+        if (note.comments.length === 0) {
+          continue;
+        }
+
         if (ids.indexOf(note.id) === -1) {
           if (['anonymous', Localizer.getMessage('note.anonymous')].includes(user) && typeof comment.user !== 'undefined') {
             continue;
