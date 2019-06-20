@@ -1,10 +1,8 @@
-/* global require */
-
-const Mustache = require('mustache');
-const htmlMinify = require('html-minifier').minify;
+const mustache = require('mustache');
+const { minify } = require('html-minifier');
 const fs = require('fs');
 
-const version = '1.3.0';
+const VERSION = require('./package.json').version;
 
 const files = [
   'index',
@@ -24,14 +22,15 @@ const partials = {
 
 for (let i = 0; i < files.length; i++) {
   const name = files[i];
-  let template = name;
+  const template = name;
 
-  const values = {};
+  const values = {
+    version: VERSION,
+    map: (name === 'index')
+  };
   values[name] = true;
-  values.map = (name === 'index');
-  values.version = `NotesReview ${version}`;
 
-  const rendered = htmlMinify(Mustache.to_html(templates[template], values, partials), {
+  const rendered = minify(mustache.to_html(templates[template], values, partials), {
     removeComments: true,
     collapseWhitespace: true,
     collapseBooleanAttributes: true,
@@ -43,7 +42,7 @@ for (let i = 0; i < files.length; i++) {
 
   const indexPath = './index.html';
   const expertPath = './expert/index.html';
-  let path = (name === 'index') ? indexPath : expertPath;
+  const path = (name === 'index') ? indexPath : expertPath;
 
   fs.writeFile(path, rendered, (err) => {
     if (err) {

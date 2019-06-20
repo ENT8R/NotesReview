@@ -1,0 +1,19 @@
+<div data-note-id="{{id}}">
+  <div>
+    {{{badges.user}}}
+    {{{badges.age}}}
+    {{{badges.comments}}}
+  </div>
+  <div class="text-break">
+    {{{comment}}}
+  </div>
+  <div class="divider"></div>
+  <div>
+    {{#actions}}
+    <a class="btn btn-primary btn-sm {{class}}" href="{{link}}" target="_blank">
+      <span class="icon icon-external"></span>
+      {{text}}
+    </a>
+    {{/actions}}
+  </div>
+</div>

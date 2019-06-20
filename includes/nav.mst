@@ -1,74 +1,100 @@
-<div id="preloader" class="progress">
-  <div class="indeterminate"></div>
-</div>
-
-<div class="row">
-  <div class="input-field col s12 {{^map}}l3{{/map}}">
-    <input id="query" type="text" class="update-link">
-    <label for="query" data-i18n="header.query">Query</label>
+<div class="columns{{^map}} px-2{{/map}}">
+  <div class="column col-12">
+    <progress id="preloader" class="progress d-invisible" max="100"></progress>
   </div>
 
-  <div class="input-field col s12 {{#map}}l6{{/map}}{{^map}}l1{{/map}}">
-    <input id="limit" type="number" value="100" class="update-link">
-    <label for="limit" data-i18n="header.limit">Limit</label>
+  {{#map}}
+  <div class="column col-12">
+    <img src="{{^map}}../{{/map}}assets/logo.svg" class="img-responsive p-centered" width="300">
   </div>
-
-  <div class="input-field col s12 {{#map}}l6{{/map}}{{^map}}l2{{/map}}">
-    <input id="user" type="text" class="update-link">
-    <label for="user" data-i18n="header.user">User</label>
-  </div>
-
-  <div class="input-field col s12 {{#map}}l6{{/map}}{{^map}}l2{{/map}}">
-    <input id="from" type="text" class="datepicker update-link">
-    <label for="from" data-i18n="header.from">From</label>
-  </div>
-
-  <div class="input-field col s12 {{#map}}l6{{/map}}{{^map}}l2{{/map}}">
-    <input id="to" type="text" class="datepicker update-link">
-    <label for="to" data-i18n="header.to">To</label>
-  </div>
-</div>
-
-<div class="row">
-
-  <p class="col s6 {{#map}}l6{{/map}}{{^map}}l2{{/map}}">
-    <label>
-      <input type="checkbox" class="filled-in update-link" id="search-closed">
-      <span data-i18n="description.includeClosed">Include closed notes</span>
-    </label>
-  </p>
-
-  {{^map}}
-  <p class="col s6 l2">
-    <label>
-      <input type="checkbox" class="filled-in" id="sort-order" checked />
-      <span data-i18n="description.sort.desc">Newest first</span>
-    </label>
-  </p>
   {{/map}}
 
-  <p class="col s6 {{#map}}l6{{/map}}{{^map}}l2{{/map}}">
-    <a id="search" class="waves-effect waves-light btn indigo"><span class="icon icon-search"></span><span data-i18n="action.search">Search</span>
+  <div class="form-group column {{#map}}col-12{{/map}}{{^map}}col-4 col-sm-12{{/map}}">
+    <label class="form-label" for="query" data-i18n="header.query">Query</label>
+    <input class="form-input update-link" id="query" type="text">
+  </div>
+
+  <div class="form-group column {{#map}}col-6 col-lg-12{{/map}}{{^map}}col-2 col-sm-12{{/map}}">
+    <label class="form-label" for="limit" data-i18n="header.limit">Limit</label>
+    <input class="form-input update-link" id="limit" type="number" value="100">
+  </div>
+
+  <div class="form-group column {{#map}}col-6 col-lg-12{{/map}}{{^map}}col-2 col-sm-12{{/map}}">
+    <label class="form-label" for="user" data-i18n="header.user">User</label>
+    <input class="form-input update-link" id="user" type="text">
+  </div>
+
+  <div class="form-group column {{#map}}col-6 col-lg-12{{/map}}{{^map}}col-2 col-sm-12{{/map}}">
+    <label class="form-label" for="from" data-i18n="header.from">From</label>
+    <input class="form-input update-link" id="from" type="date">
+  </div>
+
+  <div class="form-group column {{#map}}col-6 col-lg-12{{/map}}{{^map}}col-2 col-sm-12{{/map}}">
+    <label class="form-label" for="to" data-i18n="header.to">To</label>
+    <input class="form-input update-link" id="to" type="date">
+  </div>
+
+  <div class="form-group column {{#map}}col-6 col-lg-12{{/map}}{{^map}}col-3 col-sm-6{{/map}}">
+    <label class="form-checkbox">
+      <input type="checkbox" class="update-link" id="show-closed">
+      <i class="form-icon"></i>
+      <span data-i18n="description.showClosed">Show closed notes</span>
+    </label>
+  </div>
+
+  <div class="form-group column {{#map}}col-6 col-lg-12{{/map}}{{^map}}col-3 col-sm-6{{/map}}">
+    <label class="form-checkbox">
+      <input type="checkbox" class="update-link" id="hide-anonymous">
+      <i class="form-icon"></i>
+      <span data-i18n="description.hideAnonymous">Hide anonymous notes</span>
+    </label>
+  </div>
+
+
+  <div class="form-group column col-2 col-sm-6 {{#map}}d-hide{{/map}}">
+    <label class="form-checkbox">
+      <input type="checkbox" id="sort-order" checked>
+      <i class="form-icon"></i>
+      <span data-i18n="description.sort.desc">Newest first</span>
+    </label>
+  </div>
+
+  <div class="column {{#map}}col-12{{/map}}{{^map}}col-4 col-sm-6{{/map}}">
+    <a id="search" class="btn btn-primary btn-lg col-12 tooltip-right" data-i18n data-i18n-data-tooltip="description.worldwideQuery">
+      <span class="icon icon-search"></span>
+      <span data-i18n="action.search">Search</span>
       {{#map}}<span id="fast-search" class="icon icon-flash"></span>{{/map}}
     </a>
-    <a id="cancel" class="waves-effect waves-light btn indigo"><span class="icon icon-close"></span><span data-i18n="action.cancel">Cancel</span></a>
-  </p>
+    <a id="cancel" class="btn btn-primary btn-lg col-12 d-hide">
+      <span class="icon icon-close"></span>
+      <span data-i18n="action.cancel">Cancel</span>
+    </a>
+  </div>
 
-  <div class="col s12 {{#map}}hide-on-small-only{{/map}}{{^map}}hide-on-large-only{{/map}} divider"></div>
+  <div class="divider column col-12 {{^map}}show-md{{/map}}"></div>
 
-  <p class="col s4 {{#map}}l6{{/map}}{{^map}}l2{{/map}}">
+  <div class="column {{#map}}col-6 col-lg-12 col-sm-4{{/map}}{{^map}}col-2 col-md-4 col-sm-12{{/map}}">
     {{#map}}
-    <a id="link" data-i18n="description.showList">Show in a list</a>
+    <a id="link" class="btn btn-link" data-i18n="description.showList">Show in a list</a>
     {{/map}}
     {{^map}}
-    <a id="link" data-i18n="description.showMap">Show on a map</a>
+    <a id="link" class="btn btn-link" data-i18n="description.showMap">Show on a map</a>
     {{/map}}
-  </p>
+  </div>
 
-  <p class="col s6 {{^map}}l1{{/map}}">
-    <a href="#help" class="modal-trigger"><span class="icon icon-help"></span></a>
-    <a href="#permalink-modal" class="modal-trigger"><span class="icon icon-share"></span></a>
-  </p>
+  <div class="column {{#map}}col-12 hide-lg{{/map}}{{^map}}col-4{{/map}}">
+    <span id="found-notes"></span>
+  </div>
 
-  <p id="found-notes" class="col s6 {{#map}}l4{{/map}}{{^map}}l2{{/map}}"></p>
+  <div class="column {{#map}}col-12 hide-lg{{/map}}{{^map}}col-4{{/map}}">
+    <span id="average-date"></span>
+  </div>
+
+  <div class="column {{#map}}col-12{{/map}}{{^map}}col-2{{/map}}">
+    {{^map}}<div class="float-right">{{/map}}
+      <a href="#help"><span class="icon icon-help"></span></a>
+      <a href="#share"><span class="icon icon-share"></span></a>
+      <a href="#settings"><span class="icon icon-settings"></span></a>
+    {{^map}}</div>{{/map}}
+  </div>
 </div>

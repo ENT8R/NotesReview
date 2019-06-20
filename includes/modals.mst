@@ -1,49 +1,199 @@
 <div id="help" class="modal">
-  <div class="modal-content">
-    <h4 class="center" data-i18n="header.help">Help</h4>
-    <ul class="browser-default">
-      <li data-i18n="[html]help.github">View the project on <a href="https://github.com/ENT8R/NotesReview" target="_blank">Github</a></li>
-      <li data-i18n="[html]help.issues">Visit the <a href="https://github.com/ENT8R/NotesReview/issues" target="_blank">issue tracker</a></li>
-      <li data-i18n="[html]help.email">Contact the <a href="mailto:info.ent8r@gmail.com">developer</a></li>
-    </ul>
-    <p>{{version}}</p>
-  </div>
-  <div class="modal-footer">
-    <a class="modal-action modal-close waves-effect waves-green btn-flat" data-i18n="action.close">Close</a>
+  <a href="#" class="modal-overlay"></a>
+
+  <div class="modal-container">
+    <div class="modal-body">
+      <div class="content">
+
+        <h3 class="text-center" data-i18n="header.faq">FAQ</h3>
+        <h5 data-i18n="help.colors.title">What is the meaning of the colours?</h5>
+        <p data-i18n="help.colors.description">Every colors represents the age of the note</p>
+
+        <div class="columns">
+          <div class="column col-4 col-md-6">
+            <div class="faq-color label-green-dark">
+              <div data-i18n="help.colors.darkgreen">Dark Green</div>
+              <div data-i18n="help.colors.descriptions.darkgreen">Between one second and one day</div>
+            </div>
+          </div>
+          <div class="column col-4 col-md-6">
+            <div class="faq-color label-green">
+              <div data-i18n="help.colors.green">Green</div>
+              <div data-i18n="help.colors.descriptions.green">Between one and 31 days</div>
+            </div>
+          </div>
+          <div class="column col-4 col-md-6">
+            <div class="faq-color label-yellow">
+              <div data-i18n="help.colors.yellow">Yellow</div>
+              <div data-i18n="help.colors.descriptions.yellow">Between one and six months</div>
+            </div>
+          </div>
+          <div class="column col-4 col-md-6">
+            <div class="faq-color label-amber">
+              <div data-i18n="help.colors.amber">Amber</div>
+              <div data-i18n="help.colors.descriptions.amber">Between six months and one year</div>
+            </div>
+          </div>
+          <div class="column col-4 col-md-6">
+            <div class="faq-color label-orange">
+              <div data-i18n="help.colors.orange">Orange</div>
+              <div data-i18n="help.colors.descriptions.orange">Between one and two years</div>
+            </div>
+          </div>
+          <div class="column col-4 col-md-6">
+            <div class="faq-color label-red">
+              <div data-i18n="help.colors.red">Red</div>
+              <div data-i18n="help.colors.descriptions.red">Two or more years</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3 class="text-center" data-i18n="header.about">About</h3>
+        <p data-i18n="help.about">
+          NotesReview is an open source project. You are currently using version {{version}}.
+          The source code is available on <a href="https://github.com/ENT8R/NotesReview" target="_blank">Github</a>.
+        </p>
+        <p data-i18n="help.contribution">
+          You can support the project by <a href="https://poeditor.com/join/project/oVilUChBdf" target="_blank">translating</a>
+          it or by <a href="https://github.com/ENT8R/NotesReview/issues" target="_blank">reporting bugs</a>.
+        </p>
+        <p class="text-center">
+          Made with ❤️ by <a href="mailto:info.ent8r@gmail.com">ENT8R</a>
+        </p>
+        <p class="text-center">
+          <script src="https://liberapay.com/ENT8R/widgets/button.js"></script>
+          <noscript>
+            <a href="https://liberapay.com/ENT8R/donate">
+              <img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg">
+            </a>
+          </noscript>
+        </p>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <a class="btn btn-link" href="#" data-i18n="action.close">Close</a>
+    </div>
   </div>
 </div>
 
-<div id="permalink-modal" class="modal">
-  <div class="modal-content">
-    <h4 class="center" data-i18n="header.permalink">Permalink</h4>
-    <p data-i18n="description.permalink">Copy this link to share the current query:</p>
-    <input id="permalink" type="text" readonly>
-    <p>
-      <label>
-        <input type="checkbox" class="filled-in update-link" id="start-query" checked="checked" />
-        <span data-i18n="description.startQuery">Start query directly after opening the link</span>
-      </label>
-    </p>
-    {{#map}}
-    <p>
-      <label>
-        <input type="checkbox" class="filled-in update-link" id="show-map" checked="checked" />
-        <span data-i18n="description.shareView">Share current view of the map</span>
-      </label>
-    </p>
-    {{/map}}
+<div id="share" class="modal">
+  <a href="#" class="modal-overlay"></a>
+
+  <div class="modal-container">
+    <div class="modal-header">
+      <div class="modal-title h3 text-center" data-i18n="header.share">Share</div>
+    </div>
+
+    <div class="modal-body">
+      <div class="content">
+        <p data-i18n="description.share">Copy this link to share the current query:</p>
+
+        <div class="form-group">
+          <input class="form-input" type="text" id="permalink" readonly>
+        </div>
+
+        {{#map}}
+        <div class="form-group">
+          <label class="form-checkbox">
+            <input type="checkbox" class="update-link" id="show-map" checked>
+            <i class="form-icon"></i>
+            <span data-i18n="description.shareView">Share current view of the map</span>
+          </label>
+        </div>
+        {{/map}}
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <a class="btn btn-link" href="#" data-i18n="action.finish">Finish</a>
+    </div>
   </div>
-  <div class="modal-footer">
-    <a class="modal-action modal-close waves-effect waves-green btn-flat" data-i18n="action.finish">Finish</a>
+</div>
+
+<div id="settings" class="modal">
+  <a href="#" class="modal-overlay"></a>
+
+  <div class="modal-container">
+    <div class="modal-header">
+      <div class="modal-title h3 text-center" data-i18n="header.settings">Settings</div>
+    </div>
+
+    <div class="modal-body">
+      <div class="content">
+
+        <h5 data-i18n="settings.theme.title">Select theme</h5>
+        <div class="form-group">
+          <select id="theme-selection" class="form-select setting">
+            <option value="" disabled data-i18n="settings.choose">Choose an option</option>
+            <option value="light" data-i18n="settings.theme.light">Light</option>
+            <option value="dark" data-i18n="settings.theme.dark">Dark</option>
+            <option value="system" data-i18n="settings.theme.system">Use system setting</option>
+          </select>
+        </div>
+
+        <h5 data-i18n="settings.editor.title">Editor shortcuts</h5>
+        <p class="text-gray m-0" data-i18n="settings.editor.description">Select your favorite editor(s)</p>
+        <div class="form-group">
+          <label class="form-checkbox form-inline">
+            <input id="editor-id" type="checkbox" class="setting"><i class="form-icon"></i>
+            <span data-i18n="action.edit.id">iD</span>
+          </label>
+          <label class="form-checkbox form-inline">
+            <input id="editor-josm" type="checkbox" class="setting"><i class="form-icon"></i>
+            <span data-i18n="action.edit.josm">JOSM</span>
+          </label>
+          <label class="form-checkbox form-inline">
+            <input id="editor-level0" type="checkbox" class="setting"><i class="form-icon"></i>
+            <span data-i18n="action.edit.level0">Level0</span>
+          </label>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <a class="btn btn-primary" href="#" data-i18n="action.save">Save</a>
+      <a class="btn btn-link" href="#" data-i18n="action.close">Close</a>
+    </div>
   </div>
 </div>
 
 <div id="information" class="modal">
-  <div class="modal-content">
-    <div id="information-content"></div>
-    <div id="information-map"></div>
+  <a class="modal-overlay modal-close"></a>
+
+  <div class="modal-container">
+    <div class="modal-body">
+      <div class="content">
+        <div id="information-content"></div>
+        <div id="information-map"></div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <a class="btn btn-link modal-close" data-i18n="action.close">Close</a>
+    </div>
   </div>
-  <div class="modal-footer">
-    <a class="modal-action modal-close waves-effect waves-green btn-flat" data-i18n="action.close">Close</a>
+</div>
+
+<div id="comments" class="modal">
+  <a class="modal-overlay modal-close"></a>
+
+  <div class="modal-container">
+    <div class="modal-body">
+      <div class="content">
+        <div id="all-comments"></div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <a class="btn btn-primary float-left" id="note-link" target="_blank">
+        <span class="icon icon-external"></span>
+        <span data-i18n="action.openstreetmap">OpenStreetMap</span>
+      </a>
+      <a class="btn btn-link modal-close" data-i18n="action.close">Close</a>
+    </div>
   </div>
 </div>

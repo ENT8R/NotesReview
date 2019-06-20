@@ -1,0 +1,13 @@
+{{#comments}}
+<div class="divider"></div>
+<div class="tile">
+  <div class="tile-content text-break">
+    <div class="tile-title">
+      {{{badges.user}}}
+      {{{badges.age}}}
+      {{{badges.status}}}
+    </div>
+    <p class="tile-subtitle">{{{html}}}</p>
+  </div>
+</div>
+{{/comments}}
