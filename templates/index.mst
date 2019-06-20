@@ -3,36 +3,33 @@
 
 {{> head}}
 
-<body>
+<body data-mode="maps">
+
+  <div id="toast-container"></div>
 
   {{> modals}}
 
-  <div class="row">
-      <div class="col s12 l3">
+  <div class="columns col-gapless">
+      <div class="column col-sm-12 col-3 px-2">
         {{> nav}}
       </div>
-      <div class="col s12 l9 no-padding">
+      <div class="column col-sm-12 col-9 no-padding">
         <div id="map"></div>
       </div>
-    </div>
+  </div>
 
-  <script src="https://unpkg.com/materialize-css@1.0.0/dist/js/materialize.min.js"
-          integrity="sha384-ZOED+d9HxogEQwD+jFvux96iGQR9TxfJO+mPF2ZS0TuKH6eWrmvPsDpO6I0OWdiX"
-          crossorigin="anonymous"></script>
-
-  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
-          integrity="sha384-jV/9OyZzm1ZMHG4pfYVMmnnCtVUlZdWgZ8mNSX3CPFM4HSK2KUSP8xzLljzMDkWd"
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+          integrity="sha384-bmPowDlt+owc6Mn3LwOzLPkYiVm6MuKeLMe0qN2pp7Fhmux2xtVJm5e+ekpCVv4x"
           crossorigin="anonymous"></script>
 
   <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"
           integrity="sha384-RLIyj5q1b5XJTn0tqUhucRZe40nFTocRP91R/NkRJHwAe4XxnTV77FXy/vGLiec2"
           crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/leaflet-control-geocoder@1.6.0/dist/Control.Geocoder.js"
-          integrity="sha384-cnF1FD8RGZuZ7AIcWqJBkFHszIRKyjEc1eO6Asjlyw7/24m/upnUmcpDSxf74w+x"
+  <script src="https://unpkg.com/leaflet-control-geocoder@1.8.2/dist/Control.Geocoder.js"
+          integrity="sha384-NqAsXSLmJ3tYd0X+ujCcNpZRuqk6QMJhpcMS9Zizqk1PAtND8O3/S6MxqZ3K7nml"
           crossorigin="anonymous"></script>
 
-  <script src="js/common.js"></script>
-  <script src="js/map.js"></script>
+  <script src="dist/js/main.min.js"></script>
 
 </body>
 

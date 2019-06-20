@@ -7,18 +7,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' https://unpkg.com https://*.tile.openstreetmap.org data:; connect-src *">
+        content="default-src 'self';
+                 script-src 'self' https://unpkg.com https://liberapay.com;
+                 style-src 'self' 'unsafe-inline' https://unpkg.com;
+                 img-src 'self' https://unpkg.com https://*.global.ssl.fastly.net https://liberapay.com  data:
+                         i.imgur.com framapic.org https://westnordost.de https://upload.wikimedia.org;
+                 connect-src *">
 
   <title>NotesReview</title>
 
   <link rel="stylesheet"
-        href="https://unpkg.com/materialize-css@1.0.0/dist/css/materialize.min.css"
-        integrity="sha384-5KZdSYqynSzIjQGS2M1O3HW6HVDBjfNx0v5Y2eQuE3vvQ9NTiiPK9/GWc0yYCrgw"
+        href="https://unpkg.com/spectre.css@0.5.8/dist/spectre.min.css"
+        integrity="sha384-k6VaK8SMn/Mpo78m3i6rYNBu5DlUY1ef2j/LBES5AloJ8J2OwFtKiC4R4dHHo6Qg"
+        crossorigin="anonymous">
+  <link rel="stylesheet"
+        href="https://unpkg.com/spectre.css@0.5.8/dist/spectre-exp.min.css"
+        integrity="sha384-TOb2Mf42ERXPAnW0hxvER61VlWLhqOA84KapqRoUU/An/T65J0zgA38DxzMhob8H"
         crossorigin="anonymous">
 
   <link rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
-        integrity="sha384-BF7C732iE6WuqJMhUnTNJJLVvW1TIP87P2nMDY7aN2j2EJFWIaqK89j3WlirhFZU"
+        href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+        integrity="sha384-eS4bw6aEvhCSXWGP85ANR/N8isWKzT7P36NvcuTJGkrj6wsbxLVpXslrNXYHyseD"
         crossorigin="anonymous">
   {{#map}}
   <link rel="stylesheet"
@@ -26,15 +35,21 @@
         integrity="sha384-lPzjPsFQL6te2x+VxmV6q1DpRxpRk0tmnl2cpwAO5y04ESyc752tnEWPKDfl1olr"
         crossorigin="anonymous">
   <link rel="stylesheet"
-        href="https://unpkg.com/leaflet-control-geocoder@1.6.0/dist/Control.Geocoder.css"
-        integrity="sha384-GYIVVla1kPOSadz3bVWkpGaPbyHKKs8Uey0UONRlbfjOa+703j/CqO5k81hP5JCi"
-        crossorigin="anonymous">
-  <link rel="stylesheet"
         href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"
         integrity="sha384-5kMSQJ6S4Qj5i09mtMNrWpSi8iXw230pKU76xTmrpezGnNJQzj0NzXjQLLg+jE7k"
         crossorigin="anonymous">
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet-control-geocoder@1.8.2/dist/Control.Geocoder.css"
+        integrity="sha384-GYIVVla1kPOSadz3bVWkpGaPbyHKKs8Uey0UONRlbfjOa+703j/CqO5k81hP5JCi"
+        crossorigin="anonymous">
   {{/map}}
-  <link rel="stylesheet" href="{{^map}}../{{/map}}css/common.css">
+
+  <link rel="stylesheet" href="{{^map}}../{{/map}}dist/css/main.min.css">
 
   <link rel="shortcut icon" type="image/x-icon" href="{{^map}}../{{/map}}assets/icon.png">
+
+  <!-- chrome >= 67, edge >= 75, firefox >= 63, not ie <= 11, not opera all, not safari all -->
+  <script src="https://unpkg.com/@webcomponents/custom-elements@1.2.4/custom-elements.min.js"
+          integrity="sha384-3dETu6N2ZmdYZLfkIGmh5pfKb+4bLYiDeLflstZMymGcoub8ecbsYN6lTg2WyToe"
+          crossorigin="anonymous"></script>
 </head>

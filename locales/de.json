@@ -1,21 +1,46 @@
 {
   "help": {
-    "github": "Schau dir das Projekt auf <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\">Github</a> an",
-    "issues": "Besuche den <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\">Issue Tracker</a>",
-    "email": "Kontaktiere den <a href=\"mailto:info.ent8r@gmail.com\">Entwickler</a>"
+    "about": "!HTML! NotesReview ist ein quelloffenes Projekt. Du benutzt gerade Version {{version}}. Der Quellcode ist auf <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\">Github</a> verfügbar.",
+    "contribution": "!HTML! Du kannst das Projekt mit <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\">Übersetzungen</a> oder <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\">Fehlermeldungen</a> unterstützen.",
+    "colors": {
+      "title": "Welche Bedeutung haben die Farben?",
+      "description": "Jede Farbe stellt das Alter der Notiz dar.",
+      "darkgreen": "Dunkelgrün",
+      "green": "Grün",
+      "yellow": "Gelb",
+      "amber": "Bernstein",
+      "orange": "Orange",
+      "red": "Rot",
+      "descriptions": {
+        "darkgreen": "Zwischen einer Sekunde und einem Tag",
+        "green": "Zwischen einem und 31 Tagen",
+        "yellow": "Zwischen einem und sechs Monaten",
+        "amber": "Zwischen sechs Monaten und einem Jahr",
+        "orange": "Zwischen einem und zwei Jahren",
+        "red": "Zwei Jahre oder mehr"
+      }
+    }
   },
   "action": {
     "cancel": "Abbrechen",
-    "clear": "Löschen",
     "close": "Schließen",
+    "copyLinkSuccess": "Link erfolgreich kopiert",
     "finish": "Fertig",
-    "ok": "OK",
+    "save": "Speichern",
     "search": "Suchen",
-    "more": "Mehr"
+    "more": "Mehr",
+    "openstreetmap": "OpenStreetMap",
+    "edit": {
+      "id": "iD",
+      "josm": "JOSM",
+      "level0": "Level0"
+    }
   },
   "header": {
-    "permalink": "Permalink",
-    "help": "Hilfe",
+    "share": "Teilen",
+    "faq": "FAQ",
+    "about": "Über",
+    "settings": "Einstellungen",
     "query": "Abfrage",
     "limit": "Limit",
     "user": "Benutzer",
@@ -23,102 +48,46 @@
     "to": "Ende"
   },
   "description": {
-    "permalink": "Kopiere diesen Link um die aktuelle Abfrage zu teilen:",
+    "share": "Kopiere diesen Link um die aktuelle Abfrage zu teilen:",
     "startQuery": "Abfrage sofort beim Öffnen ausführen",
     "shareView": "Aktuelle Kartenansicht mitgeben",
     "showList": "Als Liste zeigen",
     "showMap": "Auf Karte zeigen",
-    "includeClosed": "Geschlossene Notizen einbeziehen",
-    "worldwideQuery": "Weltweite Abfrage ist aktiv. Zoome weiter, um eine schnellere Abfrage für einen begrenzten Bereich zu erhalten.",
+    "showClosed": "Geschlossene Notizen zeigen",
+    "hideAnonymous": "Anonyme Notizen verstecken",
+    "worldwideQuery": "Weltweite Abfrage ist aktiv.\nZoome weiter, um eine schnellere Abfrage\nfür einen begrenzten Bereich zu erhalten.",
     "nothingFound": "Nichts gefunden!",
     "autoLimit": "Limit automatisch auf 10000 gesetzt, da höhere Werte nicht erlaubt sind",
     "sort": {
       "desc": "Neueste zuerst"
     }
   },
+  "settings": {
+    "choose": "Wähle eine Option",
+    "theme": {
+      "title": "Design auswählen",
+      "light": "Hell",
+      "dark": "Dunkel",
+      "system": "Systemeinstellung"
+    },
+    "editor": {
+      "title": "Editor Shortcuts",
+      "description": "Wähle deine(n) Lieblingseditor(en)"
+    }
+  },
   "note": {
     "anonymous": "anonym",
-    "found": "Gefundene Notizen: ",
-    "viewOnOsm": "Notiz %s auf OSM",
-    "edit": {
-      "level0": "%s mit Level0 bearbeiten",
-      "id": "%s mit iD bearbeiten"
-    },
-    "comment": "Kommentar",
-    "comments": "Kommentare"
+    "amount": "Derzeit werden %s Notizen angezeigt",
+    "average": "Durchschnittsalter: %s",
+    "comment": "1 Kommentar",
+    "comments": "%s Kommentare",
+    "action": {
+      "opened": "Notiz erstellt",
+      "closed": "Notiz geschlosssen",
+      "reopened": "Notiz erneut geöffnet"
+    }
   },
   "map": {
-    "attribution": "&copy; <a href=\"https://osm.org/copyright\">OpenStreetMap</a> Mitwirkende"
-  },
-  "age": {
-    "second": "Sekunde alt",
-    "seconds": "Sekunden alt",
-    "minute": "Minute alt",
-    "minutes": "Minuten alt",
-    "hour": "Stunde alt",
-    "hours": "Stunden alt",
-    "day": "Tag alt",
-    "days": "Tage alt",
-    "month": "Monat alt",
-    "months": "Monate alt",
-    "year": "Jahr alt",
-    "years": "Jahre alt"
-  },
-  "date": {
-    "months": [
-      "Januar",
-      "Februar",
-      "März",
-      "April",
-      "Mai",
-      "Juni",
-      "Juli",
-      "August",
-      "September",
-      "Oktober",
-      "November",
-      "Dezember"
-    ],
-    "monthsShort": [
-      "Jan",
-      "Feb",
-      "Mär",
-      "Apr",
-      "Mai",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Okt",
-      "Nov",
-      "Dez"
-    ],
-    "weekdays": [
-      "Sonntag",
-      "Montag",
-      "Dienstag",
-      "Mittwoch",
-      "Donnerstag",
-      "Freitag",
-      "Samstag"
-    ],
-    "weekdaysShort": [
-      "So",
-      "Mo",
-      "Di",
-      "Mi",
-      "Do",
-      "Fr",
-      "Sa"
-    ],
-    "weekdaysAbbrev": [
-      "S",
-      "M",
-      "D",
-      "M",
-      "D",
-      "F",
-      "S"
-    ]
+    "attribution": "&copy; <a href=\"https://osm.org/copyright\">OpenStreetMap</a> Mitwirkende, &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
   }
 }

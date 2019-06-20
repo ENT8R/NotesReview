@@ -1,0 +1,18 @@
+<div class="card" data-note-id="{{id}}">
+  <div class="card-header">
+    {{{badges.user}}}
+    {{{badges.age}}}
+    {{{badges.comments}}}
+  </div>
+  <div class="card-body text-break">
+    {{{comment}}}
+  </div>
+  <div class="card-footer">
+    {{#actions}}
+    <a class="btn btn-primary btn-sm {{class}}" href="{{link}}" target="_blank">
+      <span class="icon icon-external"></span>
+      {{text}}
+    </a>
+    {{/actions}}
+  </div>
+</div>
