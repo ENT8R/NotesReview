@@ -158,7 +158,7 @@ export async function init() {
     const { default: main } = await import(/* webpackChunkName: "locales/[request]" */ `../locales/${LANGUAGE}`);
     STRINGS.main = main;
   } catch (error) {
-    return console.log( // eslint-disable-line no-console
+    console.log( // eslint-disable-line no-console
       new Error(`${LANGUAGE}.json does not exist, ${FALLBACK_LANGUAGE}.json is used instead`)
     );
   }
@@ -171,7 +171,7 @@ export async function init() {
     replaceI18n(currentElem, contentString);
   });
 
-  // Replace html lang attribut after translation
+  // Replace html lang attribute after translation
   document.querySelector('html').setAttribute('lang', LANGUAGE);
 
   // Polyfill for Intl.RelativeTimeFormat
