@@ -67,10 +67,14 @@ export default class Map {
         );
 
         marker.on('popupopen', event => {
-          event.target.getElement().getElementsByClassName('marker-icon')[0].classList.add('popup-open');
+          if (event.target.getElement()) {
+            event.target.getElement().getElementsByClassName('marker-icon')[0].classList.add('popup-open');
+          }
         });
         marker.on('popupclose', event => {
-          event.target.getElement().getElementsByClassName('marker-icon')[0].classList.remove('popup-open');
+          if (event.target.getElement()) {
+            event.target.getElement().getElementsByClassName('marker-icon')[0].classList.remove('popup-open');
+          }
         });
 
         markers.addLayer(marker);
@@ -81,7 +85,9 @@ export default class Map {
     const map = new Leaflet('map');
     map.removeLayers();
     map.addLayer(markers);
-    map.flyToBounds(markers.getBounds(), 1);
+    if (amount > 0) {
+      map.flyToBounds(markers.getBounds(), 1);
+    }
 
     return Promise.resolve({
       amount,

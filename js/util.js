@@ -51,19 +51,25 @@ export function isNoteVisible(note) {
   let from = document.getElementById('from').value;
   let to = document.getElementById('to').value;
 
+  let visible = true;
+
   // If the default API has been used, some additional checks are necessary to make sure only the right notes are returned
   if (note.api === API.DEFAULT) {
     from = from === '' ? new Date(0) : new Date(from);
     to = to === '' ? new Date() : new Date(to);
     const created = new Date(note.date);
 
-    return (note.comment.text.toLocaleUpperCase().includes(query.toLocaleUpperCase())) && // Check whether the query is included in the comment
-           (created > from && created < to) && // Check whether the note was created during the correct range
-           (user !== '' ? user.localeCompare(note.user.name) === 0 : true); // Check whether the specified user also created the note
-  } else {
-    return (document.getElementById('hide-anonymous').checked ? !note.anonymous : true) &&
-           (['anonymous', Localizer.message('note.anonymous')].includes(user) ? note.anonymous : true);
+    // Check whether the query is included in the comment
+    visible = (note.comments.map(comment => comment.text).join(' ').toLocaleUpperCase().includes(query.toLocaleUpperCase())) &&
+              // Check whether the note was created during the correct range
+              (created > from && created < to) &&
+              // Check whether the specified user also created the note
+              (!['', 'anonymous', Localizer.message('note.anonymous')].includes(user) ? user.localeCompare(note.user.name) === 0 : true);
   }
+
+  return visible &&
+         (document.getElementById('hide-anonymous').checked ? !note.anonymous : true) &&
+         (['anonymous', Localizer.message('note.anonymous')].includes(user) ? note.anonymous : true);
 }
 
 /**

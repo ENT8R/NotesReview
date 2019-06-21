@@ -20,7 +20,7 @@ const config = {
   devServer: {
     contentBase: __dirname,
     watchContentBase: true,
-    publicPath: 'dist/',
+    publicPath: '/dist/',
     compress: true,
     port: 8000,
     watchOptions: {

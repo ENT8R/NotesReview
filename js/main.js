@@ -44,6 +44,10 @@ async function search() {
 
   if (['anonymous', Localizer.message('note.anonymous')].includes(user)) {
     user = null;
+    document.getElementById('hide-anonymous').checked = false;
+    document.getElementById('hide-anonymous').setAttribute('disabled', 'true');
+  } else {
+    document.getElementById('hide-anonymous').removeAttribute('disabled');
   }
 
   toggle();
@@ -182,7 +186,7 @@ function comments(id) {
 function listener() {
   document.querySelector('[href="#share"]').addEventListener('click', () => Permalink());
 
-  document.getElementById('search').addEventListener('click', search);
+  document.getElementById('search').addEventListener('click', () => search());
   document.getElementById('cancel').addEventListener('click', () => Request.cancel());
 
   document.getElementById('sort-order').addEventListener('change', () => {

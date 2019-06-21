@@ -159,7 +159,7 @@ export async function init() {
     STRINGS.main = main;
   } catch (error) {
     return console.log( // eslint-disable-line no-console
-      new Error(`"${LANGUAGE}.json" does not exist, "${FALLBACK_LANGUAGE}.json" is used instead`)
+      new Error(`${LANGUAGE}.json does not exist, ${FALLBACK_LANGUAGE}.json is used instead`)
     );
   }
 
