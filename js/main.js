@@ -318,7 +318,7 @@ function searchParameter() {
       document.getElementById('show-closed').checked = value === 'true' ? true : false;
       break;
     case 'anonymous':
-      document.getElementById('hide-anonymous').checked = value === 'true' ? true : false;
+      document.getElementById('hide-anonymous').checked = value === 'true' ? false : true;
       break;
     }
   });
