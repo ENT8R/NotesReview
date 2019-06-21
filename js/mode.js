@@ -8,5 +8,5 @@ export const EXPERT = 'expert';
   * @returns {String}
   */
 export function get() {
-  return document.querySelector('body').dataset.mode;
+  return document.body.dataset.mode;
 }

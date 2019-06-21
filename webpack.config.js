@@ -15,12 +15,12 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].min.js',
     chunkFilename: 'js/[name].min.js',
-    publicPath: '/dist/'
+    publicPath: 'dist/'
   },
   devServer: {
     contentBase: __dirname,
     watchContentBase: true,
-    publicPath: '/dist/',
+    publicPath: 'dist/',
     compress: true,
     port: 8000,
     watchOptions: {

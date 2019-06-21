@@ -33,9 +33,9 @@ If you want to support the development of this software, I am very thankful to r
 
 ## Screenshots
 
-<img src="assets/screenshots/light/map.png" width="500px"> <img src="assets/screenshots/dark/map.png" width="500px">
-<img src="assets/screenshots/light/list.png" width="500px"> <img src="assets/screenshots/dark/list.png" width="500px">
-<img src="assets/screenshots/light/images.png" width="500px"> <img src="assets/screenshots/light/comments.png" width="500px">
+<img src="assets/screenshots/light/map.png" width="400px"> <img src="assets/screenshots/dark/map.png" width="400px">
+<img src="assets/screenshots/light/list.png" width="400px"> <img src="assets/screenshots/dark/list.png" width="400px">
+<img src="assets/screenshots/light/images.png" width="400px"> <img src="assets/screenshots/light/comments.png" width="400px">
 
 ## License
 

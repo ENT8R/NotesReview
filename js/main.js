@@ -15,6 +15,8 @@ import * as Util from './util.js';
 
 import comment from '../templates/notes/comment.mst';
 
+__webpack_public_path__ = Mode.get() === Mode.MAPS ? 'dist/' : '../dist/'; // eslint-disable-line
+
 let map;
 let ui;
 let query;
