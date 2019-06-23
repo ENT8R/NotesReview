@@ -1,6 +1,10 @@
 import * as Localizer from './localizer.js';
 import { API } from './query.js';
 
+const EARTH_RADIUS = 6371000; // In meters. See https://en.wikipedia.org/wiki/Earth_radius#Mean_radius
+const EARTH_CIRCUMFERENCE = 2 * Math.PI * EARTH_RADIUS;
+const DISTANCE_BETWEEN_DEGREES = EARTH_CIRCUMFERENCE / 360;
+
 /**
   * Determines the age of a note and
   * returns the colour which represents the age of the note
@@ -70,6 +74,27 @@ export function isNoteVisible(note) {
   return visible &&
          (document.getElementById('hide-anonymous').checked ? !note.anonymous : true) &&
          (['anonymous', Localizer.message('note.anonymous')].includes(user) ? note.anonymous : true);
+}
+
+/**
+  * Calculate a bounding box around the given coordinates within a given radius
+  *
+  * @function
+  * @param {Array} coordinates
+  * @param {Number} radius
+  * @returns {Object}
+  */
+export function buffer(coordinates, radius) {
+  if (!radius) {
+    radius = 100;
+  }
+  const [ latitude, longitude ] = coordinates;
+  return {
+    left: longitude - radius / (DISTANCE_BETWEEN_DEGREES * Math.cos(latitude * Math.PI / 180)),
+    bottom: latitude - radius / DISTANCE_BETWEEN_DEGREES,
+    right: longitude + radius / (DISTANCE_BETWEEN_DEGREES * Math.cos(latitude * Math.PI / 180)),
+    top: latitude + radius / DISTANCE_BETWEEN_DEGREES
+  };
 }
 
 /**

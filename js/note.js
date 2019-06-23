@@ -53,6 +53,8 @@ export default class Note {
     * @returns {String}
     */
   get actions() {
+    const bbox = Util.buffer(this.coordinates);
+
     const actions = {
       osm: {
         class: 'link-osm',
@@ -61,17 +63,17 @@ export default class Note {
       },
       iD: {
         class: 'link-editor-id',
-        link: `https://www.openstreetmap.org/edit?editor=id&map=17/${this.coordinates.join('/')}`,
+        link: `https://www.openstreetmap.org/edit?editor=id#map=19/${this.coordinates.join('/')}`,
         text: Localizer.message('action.edit.id')
       },
       josm: {
         class: 'link-editor-josm',
-        link: `https://localhost:8112/import?url=https://overpass-api.de/api/interpreter/?data=nwr(around:100,${this.coordinates.join(',')});out;`,
+        link: `http://127.0.0.1:8111/load_and_zoom?left=${bbox.left}&bottom=${bbox.bottom}&right=${bbox.right}&top=${bbox.top}`,
         text: Localizer.message('action.edit.josm')
       },
       level0: {
         class: 'link-editor-level0',
-        link: `http://level0.osmz.ru/?center=${this.coordinates.join(',')}`,
+        link: `http://level0.osmz.ru/?center=${this.coordinates.join()}`,
         text: Localizer.message('action.edit.level0')
       }
     };
@@ -102,12 +104,12 @@ export default class Note {
           };
           actions.josm = {
             class: 'link-editor-josm',
-            link: `https://localhost:8112/import?url=https://overpass-api.de/api/interpreter/?data=${type}(${id});out;`,
+            link: `http://127.0.0.1:8111/import?url=https://api.openstreetmap.org/api/0.6/${type}/${id}/full`,
             text: Localizer.message('action.edit.josm')
           };
           actions.level0 = {
             class: 'link-editor-level0',
-            link: `http://level0.osmz.ru/?url=${type}/${id}&center=${this.coordinates.join(',')}`,
+            link: `http://level0.osmz.ru/?url=${type}/${id}&center=${this.coordinates.join()}`,
             text: Localizer.message('action.edit.level0')
           };
         }
