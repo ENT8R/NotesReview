@@ -5,7 +5,7 @@ const auth = osmAuth({
   oauth_secret: OPENSTREETMAP_OAUTH_SECRET, // eslint-disable-line camelcase
   url: OPENSTREETMAP_SERVER,
   auto: true,
-  landing: '../../landing.html'
+  landing: 'landing.html'
 });
 
 export default class API {
