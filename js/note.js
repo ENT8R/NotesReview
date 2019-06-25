@@ -83,7 +83,7 @@ export default class Note {
         text: Localizer.message('action.edit.level0')
       },
       comment: {
-        class: 'comments-modal-trigger',
+        class: 'comments-modal-trigger requires-authentication',
         icon: 'icon-pencil',
         text: Localizer.message('action.comment')
       }
