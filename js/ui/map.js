@@ -1,15 +1,11 @@
 /* globals L */
 import Leaflet from '../leaflet.js';
+import UI from './ui.js';
 import * as Util from '../util.js';
 
 import popup from '../../templates/notes/popup.mst';
 
-export default class Map {
-  constructor() {
-    this.notes = [];
-    this.query = null;
-  }
-
+export default class Map extends UI {
   /**
     * Show all notes on the map
     *
@@ -66,17 +62,6 @@ export default class Map {
           })
         );
 
-        marker.on('popupopen', event => {
-          if (event.target.getElement()) {
-            event.target.getElement().getElementsByClassName('marker-icon')[0].classList.add('popup-open');
-          }
-        });
-        marker.on('popupclose', event => {
-          if (event.target.getElement()) {
-            event.target.getElement().getElementsByClassName('marker-icon')[0].classList.remove('popup-open');
-          }
-        });
-
         markers.addLayer(marker);
       }
     });
@@ -93,28 +78,5 @@ export default class Map {
       amount,
       average: new Date(average / amount)
     });
-  }
-
-  /**
-    * Searches for the note with the specified id and returns it
-    *
-    * @function
-    * @param {Number} id
-    * @returns {Note}
-    */
-  get(id) {
-    return this.notes.find(note => {
-      return note.id === id;
-    });
-  }
-
-  /**
-    * Reload the notes because another event happened like a changed filter
-    *
-    * @function
-    * @returns {Promise}
-    */
-  reload() {
-    return this.show(this.notes);
   }
 }

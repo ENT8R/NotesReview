@@ -3,7 +3,7 @@ import * as Mode from './mode.js';
 import Note from './note.js';
 import * as Request from './request.js';
 
-export const API = {
+export const ENDPOINT = {
   DEFAULT: 'default',
   SEARCH: 'search'
 };
@@ -29,7 +29,7 @@ export default class Query {
     this.to = to || null;
     this.notes = [];
     this.ids = [];
-    this.api = API.SEARCH;
+    this.api = ENDPOINT.SEARCH;
     this.url = this.build();
   }
 
@@ -103,11 +103,11 @@ export default class Query {
       const size = map.boundsSize();
 
       if (size < 0.25) {
-        this.api = API.DEFAULT;
+        this.api = ENDPOINT.DEFAULT;
         // Search only in a single bounding box
         result = Request.build(map.bounds().toBBoxString(), this.limit, this.closed, this.user, this.from, this.to, this.api);
       } else if (size >= 0.25 && size <= 1) {
-        this.api = API.DEFAULT;
+        this.api = ENDPOINT.DEFAULT;
         result = [];
         // Split the bounding box into four parts
         const bounds = map.splitBounds(map.bounds(), 1);
@@ -115,7 +115,7 @@ export default class Query {
           result.push(Request.build(bbox.toBBoxString(), this.limit, this.closed, this.user, this.from, this.to, this.api));
         });
       } else if (size >= 1 && size <= 4) {
-        this.api = API.DEFAULT;
+        this.api = ENDPOINT.DEFAULT;
         result = [];
         // Split the bounding box into sixteen parts
         const bounds = map.splitBounds(map.bounds(), 2);
@@ -123,12 +123,12 @@ export default class Query {
           result.push(Request.build(bbox.toBBoxString(), this.limit, this.closed, this.user, this.from, this.to, this.api));
         });
       } else {
-        this.api = API.SEARCH;
+        this.api = ENDPOINT.SEARCH;
         result = Request.build(this.query, this.limit, this.closed, this.user, this.from, this.to, this.api);
       }
 
     } else {
-      this.api = API.SEARCH;
+      this.api = ENDPOINT.SEARCH;
       result = Request.build(this.query, this.limit, this.closed, this.user, this.from, this.to, this.api);
     }
 

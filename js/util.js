@@ -1,5 +1,5 @@
 import * as Localizer from './localizer.js';
-import { API } from './query.js';
+import { ENDPOINT } from './query.js';
 
 const EARTH_RADIUS = 6371000; // In meters. See https://en.wikipedia.org/wiki/Earth_radius#Mean_radius
 const EARTH_CIRCUMFERENCE = 2 * Math.PI * EARTH_RADIUS;
@@ -57,8 +57,8 @@ export function isNoteVisible(note) {
 
   let visible = true;
 
-  // If the default API has been used, some additional checks are necessary to make sure only the right notes are returned
-  if (note.api === API.DEFAULT) {
+  // If the default endpoint has been used, some additional checks are necessary to make sure only the right notes are returned
+  if (note.api === ENDPOINT.DEFAULT) {
     from = from === '' ? new Date(0) : new Date(from);
     to = to === '' ? new Date() : new Date(to);
     const created = new Date(note.date);
@@ -72,6 +72,7 @@ export function isNoteVisible(note) {
   }
 
   return visible &&
+         (document.getElementById('show-closed').checked ? true : note.status === 'open') &&
          (document.getElementById('hide-anonymous').checked ? !note.anonymous : true) &&
          (['anonymous', Localizer.message('note.anonymous')].includes(user) ? note.anonymous : true);
 }

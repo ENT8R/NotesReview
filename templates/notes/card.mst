@@ -9,10 +9,18 @@
   </div>
   <div class="card-footer">
     {{#actions}}
-    <a class="btn btn-primary btn-sm {{class}}" href="{{link}}" target="_blank">
-      <span class="icon icon-external"></span>
-      {{text}}
-    </a>
+      {{#link}}
+      <a class="btn btn-primary btn-sm my-1 {{class}}" href="{{link}}" target="_blank">
+        <span class="icon {{icon}}"></span>
+        {{text}}
+      </a>
+      {{/link}}
+      {{^link}}
+      <button class="btn btn-primary btn-sm my-1 {{class}}">
+        <span class="icon {{icon}}"></span>
+        {{text}}
+      </button>
+      {{/link}}
     {{/actions}}
   </div>
 </div>

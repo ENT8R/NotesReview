@@ -1,3 +1,5 @@
+/* globals OPENSTREETMAP_SERVER */
+
 import * as Localizer from './localizer.js';
 
 /**
@@ -27,7 +29,7 @@ export function age(color, date) {
 export function comments(amount) {
   if (amount > 0) {
     const text = amount === 1 ? Localizer.message('note.comment') : Localizer.message('note.comments', amount);
-    return `<span class="label label-primary my-1 comments c-hand">${text}</span>`;
+    return `<span class="label label-primary my-1 comments-modal-trigger c-hand">${text}</span>`;
   }
 }
 
@@ -44,7 +46,7 @@ export function user(name, anonymous) {
     return `<span class="label label-error my-1">${name}</span>`;
   } else {
     return `<span class="label label-success my-1">
-              <a href="https://openstreetmap.org/user/${name}" target="_blank" class="text-light">${name}</a>
+              <a href="${OPENSTREETMAP_SERVER}/user/${name}" target="_blank" class="text-light">${name}</a>
             </span>`;
   }
 }

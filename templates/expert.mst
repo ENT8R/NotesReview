@@ -13,11 +13,7 @@
 
   <div id="notes" class="columns mx-1"></div>
 
-  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-          integrity="sha384-bmPowDlt+owc6Mn3LwOzLPkYiVm6MuKeLMe0qN2pp7Fhmux2xtVJm5e+ekpCVv4x"
-          crossorigin="anonymous"></script>
-
-  <script src="../dist/js/main.min.js"></script>
+  {{> scripts}}
 
 </body>
 

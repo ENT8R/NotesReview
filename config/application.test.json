@@ -1,0 +1,7 @@
+{
+  "server": "https://master.apis.dev.openstreetmap.org",
+  "oauth": {
+    "key": "p9kDzAR37O93xu09Fa0ZP56iObF0eE4R6cw0qSYK",
+    "secret": "IP4hYzGjuxfyLpBpU4CxQ2YEBpVEk8dnARiqkxr0"
+  }
+}

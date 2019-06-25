@@ -1,0 +1,31 @@
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 2px;
+  &.icon-close {
+    background-image: url("../../icons/close.svg");
+  }
+  &.icon-external {
+    background-image: url("../../icons/external.svg");
+  }
+  &.icon-flash {
+    background-image: url("../../icons/flash.svg");
+  }
+  &.icon-help {
+    background-image: url("../../icons/help.svg");
+  }
+  &.icon-pencil {
+    background-image: url("../../icons/pencil.svg");
+  }
+  &.icon-search {
+    background-image: url("../../icons/search.svg");
+  }
+  &.icon-settings {
+    background-image: url("../../icons/settings.svg");
+  }
+  &.icon-share {
+    background-image: url("../../icons/share.svg");
+  }
+}

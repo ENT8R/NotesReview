@@ -1,11 +1,14 @@
+/* globals OPENSTREETMAP_SERVER */
+
 import '@github/time-elements';
 import './polyfills.js';
 
+import API from './api.js';
 import * as Badges from './badges.js';
-import * as Effects from './effects.js';
 import Leaflet from './leaflet.js';
 import * as Localizer from './localizer.js';
 import * as Mode from './mode.js';
+import Note from './note.js';
 import Permalink from './permalink.js';
 import * as Preferences from './preferences.js';
 import Query from './query.js';
@@ -20,6 +23,8 @@ __webpack_public_path__ = Mode.get() === Mode.MAPS ? 'dist/' : '../dist/'; // es
 let map;
 let ui;
 let query;
+
+const api = new API();
 
 /**
   * Initiate a new query and do some UI changes before and after it
@@ -50,7 +55,9 @@ async function search() {
     document.getElementById('hide-anonymous').removeAttribute('disabled');
   }
 
-  toggle();
+  document.getElementById('preloader').classList.remove('d-invisible');
+  document.getElementById('search').classList.add('d-hide');
+  document.getElementById('cancel').classList.remove('d-hide');
 
   query = new Query(q, limit, closed, user, from, to);
 
@@ -62,20 +69,11 @@ async function search() {
   }
 
   const notes = await query.search();
-  ui.show(notes, query).then(details).finally(toggle);
-}
-
-/**
-  * Toggle the visibility of the "Search" and "Cancel" button and the preloader
-  *
-  * @function
-  * @private
-  * @returns {void}
-  */
-function toggle() {
-  Effects.toggleVisibility(document.getElementById('preloader'));
-  Effects.toggleDisplay(document.getElementById('search'));
-  Effects.toggleDisplay(document.getElementById('cancel'));
+  ui.show(notes, query).then(details).finally(() => {
+    document.getElementById('preloader').classList.add('d-invisible');
+    document.getElementById('search').classList.remove('d-hide');
+    document.getElementById('cancel').classList.add('d-hide');
+  });
 }
 
 /**
@@ -123,10 +121,10 @@ function tooltip() {
   const fastSearch = document.getElementById('fast-search');
 
   if (map.boundsSize() < 4) {
-    fastSearch.style.display = 'inline-block';
+    fastSearch.classList.remove('d-hide');
     search.classList.remove('tooltip');
   } else {
-    fastSearch.style.display = 'none';
+    fastSearch.classList.add('d-hide');
     search.classList.add('tooltip');
   }
 }
@@ -167,10 +165,21 @@ function details(result) {
   */
 function comments(id) {
   const note = ui.get(id);
-  document.getElementById('all-comments').innerHTML = comment(note);
-  document.getElementById('note-link').href = `https://openstreetmap.org/note/${note.id}`;
+  document.getElementById('comments').innerHTML = comment(note);
+  document.getElementById('comments').dataset.noteId = id;
+  document.getElementById('note-link').href = `${OPENSTREETMAP_SERVER}/note/${note.id}`;
 
-  const modal = document.getElementById('comments');
+  // Clear the note input
+  document.getElementById('note-comment').value = '';
+  document.getElementById('note-comment').dispatchEvent(new Event('input'));
+
+  // Show different actions depending on the status of the note
+  document.querySelector('.comment-action[data-action="comment"]').style.display = note.status === 'open' ? 'block' : 'none';
+  document.querySelector('.comment-action[data-action="close"]').style.display = note.status === 'open' ? 'block' : 'none';
+  document.querySelector('.comment-action[data-action="reopen"]').style.display = note.status === 'closed' ? 'block' : 'none';
+
+  // Finally show the modal with the comments in it
+  const modal = document.querySelector('.modal[data-modal="comments"]');
   modal.classList.add('active');
   modal.getElementsByClassName('modal-body')[0].scrollTop = 0;
   document.body.style.overflow = 'hidden';
@@ -195,6 +204,55 @@ function listener() {
 
   document.getElementById('hide-anonymous').addEventListener('change', () => {
     ui.reload().then(details);
+  });
+
+  document.getElementById('login').addEventListener('click', () => {
+    const login = document.getElementById('login');
+    login.classList.add('loading');
+
+    api.login().then(() => {
+      login.classList.remove('loading');
+      login.classList.add('d-hide');
+      document.getElementById('logout').classList.remove('d-hide');
+      document.body.dataset.authenticated = true;
+    }).catch(error => {
+      console.log(error); // eslint-disable-line no-console
+    });
+  });
+
+  document.getElementById('logout').addEventListener('click', () => {
+    api.logout();
+    document.getElementById('logout').classList.add('d-hide');
+    document.getElementById('login').classList.remove('d-hide');
+    document.body.dataset.authenticated = false;
+  });
+
+  document.getElementById('note-comment').addEventListener('input', () => {
+    const text = document.getElementById('note-comment').value.trim();
+    if (text === '') {
+      document.getElementById('note-comment-actions').classList.add('d-hide');
+    } else {
+      document.getElementById('note-comment-actions').classList.remove('d-hide');
+    }
+  });
+
+  Array.from(document.getElementsByClassName('comment-action')).forEach(element => {
+    element.addEventListener('click', () => {
+      element.classList.add('loading');
+
+      const id = parseInt(document.getElementById('comments').dataset.noteId);
+      const text = document.getElementById('note-comment').value.trim();
+
+      api.comment(id, text, element.dataset.action).then(async () => {
+        const note = await Request.get(`${OPENSTREETMAP_SERVER}/api/0.6/notes/${id}.json`, Request.MEDIA_TYPE.JSON);
+        ui.update(id, new Note(note, query.api)).then(details);
+        comments(id);
+      }).catch(error => {
+        console.log(error); // eslint-disable-line no-console
+      }).finally(() => {
+        element.classList.remove('loading');
+      });
+    });
   });
 
   Array.from(document.getElementsByClassName('setting')).forEach(element => {
@@ -249,7 +307,9 @@ function listener() {
 
       if (Request.isRunning()) {
         Request.cancel();
-        toggle();
+        document.getElementById('preloader').classList.add('d-invisible');
+        document.getElementById('search').classList.remove('d-hide');
+        document.getElementById('cancel').classList.add('d-hide');
       } else {
         search();
       }
@@ -275,9 +335,9 @@ function listener() {
 
   // Dynamic listeners
   document.addEventListener('click', event => {
-    const commentsLabel = event.target.closest('.label.comments');
-    if (commentsLabel) {
-      const id = parseInt(commentsLabel.closest('[data-note-id]').dataset.noteId);
+    const commentsModalTrigger = event.target.closest('.comments-modal-trigger');
+    if (commentsModalTrigger) {
+      const id = parseInt(commentsModalTrigger.closest('[data-note-id]').dataset.noteId);
       comments(id);
     }
   });
@@ -383,6 +443,16 @@ async function init() {
         map.setView([latitude, longitude], zoom);
       }
     }
+  }
+
+  const authenticated = api.authenticated();
+  document.body.dataset.authenticated = authenticated;
+  if (authenticated) {
+    document.getElementById('login').classList.add('d-hide');
+    document.getElementById('logout').classList.remove('d-hide');
+  } else {
+    document.getElementById('login').classList.remove('d-hide');
+    document.getElementById('logout').classList.add('d-hide');
   }
 
   listener();

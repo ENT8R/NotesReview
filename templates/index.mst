@@ -18,18 +18,7 @@
       </div>
   </div>
 
-  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-          integrity="sha384-bmPowDlt+owc6Mn3LwOzLPkYiVm6MuKeLMe0qN2pp7Fhmux2xtVJm5e+ekpCVv4x"
-          crossorigin="anonymous"></script>
-
-  <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"
-          integrity="sha384-RLIyj5q1b5XJTn0tqUhucRZe40nFTocRP91R/NkRJHwAe4XxnTV77FXy/vGLiec2"
-          crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/leaflet-control-geocoder@1.8.2/dist/Control.Geocoder.js"
-          integrity="sha384-NqAsXSLmJ3tYd0X+ujCcNpZRuqk6QMJhpcMS9Zizqk1PAtND8O3/S6MxqZ3K7nml"
-          crossorigin="anonymous"></script>
-
-  <script src="dist/js/main.min.js"></script>
+  {{> scripts}}
 
 </body>
 

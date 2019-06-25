@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npm run build && npx webpack-dev-server",
     "build": "node build",
-    "lint": "eslint js/src/**.js",
+    "lint": "eslint js/**.js",
     "test": "npm run lint"
   },
   "author": "ENT8R <info.ent8r@gmail.com>",
@@ -22,6 +22,7 @@
     "leaflet-control-geocoder": "^1.8.2",
     "leaflet.markercluster": "^1.4.1",
     "linkify-it": "^2.1.0",
+    "osm-auth": "^1.0.2",
     "relative-time-format": "^0.2.2",
     "spectre.css": "^0.5.8"
   },

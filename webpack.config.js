@@ -1,9 +1,11 @@
+const config = require('./config/application.json');
+
 const path = require('path');
 const webpack = require('webpack');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const config = {
+module.exports = {
   // devtool: 'source-map',
   mode: 'production',
   watch: true,
@@ -29,7 +31,10 @@ const config = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      VERSION: JSON.stringify(require('./package.json').version)
+      VERSION: JSON.stringify(require('./package.json').version),
+      OPENSTREETMAP_SERVER: JSON.stringify(config.server),
+      OPENSTREETMAP_OAUTH_KEY: JSON.stringify(config.oauth.key),
+      OPENSTREETMAP_OAUTH_SECRET: JSON.stringify(config.oauth.secret)
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].min.css',
@@ -70,5 +75,3 @@ const config = {
     ]
   }
 };
-
-module.exports = config;

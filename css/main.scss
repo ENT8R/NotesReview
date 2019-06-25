@@ -1,4 +1,5 @@
 @import 'dark';
+@import 'icons';
 
 .leaflet-control-attribution a {
   color: #302ecd;
@@ -21,7 +22,6 @@
 }
 
 #notes .card p,
-#comments .tile p,
 .leaflet-popup-content p {
   margin: 0;
 }
@@ -38,6 +38,12 @@ body {
   &[data-editor-id="false"] .link-editor-id,
   &[data-editor-josm="false"] .link-editor-josm,
   &[data-editor-level0="false"] .link-editor-level0 {
+    display: none;
+  }
+}
+
+body {
+  &[data-authenticated="false"] .requires-authentication {
     display: none;
   }
 }
@@ -65,9 +71,6 @@ body {
 
 img.marker-icon {
   filter: drop-shadow(10px 5px 5px rgba(0, 0, 0, 0.3));
-  &:hover:not(.popup-open) {
-    animation: jump 1.5s ease 0s infinite normal;
-  }
 }
 
 /*---------- Toasts ------------*/
@@ -107,53 +110,4 @@ img.marker-icon {
 .label-red {
   background: #f44336;
   color: #fff;
-}
-
-/*---------- Icons ------------*/
-.icon {
-  display: inline-block;
-  vertical-align: middle;
-  width: 24px;
-  height: 24px;
-  margin-bottom: 2px;
-  &.icon-close {
-    background-image: url("../../icons/close.svg");
-  }
-  &.icon-external {
-    background-image: url("../../icons/external.svg");
-  }
-  &.icon-flash {
-    background-image: url("../../icons/flash.svg");
-  }
-  &.icon-help {
-    background-image: url("../../icons/help.svg");
-  }
-  &.icon-search {
-    background-image: url("../../icons/search.svg");
-  }
-  &.icon-settings {
-    background-image: url("../../icons/settings.svg");
-  }
-  &.icon-share {
-    background-image: url("../../icons/share.svg");
-  }
-}
-
-/*---------- Animations ------------*/
-@keyframes jump {
- 0% {
-   transform: translateY(0);
- }
- 30% {
-   transform: translateY(-20px);
- }
- 40% {
-   transform: translateY(0);
- }
- 50% {
-   transform: translateY(-10px);
- }
- 70% {
-   transform: translateY(0);
- }
 }

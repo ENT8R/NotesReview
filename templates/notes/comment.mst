@@ -1,5 +1,4 @@
 {{#comments}}
-<div class="divider"></div>
 <div class="tile">
   <div class="tile-content text-break">
     <div class="tile-title">
@@ -10,4 +9,5 @@
     <p class="tile-subtitle">{{{html}}}</p>
   </div>
 </div>
+<div class="divider"></div>
 {{/comments}}

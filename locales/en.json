@@ -30,6 +30,11 @@
     "search": "Search",
     "more": "More",
     "openstreetmap": "OpenStreetMap",
+    "login": "Login",
+    "logout": "Logout",
+    "comment": "Comment",
+    "commentClose": "Comment and close",
+    "commentReopen": "Reopen and comment",
     "edit": {
       "id": "iD",
       "josm": "JOSM",
@@ -86,6 +91,9 @@
       "closed": "Closed note",
       "reopened": "Reopened note"
     }
+  },
+  "comments": {
+    "inputPlaceholder": "Write a comment for all other users"
   },
   "map": {
     "attribution": "&copy; <a href=\"https://osm.org/copyright\">OpenStreetMap</a> contributors, &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"

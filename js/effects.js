@@ -1,36 +1,4 @@
 /**
-  * Toggle the display style to either hide or show an element.
-  *
-  * @function
-  * @param {HTMLElement} element
-  * @returns {void}
-  */
-export function toggleDisplay(element) {
-  const { display } = (window.getComputedStyle ? getComputedStyle(element, null) : element.currentStyle);
-  if (display === 'none') {
-    element.classList.remove('d-hide');
-  } else {
-    element.classList.add('d-hide');
-  }
-}
-
-/**
-  * Toggle the visibility of a preloader element.
-  *
-  * @function
-  * @param {HTMLElement} element
-  * @returns {void}
-  */
-export function toggleVisibility(element) {
-  const { visibility } = (window.getComputedStyle ? getComputedStyle(element, null) : element.currentStyle);
-  if (visibility === 'hidden') {
-    element.classList.remove('d-invisible');
-  } else {
-    element.classList.add('d-invisible');
-  }
-}
-
-/**
   * Fade an element from the current state to full opacity in a given time.
   *
   * @function

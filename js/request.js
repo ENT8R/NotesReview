@@ -1,4 +1,6 @@
-import { API } from './query.js';
+/* globals OPENSTREETMAP_SERVER */
+
+import { ENDPOINT } from './query.js';
 
 let controller = new AbortController();
 let running = false;
@@ -17,12 +19,12 @@ export const MEDIA_TYPE = {
   * @param {String} user
   * @param {String} from
   * @param {String} to
-  * @param {String} api Which api is used to search the notes
+  * @param {String} endpoint Which endpoint should be used to search the notes
   * @returns {String}
   */
-export function build(query, limit, closed, user, from, to, api) {
-  const url = new URL('https://api.openstreetmap.org');
-  url.pathname = api === API.DEFAULT ? '/api/0.6/notes.json' : '/api/0.6/notes/search.json';
+export function build(query, limit, closed, user, from, to, endpoint) {
+  const url = new URL(OPENSTREETMAP_SERVER);
+  url.pathname = endpoint === ENDPOINT.DEFAULT ? '/api/0.6/notes.json' : '/api/0.6/notes/search.json';
 
   const data = {
     q: query,
@@ -33,7 +35,7 @@ export function build(query, limit, closed, user, from, to, api) {
     to
   };
 
-  if (api === API.DEFAULT) {
+  if (endpoint === ENDPOINT.DEFAULT) {
     delete data.q;
     data.bbox = query;
   }

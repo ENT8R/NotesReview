@@ -1,3 +1,5 @@
+/* globals OPENSTREETMAP_SERVER */
+
 import * as Badges from './badges.js';
 import Linkify from './linkify.js';
 import * as Localizer from './localizer.js';
@@ -58,25 +60,38 @@ export default class Note {
     const actions = {
       osm: {
         class: 'link-osm',
-        link: `https://www.openstreetmap.org/note/${this.id}`,
+        link: `${OPENSTREETMAP_SERVER}/note/${this.id}`,
+        icon: 'icon-external',
         text: Localizer.message('action.openstreetmap')
       },
       iD: {
         class: 'link-editor-id',
-        link: `https://www.openstreetmap.org/edit?editor=id#map=19/${this.coordinates.join('/')}`,
+        link: `${OPENSTREETMAP_SERVER}/edit?editor=id#map=19/${this.coordinates.join('/')}`,
+        icon: 'icon-external',
         text: Localizer.message('action.edit.id')
       },
       josm: {
         class: 'link-editor-josm',
         link: `http://127.0.0.1:8111/load_and_zoom?left=${bbox.left}&bottom=${bbox.bottom}&right=${bbox.right}&top=${bbox.top}`,
+        icon: 'icon-external',
         text: Localizer.message('action.edit.josm')
       },
       level0: {
         class: 'link-editor-level0',
         link: `http://level0.osmz.ru/?center=${this.coordinates.join()}`,
+        icon: 'icon-external',
         text: Localizer.message('action.edit.level0')
+      },
+      comment: {
+        class: 'comments-modal-trigger',
+        icon: 'icon-pencil',
+        text: Localizer.message('action.comment')
       }
     };
+
+    if (this.comments.length > 1) {
+      delete actions.comment;
+    }
 
     let match;
     OPENSTREETMAP_ELEMENT_REGEX.forEach(regex => {
@@ -97,21 +112,9 @@ export default class Note {
             break;
           }
 
-          actions.iD = {
-            class: 'link-editor-id',
-            link: `https://www.openstreetmap.org/edit?editor=id&${type}=${id}`,
-            text: Localizer.message('action.edit.id')
-          };
-          actions.josm = {
-            class: 'link-editor-josm',
-            link: `http://127.0.0.1:8111/import?url=https://api.openstreetmap.org/api/0.6/${type}/${id}/full`,
-            text: Localizer.message('action.edit.josm')
-          };
-          actions.level0 = {
-            class: 'link-editor-level0',
-            link: `http://level0.osmz.ru/?url=${type}/${id}&center=${this.coordinates.join()}`,
-            text: Localizer.message('action.edit.level0')
-          };
+          actions.iD.link = `${OPENSTREETMAP_SERVER}/edit?editor=id&${type}=${id}`;
+          actions.josm.link = `http://127.0.0.1:8111/import?url=${OPENSTREETMAP_SERVER}/api/0.6/${type}/${id}/full`;
+          actions.level0.link = `http://level0.osmz.ru/?url=${type}/${id}&center=${this.coordinates.join()}`;
         }
       }
     });
