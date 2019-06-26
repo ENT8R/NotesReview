@@ -16,6 +16,7 @@ Notes are a very important part of the OpenStreetMap ecosystem. Every user of th
 - ✂️ Useful filters to show only the notes you are interested in
 - 💬 View all comments of a note directly on the website
 - ✍️ Open your favorite editor directly in order to process the note
+- 💬 Comment on every note directly using the interface
 - 📷 Automatic detection of images on image hosting servers
 - 🔦 A dark mode (for working at night 😉)
 

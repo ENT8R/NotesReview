@@ -67,3 +67,16 @@ export function status(comment) {
     return `<span class="label label-warning my-1">${Localizer.message('note.action.reopened')}</span>`;
   }
 }
+
+/**
+  * Generate an icon to report a note
+  *
+  * @function
+  * @param {Number} id
+  * @returns {String}
+  */
+export function report(id) {
+  return `<a href="${OPENSTREETMAP_SERVER}/reports/new?reportable_type=Note&reportable_id=${id}" target="_blank">
+            <span class="icon icon-flag float-right"></span>
+          </a>`;
+}

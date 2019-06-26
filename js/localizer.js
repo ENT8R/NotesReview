@@ -174,7 +174,9 @@ export async function init() {
   // Replace html lang attribute after translation
   document.querySelector('html').setAttribute('lang', LANGUAGE);
 
-  // Polyfill for Intl.RelativeTimeFormat
+  /* Polyfill for Intl.RelativeTimeFormat
+   * chrome >= 71, not edge all, firefox >= 65, not ie <= 11, opera >= 58, not safari all
+   */
   if (!('Intl' in window) || !('Intl' in window && 'RelativeTimeFormat' in window.Intl)) {
     let locale;
     switch (LANGUAGE) {

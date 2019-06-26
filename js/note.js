@@ -42,7 +42,8 @@ export default class Note {
     this.badges = {
       age: Badges.age(this.color, this.date),
       comments: Badges.comments(this.comments.length - 1),
-      user: Badges.user(this.user, this.anonymous)
+      user: Badges.user(this.user, this.anonymous),
+      report: Badges.report(this.id)
     };
     this.visible = true;
   }

@@ -15,4 +15,4 @@
         integrity="sha384-Q9r1nd0FeP7LjBAYKFt035baNDhMkGYYLFIzolLNUlUvxaBgD972E7bij56RiNgA"
         crossorigin="anonymous"></script>
 
-<script src="{{^map}}../{{/map}}dist/js/main.min.js"></script>
+<script src="{{^map}}../{{/map}}dist/js/main.min.js" defer></script>

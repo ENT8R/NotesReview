@@ -3,6 +3,7 @@
     {{{badges.user}}}
     {{{badges.age}}}
     {{{badges.comments}}}
+    {{{badges.report}}}
   </div>
   <div class="text-break">
     {{{comment}}}
