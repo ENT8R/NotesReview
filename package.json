@@ -23,7 +23,7 @@
     "leaflet.markercluster": "^1.4.1",
     "linkify-it": "^2.1.0",
     "osm-auth": "^1.0.2",
-    "relative-time-format": "^0.2.2",
+    "relative-time-format": "^1.0.0",
     "spectre.css": "^0.5.8"
   },
   "devDependencies": {
@@ -39,7 +39,7 @@
     "babel-preset-minify": "^0.5.0",
     "core-js": "^3.1.4",
     "css-loader": "^3.0.0",
-    "eslint": "^5.16.0",
+    "eslint": "^6.0.1",
     "html-minifier": "^4.0.0",
     "mini-css-extract-plugin": "^0.7.0",
     "mustache": "^3.0.1",
@@ -48,7 +48,7 @@
     "regenerator-runtime": "^0.13.2",
     "sass-loader": "^7.1.0",
     "webpack": "^4.35.0",
-    "webpack-cli": "^3.3.4",
+    "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.7.2"
   }
 }
