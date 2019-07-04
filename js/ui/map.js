@@ -29,7 +29,10 @@ export default class Map extends UI {
     let amount = 0;
     let average = 0;
 
-    const markers = L.markerClusterGroup();
+    const markers = L.markerClusterGroup({
+      maxClusterRadius: 40
+    });
+    
     notes.forEach(note => {
       note.visible = Util.isNoteVisible(note);
 
