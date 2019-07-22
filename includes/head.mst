@@ -39,7 +39,7 @@
         integrity="sha384-5kMSQJ6S4Qj5i09mtMNrWpSi8iXw230pKU76xTmrpezGnNJQzj0NzXjQLLg+jE7k"
         crossorigin="anonymous">
   <link rel="stylesheet"
-        href="https://unpkg.com/leaflet-control-geocoder@1.8.2/dist/Control.Geocoder.css"
+        href="https://unpkg.com/leaflet-control-geocoder@1.8.3/dist/Control.Geocoder.css"
         integrity="sha384-GYIVVla1kPOSadz3bVWkpGaPbyHKKs8Uey0UONRlbfjOa+703j/CqO5k81hP5JCi"
         crossorigin="anonymous">
   {{/map}}
