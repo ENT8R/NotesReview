@@ -34,7 +34,12 @@
       "id": "iD",
       "josm": "JOSM",
       "level0": "Level0"
-    }
+    },
+    "login": "Iniciar Sesión",
+    "logout": "Cerrar Sesión",
+    "comment": "Comentar",
+    "commentClose": "Comentar y cerrar",
+    "commentReopen": "Reactivar y comentar"
   },
   "header": {
     "share": "Compartir",
@@ -77,7 +82,7 @@
   },
   "note": {
     "anonymous": "anónima",
-    "amount": "Actualmente se muestran %s notas",
+    "amount": "actualmente se muestran %s notas",
     "average": "Edad media: %s",
     "comment": "1 comentario",
     "comments": "%s comentarios",
@@ -86,6 +91,9 @@
       "closed": "Resolver nota",
       "reopened": "Reactivar nota"
     }
+  },
+  "comments": {
+    "inputPlaceholder": "Escribe un comentario para el resto de usuarios"
   },
   "map": {
     "attribution": "&copy; <a href=\"https://osm.org/copyright\">OpenStreetMap</a> contribuidores, &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
