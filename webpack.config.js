@@ -49,11 +49,13 @@ module.exports = {
       },
       {
         test: /\.js$/,
+        include: /js/,
         exclude: /node_modules/,
         use: 'babel-loader'
       },
       {
         test: /\.scss$/,
+        include: /css/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader

@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npm run build && npx webpack-dev-server",
     "build": "node build",
-    "lint": "eslint js/**.js",
+    "lint": "npx eslint js/**.js",
     "test": "npm run lint"
   },
   "author": "ENT8R <info.ent8r@gmail.com>",
