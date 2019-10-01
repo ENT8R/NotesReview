@@ -4,15 +4,7 @@ const fs = require('fs');
 
 const VERSION = require('./package.json').version;
 
-const files = [
-  'index',
-  'expert'
-];
-
-const templates = {
-  index: fs.readFileSync('./templates/index.mst', 'utf8'),
-  expert: fs.readFileSync('./templates/expert.mst', 'utf8')
-};
+const template = fs.readFileSync('./templates/index.mst', 'utf8');
 
 const partials = {
   head: fs.readFileSync('./includes/head.mst', 'utf8'),
@@ -21,17 +13,19 @@ const partials = {
   scripts: fs.readFileSync('./includes/scripts.mst', 'utf8')
 };
 
-for (let i = 0; i < files.length; i++) {
-  const name = files[i];
-  const template = name;
+const files = [
+  'map',
+  'expert'
+];
 
+files.forEach(file => {
   const values = {
     version: VERSION,
-    map: (name === 'index')
+    [file]: true,
+    mode: file
   };
-  values[name] = true;
 
-  const rendered = minify(mustache.to_html(templates[template], values, partials), {
+  const rendered = minify(mustache.to_html(template, values, partials), {
     removeComments: true,
     collapseWhitespace: true,
     collapseBooleanAttributes: true,
@@ -41,14 +35,11 @@ for (let i = 0; i < files.length; i++) {
     minifyJS: true
   });
 
-  const indexPath = './index.html';
-  const expertPath = './expert/index.html';
-  const path = (name === 'index') ? indexPath : expertPath;
-
-  fs.writeFile(path, rendered, (err) => {
-    if (err) {
-      return console.log(err); // eslint-disable-line no-console
+  const path = file === 'map' ? './index.html' : './expert/index.html';
+  fs.writeFile(path, rendered, (error) => {
+    if (error) {
+      return console.log(error); // eslint-disable-line no-console
     }
     return console.log(`${path} was saved!`); // eslint-disable-line no-console
   });
-}
+});

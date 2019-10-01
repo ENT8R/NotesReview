@@ -1,8 +1,8 @@
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
 
   <meta name="description" content="An interface for searching OSM notes with a specific keyword">
-  <meta name="keywords" content="OSM, OpenStreetMap, notes, OpenStreetMap Notes, NotesReview, review">
+  <meta name="keywords" content="OpenStreetMap, OSM, notes, OpenStreetMap Notes, NotesReview, review, search, find">
   <meta name="author" content="ENT8R">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -12,7 +12,8 @@
                  style-src 'self' 'unsafe-inline' https://unpkg.com;
                  img-src 'self' https://unpkg.com https://*.global.ssl.fastly.net https://liberapay.com  data:
                          i.imgur.com framapic.org https://westnordost.de https://upload.wikimedia.org;
-                 connect-src *">
+                 connect-src *;
+                 frame-src 'self' http://127.0.0.1:8111;">
 
   <title>NotesReview</title>
 
@@ -44,12 +45,12 @@
         crossorigin="anonymous">
   {{/map}}
 
-  <link rel="stylesheet" href="{{^map}}../{{/map}}dist/css/main.min.css">
+  <link rel="stylesheet" href="{{#expert}}../{{/expert}}dist/css/main.min.css">
 
-  <link rel="shortcut icon" type="image/x-icon" href="{{^map}}../{{/map}}assets/icon.png">
+  <link rel="shortcut icon" type="image/x-icon" href="{{#expert}}../{{/expert}}assets/icon.png">
 
   <!-- chrome >= 67, edge >= 75, firefox >= 63, not ie <= 11, not opera all, not safari all -->
-  <script src="https://unpkg.com/@webcomponents/custom-elements@1.2.4/custom-elements.min.js"
-          integrity="sha384-3dETu6N2ZmdYZLfkIGmh5pfKb+4bLYiDeLflstZMymGcoub8ecbsYN6lTg2WyToe"
+  <script src="https://unpkg.com/@webcomponents/custom-elements@1.3.0/custom-elements.min.js"
+          integrity="sha384-zniKLQhXZacmuD3uK2+Wwm8IS22h//LzkQDiDGbaRGmw62ojFEJwzVtzJoFGhsJr"
           crossorigin="anonymous"></script>
 </head>

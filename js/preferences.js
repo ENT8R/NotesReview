@@ -32,7 +32,7 @@ export function set(preferences, temporary) {
   const storage = temporary ? window.sessionStorage : window.localStorage;
 
   for (const key in preferences) {
-    if (preferences.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(preferences, key)) {
       const preference = preferences[key];
 
       if (Array.isArray(preference)) {

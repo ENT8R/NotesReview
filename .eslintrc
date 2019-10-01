@@ -6,6 +6,14 @@
       "browser": true,
       "es6": true
     },
+    "globals": {
+      "L": "readonly",
+      "osmAuth": "readonly",
+      "OPENSTREETMAP_SERVER": "readonly",
+      "OPENSTREETMAP_OAUTH_KEY": "readonly",
+      "OPENSTREETMAP_OAUTH_SECRET": "readonly",
+      "VERSION": "readonly"
+    },
     "extends": ["eslint:recommended"],
     "rules": {
       "semi": "warn",

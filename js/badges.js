@@ -1,5 +1,3 @@
-/* globals OPENSTREETMAP_SERVER */
-
 import * as Localizer from './localizer.js';
 
 /**

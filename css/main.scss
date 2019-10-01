@@ -49,6 +49,10 @@ body {
 }
 
 /*---------- Other ------------*/
+iframe#remote {
+  display: none;
+}
+
 .img-preview {
   height: 200px;
 }

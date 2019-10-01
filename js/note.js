@@ -1,5 +1,3 @@
-/* globals OPENSTREETMAP_SERVER */
-
 import * as Badges from './badges.js';
 import Linkify from './linkify.js';
 import * as Localizer from './localizer.js';
@@ -75,7 +73,8 @@ export default class Note {
         class: 'link-editor-josm',
         link: `http://127.0.0.1:8111/load_and_zoom?left=${bbox.left}&bottom=${bbox.bottom}&right=${bbox.right}&top=${bbox.top}`,
         icon: 'icon-external',
-        text: Localizer.message('action.edit.josm')
+        text: Localizer.message('action.edit.josm'),
+        remote: true
       },
       level0: {
         class: 'link-editor-level0',

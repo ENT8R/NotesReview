@@ -1,4 +1,3 @@
-/* globals L */
 import Leaflet from '../leaflet.js';
 import UI from './ui.js';
 import * as Util from '../util.js';
@@ -12,9 +11,10 @@ export default class Map extends UI {
     * @function
     * @param {Array} notes
     * @param {Query} query
+    * @param {Boolean} reload Indicates that this function has been called by a reload function
     * @returns {Promise}
     */
-  show(notes, query) {
+  show(notes, query, reload) {
     this.notes = notes;
     if (query) {
       this.query = query;
@@ -32,7 +32,7 @@ export default class Map extends UI {
     const markers = L.markerClusterGroup({
       maxClusterRadius: 40
     });
-    
+
     notes.forEach(note => {
       note.visible = Util.isNoteVisible(note);
 
@@ -73,7 +73,7 @@ export default class Map extends UI {
     const map = new Leaflet('map');
     map.removeLayers();
     map.addLayer(markers);
-    if (amount > 0) {
+    if (!reload && amount > 0) {
       map.flyToBounds(markers.getBounds(), 1);
     }
 

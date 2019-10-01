@@ -1,4 +1,4 @@
-export const MAPS = 'maps';
+export const MAPS = 'map';
 export const EXPERT = 'expert';
 
 /**

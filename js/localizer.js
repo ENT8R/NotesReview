@@ -1,5 +1,3 @@
-/* globals VERSION */
-
 /**
   * This file was modified from {@link https://github.com/TinyWebEx/Localizer/blob/master/Localizer.js} by @rugk
   */
@@ -177,28 +175,33 @@ export async function init() {
   /* Polyfill for Intl.RelativeTimeFormat
    * chrome >= 71, not edge all, firefox >= 65, not ie <= 11, opera >= 58, not safari all
    */
-  if (!('Intl' in window) || !('Intl' in window && 'RelativeTimeFormat' in window.Intl)) {
-    let locale;
-    switch (LANGUAGE) {
-    case 'de':
-      locale = await import(/* webpackChunkName: "relative-time-format/de" */ 'relative-time-format/locale/de');
-      break;
-    case 'en':
-      locale = await import(/* webpackChunkName: "relative-time-format/en" */ 'relative-time-format/locale/en');
-      break;
-    case 'es':
-      locale = await import(/* webpackChunkName: "relative-time-format/es" */ 'relative-time-format/locale/es');
-      break;
-    default:
-      locale = await import(/* webpackChunkName: "relative-time-format/en" */ 'relative-time-format/locale/en');
-    }
+  if (!('Intl' in window)) {
+    window.Intl = {};
 
-    const { default: RelativeTimeFormat } = await import(/* webpackChunkName: "relative-time-format" */ 'relative-time-format');
-    RelativeTimeFormat.addLocale(locale.default);
-    if (!('Intl' in window)) {
-      window.Intl = {};
+    if (!('RelativeTimeFormat' in window.Intl)) {
+      let locale;
+      switch (LANGUAGE) {
+      case 'de':
+        locale = await import(/* webpackChunkName: "relative-time-format/de" */ 'relative-time-format/locale/de');
+        break;
+      case 'en':
+        locale = await import(/* webpackChunkName: "relative-time-format/en" */ 'relative-time-format/locale/en');
+        break;
+      case 'es':
+        locale = await import(/* webpackChunkName: "relative-time-format/es" */ 'relative-time-format/locale/es');
+        break;
+      case 'it':
+        locale = await import(/* webpackChunkName: "relative-time-format/it" */ 'relative-time-format/locale/it');
+        break;
+      default:
+        locale = await import(/* webpackChunkName: "relative-time-format/en" */ 'relative-time-format/locale/en');
+      }
+
+      const { default: RelativeTimeFormat } = await import(/* webpackChunkName: "relative-time-format" */ 'relative-time-format');
+      RelativeTimeFormat.addLocale(locale.default);
+
+      window.Intl.RelativeTimeFormat = RelativeTimeFormat;
     }
-    window.Intl.RelativeTimeFormat = RelativeTimeFormat;
   }
 
   return Promise.resolve();

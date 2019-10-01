@@ -1,5 +1,3 @@
-/* globals L */
-
 import * as Localizer from './localizer.js';
 import * as Theme from './theme.js';
 

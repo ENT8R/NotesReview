@@ -1,5 +1,3 @@
-/* globals osmAuth, OPENSTREETMAP_SERVER, OPENSTREETMAP_OAUTH_KEY, OPENSTREETMAP_OAUTH_SECRET */
-
 import * as Mode from './mode.js';
 
 const auth = osmAuth({

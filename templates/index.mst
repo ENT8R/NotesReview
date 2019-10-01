@@ -3,12 +3,17 @@
 
 {{> head}}
 
-<body data-mode="maps">
+<body data-mode="{{mode}}">
 
   <div id="toast-container"></div>
 
+  {{#expert}}
+    {{> nav}}
+  {{/expert}}
+
   {{> modals}}
 
+  {{#map}}
   <div class="columns col-gapless">
       <div class="column col-sm-12 col-3 px-2">
         {{> nav}}
@@ -17,6 +22,13 @@
         <div id="map"></div>
       </div>
   </div>
+  {{/map}}
+
+  {{#expert}}
+  <div id="notes" class="columns mx-1"></div>
+  {{/expert}}
+
+  <iframe id="remote" name="remote"></iframe>
 
   {{> scripts}}
 

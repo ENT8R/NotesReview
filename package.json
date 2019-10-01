@@ -39,7 +39,7 @@
     "babel-preset-minify": "^0.5.1",
     "core-js": "^3.2.1",
     "css-loader": "^3.2.0",
-    "eslint": "^6.4.0",
+    "eslint": "^6.5.1",
     "html-minifier": "^4.0.0",
     "mini-css-extract-plugin": "^0.8.0",
     "mustache": "^3.1.0",

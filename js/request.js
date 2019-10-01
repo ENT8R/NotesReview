@@ -1,5 +1,3 @@
-/* globals OPENSTREETMAP_SERVER */
-
 import { ENDPOINT } from './query.js';
 
 let controller = new AbortController();

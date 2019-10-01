@@ -1,5 +1,3 @@
-/* globals OPENSTREETMAP_SERVER */
-
 import '@github/time-elements';
 import './polyfills.js';
 
@@ -317,6 +315,10 @@ function listener() {
   });
 
   window.addEventListener('beforeunload', () => {
+    // Clear the content of the remote control iframe
+    document.getElementById('remote').src = 'about:blank';
+
+    // Save the map state
     if (Mode.get() === Mode.MAPS) {
       const center = map.center();
       Preferences.set({
@@ -328,6 +330,7 @@ function listener() {
       });
     }
 
+    // Save the last visit
     Preferences.set({
       lastVisit: new Date().getTime()
     });

@@ -41,11 +41,11 @@ export default function replace(string) {
 
       if (image) {
         result.push(`
-          <a href="${escape(link.url)}" target="_blank">
+          <a href="${escape(link.url)}" target="_blank" rel="noopener noreferrer">
             <img class="img-responsive img-preview m-1" src="${escape(link.url)}" alt="${escape(link.text)}">
           </a>`);
       } else {
-        result.push(`<a target="_blank" href="${escape(link.url)}">${escape(link.text)}</a>`);
+        result.push(`<a href="${escape(link.url)}" target="_blank" rel="noopener noreferrer">${escape(link.text)}</a>`);
       }
 
       last = link.lastIndex;

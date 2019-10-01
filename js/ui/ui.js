@@ -55,7 +55,7 @@ export default class UI {
     * @returns {Promise}
     */
   reload() {
-    return this.show(this.notes);
+    return this.show(this.notes, null, true);
   }
 
   /**
