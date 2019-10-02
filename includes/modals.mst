@@ -63,12 +63,9 @@
           Made with ❤️ by <a href="mailto:info.ent8r@gmail.com">ENT8R</a>
         </p>
         <p class="text-center">
-          <script src="https://liberapay.com/ENT8R/widgets/button.js"></script>
-          <noscript>
-            <a href="https://liberapay.com/ENT8R/donate">
-              <img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg">
-            </a>
-          </noscript>
+          <a href="https://liberapay.com/ENT8R/donate" target="_blank" rel="noreferrer noopener">
+            <img alt="Donate using Liberapay" src="{{#expert}}../{{/expert}}assets/liberapay.svg">
+          </a>
         </p>
       </div>
     </div>

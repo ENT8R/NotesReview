@@ -48,7 +48,7 @@ export default class Expert extends UI {
     }
     document.getElementById('notes').appendChild(fragment);
 
-    Array.from(document.getElementsByClassName('more')).forEach(element => {
+    document.getElementsByClassName('more').forEach(element => {
       element.addEventListener('click', () => {
         this.information(notes[element.dataset.note]);
       });

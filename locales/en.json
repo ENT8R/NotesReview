@@ -53,6 +53,7 @@
     "to": "To"
   },
   "description": {
+    "deprecationWarning": "The browser you are currently using does not support NotesReview. Please consider to switch to another browser to be able to use NotesReview.",
     "share": "Copy this link to share the current query:",
     "startQuery": "Start query directly after opening the link",
     "shareView": "Share current view of the map",

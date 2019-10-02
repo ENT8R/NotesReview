@@ -8,9 +8,9 @@
 
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
-                 script-src 'self' https://unpkg.com https://liberapay.com;
+                 script-src 'self' https://unpkg.com;
                  style-src 'self' 'unsafe-inline' https://unpkg.com;
-                 img-src 'self' https://unpkg.com https://*.global.ssl.fastly.net https://liberapay.com  data:
+                 img-src 'self' https://unpkg.com https://*.global.ssl.fastly.net data:
                          i.imgur.com framapic.org https://westnordost.de https://upload.wikimedia.org;
                  connect-src *;
                  frame-src 'self' http://127.0.0.1:8111;">

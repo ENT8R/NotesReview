@@ -5,7 +5,12 @@
 
 <body data-mode="{{mode}}">
 
-  <div id="toast-container"></div>
+  <div id="toast-container">
+    <div id="deprecation-warning" class="toast toast-warning" data-i18n="description.deprecationWarning">
+      The browser you are currently using does not support NotesReview.
+      Please consider to switch to another browser to be able to use NotesReview.
+    </div>
+  </div>
 
   {{#expert}}
     {{> nav}}

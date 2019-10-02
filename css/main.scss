@@ -53,6 +53,14 @@ iframe#remote {
   display: none;
 }
 
+#deprecation-warning {
+  display: none;
+}
+
+body.deprecated-browser #deprecation-warning {
+  display: block;
+}
+
 .img-preview {
   height: 200px;
 }

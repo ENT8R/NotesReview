@@ -1,4 +1,3 @@
-import '@github/time-elements';
 import './polyfills.js';
 
 import API from './api.js';
@@ -234,7 +233,7 @@ function listener() {
     }
   });
 
-  Array.from(document.getElementsByClassName('comment-action')).forEach(element => {
+  document.getElementsByClassName('comment-action').forEach(element => {
     element.addEventListener('click', () => {
       element.classList.add('loading');
 
@@ -253,7 +252,7 @@ function listener() {
     });
   });
 
-  Array.from(document.getElementsByClassName('setting')).forEach(element => {
+  document.getElementsByClassName('setting').forEach(element => {
     element.addEventListener('change', () => {
       Preferences.set({
         theme: document.getElementById('theme-selection').value,
@@ -267,7 +266,7 @@ function listener() {
     });
   });
 
-  Array.from(document.getElementsByClassName('update-link')).forEach(element => {
+  document.getElementsByClassName('update-link').forEach(element => {
     element.addEventListener('change', () => Permalink());
   });
 
@@ -288,7 +287,7 @@ function listener() {
     }, true);
   });
 
-  Array.from(document.getElementsByClassName('modal-close')).forEach(element => {
+  document.getElementsByClassName('modal-close').forEach(element => {
     element.addEventListener('click', event => {
       document.body.style.overflow = '';
       event.target.closest('.modal').classList.remove('active');
@@ -423,7 +422,13 @@ function settings() {
   * @returns {void}
   */
 async function init() {
+  await import(/* webpackChunkName: "@github/time-elements" */ '@github/time-elements');
+
   await Localizer.init();
+
+  if (window.navigator.userAgent.indexOf('MSIE ') !== -1 || window.navigator.userAgent.match(/Trident.*rv:11\./)) {
+    document.body.classList.add('deprecated-browser');
+  }
 
   const mode = Mode.get() === Mode.MAPS ? 'map' : 'expert';
   const { default: UI } = await import(/* webpackChunkName: "ui/[request]" */ `./ui/${mode}`);

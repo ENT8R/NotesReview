@@ -50,7 +50,7 @@ module.exports = {
       {
         test: /\.js$/,
         include: /js/,
-        exclude: /node_modules/,
+        exclude: /node_modules(?!(\/|\\)@github(\/|\\)time-elements)/,
         use: 'babel-loader'
       },
       {

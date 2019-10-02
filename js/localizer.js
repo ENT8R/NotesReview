@@ -4,7 +4,6 @@
 
 const I18N_ATTRIBUTE = 'data-i18n';
 const I18N_DATASET = 'i18n';
-const I18N_DATASET_INT = I18N_DATASET.length;
 
 const LANGUAGE = navigator.language.split('-')[0] || navigator.userLanguage.split('-')[0];
 const FALLBACK_LANGUAGE = 'en';
@@ -30,11 +29,11 @@ function replaceI18n(element, tag) {
 
   // Localize attributes
   for (const [attribute, value] of Object.entries(element.dataset)) {
-    if (!attribute.startsWith(I18N_DATASET) || attribute === I18N_DATASET) {
+    if (attribute.substring(0, I18N_DATASET.length) !== I18N_DATASET || attribute === I18N_DATASET) {
       continue;
     }
 
-    const replaceAttribute = convertDatasetToAttribute(attribute.slice(I18N_DATASET_INT));
+    const replaceAttribute = convertDatasetToAttribute(attribute.slice(I18N_DATASET.length));
     replaceWith(element, replaceAttribute, message(value));
   }
 }
@@ -75,9 +74,9 @@ function replaceWith(element, attribute, translatedMessage) {
     return;
   }
 
-  const isHTML = translatedMessage.startsWith('!HTML!');
+  const isHTML = translatedMessage.substring(0, 6) === '!HTML!';
   if (isHTML) {
-    translatedMessage = translatedMessage.replace('!HTML!', '').trimLeft();
+    translatedMessage = translatedMessage.replace(/^!HTML!(\s+)?/, '');
   }
 
   switch (attribute) {
@@ -156,7 +155,7 @@ export async function init() {
     const { default: main } = await import(/* webpackChunkName: "locales/[request]" */ `../locales/${LANGUAGE}`);
     STRINGS.main = main;
   } catch (error) {
-    console.log( // eslint-disable-line no-console
+    console.error( // eslint-disable-line no-console
       new Error(`${LANGUAGE}.json does not exist, ${FALLBACK_LANGUAGE}.json is used instead`)
     );
   }

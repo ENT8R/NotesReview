@@ -53,6 +53,7 @@
     "to": "Ende"
   },
   "description": {
+    "deprecationWarning": "Dein momentaner Browser funktioniert leider nicht zusammen mit NotesReview. Bitte denke darüber nach deinen Browser zu wechseln, um NotesReview verwenden zu können.",
     "share": "Kopiere diesen Link um die aktuelle Abfrage zu teilen:",
     "startQuery": "Abfrage sofort beim Öffnen ausführen",
     "shareView": "Aktuelle Kartenansicht mitgeben",
