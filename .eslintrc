@@ -79,5 +79,6 @@
       "wrap-iife": ["error", "inside"],
       "no-unused-expressions": "error",
       "no-useless-constructor": "error",
+      "require-atomic-updates": "off", // see https://github.com/eslint/eslint/issues/11899
     }
 }
