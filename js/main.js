@@ -314,8 +314,8 @@ function listener() {
   });
 
   window.addEventListener('beforeunload', () => {
-    // Clear the content of the remote control iframe
-    document.getElementById('remote').src = 'about:blank';
+    // Remove the iframe in order to prevent a restoring of the content when reloading the page
+    document.getElementById('remote').remove();
 
     // Save the map state
     if (Mode.get() === Mode.MAPS) {
