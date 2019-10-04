@@ -21,6 +21,7 @@
         href="https://unpkg.com/spectre.css@0.5.8/dist/spectre.min.css"
         integrity="sha384-k6VaK8SMn/Mpo78m3i6rYNBu5DlUY1ef2j/LBES5AloJ8J2OwFtKiC4R4dHHo6Qg"
         crossorigin="anonymous">
+  <!-- Experimental features are needed because of the progress bar https://picturepan2.github.io/spectre/experimentals/progress.html -->
   <link rel="stylesheet"
         href="https://unpkg.com/spectre.css@0.5.8/dist/spectre-exp.min.css"
         integrity="sha384-TOb2Mf42ERXPAnW0hxvER61VlWLhqOA84KapqRoUU/An/T65J0zgA38DxzMhob8H"

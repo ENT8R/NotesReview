@@ -68,6 +68,11 @@
       "desc": "Newest first"
     }
   },
+  "accessibility": {
+    "openFaq": "Open frequently asked questions",
+    "openSettings": "Open settings",
+    "shareQuery": "Share the current query"
+  },
   "settings": {
     "choose": "Choose an option",
     "theme": {

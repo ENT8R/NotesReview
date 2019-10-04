@@ -49,7 +49,7 @@ export default class Map extends UI {
 
         const marker = L.marker(note.coordinates, {
           icon: new L.divIcon({
-            html: `<div class="marker-container"><img src="${icon}" class="marker-icon"></div>`,
+            html: `<div class="marker-container"><img alt="" src="${icon}" class="marker-icon"></div>`,
             iconAnchor: [12.5, 40], // [width / 2, height]
             popupAnchor: [0, -30],
             className: 'marker-icon'

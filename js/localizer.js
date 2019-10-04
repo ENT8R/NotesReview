@@ -79,8 +79,9 @@ function replaceWith(element, attribute, translatedMessage) {
     translatedMessage = translatedMessage.replace(/^!HTML!(\s+)?/, '');
   }
 
-  switch (attribute) {
-  case null:
+  if (attribute) {
+    element.setAttribute(attribute, translatedMessage);
+  } else {
     if (translatedMessage !== '') {
       if (isHTML) {
         element.innerHTML = translatedMessage;
@@ -88,9 +89,6 @@ function replaceWith(element, attribute, translatedMessage) {
         element.textContent = translatedMessage;
       }
     }
-    break;
-  default:
-    element.setAttribute(attribute, translatedMessage);
   }
 }
 

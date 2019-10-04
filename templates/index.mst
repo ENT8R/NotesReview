@@ -6,6 +6,13 @@
 <body data-mode="{{mode}}">
 
   <div id="toast-container">
+    <noscript>
+      <div class="toast toast-error">
+        NotesReview is written in JavaScript and it seems that you deactivated it.
+        Please enable JavaScript in order to use NotesReview.
+      </div>
+    </noscript>
+
     <div id="deprecation-warning" class="toast toast-warning" data-i18n="description.deprecationWarning">
       The browser you are currently using does not support NotesReview.
       Please consider to switch to another browser to be able to use NotesReview.

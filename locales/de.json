@@ -68,6 +68,11 @@
       "desc": "Neueste zuerst"
     }
   },
+  "accessibility": {
+    "openFaq": "Häufig gestellte Fragen öffnen",
+    "openSettings": "Einstellungen öffnen",
+    "shareQuery": "Teile die momentane Abfrage"
+  },
   "settings": {
     "choose": "Wähle eine Option",
     "theme": {
