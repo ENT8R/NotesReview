@@ -13,7 +13,7 @@
     {{#actions}}
       {{#link}}
       <a class="btn btn-primary btn-sm my-1 {{class}}" href="{{link}}"
-        {{#remote}}target="remote"{{/remote}}{{^remote}}target="_blank" rel="noreferrer"{{/remote}}>
+        {{#remote}}target="remote"{{/remote}}{{^remote}}target="_blank" rel="noopener"{{/remote}}>
         <span class="icon {{icon}}"></span>
         {{text}}
       </a>

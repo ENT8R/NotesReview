@@ -44,7 +44,7 @@ export function user(name, anonymous) {
     return `<span class="label label-error my-1">${name}</span>`;
   } else {
     return `<span class="label label-success my-1">
-              <a href="${OPENSTREETMAP_SERVER}/user/${name}" target="_blank" class="text-light">${name}</a>
+              <a href="${OPENSTREETMAP_SERVER}/user/${name}" target="_blank" rel="noopener" class="text-light">${name}</a>
             </span>`;
   }
 }
@@ -74,7 +74,7 @@ export function status(comment) {
   * @returns {String}
   */
 export function report(id) {
-  return `<a href="${OPENSTREETMAP_SERVER}/reports/new?reportable_type=Note&reportable_id=${id}" target="_blank">
+  return `<a href="${OPENSTREETMAP_SERVER}/reports/new?reportable_type=Note&reportable_id=${id}" target="_blank" rel="noopener">
             <span class="icon icon-flag float-right"></span>
           </a>`;
 }

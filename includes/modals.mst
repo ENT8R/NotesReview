@@ -53,17 +53,17 @@
         <h3 class="text-center" data-i18n="header.about">About</h3>
         <p data-i18n="help.about">
           NotesReview is an open source project. You are currently using version {{version}}.
-          The source code is available on <a href="https://github.com/ENT8R/NotesReview" target="_blank">Github</a>.
+          The source code is available on <a href="https://github.com/ENT8R/NotesReview" target="_blank" rel="noopener">Github</a>.
         </p>
         <p data-i18n="help.contribution">
-          You can support the project by <a href="https://poeditor.com/join/project/oVilUChBdf" target="_blank">translating</a>
-          it or by <a href="https://github.com/ENT8R/NotesReview/issues" target="_blank">reporting bugs</a>.
+          You can support the project by <a href="https://poeditor.com/join/project/oVilUChBdf" target="_blank" rel="noopener">translating</a>
+          it or by <a href="https://github.com/ENT8R/NotesReview/issues" target="_blank" rel="noopener">reporting bugs</a>.
         </p>
         <p class="text-center">
           Made with ❤️ by <a href="mailto:info.ent8r@gmail.com">ENT8R</a>
         </p>
         <p class="text-center">
-          <a href="https://liberapay.com/ENT8R/donate" target="_blank" rel="noreferrer noopener">
+          <a href="https://liberapay.com/ENT8R/donate" target="_blank" rel="noopener">
             <img alt="Donate using Liberapay" src="{{#expert}}../{{/expert}}assets/liberapay.svg">
           </a>
         </p>
@@ -202,7 +202,7 @@
     </div>
 
     <div class="modal-footer">
-      <a class="btn btn-primary float-left" id="note-link" target="_blank">
+      <a class="btn btn-primary float-left" id="note-link" target="_blank" rel="noopener">
         <span class="icon icon-external"></span>
         <span data-i18n="action.openstreetmap">OpenStreetMap</span>
       </a>
