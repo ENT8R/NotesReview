@@ -101,4 +101,6 @@
     <a href="#share"><span class="icon icon-share"></span></a>
     <a href="#settings"><span class="icon icon-settings"></span></a>
   </div>
+
+  <div class="divider column col-12 {{#map}}show-sm{{/map}}"></div>
 </div>
