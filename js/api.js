@@ -66,7 +66,7 @@ export default class API {
     if (!action) {
       action = 'comment';
     }
-    return this.request('POST', `notes/${id}/${action}?text=${encodeURIComponent(text)}`);
+    return this.request('POST', `notes/${id}/${action}.json?text=${encodeURIComponent(text)}`);
   }
 
   /**

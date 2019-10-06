@@ -13,7 +13,7 @@
       </div>
     </noscript>
 
-    <div id="deprecation-warning" class="toast toast-warning" data-i18n="description.deprecationWarning">
+    <div id="deprecation-warning" class="toast toast-warning d-hide" data-i18n="description.deprecationWarning">
       The browser you are currently using does not support NotesReview.
       Please consider to switch to another browser to be able to use NotesReview.
     </div>
@@ -40,7 +40,7 @@
   <div id="notes" class="columns mx-1"></div>
   {{/expert}}
 
-  <iframe id="remote" name="remote"></iframe>
+  <iframe id="remote" name="remote" class="d-hide"></iframe>
 
   {{> scripts}}
 

@@ -3,5 +3,8 @@
   "oauth": {
     "key": "p9kDzAR37O93xu09Fa0ZP56iObF0eE4R6cw0qSYK",
     "secret": "IP4hYzGjuxfyLpBpU4CxQ2YEBpVEk8dnARiqkxr0"
+  },
+  "mapillary": {
+    "client_id": "eUFYWUdRTmxZQVhRajkybHNRMnZoQTpiMTFjMDRlYmJmZGQ5ODNi"
   }
 }

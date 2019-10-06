@@ -29,6 +29,7 @@
     "save": "Save",
     "search": "Search",
     "more": "More",
+    "mapillary": "Mapillary",
     "openstreetmap": "OpenStreetMap",
     "login": "Login",
     "logout": "Logout",
@@ -73,6 +74,13 @@
     "openSettings": "Open settings",
     "shareQuery": "Share the current query"
   },
+  "mapillary": {
+    "empty": {
+      "add": "Add photos of this place",
+      "title": "There are no photos of this place yet",
+      "subtitle": "You can help other mappers by uploading street-level imagery to Mapillary."
+    }
+  },
   "settings": {
     "choose": "Choose an option",
     "theme": {
@@ -81,9 +89,11 @@
       "dark": "Dark",
       "system": "Use system setting"
     },
-    "editor": {
-      "title": "Editor shortcuts",
-      "description": "Select your favorite editor(s)"
+    "tools": {
+      "title": "Tools",
+      "description": "Select your favorite tool(s)",
+      "editors": "Editors",
+      "other": "Other"
     }
   },
   "note": {

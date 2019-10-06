@@ -8,6 +8,7 @@
     },
     "globals": {
       "L": "readonly",
+      "MAPILLARY_CLIENT_ID": "readonly",
       "osmAuth": "readonly",
       "OPENSTREETMAP_SERVER": "readonly",
       "OPENSTREETMAP_OAUTH_KEY": "readonly",

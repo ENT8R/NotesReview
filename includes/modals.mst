@@ -1,5 +1,5 @@
-<div id="help" class="modal">
-  <a href="#" class="modal-overlay"></a>
+<div class="modal" data-modal="help">
+  <a class="modal-overlay modal-close" aria-label="Close" data-i18n-aria-label="action.close"></a>
 
   <div class="modal-container">
     <div class="modal-body">
@@ -64,20 +64,20 @@
         </p>
         <p class="text-center">
           <a href="https://liberapay.com/ENT8R/donate" target="_blank" rel="noopener">
-            <img alt="Donate using Liberapay" src="{{#expert}}../{{/expert}}assets/liberapay.svg">
+            <img alt="Donate using Liberapay" src="{{#expert}}../{{/expert}}assets/logos/liberapay.svg">
           </a>
         </p>
       </div>
     </div>
 
     <div class="modal-footer">
-      <a class="btn btn-link" href="#" data-i18n="action.close">Close</a>
+      <a class="btn btn-link modal-close" data-i18n="action.close">Close</a>
     </div>
   </div>
 </div>
 
-<div id="share" class="modal">
-  <a href="#" class="modal-overlay"></a>
+<div class="modal" data-modal="share">
+  <a class="modal-overlay modal-close" aria-label="Close" data-i18n-aria-label="action.close"></a>
 
   <div class="modal-container">
     <div class="modal-header">
@@ -105,13 +105,13 @@
     </div>
 
     <div class="modal-footer">
-      <a class="btn btn-link" href="#" data-i18n="action.finish">Finish</a>
+      <a class="btn btn-link modal-close" data-i18n="action.finish">Finish</a>
     </div>
   </div>
 </div>
 
-<div id="settings" class="modal">
-  <a href="#" class="modal-overlay"></a>
+<div class="modal" data-modal="settings">
+  <a class="modal-overlay modal-close" aria-label="Close" data-i18n-aria-label="action.close"></a>
 
   <div class="modal-container">
     <div class="modal-header">
@@ -131,9 +131,12 @@
           </select>
         </div>
 
-        <h5 data-i18n="settings.editor.title">Editor shortcuts</h5>
-        <p class="text-gray m-0" data-i18n="settings.editor.description">Select your favorite editor(s)</p>
+        <div class="divider"></div>
+
+        <h5 data-i18n="settings.tools.title">Tools</h5>
+        <p class="text-gray m-0" data-i18n="settings.tools.description">Select your favorite tool(s)</p>
         <div class="form-group">
+          <label class="form-label" data-i18n="settings.tools.editors">Editors</label>
           <label class="form-checkbox form-inline">
             <input id="editor-id" type="checkbox" class="setting"><i class="form-icon"></i>
             <span data-i18n="action.edit.id">iD</span>
@@ -147,19 +150,29 @@
             <span data-i18n="action.edit.level0">Level0</span>
           </label>
         </div>
-
+        <div class="form-group">
+          <label class="form-label" data-i18n="settings.tools.other">Other</label>
+          <label class="form-checkbox form-inline">
+            <input id="tool-openstreetmap" type="checkbox" class="setting"><i class="form-icon"></i>
+            <span data-i18n="action.openstreetmap">OpenStreetMap</span>
+          </label>
+          <label class="form-checkbox form-inline">
+            <input id="tool-mapillary" type="checkbox" class="setting"><i class="form-icon"></i>
+            <span data-i18n="action.mapillary">Mapillary</span>
+          </label>
+        </div>
       </div>
     </div>
 
     <div class="modal-footer">
-      <a class="btn btn-primary" href="#" data-i18n="action.save">Save</a>
-      <a class="btn btn-link" href="#" data-i18n="action.close">Close</a>
+      <a class="btn btn-primary modal-close" data-i18n="action.save">Save</a>
+      <a class="btn btn-link modal-close" data-i18n="action.close">Close</a>
     </div>
   </div>
 </div>
 
 <!--<div class="modal" data-modal="information">
-  <a class="modal-overlay modal-close"></a>
+  <a class="modal-overlay modal-close" aria-label="Close" data-i18n-aria-label="action.close"></a>
 
   <div class="modal-container">
     <div class="modal-body">
@@ -176,12 +189,12 @@
 </div>-->
 
 <div class="modal" data-modal="comments">
-  <a class="modal-overlay modal-close"></a>
+  <a class="modal-overlay modal-close" aria-label="Close" data-i18n-aria-label="action.close"></a>
 
   <div class="modal-container">
     <div class="modal-body">
       <div class="content">
-        <div id="comments"></div>
+        <div id="comments" class="clear-on-modal-close"></div>
 
         <div class="form-group">
           <textarea
@@ -205,6 +218,26 @@
       <a class="btn btn-primary float-left" id="note-link" target="_blank" rel="noopener">
         <span class="icon icon-external"></span>
         <span data-i18n="action.openstreetmap">OpenStreetMap</span>
+      </a>
+      <a class="btn btn-link modal-close" data-i18n="action.close">Close</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal" data-modal="mapillary">
+  <a class="modal-overlay modal-close" aria-label="Close" data-i18n-aria-label="action.close"></a>
+
+  <div class="modal-container">
+    <div class="modal-body">
+      <div class="content">
+        <div id="mapillary" class="columns clear-on-modal-close"></div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <a class="btn btn-primary float-left" id="mapillary-link" target="_blank" rel="noopener">
+        <span class="icon icon-external"></span>
+        <span data-i18n="action.mapillary">Mapillary</span>
       </a>
       <a class="btn btn-link modal-close" data-i18n="action.close">Close</a>
     </div>

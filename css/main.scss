@@ -37,7 +37,9 @@
 body {
   &[data-editor-id="false"] .link-editor-id,
   &[data-editor-josm="false"] .link-editor-josm,
-  &[data-editor-level0="false"] .link-editor-level0 {
+  &[data-editor-level0="false"] .link-editor-level0,
+  &[data-tool-openstreetmap="false"] .link-osm,
+  &[data-tool-mapillary="false"] .link-tool-mapillary {
     display: none;
   }
 }
@@ -49,16 +51,8 @@ body {
 }
 
 /*---------- Other ------------*/
-iframe#remote {
-  display: none;
-}
-
-#deprecation-warning {
-  display: none;
-}
-
 body.deprecated-browser #deprecation-warning {
-  display: block;
+  display: block !important;
 }
 
 .img-preview {
@@ -70,7 +64,7 @@ body.deprecated-browser #deprecation-warning {
 }
 
 .marker-container {
-  width:60px;
+  width: 60px;
   height: 60px;
 }
 
@@ -83,6 +77,29 @@ body.deprecated-browser #deprecation-warning {
 
 img.marker-icon {
   filter: drop-shadow(10px 5px 5px rgba(0, 0, 0, 0.3));
+}
+
+/*---------- Mapillary ----------*/
+.mapillary-image {
+  max-width: 320px;
+  height: 100%;
+  max-height: 240px;
+  min-height: 20vh;
+
+  .mapillary-image-link {
+    top: 6px;
+    left: 0px;
+    img {
+      max-height: 32px;
+    }
+  }
+
+  .mapillary-image-user {
+    z-index: 1;
+    bottom: -24px;
+    right: 0px;
+    font-size: 0.5rem;
+  }
 }
 
 /*---------- Toasts ------------*/

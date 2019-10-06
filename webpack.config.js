@@ -32,6 +32,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       VERSION: JSON.stringify(require('./package.json').version),
+      MAPILLARY_CLIENT_ID: JSON.stringify(config.mapillary.client_id),
       OPENSTREETMAP_SERVER: JSON.stringify(config.server),
       OPENSTREETMAP_OAUTH_KEY: JSON.stringify(config.oauth.key),
       OPENSTREETMAP_OAUTH_SECRET: JSON.stringify(config.oauth.secret)

@@ -143,6 +143,20 @@ function getProperty(propertyName, translations) {
 }
 
 /**
+  * Localize all strings in a given container
+  *
+  * @function
+  * @param {HTMLElement} container
+  * @returns {void}
+  */
+export function localize(container) {
+  container.querySelectorAll(`[${I18N_ATTRIBUTE}]`).forEach(element => {
+    const string = element.dataset[I18N_DATASET];
+    replaceI18n(element, string);
+  });
+}
+
+/**
   * Start the localization process
   *
   * @function
@@ -161,10 +175,7 @@ export async function init() {
   const { default: fallback } = await import(/* webpackChunkName: "locales/[request]" */ `../locales/${FALLBACK_LANGUAGE}`);
   STRINGS.fallback = fallback;
 
-  document.querySelectorAll(`[${I18N_ATTRIBUTE}]`).forEach((currentElem) => {
-    const contentString = currentElem.dataset[I18N_DATASET];
-    replaceI18n(currentElem, contentString);
-  });
+  localize(document.body);
 
   // Replace html lang attribute after translation
   document.querySelector('html').setAttribute('lang', LANGUAGE);

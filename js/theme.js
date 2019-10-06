@@ -1,4 +1,4 @@
-import * as Preferences from './preferences.js';
+import Preferences from './preferences.js';
 
 export const LIGHT = 'light';
 export const DARK = 'dark';
@@ -20,7 +20,7 @@ export function set(newTheme) {
   if (newTheme === theme) {
     return;
   }
-  
+
   theme = newTheme;
   changed();
 

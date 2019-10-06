@@ -1,0 +1,33 @@
+{{#images.length}}
+{{#images}}
+<div class="column col-4 col-md-6 my-1">
+  <div class="mapillary-image p-relative">
+    <img src="https://images.mapillary.com/{{key}}/thumb-320.jpg" class="img-responsive" width="320" height="240">
+    <a class="mapillary-image-link p-absolute px-2" href="https://www.mapillary.com/app/?pKey={{key}}" target="_blank" rel="noopener">
+      <img src="{{#expert}}../{{/expert}}assets/logos/mapillary.svg">
+    </a>
+    <p class="mapillary-image-user p-absolute px-2 bg-dark">
+      @{{user}}
+      <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">
+        <abbr title="Creative Commons Attribution-ShareAlike 4.0 International License">(CC BY-SA 4.0)</abbr>
+      </a>
+    </p>
+  </div>
+</div>
+{{/images}}
+{{/images.length}}
+{{^images.length}}
+<div class="empty col-12">
+  <div class="empty-icon">
+    <!-- TODO: Add an icon -->
+  </div>
+  <p class="empty-title h5" data-i18n="mapillary.empty.title">There are no photos of this place yet</p>
+  <p class="empty-subtitle" data-i18n="mapillary.empty.subtitle">You can help other mappers by uploading street-level imagery to Mapillary.</p>
+  <div class="empty-action">
+    <a class="btn btn-primary" href="{{link}}" target="_blank" rel="noopener">
+      <span class="icon icon-mapillary"></span>
+      <span data-i18n="mapillary.empty.add">Add photos of this place</span>
+    </a>
+  </div>
+</div>
+{{/images.length}}

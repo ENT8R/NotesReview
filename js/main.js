@@ -2,20 +2,21 @@ import './polyfills.js';
 
 import API from './api.js';
 import * as Badges from './badges.js';
+import Comments from './modals/comments.js';
 import Leaflet from './leaflet.js';
 import * as Localizer from './localizer.js';
+import Mapillary from './modals/mapillary.js';
+import Modal from './modals/modal.js';
 import * as Mode from './mode.js';
 import Note from './note.js';
 import Permalink from './permalink.js';
-import * as Preferences from './preferences.js';
+import Preferences from './preferences.js';
 import Query from './query.js';
 import * as Request from './request.js';
 import * as Theme from './theme.js';
 import * as Util from './util.js';
 
-import comment from '../templates/notes/comment.mst';
-
-__webpack_public_path__ = Mode.get() === Mode.MAPS ? 'dist/' : '../dist/'; // eslint-disable-line
+__webpack_public_path__ = Mode.get() === Mode.MAPS ? 'dist/' : '../dist/'; // eslint-disable-line camelcase, no-undef
 
 let map;
 let ui;
@@ -136,13 +137,12 @@ function tooltip() {
   */
 function details(result) {
   if (result) {
-    if (result.amount) {
-      if (result.amount === 0) {
-        toast(Localizer.message('description.nothingFound'), 'toast-error');
-      } else {
-        // Display how much notes are shown
-        document.getElementById('found-notes').textContent = Localizer.message('note.amount', result.amount);
-      }
+    if (result.amount === 0) {
+      toast(Localizer.message('description.nothingFound'), 'toast-error');
+      document.getElementById('found-notes').textContent = '';
+    } else if (result.amount) {
+      // Display how much notes are shown
+      document.getElementById('found-notes').textContent = Localizer.message('note.amount', result.amount);
     }
 
     if (result.average) {
@@ -153,36 +153,6 @@ function details(result) {
 }
 
 /**
-  * Show all comments of a given note in a modal
-  *
-  * @function
-  * @private
-  * @param {Number} id
-  * @returns {void}
-  */
-function comments(id) {
-  const note = ui.get(id);
-  document.getElementById('comments').innerHTML = comment(note);
-  document.getElementById('comments').dataset.noteId = id;
-  document.getElementById('note-link').href = `${OPENSTREETMAP_SERVER}/note/${note.id}`;
-
-  // Clear the note input
-  document.getElementById('note-comment').value = '';
-  document.getElementById('note-comment').dispatchEvent(new Event('input'));
-
-  // Show different actions depending on the status of the note
-  document.querySelector('.comment-action[data-action="comment"]').style.display = note.status === 'open' ? 'block' : 'none';
-  document.querySelector('.comment-action[data-action="close"]').style.display = note.status === 'open' ? 'block' : 'none';
-  document.querySelector('.comment-action[data-action="reopen"]').style.display = note.status === 'closed' ? 'block' : 'none';
-
-  // Finally show the modal with the comments in it
-  const modal = document.querySelector('.modal[data-modal="comments"]');
-  modal.classList.add('active');
-  modal.getElementsByClassName('modal-body')[0].scrollTop = 0;
-  document.body.style.overflow = 'hidden';
-}
-
-/**
   * Initialize all listeners
   *
   * @function
@@ -190,7 +160,7 @@ function comments(id) {
   * @returns {void}
   */
 function listener() {
-  document.querySelector('[href="#share"]').addEventListener('click', () => Permalink());
+  document.querySelector('.modal-trigger[data-modal="share"]').addEventListener('click', () => Permalink());
 
   document.getElementById('search').addEventListener('click', () => search());
   document.getElementById('cancel').addEventListener('click', () => Request.cancel());
@@ -237,13 +207,12 @@ function listener() {
     element.addEventListener('click', () => {
       element.classList.add('loading');
 
-      const id = parseInt(document.getElementById('comments').dataset.noteId);
+      const id = Number.parseInt(document.getElementById('comments').dataset.noteId);
       const text = document.getElementById('note-comment').value.trim();
 
-      api.comment(id, text, element.dataset.action).then(async () => {
-        const note = await Request.get(`${OPENSTREETMAP_SERVER}/api/0.6/notes/${id}.json`, Request.MEDIA_TYPE.JSON);
-        ui.update(id, new Note(note, query.api)).then(details);
-        comments(id);
+      api.comment(id, text, element.dataset.action).then(note => {
+        ui.update(id, new Note(JSON.parse(note), query.api)).then(details);
+        Comments.load(ui.get(id));
       }).catch(error => {
         console.log(error); // eslint-disable-line no-console
       }).finally(() => {
@@ -256,10 +225,14 @@ function listener() {
     element.addEventListener('change', () => {
       Preferences.set({
         theme: document.getElementById('theme-selection').value,
-        editor: {
+        editors: {
           id: document.getElementById('editor-id').checked,
           josm: document.getElementById('editor-josm').checked,
           level0: document.getElementById('editor-level0').checked
+        },
+        tools: {
+          openstreetmap: document.getElementById('tool-openstreetmap').checked,
+          mapillary: document.getElementById('tool-mapillary').checked
         }
       });
       settings();
@@ -285,13 +258,6 @@ function listener() {
         api: query.api
       }
     }, true);
-  });
-
-  document.getElementsByClassName('modal-close').forEach(element => {
-    element.addEventListener('click', event => {
-      document.body.style.overflow = '';
-      event.target.closest('.modal').classList.remove('active');
-    });
   });
 
   document.addEventListener('keydown', e => {
@@ -339,8 +305,14 @@ function listener() {
   document.addEventListener('click', event => {
     const commentsModalTrigger = event.target.closest('.comments-modal-trigger');
     if (commentsModalTrigger) {
-      const id = parseInt(commentsModalTrigger.closest('[data-note-id]').dataset.noteId);
-      comments(id);
+      const id = Number.parseInt(commentsModalTrigger.closest('[data-note-id]').dataset.noteId);
+      Comments.load(ui.get(id));
+    }
+
+    const mapillaryModalTrigger = event.target.closest('.link-tool-mapillary');
+    if (mapillaryModalTrigger) {
+      const id = Number.parseInt(mapillaryModalTrigger.closest('[data-note-id]').dataset.noteId);
+      Mapillary.load(ui.get(id));
     }
   });
 }
@@ -401,13 +373,20 @@ function searchParameter() {
   * @returns {void}
   */
 function settings() {
-  const editors = Preferences.get('editor');
+  const editors = Preferences.get('editors');
+  const tools = Preferences.get('tools');
+
   document.getElementById('editor-id').checked = editors.id;
   document.getElementById('editor-josm').checked = editors.josm;
   document.getElementById('editor-level0').checked = editors.level0;
+  document.getElementById('tool-openstreetmap').checked = tools.openstreetmap;
+  document.getElementById('tool-mapillary').checked = tools.mapillary;
+
   document.body.dataset.editorId = editors.id;
   document.body.dataset.editorJosm = editors.josm;
   document.body.dataset.editorLevel0 = editors.level0;
+  document.body.dataset.toolOpenstreetmap = tools.openstreetmap;
+  document.body.dataset.toolMapillary = tools.mapillary;
 
   const theme = Preferences.get('theme');
   document.getElementById('theme-selection').value = theme;
@@ -422,13 +401,15 @@ function settings() {
   * @returns {void}
   */
 async function init() {
-  await import(/* webpackChunkName: "@github/time-elements" */ '@github/time-elements');
-
-  await Localizer.init();
-
   if (window.navigator.userAgent.indexOf('MSIE ') !== -1 || window.navigator.userAgent.match(/Trident.*rv:11\./)) {
     document.body.classList.add('deprecated-browser');
   }
+
+  await import(/* webpackChunkName: "@github/time-elements" */ '@github/time-elements');
+
+  await Localizer.init();
+  Modal.init();
+  Preferences.init();
 
   const mode = Mode.get() === Mode.MAPS ? 'map' : 'expert';
   const { default: UI } = await import(/* webpackChunkName: "ui/[request]" */ `./ui/${mode}`);

@@ -82,6 +82,11 @@ export default class Note {
         icon: 'icon-external',
         text: Localizer.message('action.edit.level0')
       },
+      mapillary: {
+        class: 'link-tool-mapillary',
+        icon: 'icon-mapillary',
+        text: Localizer.message('action.mapillary')
+      },
       comment: {
         class: 'comments-modal-trigger requires-authentication',
         icon: 'icon-pencil',

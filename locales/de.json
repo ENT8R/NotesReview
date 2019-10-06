@@ -29,6 +29,7 @@
     "save": "Speichern",
     "search": "Suchen",
     "more": "Mehr",
+    "mapillary": "Mapillary",
     "openstreetmap": "OpenStreetMap",
     "login": "Anmelden",
     "logout": "Abmelden",
@@ -73,6 +74,13 @@
     "openSettings": "Einstellungen öffnen",
     "shareQuery": "Teile die momentane Abfrage"
   },
+  "mapillary": {
+    "empty": {
+      "add": "Fotos von diesem Ort hinzufügen",
+      "title": "Es gibt noch keine Fotos von diesem Ort",
+      "subtitle": "Du kannst anderen Mappern helfen, indem du Bilder auf Mapillary hochlädst."
+    }
+  },
   "settings": {
     "choose": "Wähle eine Option",
     "theme": {
@@ -81,9 +89,11 @@
       "dark": "Dunkel",
       "system": "Systemeinstellung"
     },
-    "editor": {
-      "title": "Editor Shortcuts",
-      "description": "Wähle deine(n) Lieblingseditor(en)"
+    "tools": {
+      "title": "Tools",
+      "description": "Wähle dein(e) Lieblingstool(s)",
+      "editors": "Editors",
+      "other": "Andere"
     }
   },
   "note": {

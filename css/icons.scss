@@ -3,7 +3,7 @@
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
   &.icon-close {
     background-image: url("../../icons/close.svg");
   }
@@ -18,6 +18,9 @@
   }
   &.icon-help {
     background-image: url("../../icons/help.svg");
+  }
+  &.icon-mapillary {
+    background-image: url("../../icons/mapillary.svg");
   }
   &.icon-pencil {
     background-image: url("../../icons/pencil.svg");

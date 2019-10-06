@@ -1,90 +1,114 @@
 const JSON_REGEX = /^({|\[)[\s\S]*(}|\])$/m;
 
-/**
-  * Get a specific preference by its key
-  *
-  * @function
-  * @param {String} key
-  * @param {Boolean} temporary
-  * @returns {String|Boolean|Object|Array}
-  */
-export function get(key, temporary) {
-  const storage = temporary ? window.sessionStorage : window.localStorage;
+const DEFAULTS = {
+  map: {
+    latitude: 0,
+    longitude: 0,
+    zoom: 2
+  },
+  theme: 'system',
+  tools: {
+    openstreetmap: true,
+    mapillary: false
+  },
+  editors: {
+    id: true,
+    josm: false,
+    level0: true
+  }
+};
 
-  let value = storage.getItem(key);
-
-  if (JSON_REGEX.test(value)) {
-    value = JSON.parse(value);
+export default class Preferences {
+  /**
+    * Initialize the preference storage by checking whether all necessary values are present
+    *
+    * @function
+    * @returns {void}
+    */
+  static init() {
+    Object.keys(DEFAULTS).forEach(key => {
+      if (Preferences.get(key) === null) {
+        Preferences.reset();
+      }
+    });
   }
 
-  return value;
-}
+  /**
+    * Get a specific preference by its key
+    *
+    * @function
+    * @param {String} key
+    * @param {Boolean} temporary
+    * @returns {String|Boolean|Object|Array}
+    */
+  static get(key, temporary) {
+    const storage = temporary ? window.sessionStorage : window.localStorage;
 
-/**
-  * Set or change the value of a preference
-  *
-  * @function
-  * @param {Object} preferences
-  * @param {boolean} temporary
-  * @returns {void}
-  */
-export function set(preferences, temporary) {
-  const storage = temporary ? window.sessionStorage : window.localStorage;
+    let value = storage.getItem(key);
 
-  for (const key in preferences) {
-    if (Object.prototype.hasOwnProperty.call(preferences, key)) {
-      const preference = preferences[key];
+    if (JSON_REGEX.test(value)) {
+      value = JSON.parse(value);
+    }
 
-      if (Array.isArray(preference)) {
-        storage.setItem(key, JSON.stringify(preference));
-      } else if (typeof preference === 'object') {
-        let value = storage.getItem(key);
+    return value;
+  }
 
-        if (JSON_REGEX.test(value)) {
-          value = JSON.parse(value);
+  /**
+    * Set or change the value of a preference
+    *
+    * @function
+    * @param {Object} preferences
+    * @param {boolean} temporary
+    * @returns {void}
+    */
+  static set(preferences, temporary) {
+    const storage = temporary ? window.sessionStorage : window.localStorage;
+
+    for (const key in preferences) {
+      if (Object.prototype.hasOwnProperty.call(preferences, key)) {
+        const preference = preferences[key];
+
+        if (Array.isArray(preference)) {
+          storage.setItem(key, JSON.stringify(preference));
+        } else if (typeof preference === 'object') {
+          let value = storage.getItem(key);
+
+          if (JSON_REGEX.test(value)) {
+            value = JSON.parse(value);
+          } else {
+            value = {};
+          }
+
+          storage.setItem(key, JSON.stringify(Object.assign(value, preference)));
         } else {
-          value = {};
+          storage.setItem(key, preference);
         }
-
-        storage.setItem(key, JSON.stringify(Object.assign(value, preference)));
-      } else {
-        storage.setItem(key, preference);
       }
     }
   }
-}
 
-/**
-  * Remove a specific item from the storage
-  *
-  * @function
-  * @param {String} key
-  * @param {Boolean} temporary
-  * @returns {void}
-  */
-export function remove(key, temporary) {
-  const storage = temporary ? window.sessionStorage : window.localStorage;
-  storage.removeItem(key);
-}
+  /**
+    * Remove a specific item from the storage
+    *
+    * @function
+    * @param {String} key
+    * @param {Boolean} temporary
+    * @returns {void}
+    */
+  static remove(key, temporary) {
+    const storage = temporary ? window.sessionStorage : window.localStorage;
+    storage.removeItem(key);
+  }
 
-/**
-  * Set all values to the default values
-  *
-  * @function
-  * @returns {void}
-  */
-export function reset() {
-  set({
-    map: {
-      latitude: 0,
-      longitude: 0,
-      zoom: 2
-    },
-    theme: 'system',
-    editor: {
-      id: true,
-      josm: false,
-      level0: true
-    }
-  });
+  /**
+    * Set all values to the default values
+    *
+    * @function
+    * @returns {void}
+    */
+  static reset() {
+    window.sessionStorage.clear();
+    window.localStorage.clear();
+    Preferences.set(DEFAULTS);
+  }
 }
