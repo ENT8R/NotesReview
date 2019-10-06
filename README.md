@@ -1,5 +1,5 @@
 <h1 align="center">
-	<img width="400" src="assets/logo.svg" alt="NotesReview">
+	<img width="400" src="assets/logos/notesreview.svg" alt="NotesReview">
 </h1>
 
 > Tool for solving OpenStreetMap Notes
@@ -17,6 +17,7 @@ Notes are a very important part of the OpenStreetMap ecosystem. Every user of th
 - 💬 View all comments of a note directly on the website
 - ✍️ Open your favorite editor directly in order to process the note
 - 💬 Comment on every note directly using the interface
+- 🛣️ Integration of [Mapillary](https://www.mapillary.com/) street-level imagery
 - 📷 Automatic detection of images on image hosting servers
 - 🔦 A dark mode (for working at night 😉)
 
