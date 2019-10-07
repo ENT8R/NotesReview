@@ -102,7 +102,7 @@
     </button>
   </div>
 
-  <div class="divider column col-12 {{#expert}}show-sm{{/expert}}"></div>
+  <div class="divider column col-12 {{#map}}hide-lg{{/map}}{{#expert}}show-sm{{/expert}}"></div>
 
   <div class="column {{#map}}col-12 hide-lg{{/map}}{{#expert}}col-3 col-md-3 col-sm-6{{/expert}}">
     <span id="found-notes"></span>
@@ -112,5 +112,5 @@
     <span id="average-date"></span>
   </div>
 
-  <div class="divider column col-12 {{#map}}hide-md{{/map}}"></div>
+  <div class="divider column col-12"></div>
 </div>

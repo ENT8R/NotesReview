@@ -1,23 +1,27 @@
 body[data-theme="dark"] {
   background-color: #263238;
   color: white;
-  
+
+  .modal-header,
   .modal-container {
     background-color: #263238;
     color: white;
-    .modal-header {
-      background-color: #263238;
-      color: white;
-    }
   }
 
-  .leaflet-popup-content-wrapper,
   .card,
+  .btn,
+  .empty,
   .form-select,
   .form-input,
-  .form-checkbox .form-icon {
+  .form-checkbox .form-icon,
+  .leaflet-popup-content-wrapper,
+  .leaflet-bar a {
     background-color: #37474f !important;
     color: white;
+  }
+
+  .divider {
+    border-top-color: #37474f;
   }
 
   .modal {
