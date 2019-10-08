@@ -1,3 +1,4 @@
+import * as Badges from '../badges.js';
 import Modal from './modal.js';
 
 import template from '../../templates/modals/comment.mst';
@@ -14,7 +15,17 @@ export default class Comments extends Modal {
   static load(note) {
     super.open('comments');
 
-    document.getElementById('comments').innerHTML = template(note);
+    const { comments } = note;
+
+    for (let i = 0; i < comments.length; i++) {
+      comments[i].badges = {
+        age: Badges.age(comments[i].color, comments[i].date),
+        user: Badges.user(comments[i].uid, comments[i].anonymous),
+        status: Badges.status(comments[i])
+      };
+    }
+
+    document.getElementById('comments').innerHTML = template({ comments });
     document.getElementById('comments').dataset.noteId = note.id;
     document.getElementById('note-link').href = `${OPENSTREETMAP_SERVER}/note/${note.id}`;
 

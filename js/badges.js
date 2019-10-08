@@ -1,4 +1,6 @@
 import * as Localizer from './localizer.js';
+import Users from './users.js';
+import * as Util from './util.js';
 
 /**
   * Generate a badge for the date a note was created on (the age of it)
@@ -35,17 +37,23 @@ export function comments(amount) {
   * Generate a badge for a user who commented or created the note
   *
   * @function
-  * @param {String} name
+  * @param {Number} uid
   * @param {Boolean} anonymous
   * @returns {String}
   */
-export function user(name, anonymous) {
+export function user(uid, anonymous) {
   if (anonymous) {
-    return `<span class="label label-error my-1">${name}</span>`;
+    return `<span class="label label-error my-1">${Localizer.message('note.anonymous')}</span>`;
   } else {
-    return `<span class="label label-success my-1">
-              <a href="${OPENSTREETMAP_SERVER}/user/${name}" target="_blank" rel="noopener" class="text-light">${name}</a>
-            </span>`;
+    const user = Users.get(uid);
+    const image = user.image ? `<img src="${user.image}">` : '';
+    const initials = Util.initials(user.name);
+    return `<figure class="avatar" data-initial="${initials}">${image}</figure>
+            <a href="${OPENSTREETMAP_SERVER}/user/${user.name}" target="_blank" rel="noopener">
+              <span class="tooltip tooltip-bottom" data-tooltip="${Localizer.message('user.created', user.created.toLocaleDateString())}">
+                ${user.name}
+              </span>
+            </a>`;
   }
 }
 

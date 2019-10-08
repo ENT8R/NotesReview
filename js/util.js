@@ -78,6 +78,25 @@ export function isNoteVisible(note) {
 }
 
 /**
+  * Try to extract the initials of the user which are shown when there is no user image available
+  *
+  * @function
+  * @param {String} name
+  * @returns {String}
+  */
+export function initials(name) {
+  let initials = name.substring(0, 2);
+  if (/^(.).*(?:\s|_)(.).*$/.test(name)) {
+    const [, first, second] = /^(.).*(?:\s|_)(.).*$/.exec(name);
+    initials = `${first}${second}`;
+  } else if (/^(.).*[a-z]([A-Z]).*$/.test(name)) {
+    const [, first, second] = /^(.).*[a-z]([A-Z]).*$/.exec(name);
+    initials = `${first}${second}`;
+  }
+  return initials.toUpperCase();
+}
+
+/**
   * Calculate a bounding box around the given coordinates within a given radius
   *
   * @function
@@ -111,4 +130,20 @@ export function wait(time) {
       resolve();
     }, time);
   });
+}
+
+/**
+  * Splits an array into parts of equal size
+  *
+  * @function
+  * @param {Array} array
+  * @param {Number} size
+  * @returns {Array}
+  */
+export function chunk(array, size) {
+  const result = [];
+  for (let i = 0, len = array.length; i < len; i += size) {
+    result.push(array.slice(i, i + size));
+  }
+  return result;
 }

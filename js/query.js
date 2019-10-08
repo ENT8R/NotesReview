@@ -2,6 +2,7 @@ import Leaflet from './leaflet.js';
 import * as Mode from './mode.js';
 import Note from './note.js';
 import * as Request from './request.js';
+import Users from './users.js';
 
 export const ENDPOINT = {
   DEFAULT: 'default',
@@ -27,8 +28,7 @@ export default class Query {
     this.user = user || null;
     this.from = from || null;
     this.to = to || null;
-    this.notes = [];
-    this.ids = [];
+    this.notes = new Set();
     this.api = ENDPOINT.SEARCH;
     this.url = this.build();
   }
@@ -40,8 +40,8 @@ export default class Query {
     * @returns {Promise}
     */
   async search() {
-    this.notes = [];
-    this.ids = [];
+    this.notes = new Set();
+    let users = new Set();
 
     const { url } = this;
     let result;
@@ -69,15 +69,14 @@ export default class Query {
     result.features.forEach(feature => {
       try {
         const note = new Note(feature, this.api);
-        if (this.ids.indexOf(note.id) === -1) {
-          this.notes.push(note);
-          this.ids.push(note.id);
-        }
+        this.notes.add(note);
+        users = new Set([...users, ...note.users]);
       } catch (e) {
         console.error(e); // eslint-disable-line no-console
       }
     });
 
+    this.notes = Array.from(this.notes);
     this.notes.sort((a, b) => {
       return a.id - b.id;
     });
@@ -85,6 +84,9 @@ export default class Query {
     if (document.getElementById('sort-order') && document.getElementById('sort-order').checked === true) {
       this.notes.reverse();
     }
+
+    // Load additional information of all users
+    await Users.load(users);
 
     return this.notes;
   }

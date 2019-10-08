@@ -14,6 +14,7 @@ import Preferences from './preferences.js';
 import Query from './query.js';
 import * as Request from './request.js';
 import * as Theme from './theme.js';
+import Users from './users.js';
 import * as Util from './util.js';
 
 __webpack_public_path__ = Mode.get() === Mode.MAPS ? 'dist/' : '../dist/'; // eslint-disable-line camelcase, no-undef
@@ -67,7 +68,7 @@ async function search() {
   }
 
   const notes = await query.search();
-  ui.show(notes, query).then(details).finally(() => {
+  ui.show(Array.from(notes), query).then(details).finally(() => {
     document.getElementById('preloader').classList.add('d-invisible');
     document.getElementById('search').classList.remove('d-hide');
     document.getElementById('cancel').classList.add('d-hide');
@@ -177,13 +178,19 @@ function listener() {
     const login = document.getElementById('login');
     login.classList.add('loading');
 
-    api.login().then(() => {
-      login.classList.remove('loading');
+    api.login().then(result => {
       login.classList.add('d-hide');
       document.getElementById('logout').classList.remove('d-hide');
       document.body.dataset.authenticated = true;
+
+      const uid = result.getElementsByTagName('user')[0].getAttribute('id');
+      Preferences.set({ uid });
+      Users.avatar(uid);
     }).catch(error => {
       console.log(error); // eslint-disable-line no-console
+      document.body.dataset.authenticated = false;
+    }).finally(() => {
+      login.classList.remove('loading');
     });
   });
 
@@ -439,6 +446,7 @@ async function init() {
   if (authenticated) {
     document.getElementById('login').classList.add('d-hide');
     document.getElementById('logout').classList.remove('d-hide');
+    Users.avatar(Preferences.get('uid'));
   } else {
     document.getElementById('login').classList.remove('d-hide');
     document.getElementById('logout').classList.add('d-hide');

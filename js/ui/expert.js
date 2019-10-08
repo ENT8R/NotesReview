@@ -43,7 +43,7 @@ export default class Expert extends UI {
     });
 
     const container = document.getElementById('notes');
-    while (container.hasChildNodes()) {
+    while (container.lastChild) {
       container.removeChild(container.lastChild);
     }
     document.getElementById('notes').appendChild(fragment);

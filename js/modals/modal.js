@@ -32,7 +32,8 @@ export default class Modal {
     const modal = document.querySelector(`.modal[data-modal="${id}"]`);
     modal.classList.add('active');
     modal.getElementsByClassName('modal-body')[0].scrollTop = 0;
-    document.body.style['overflow-y'] = 'hidden';
+    // Disabled because this can cause a huge reflow especially when there are lots of notes displayed
+    // document.body.style['overflow-y'] = 'hidden';
   }
 
   /**
@@ -44,7 +45,7 @@ export default class Modal {
     * @returns {void}
     */
   static close(modal) {
-    document.body.style['overflow-y'] = '';
+    // document.body.style['overflow-y'] = '';
     modal.classList.remove('active');
     modal.querySelectorAll('.clear-on-modal-close').forEach(element => element.innerHTML = '');
   }

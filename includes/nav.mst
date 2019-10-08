@@ -76,7 +76,10 @@
 
   <div class="column {{#map}}col-6 col-lg-12 col-md-12 col-sm-6{{/map}}{{#expert}}col-2 col-md-3 col-sm-6{{/expert}}">
     <a id="login" class="btn col-12 {{#map}}mt-1{{/map}}" data-i18n="action.login">Login</a>
-    <a id="logout" class="btn d-hide col-12 {{#map}}mt-1{{/map}}" data-i18n="action.logout">Logout</a>
+    <a id="logout" class="btn d-hide col-12 {{#map}}mt-1{{/map}}">
+      <figure id="user-avatar" class="avatar avatar-sm mx-1 mb-1"></figure>
+      <span data-i18n="action.logout">Login</span>
+    </a>
   </div>
 
   <div class="column {{#map}}col-6 col-lg-12 col-md-12 col-sm-6{{/map}}{{#expert}}col-2 col-md-3 col-sm-6{{/expert}}">

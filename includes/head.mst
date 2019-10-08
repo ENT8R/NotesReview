@@ -6,11 +6,14 @@
   <meta name="author" content="ENT8R">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <meta name="google-site-verification" content="gaRDzpOXaGByiVCIMlvdCMJUb7AedHUGUcBnyaemO8Y" />
+
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
                  script-src 'self' https://unpkg.com;
                  style-src 'self' 'unsafe-inline' https://unpkg.com;
                  img-src 'self' https://unpkg.com https://*.global.ssl.fastly.net data:
+                         https://www.gravatar.com https://www.openstreetmap.org https://openstreetmap-user-avatars.s3.dualstack.eu-west-1.amazonaws.com https://i2.wp.com
                          i.imgur.com framapic.org https://westnordost.de https://upload.wikimedia.org https://images.mapillary.com;
                  connect-src *;
                  frame-src 'self' http://127.0.0.1:8111;">

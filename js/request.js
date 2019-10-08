@@ -4,7 +4,8 @@ let controller = new AbortController();
 let running = false;
 
 export const MEDIA_TYPE = {
-  JSON: 'application/json'
+  JSON: 'application/json',
+  XML: 'text/xml'
 };
 
 /**
@@ -46,9 +47,9 @@ export function build(query, limit, closed, user, from, to, endpoint) {
   * Fetch an external ressource and return it using the specified media type
   *
   * @function
-  * @param {Array|String} url
+  * @param {String} url
   * @param {MEDIA_TYPE} mediaType
-  * @returns {void}
+  * @returns {Promise}
   */
 export function get(url, mediaType) {
   running = true;
@@ -64,7 +65,12 @@ export function get(url, mediaType) {
       return response.text();
     }
   }).then(text => {
-    return text;
+    switch (mediaType) {
+    case MEDIA_TYPE.XML:
+      return new DOMParser().parseFromString(text, 'text/xml');
+    default:
+      return text;
+    }
   }).catch(e => {
     console.log(`Error while fetching file at ${url}: ${e}`); // eslint-disable-line no-console
   }).finally(() => {

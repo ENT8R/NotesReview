@@ -24,9 +24,7 @@ export default class UI {
     * @returns {Note}
     */
   get(id) {
-    return this.notes.find(note => {
-      return note.id === id;
-    });
+    return this.notes.find(note => note.id === id);
   }
 
   /**
@@ -38,9 +36,7 @@ export default class UI {
     * @returns {Promise}
     */
   update(id, note) {
-    const index = this.notes.findIndex(element => {
-      return element.id === id;
-    });
+    const index = this.notes.findIndex(element => element.id === id);
     if (index === -1) {
       throw new Error(`The note with the id ${id} could not be found in the array`);
     }

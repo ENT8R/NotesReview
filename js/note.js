@@ -32,26 +32,23 @@ export default class Note {
       * See {@link https://stackoverflow.com/a/3257513} for the reason */
     this.date = new Date(feature.properties.date_created.replace(/-/g, '/'));
     this.color = Util.parseDate(this.date);
-    this.anonymous = feature.properties.comments[0].user ? false : true;
+
     this.comments = this.parseComments(feature.properties.comments);
+    this.users = this.comments.filter(comment => comment.uid !== null).map(comment => comment.uid);
     [ this.comment ] = this.comments;
+    this.anonymous = this.comment.anonymous;
     this.user = this.comment.user;
+
     this.api = api;
-    this.badges = {
-      age: Badges.age(this.color, this.date),
-      comments: Badges.comments(this.comments.length - 1),
-      user: Badges.user(this.user, this.anonymous),
-      report: Badges.report(this.id)
-    };
     this.visible = true;
   }
 
   /**
-    * Return possible note actions as a formatted HTML String
+    * Return possible note actions which are then added to the note template
     * Possible actions are e.g. to open an editor or open the note on openstreetmap.org
     *
     * @function
-    * @returns {String}
+    * @returns {Array}
     */
   get actions() {
     const bbox = Util.buffer(this.coordinates);
@@ -128,6 +125,21 @@ export default class Note {
   }
 
   /**
+    * Dynamically creates all possible badges
+    *
+    * @function
+    * @returns {Object}
+    */
+  get badges() {
+    return {
+      age: Badges.age(this.color, this.date),
+      comments: Badges.comments(this.comments.length - 1),
+      user: Badges.user(this.comment.uid, this.anonymous),
+      report: Badges.report(this.id)
+    };
+  }
+
+  /**
     * Parses the existing comments
     *
     * @function
@@ -139,14 +151,10 @@ export default class Note {
       comments[i].anonymous = comments[i].user ? false : true;
       if (comments[i].anonymous) {
         comments[i].user = Localizer.message('note.anonymous');
+        comments[i].uid = null;
       }
       comments[i].date = new Date(comments[i].date.replace(/-/g, '/'));
       comments[i].color = Util.parseDate(comments[i].date);
-      comments[i].badges = {
-        age: Badges.age(comments[i].color, comments[i].date),
-        user: Badges.user(comments[i].user, comments[i].anonymous),
-        status: Badges.status(comments[i])
-      };
       comments[i].html = Linkify(comments[i].text);
     }
     return comments;

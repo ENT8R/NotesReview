@@ -108,6 +108,9 @@
       "reopened": "Reopened note"
     }
   },
+  "user": {
+    "created": "User since %s"
+  },
   "comments": {
     "inputPlaceholder": "Write a comment for all other users"
   },

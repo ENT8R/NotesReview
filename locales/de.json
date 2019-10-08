@@ -108,6 +108,9 @@
       "reopened": "Notiz erneut geöffnet"
     }
   },
+  "user": {
+    "created": "Nutzer seit %s"
+  },
   "comments": {
     "inputPlaceholder": "Schreibe einen Kommentar für alle anderen Nutzer"
   },

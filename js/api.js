@@ -21,7 +21,7 @@ export default class API {
         if (error) {
           reject(error);
         } else {
-          resolve();
+          resolve(this.request('GET', 'user/details'));
         }
       });
     });
