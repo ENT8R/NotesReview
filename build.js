@@ -8,6 +8,7 @@ const template = fs.readFileSync('./templates/index.mst', 'utf8');
 
 const partials = {
   head: fs.readFileSync('./includes/head.mst', 'utf8'),
+  header: fs.readFileSync('./includes/header.mst', 'utf8'),
   modals: fs.readFileSync('./includes/modals.mst', 'utf8'),
   nav: fs.readFileSync('./includes/nav.mst', 'utf8'),
   scripts: fs.readFileSync('./includes/scripts.mst', 'utf8')

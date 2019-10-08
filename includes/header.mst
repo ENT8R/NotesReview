@@ -1,0 +1,34 @@
+<header class="navbar">
+  <section class="navbar-section">
+    <a id="login" class="btn m-1" data-i18n="action.login">Login</a>
+    <a id="logout" class="btn m-1 d-hide">
+      <figure id="user-avatar" class="avatar avatar-sm mx-1 mb-1"></figure>
+      <span data-i18n="action.logout">Login</span>
+    </a>
+
+    <div class="hide-xs">
+      {{#map}}
+      <a id="link" class="btn m-1" data-i18n="description.showList">Show in a list</a>
+      {{/map}}
+      {{#expert}}
+      <a id="link" class="btn m-1" data-i18n="description.showMap">Show on a map</a>
+      {{/expert}}
+    </div>
+  </section>
+
+  <section class="navbar-section">
+    <img alt="" src="{{#expert}}../{{/expert}}assets/logos/notesreview-horizontal.svg" class="p-centered hide-md" height="44">
+  </section>
+
+  <section class="navbar-section">
+    <button class="btn btn-action modal-trigger m-1" data-modal="help" aria-label="Open frequently asked questions" data-i18n data-i18n-aria-label="accessibility.openFaq">
+      <span class="icon icon-help"></span>
+    </button>
+    <button class="btn btn-action modal-trigger m-1" data-modal="share" aria-label="Share the current query" data-i18n data-i18n-aria-label="accessibility.shareQuery">
+      <span class="icon icon-share"></span>
+    </button>
+    <button class="btn btn-action modal-trigger m-1" data-modal="settings" aria-label="Open settings" data-i18n data-i18n-aria-label="accessibility.openSettings">
+      <span class="icon icon-settings"></span>
+    </button>
+  </section>
+</header>

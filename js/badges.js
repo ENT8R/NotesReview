@@ -1,4 +1,5 @@
 import * as Localizer from './localizer.js';
+import * as Mode from './mode.js';
 import Users from './users.js';
 import * as Util from './util.js';
 
@@ -8,11 +9,17 @@ import * as Util from './util.js';
   * @function
   * @param {String} color
   * @param {Date} date A ISO 8601 date string (e.g. 2010-01-31)
+  * @param {Boolean} navigation Whether the badge should be shown in the navigation bar
   * @returns {String}
   */
-export function age(color, date) {
+export function age(color, date, navigation) {
+  let location = 'bottom';
+  if (navigation) {
+    location = Mode.get() === Mode.MAPS ? 'right' : 'left';
+  }
+
   return `
-  <span class="label label-${color} my-1 c-default tooltip tooltip-bottom" data-tooltip="${date.toLocaleString()}">
+  <span class="label label-${color} my-1 c-default tooltip tooltip-${location}" data-tooltip="${date.toLocaleString()}">
     <time-ago datetime="${date}" title="">
       ${date.toLocaleDateString()}
     </time-ago>

@@ -1,13 +1,7 @@
-<div class="columns{{#expert}} px-2{{/expert}}">
+<div class="columns {{#expert}}px-2{{/expert}}">
   <div class="column col-12">
-    <progress id="preloader" class="progress d-invisible" max="100"></progress>
+    <progress id="preloader" class="progress d-hide" max="100"></progress>
   </div>
-
-  {{#map}}
-  <div class="column col-12">
-    <img alt="" src="{{#expert}}../{{/expert}}assets/logos/notesreview.svg" class="img-responsive p-centered hide-lg" width="300">
-  </div>
-  {{/map}}
 
   <div class="column {{#map}}col-12{{/map}}{{#expert}}col-4 col-sm-12{{/expert}}">
     <label class="form-label" for="query" data-i18n="header.query">Query</label>
@@ -72,47 +66,14 @@
     </a>
   </div>
 
-  <div class="divider column col-12 {{#expert}}show-md{{/expert}}"></div>
+  <div class="divider column col-12 {{#map}}hide-md{{/map}}"></div>
 
-  <div class="column {{#map}}col-6 col-lg-12 col-md-12 col-sm-6{{/map}}{{#expert}}col-2 col-md-3 col-sm-6{{/expert}}">
-    <a id="login" class="btn col-12 {{#map}}mt-1{{/map}}" data-i18n="action.login">Login</a>
-    <a id="logout" class="btn d-hide col-12 {{#map}}mt-1{{/map}}">
-      <figure id="user-avatar" class="avatar avatar-sm mx-1 mb-1"></figure>
-      <span data-i18n="action.logout">Login</span>
-    </a>
+  <div class="column {{#map}}col-12 hide-md{{/map}}{{#expert}}col-6{{/expert}}">
+    <span id="found-notes" {{#expert}}class="float-left"{{/expert}}></span>
   </div>
 
-  <div class="column {{#map}}col-6 col-lg-12 col-md-12 col-sm-6{{/map}}{{#expert}}col-2 col-md-3 col-sm-6{{/expert}}">
-    {{#map}}
-    <a id="link" class="btn col-12 mt-1" data-i18n="description.showList">Show in a list</a>
-    {{/map}}
-    {{#expert}}
-    <a id="link" class="btn col-12" data-i18n="description.showMap">Show on a map</a>
-    {{/expert}}
-  </div>
-
-  <div class="divider column col-12 {{#expert}}show-sm{{/expert}}"></div>
-
-  <div class="column btn-group btn-group-block {{#map}}col-12{{/map}}{{#expert}}col-2 col-md-3 col-sm-12{{/expert}}">
-    <button class="btn btn-action modal-trigger" data-modal="help" aria-label="Open frequently asked questions" data-i18n data-i18n-aria-label="accessibility.openFaq">
-      <span class="icon icon-help"></span>
-    </button>
-    <button class="btn btn-action modal-trigger" data-modal="share" aria-label="Share the current query" data-i18n data-i18n-aria-label="accessibility.shareQuery">
-      <span class="icon icon-share"></span>
-    </button>
-    <button class="btn btn-action modal-trigger" data-modal="settings" aria-label="Open settings" data-i18n data-i18n-aria-label="accessibility.openSettings">
-      <span class="icon icon-settings"></span>
-    </button>
-  </div>
-
-  <div class="divider column col-12 {{#map}}hide-lg{{/map}}{{#expert}}show-sm{{/expert}}"></div>
-
-  <div class="column {{#map}}col-12 hide-lg{{/map}}{{#expert}}col-3 col-md-3 col-sm-6{{/expert}}">
-    <span id="found-notes"></span>
-  </div>
-
-  <div class="column {{#map}}col-12 hide-lg{{/map}}{{#expert}}col-3 col-md-3 col-sm-6{{/expert}}">
-    <span id="average-date"></span>
+  <div class="column {{#map}}col-12 hide-md{{/map}}{{#expert}}col-6{{/expert}}">
+    <span id="average-date" {{#expert}}class="float-right"{{/expert}}></span>
   </div>
 
   <div class="divider column col-12"></div>
