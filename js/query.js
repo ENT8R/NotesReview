@@ -78,12 +78,8 @@ export default class Query {
 
     this.notes = Array.from(this.notes);
     this.notes.sort((a, b) => {
-      return a.id - b.id;
+      return b.id - a.id;
     });
-
-    if (document.getElementById('sort-order') && document.getElementById('sort-order').checked === true) {
-      this.notes.reverse();
-    }
 
     // Load additional information of all users
     await Users.load(users);

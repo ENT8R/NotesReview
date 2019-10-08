@@ -53,22 +53,4 @@ export default class UI {
   reload() {
     return this.show(this.notes, null, true);
   }
-
-  /**
-    * Reverse the order of all notes and sort them before
-    * to make sure they are in the right order
-    *
-    * @function
-    * @returns {Promise}
-    */
-  reverse() {
-    this.notes.sort((a, b) => {
-      return a.id - b.id;
-    });
-    if (document.getElementById('sort-order').checked === true) {
-      this.notes.reverse();
-    }
-
-    return this.show(this.notes);
-  }
 }

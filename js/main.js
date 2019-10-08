@@ -166,9 +166,13 @@ function listener() {
   document.getElementById('search').addEventListener('click', () => search());
   document.getElementById('cancel').addEventListener('click', () => Request.cancel());
 
-  document.getElementById('sort-order').addEventListener('change', () => {
-    ui.reverse().then(details);
-  });
+  if (document.getElementById('sort-order')) {
+    document.getElementById('sort-order').checked = true;
+    document.getElementById('sort-order').addEventListener('change', () => {
+      // Reverse the order of the notes in the list view
+      document.getElementById('notes').classList.toggle('reverse');
+    });
+  }
 
   document.getElementById('hide-anonymous').addEventListener('change', () => {
     ui.reload().then(details);

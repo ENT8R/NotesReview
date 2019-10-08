@@ -16,6 +16,16 @@
   z-index: 0;
 }
 
+#notes {
+  justify-content: space-around;
+}
+
+#notes.reverse {
+  // flex-flow: row-reverse wrap-reverse;
+  flex-direction: row-reverse;
+  flex-wrap: wrap-reverse;
+}
+
 #notes > .column > .card {
   border: 0;
   box-shadow: 0 .25rem 1rem rgba(48,55,66,.15);
