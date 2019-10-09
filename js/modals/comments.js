@@ -30,8 +30,10 @@ export default class Comments extends Modal {
     document.getElementById('note-link').href = `${OPENSTREETMAP_SERVER}/note/${note.id}`;
 
     // Clear the note input
-    document.getElementById('note-comment').value = '';
-    document.getElementById('note-comment').dispatchEvent(new Event('input'));
+    const input = document.getElementById('note-comment');
+    input.value = '';
+    input.dispatchEvent(new Event('input'));
+    input.focus();
 
     // Show different actions depending on the status of the note
     document.querySelector('.comment-action[data-action="comment"]').style.display = note.status === 'open' ? 'block' : 'none';
