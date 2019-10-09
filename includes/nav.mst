@@ -57,7 +57,7 @@
   {{/expert}}
 
   <div class="column {{#map}}col-12{{/map}}{{#expert}}col-4 col-md-6 col-sm-6{{/expert}}">
-    <a id="search" class="btn btn-primary btn-lg col-12 tooltip-right" data-i18n data-i18n-data-tooltip="description.worldwideQuery">
+    <a id="search" class="btn btn-primary btn-lg col-12 tooltip-bottom" data-i18n data-i18n-data-tooltip="description.worldwideQuery">
       <span class="icon icon-search"></span>
       <span data-i18n="action.search">Search</span>
       {{#map}}<span id="fast-search" class="icon icon-flash d-hide"></span>{{/map}}
