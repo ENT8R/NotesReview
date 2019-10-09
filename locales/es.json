@@ -1,7 +1,7 @@
 {
   "help": {
-    "about": "!HTML! NotesReview es un proyecto de código abierto. Actualmente está utilizando la versión {{version}}. El código fuente esta disponible en <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\">Github</a>.",
-    "contribution": "!HTML! Puede apoyar el proyecto <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\">traduciéndolo</a> o <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\">informando de errores</a>.",
+    "about": "!HTML! NotesReview es un proyecto de código abierto. Actualmente está utilizando la versión {{version}}. El código fuente esta disponible en <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\" rel=\"noopener\">Github</a>.",
+    "contribution": "!HTML! Puede apoyar el proyecto <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">traduciéndolo</a> o <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">informando de errores</a>.",
     "colors": {
       "title": "¿Cuál es el significado de los colores?",
       "description": "Todos los colores representan la edad de la nota",
