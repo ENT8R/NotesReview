@@ -27,12 +27,19 @@
 
 #notes > .column > .card {
   border: 0;
-  box-shadow: 0 .25rem 1rem rgba(48,55,66,.15);
+  box-shadow: 0 .3rem 1rem rgba(50,50,50,.2);
 }
 
 #notes .card p,
 .leaflet-popup-content p {
   margin: 0;
+}
+
+header.navbar {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 2;
 }
 
 #information-map {
