@@ -115,7 +115,7 @@ export default class Note {
           }
 
           actions.iD.link = `${OPENSTREETMAP_SERVER}/edit?editor=id&${type}=${id}`;
-          actions.josm.link = `http://127.0.0.1:8111/import?url=${OPENSTREETMAP_SERVER}/api/0.6/${type}/${id}/full`;
+          actions.josm.link += `&select=${type}${id}`;
           actions.level0.link = `http://level0.osmz.ru/?url=${type}/${id}&center=${this.coordinates.join()}`;
         }
       }
