@@ -147,15 +147,26 @@ export default class Note {
     * @returns {Array}
     */
   parseComments(comments) {
-    for (let i = 0; i < comments.length; i++) {
-      comments[i].anonymous = comments[i].user ? false : true;
-      if (comments[i].anonymous) {
-        comments[i].user = Localizer.message('note.anonymous');
-        comments[i].uid = null;
+    const texts = [];
+
+    for (let i = comments.length - 1; i >= 0; i--) {
+      const comment = comments[i];
+      comment.anonymous = comment.user ? false : true;
+      if (comment.anonymous) {
+        comment.user = Localizer.message('note.anonymous');
+        comment.uid = null;
       }
-      comments[i].date = new Date(comments[i].date.replace(/-/g, '/'));
-      comments[i].color = Util.parseDate(comments[i].date);
-      comments[i].html = Linkify(comments[i].text);
+      comment.date = new Date(comment.date.replace(/-/g, '/'));
+      comment.color = Util.parseDate(comment.date);
+      comment.html = Linkify(comment.text);
+
+      // TODO: in some cases the API might supply multiple, not unique comments,
+      // see also https://github.com/ENT8R/NotesReview/issues/43#issuecomment-565805628
+      if (texts.includes(comment.text)) {
+        comments.splice(i, 1);
+      } else if (comment.text !== '') {
+        texts.push(comment.text);
+      }
     }
     return comments;
   }
