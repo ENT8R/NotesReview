@@ -26,6 +26,7 @@ export default class Map extends UI {
       return Promise.resolve();
     }
 
+    const ids = [];
     let amount = 0;
     let average = 0;
 
@@ -36,7 +37,9 @@ export default class Map extends UI {
     notes.forEach(note => {
       note.visible = Util.isNoteVisible(note);
 
-      if (note.visible) {
+      // TODO: the second check can be removed once https://github.com/openstreetmap/openstreetmap-website/pull/2381 is merged
+      if (note.visible && !ids.includes(note.id)) {
+        ids.push(note.id);
         amount++;
         average += note.date.getTime();
 
