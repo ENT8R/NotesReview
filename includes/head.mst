@@ -31,7 +31,7 @@
         crossorigin="anonymous">
 
   <link rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+        href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
         integrity="sha384-eS4bw6aEvhCSXWGP85ANR/N8isWKzT7P36NvcuTJGkrj6wsbxLVpXslrNXYHyseD"
         crossorigin="anonymous">
   {{#map}}
@@ -55,7 +55,7 @@
 
   <!-- chrome >= 67, edge >= 75, firefox >= 63, not ie <= 11, not opera all, not safari all -->
   <script src="https://unpkg.com/@webcomponents/custom-elements@1.3.0/custom-elements.min.js"
-          integrity="sha384-zniKLQhXZacmuD3uK2+Wwm8IS22h//LzkQDiDGbaRGmw62ojFEJwzVtzJoFGhsJr"
+          integrity="sha384-d4ryOI4Ng+/P1p3ZWsXqWquUYtNHWo9FMxDmDCQhnvogfIzbSz5DoBDfpmqAEBnV"
           crossorigin="anonymous"></script>
 
   <script type="application/ld+json">
