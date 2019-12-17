@@ -134,6 +134,7 @@ export default class Note {
     return {
       age: Badges.age(this.color, this.date),
       comments: Badges.comments(this.comments.length - 1),
+      country: Badges.country(this.coordinates),
       user: Badges.user(this.comment.uid, this.anonymous),
       report: Badges.report(this.id)
     };

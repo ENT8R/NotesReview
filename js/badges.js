@@ -3,6 +3,8 @@ import * as Mode from './mode.js';
 import Users from './users.js';
 import * as Util from './util.js';
 
+import * as CountryCoder from '@ideditor/country-coder';
+
 /**
   * Generate a badge for the date a note was created on (the age of it)
   *
@@ -38,6 +40,30 @@ export function comments(amount) {
     const text = amount === 1 ? Localizer.message('note.comment') : Localizer.message('note.comments', amount);
     return `<span class="label label-primary my-1 comments-modal-trigger c-hand">${text}</span>`;
   }
+}
+
+/**
+  * Generate a badge for the country the note is located in
+  *
+  * @function
+  * @param {Number} coordinates in [ latitude, longitude ] format
+  * @returns {String}
+  */
+export function country(coordinates) {
+  const feature = CountryCoder.feature([...coordinates].reverse());
+  if (!feature) {
+    return;
+  }
+
+  const emoji = [];
+  for (const codePoint of feature.properties.emojiFlag) {
+    emoji.push(codePoint.codePointAt(0).toString(16));
+  }
+  const url = `https://twemoji.maxcdn.com/v/latest/svg/${emoji.join('-')}.svg`;
+
+  return `<span class="my-1">
+            <img class="icon" src="${url}">
+          </span>`;
 }
 
 /**
@@ -90,6 +116,6 @@ export function status(comment) {
   */
 export function report(id) {
   return `<a href="${OPENSTREETMAP_SERVER}/reports/new?reportable_type=Note&reportable_id=${id}" target="_blank" rel="noopener">
-            <span class="icon icon-flag float-right"></span>
+            <span class="icon icon-flag float-right tooltip tooltip-bottom" data-tooltip="${Localizer.message('action.report')}"></span>
           </a>`;
 }

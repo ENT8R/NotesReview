@@ -33,6 +33,7 @@
     "openstreetmap": "OpenStreetMap",
     "login": "Login",
     "logout": "Logout",
+    "report": "Report note",
     "comment": "Comment",
     "commentClose": "Comment and close",
     "commentReopen": "Reopen and comment",

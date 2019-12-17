@@ -3,6 +3,7 @@
     {{{badges.user}}}
     {{{badges.age}}}
     {{{badges.comments}}}
+    {{{badges.country}}}
     {{{badges.report}}}
   </div>
   <div class="card-body text-break">

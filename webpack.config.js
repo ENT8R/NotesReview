@@ -19,6 +19,11 @@ module.exports = {
     chunkFilename: 'js/[name].min.js',
     publicPath: 'dist/'
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
   devServer: {
     contentBase: __dirname,
     watchContentBase: true,
@@ -43,40 +48,32 @@ module.exports = {
     })
   ],
   module: {
-    rules: [
-      {
-        test: /\.mst/i,
-        use: 'mustache-loader?minify'
-      },
-      {
-        test: /\.js$/,
-        include: /js/,
-        exclude: /node_modules(?!(\/|\\)@github(\/|\\)time-elements)/,
-        use: 'babel-loader'
-      },
-      {
-        test: /\.scss$/,
-        include: /css/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              url: false
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sassOptions: {
-                outputStyle: 'compressed'
-              }
-            }
+    rules: [{
+      test: /\.mst/i,
+      use: 'mustache-loader?minify'
+    }, {
+      test: /\.js$/,
+      include: /js/,
+      exclude: /node_modules(?!(\/|\\)@github(\/|\\)time-elements)/,
+      use: 'babel-loader'
+    }, {
+      test: /\.scss$/,
+      include: /css/,
+      use: [{
+        loader: MiniCssExtractPlugin.loader
+      }, {
+        loader: 'css-loader',
+        options: {
+          url: false
+        }
+      }, {
+        loader: 'sass-loader',
+        options: {
+          sassOptions: {
+            outputStyle: 'compressed'
           }
-        ]
-      }
-    ]
+        }
+      }]
+    }]
   }
 };
