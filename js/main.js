@@ -412,7 +412,15 @@ function settings() {
   * @returns {void}
   */
 async function init() {
-  if (window.navigator.userAgent.indexOf('MSIE ') !== -1 || window.navigator.userAgent.match(/Trident.*rv:11\./)) {
+  // Detect either the use of the Internet Explorer
+  // or the absence of "modern" browser features like Promise or fetch
+  // and show a deprecation warning
+  if (
+    window.navigator.userAgent.indexOf('MSIE ') !== -1 ||
+    window.navigator.userAgent.match(/Trident.*rv:11\./) ||
+    !window.Promise ||
+    !window.fetch
+  ) {
     document.body.classList.add('deprecated-browser');
   }
 

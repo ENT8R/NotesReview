@@ -51,6 +51,7 @@ export function comments(amount) {
   */
 export function country(coordinates) {
   const feature = CountryCoder.feature([...coordinates].reverse());
+  // Return no badge if the note is not inside a known country
   if (!feature) {
     return;
   }
