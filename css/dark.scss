@@ -3,7 +3,8 @@ body[data-theme="dark"] {
   color: white;
 
   .modal-header,
-  .modal-container {
+  .modal-container,
+  header.navbar {
     background-color: #263238;
     color: white;
   }
