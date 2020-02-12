@@ -105,7 +105,7 @@
     </div>
 
     <div class="modal-footer">
-      <a class="btn btn-link modal-close" data-i18n="action.finish">Finish</a>
+      <a class="btn btn-link modal-close" data-i18n="action.close">Close</a>
     </div>
   </div>
 </div>
