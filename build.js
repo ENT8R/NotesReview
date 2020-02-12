@@ -26,7 +26,7 @@ files.forEach(file => {
     mode: file
   };
 
-  const rendered = minify(mustache.to_html(template, values, partials), {
+  const rendered = minify(mustache.render(template, values, partials), {
     removeComments: true,
     collapseWhitespace: true,
     collapseBooleanAttributes: true,
@@ -38,9 +38,6 @@ files.forEach(file => {
 
   const path = file === 'map' ? './index.html' : './expert/index.html';
   fs.writeFile(path, rendered, (error) => {
-    if (error) {
-      return console.log(error); // eslint-disable-line no-console
-    }
-    return console.log(`${path} was saved!`); // eslint-disable-line no-console
+    return error ? console.log(error) : console.log(`${path} was saved!`);
   });
 });
