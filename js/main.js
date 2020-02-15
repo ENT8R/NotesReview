@@ -262,6 +262,12 @@ function listener() {
     toast(Localizer.message('action.copyLinkSuccess'), 'toast-success');
   });
 
+  document.getElementById('permalink-copy').addEventListener('click', () => {
+    document.getElementById('permalink').select();
+    document.execCommand('copy');
+    toast(Localizer.message('action.copyLinkSuccess'), 'toast-success');
+  });
+
   document.getElementById('link').addEventListener('click', () => {
     Preferences.set({
       previous: {

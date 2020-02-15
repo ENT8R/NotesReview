@@ -89,7 +89,10 @@
         <p data-i18n="description.share">Copy this link to share the current query:</p>
 
         <div class="form-group">
-          <input class="form-input" type="text" id="permalink" readonly>
+          <div class="has-icon-right">
+            <input class="form-input" type="text" id="permalink" readonly>
+            <button class="btn btn-link form-icon icon icon-clipboard" id="permalink-copy"></button>
+          </div>
         </div>
 
         {{#map}}

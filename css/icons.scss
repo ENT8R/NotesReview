@@ -1,9 +1,12 @@
-.icon {
+.icon.icon {
   display: inline-block;
   vertical-align: middle;
   width: 24px;
   height: 24px;
   margin-bottom: 4px;
+  &.icon-clipboard {
+    background-image: url("../../icons/clipboard.svg");
+  }
   &.icon-close {
     background-image: url("../../icons/close.svg");
   }
