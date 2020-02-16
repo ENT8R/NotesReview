@@ -6,8 +6,8 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"
         integrity="sha384-RLIyj5q1b5XJTn0tqUhucRZe40nFTocRP91R/NkRJHwAe4XxnTV77FXy/vGLiec2"
         crossorigin="anonymous"></script>
-<script src="https://unpkg.com/leaflet-control-geocoder@1.11.0/dist/Control.Geocoder.js"
-        integrity="sha384-f4tzVC3Ah3cQJvUUh7K378TtqpthCaVmhZPy4gytbwNdvoM0WJmgtv/PcUJFIfhU"
+<script src="https://unpkg.com/leaflet-control-geocoder@1.12.0/dist/Control.Geocoder.js"
+        integrity="sha384-gJd0CW7ynQooKbhIB/gHlyXFQZ+orpwENovSSLwEerTShHtJ+Nq2wQTbk2lo5wDi"
         crossorigin="anonymous"></script>
 {{/map}}
 
