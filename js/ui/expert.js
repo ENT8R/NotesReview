@@ -1,7 +1,7 @@
 import UI from './ui.js';
 import * as Util from '../util.js';
 
-import card from '../../templates/notes/card.mst';
+import template from '../../templates/note.mst';
 
 export default class Expert extends UI {
   /**
@@ -9,10 +9,12 @@ export default class Expert extends UI {
     *
     * @function
     * @param {Array} notes
+    * @param {Query} query
     * @returns {Promise}
     */
-  show(notes) {
+  show(notes, query) {
     this.notes = notes;
+    this.query = query;
 
     if (notes.length === 0) {
       return Promise.resolve();
@@ -25,20 +27,19 @@ export default class Expert extends UI {
     const fragment = document.createDocumentFragment();
 
     notes.forEach(note => {
-      note.visible = Util.isNoteVisible(note);
-
       // TODO: the second check can be removed once https://github.com/openstreetmap/openstreetmap-website/pull/2381 is merged
-      if (note.visible && !ids.includes(note.id)) {
+      if (Util.isNoteVisible(note, query.api) && !ids.includes(note.id)) {
         ids.push(note.id);
         amount++;
-        average += note.date.getTime();
+        average += note.created.getTime();
 
         const div = document.createElement('div');
         div.classList.add('column', 'col-4', 'col-md-6', 'col-sm-12', 'p-1');
-        div.innerHTML = card({
+        div.innerHTML = template({
+          list: true,
           id: note.id,
           badges: note.badges,
-          comment: note.comment.html,
+          comment: note.comments[0].html,
           actions: note.actions
         });
         fragment.appendChild(div);
@@ -50,12 +51,6 @@ export default class Expert extends UI {
       container.removeChild(container.lastChild);
     }
     document.getElementById('notes').appendChild(fragment);
-
-    document.getElementsByClassName('more').forEach(element => {
-      element.addEventListener('click', () => {
-        this.information(notes[element.dataset.note]);
-      });
-    });
 
     return Promise.resolve({
       amount,

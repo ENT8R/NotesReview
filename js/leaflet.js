@@ -6,7 +6,7 @@ let tileLayer;
 
 const OPTIONS = {
   minZoom: 2,
-  maxZoom: 19,
+  maxZoom: 18,
   center: [0, 0],
   zoom: 2
 };
@@ -40,6 +40,13 @@ export default class Leaflet {
       if (move) {
         this.map.on('move', move);
       }
+
+      // Update a popup after all images in it were loaded
+      this.map.on('popupopen', event => {
+        event.popup._container.querySelectorAll('img').forEach(element =>
+          element.onload = () => event.popup.update()
+        );
+      });
 
       if (L.Control.geocoder) {
         L.Control.geocoder({

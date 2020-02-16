@@ -68,7 +68,7 @@ export default class Query {
 
     result.features.forEach(feature => {
       try {
-        const note = new Note(feature, this.api);
+        const note = new Note(feature);
         this.notes.add(note);
         users = new Set([...users, ...note.users]);
       } catch (e) {

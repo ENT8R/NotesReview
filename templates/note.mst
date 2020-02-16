@@ -3,12 +3,14 @@
     {{{badges.user}}}
     {{{badges.age}}}
     {{{badges.comments}}}
-    {{{badges.country}}}
+    {{#list}}{{{badges.country}}}{{/list}}
     {{{badges.report}}}
   </div>
+
   <div class="card-body text-break">
     {{{comment}}}
   </div>
+
   <div class="card-footer">
     {{#actions}}
       {{#link}}

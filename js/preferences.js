@@ -20,21 +20,7 @@ const DEFAULTS = {
 
 export default class Preferences {
   /**
-    * Initialize the preference storage by checking whether all necessary values are present
-    *
-    * @function
-    * @returns {void}
-    */
-  static init() {
-    Object.keys(DEFAULTS).forEach(key => {
-      if (Preferences.get(key) === null) {
-        Preferences.reset();
-      }
-    });
-  }
-
-  /**
-    * Get a specific preference by its key
+    * Get a specific preference by its key and if it's not available, return the default value
     *
     * @function
     * @param {String} key
@@ -50,7 +36,7 @@ export default class Preferences {
       value = JSON.parse(value);
     }
 
-    return value;
+    return value || DEFAULTS[key];
   }
 
   /**

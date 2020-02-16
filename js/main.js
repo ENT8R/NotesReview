@@ -434,7 +434,6 @@ async function init() {
 
   await Localizer.init();
   Modal.init();
-  Preferences.init();
 
   const mode = Mode.get() === Mode.MAPS ? 'map' : 'expert';
   const { default: UI } = await import(/* webpackChunkName: "ui/[request]" */ `./ui/${mode}`);

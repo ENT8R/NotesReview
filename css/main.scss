@@ -11,9 +11,43 @@
 }
 
 /*---------- Content ------------*/
+body {
+  &[data-editor-id="false"] .link-editor-id,
+  &[data-editor-josm="false"] .link-editor-josm,
+  &[data-editor-level0="false"] .link-editor-level0,
+
+  &[data-tool-openstreetmap="false"] .link-osm,
+  &[data-tool-mapillary="false"] .link-tool-mapillary,
+
+  &[data-authenticated="false"] .requires-authentication {
+    display: none;
+  }
+}
+
+header.navbar {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 2;
+}
+
+.modal-container {
+  max-width: 800px;
+}
+
 #map {
   height: 93.9vh;
   z-index: 0;
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 0;
+  .leaflet-popup-content {
+    margin: 0;
+    .card {
+      border: 0;
+    }
+  }
 }
 
 #notes {
@@ -30,58 +64,21 @@
   box-shadow: 0 .3rem 1rem rgba(50,50,50,.2);
 }
 
-#notes .card p,
-.leaflet-popup-content p {
-  margin: 0;
-}
-
-header.navbar {
-  position: sticky;
-  top: 0;
-  background-color: white;
-  z-index: 2;
-}
-
-#information-map {
-  height: 30vh;
-}
-
-.modal-container {
-  max-width: 800px;
-}
-
-body {
-  &[data-editor-id="false"] .link-editor-id,
-  &[data-editor-josm="false"] .link-editor-josm,
-  &[data-editor-level0="false"] .link-editor-level0,
-  &[data-tool-openstreetmap="false"] .link-osm,
-  &[data-tool-mapillary="false"] .link-tool-mapillary {
-    display: none;
-  }
-}
-
-body {
-  &[data-authenticated="false"] .requires-authentication {
-    display: none;
-  }
-}
-
 /*---------- Other ------------*/
 body.deprecated-browser #deprecation-warning {
   display: block !important;
 }
 
 .img-preview {
-  height: 200px;
+  display: inline-block;
+  max-height: 200px;
+  body[data-mode="map"] & {
+    max-width: 50%;
+  }
 }
 
 .c-default {
   cursor: default;
-}
-
-.marker-container {
-  width: 60px;
-  height: 60px;
 }
 
 .faq-color {
@@ -92,7 +89,7 @@ body.deprecated-browser #deprecation-warning {
 }
 
 img.marker-icon {
-  filter: drop-shadow(10px 5px 5px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
 }
 
 /*---------- Mapillary ----------*/
@@ -119,7 +116,6 @@ img.marker-icon {
 }
 
 /*---------- Toasts ------------*/
-
 #toast-container {
   position: fixed;
   top: 5%;

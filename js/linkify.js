@@ -2,16 +2,17 @@ import Linkify from 'linkify-it';
 const linkify = new Linkify();
 
 const IMAGE_HOSTING_REGEX = {
-  imgur: /(http(s)?:\/\/)?i\.imgur\.com\/\w+\.(jpg|png)/,
-  framapic: /(http(s)?:\/\/)?(www\.)?framapic\.org\/(random\?i=)?\w+\/\w+(\.(jpg|jpeg|png))?/,
-  westnordost: /https:\/\/westnordost\.de\/p\/[0-9]+\.jpg/,
-  wikimedia: /https:\/\/upload\.wikimedia\.org\/wikipedia\/commons\/(?:thumb\/)?(\w\/\w\w)\/(.+?\.(?:jpg|png))(?:\/.+?\.(?:jpg|png))?/
+  imgur: /(http(s)?:\/\/)?i\.imgur\.com\/\w+\.(jpg|png)/i,
+  framapic: /(http(s)?:\/\/)?(www\.)?framapic\.org\/(random\?i=)?\w+\/\w+(\.(jpg|jpeg|png))?/i,
+  westnordost: /https:\/\/westnordost\.de\/p\/[0-9]+\.jpg/i,
+  wikimedia: /http(?:s)?:\/\/upload\.wikimedia\.org\/wikipedia\/(.+?)\/(?:thumb\/)?(\w\/\w\w)\/(.+?\.(?:jpg|jpeg|png))(?:\/.+?\.(?:jpg|jpeg|png))?/i,
+  commons: /http(?:s)?:\/\/commons\.wikimedia\.org\/wiki\/File:(.+?\.(?:jpg|jpeg|png|svg))/i
 };
 
 const IMAGE_HOSTING_ADDITIONAL_FORMATTING = {
-  wikimedia: 'https://upload.wikimedia.org/wikipedia/commons/thumb/$1/$2/300px-$2'
+  wikimedia: 'https://upload.wikimedia.org/wikipedia/$1/thumb/$2/$3/300px-$3',
+  commons: 'https://commons.wikimedia.org/wiki/Special:FilePath/$1?width=300'
 };
-
 
 /**
   * Linkify a given string
@@ -21,47 +22,52 @@ const IMAGE_HOSTING_ADDITIONAL_FORMATTING = {
   * @returns {String}
   */
 export default function replace(string) {
-  const links = linkify.match(string);
+  const links = linkify.match(string) || [];
 
-  if (links) {
-    const result = [];
-    let last = 0;
+  const result = [];
+  const images = [];
+  let last = 0;
 
-    links.forEach(link => {
-      // Append everything which was before the link in the comment
-      if (last < link.index) {
-        result.push(escape(string.slice(last, link.index)).replace(/\r?\n/g, '<br>'));
-      }
-
-      // Test whether the link is actually an image
-      const { image, formatted } = isImage(link.url);
-      if (formatted) {
-        link.url = formatted;
-      }
-
-      if (image) {
-        result.push(`
-          <a href="${escape(link.url)}" target="_blank" rel="noopener noreferrer">
-            <img class="img-responsive img-preview m-1" src="${escape(link.url)}" alt="${escape(link.text)}">
-          </a>`);
-      } else {
-        result.push(`<a href="${escape(link.url)}" target="_blank" rel="noopener noreferrer">${escape(link.text)}</a>`);
-      }
-
-      last = link.lastIndex;
-    });
-
-    // Append everything after the last found link
-    if (last < string.length) {
-      result.push(escape(string.slice(last)).replace(/\r?\n/g, '<br>'));
+  links.forEach(link => {
+    // Test whether the link is actually an image
+    const { image, formatted } = isImage(link.url);
+    if (formatted) {
+      link.url = formatted;
     }
 
-    string = result.join('');
-  } else {
-    string = escape(string);
+    // Append everything which was before the link in the comment
+    if (last < link.index) {
+      let content = escape(string.slice(last, link.index));
+
+      const isEmpty = link.index - 1 === last;
+      // Only replace line breaks when there was no other link in between
+      content = content.replace(/\r?\n/g, isEmpty ? '' : '<br>');
+      // If it is the first image, add a new line break
+      if (!isEmpty && image && !content.endsWith('<br>')) {
+        content += '<br>';
+      }
+      result.push(content);
+    }
+
+    let text = decodeURI(link.text);
+    if (image) {
+      images.push(link.url);
+      text = `<img class="img-responsive img-preview p-1" src="${escape(link.url)}" alt="${text}">`;
+    }
+    result.push(`<a href="${escape(link.url)}" target="_blank" rel="noopener noreferrer">${text}</a>`);
+
+    last = link.lastIndex;
+  });
+
+  // Append everything after the last found link
+  if (last < string.length) {
+    result.push(escape(string.slice(last)).replace(/\r?\n/g, '<br>'));
   }
 
-  return string;
+  return {
+    images,
+    html: result.join('')
+  };
 }
 
 /**

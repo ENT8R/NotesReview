@@ -16,9 +16,8 @@ export default class Note {
     *
     * @constructor
     * @param {Object} feature
-    * @param {String} api The API which was used to find the note
     */
-  constructor(feature, api) {
+  constructor(feature) {
     /** Exclude invalid notes
       * See {@link https://github.com/openstreetmap/openstreetmap-website/issues/2146} */
     if (feature.properties.comments.length === 0) {
@@ -28,19 +27,16 @@ export default class Note {
     this.id = feature.properties.id;
     this.status = feature.properties.status;
     this.coordinates = feature.geometry.coordinates.reverse();
-    /** The dashes in the date string need to be replaced with slashes
-      * See {@link https://stackoverflow.com/a/3257513} for the reason */
-    this.date = new Date(feature.properties.date_created.replace(/-/g, '/'));
-    this.color = Util.parseDate(this.date);
 
     this.comments = this.parseComments(feature.properties.comments);
     this.users = this.comments.filter(comment => comment.uid !== null).map(comment => comment.uid);
-    [ this.comment ] = this.comments;
-    this.anonymous = this.comment.anonymous;
-    this.user = this.comment.user;
-
-    this.api = api;
-    this.visible = true;
+    this.anonymous = this.comments[0].anonymous;
+    this.user = this.comments[0].user;
+    /** The dashes in the date string need to be replaced with slashes
+      * See {@link https://stackoverflow.com/a/3257513} for the reason */
+    this.created = new Date(feature.properties.date_created.replace(/-/g, '/'));
+    this.updated = this.comments[this.comments.length - 1].date;
+    this.color = Util.parseDate(this.created);
   }
 
   /**
@@ -98,7 +94,7 @@ export default class Note {
     let match;
     OPENSTREETMAP_ELEMENT_REGEX.forEach(regex => {
       if (!match) {
-        match = this.comment.html.match(regex);
+        match = this.comments[0].html.match(regex);
         if (match && match.length > 1) {
           let [ , type, id ] = match; // eslint-disable-line prefer-const
 
@@ -132,10 +128,10 @@ export default class Note {
     */
   get badges() {
     return {
-      age: Badges.age(this.color, this.date),
+      age: Badges.age(this.color, this.created),
       comments: Badges.comments(this.comments.length - 1),
       country: Badges.country(this.coordinates),
-      user: Badges.user(this.comment.uid, this.anonymous),
+      user: Badges.user(this.comments[0].uid, this.anonymous),
       report: Badges.report(this.id)
     };
   }
@@ -159,7 +155,10 @@ export default class Note {
       }
       comment.date = new Date(comment.date.replace(/-/g, '/'));
       comment.color = Util.parseDate(comment.date);
-      comment.html = Linkify(comment.text);
+      
+      const linkified = Linkify(comment.text);
+      comment.html = linkified.html;
+      comment.images = linkified.images;
 
       // TODO: in some cases the API might supply multiple, not unique comments,
       // see also https://github.com/ENT8R/NotesReview/issues/43#issuecomment-565805628

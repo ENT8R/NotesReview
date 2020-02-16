@@ -95,15 +95,15 @@ export function user(uid, anonymous) {
   * Generate a badge for the status which was set with a note (e.g. opened/reopened)
   *
   * @function
-  * @param {Object} comment
+  * @param {String} action
   * @returns {String}
   */
-export function status(comment) {
-  if (comment.action === 'opened') {
+export function status(action) {
+  if (action === 'opened') {
     return `<span class="label label-success my-1">${Localizer.message('note.action.opened')}</span>`;
-  } else if (comment.action === 'closed') {
+  } else if (action === 'closed') {
     return `<span class="label label-error my-1">${Localizer.message('note.action.closed')}</span>`;
-  } else if (comment.action === 'reopened') {
+  } else if (action === 'reopened') {
     return `<span class="label label-warning my-1">${Localizer.message('note.action.reopened')}</span>`;
   }
 }

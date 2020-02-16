@@ -17,13 +17,13 @@ export default class Comments extends Modal {
 
     const { comments } = note;
 
-    for (let i = 0; i < comments.length; i++) {
+    comments.forEach((comment, i) => {
       comments[i].badges = {
-        age: Badges.age(comments[i].color, comments[i].date),
-        user: Badges.user(comments[i].uid, comments[i].anonymous),
-        status: Badges.status(comments[i])
+        age: Badges.age(comment.color, comment.date),
+        user: Badges.user(comment.uid, comment.anonymous),
+        status: Badges.status(comment.action)
       };
-    }
+    });
 
     document.getElementById('comments').innerHTML = template({ comments });
     document.getElementById('comments').dataset.noteId = note.id;
@@ -33,7 +33,6 @@ export default class Comments extends Modal {
     const input = document.getElementById('note-comment');
     input.value = '';
     input.dispatchEvent(new Event('input'));
-    input.focus();
 
     // Show different actions depending on the status of the note
     document.querySelector('.comment-action[data-action="comment"]').style.display = note.status === 'open' ? 'block' : 'none';
