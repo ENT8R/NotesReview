@@ -37,10 +37,6 @@ export default class Leaflet {
 
       instances[id] = this.map;
 
-      if (move) {
-        this.map.on('move', move);
-      }
-
       // Update a popup after all images in it were loaded
       this.map.on('popupopen', event => {
         event.popup._container.querySelectorAll('img').forEach(element =>
@@ -57,6 +53,10 @@ export default class Leaflet {
 
       this.tiles();
       document.addEventListener('color-scheme-changed', () => this.tiles());
+    }
+
+    if (move) {
+      this.map.on('move', move);
     }
   }
 
