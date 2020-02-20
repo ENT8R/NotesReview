@@ -61,10 +61,7 @@
     "hideAnonymous": "Ocultar notas anónimas",
     "worldwideQuery": "Consulta mundial habilitada.\nAcércate más para obtener una consulta más rápida de un área limitada.",
     "nothingFound": "¡Nada Encontrado!",
-    "autoLimit": "Se ha establecido automáticamente el límite en 10000, no se permiten valores mayores",
-    "sort": {
-      "desc": "Recientes primero"
-    }
+    "autoLimit": "Se ha establecido automáticamente el límite en 10000, no se permiten valores mayores"
   },
   "settings": {
     "choose": "Elegir una opción",

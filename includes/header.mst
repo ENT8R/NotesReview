@@ -1,4 +1,4 @@
-<header class="navbar">
+<header class="navbar px-1">
   <section class="navbar-section">
     <a id="login" class="btn m-1" data-i18n="action.login">Login</a>
     <a id="logout" class="btn m-1 d-hide">

@@ -50,8 +50,9 @@
     "query": "Abfrage",
     "limit": "Limit",
     "user": "Benutzer",
-    "from": "Start",
-    "to": "Ende"
+    "from": "Von",
+    "to": "Bis",
+    "sort": "Sortieren nach"
   },
   "description": {
     "deprecationWarning": "Dein momentaner Browser funktioniert leider nicht zusammen mit NotesReview. Bitte denke darüber nach deinen Browser zu wechseln, um NotesReview verwenden zu können.",
@@ -66,7 +67,14 @@
     "nothingFound": "Nichts gefunden!",
     "autoLimit": "Limit automatisch auf 10000 gesetzt, da höhere Werte nicht erlaubt sind",
     "sort": {
-      "desc": "Neueste zuerst"
+      "created": {
+        "desc": "Neueste",
+        "asc": "Älteste"
+      },
+      "updated": {
+        "desc": "Kürzlich aktualisiert",
+        "asc": "Am wenigsten kürzlich aktualisiert"
+      }
     }
   },
   "accessibility": {

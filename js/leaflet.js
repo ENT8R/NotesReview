@@ -172,7 +172,7 @@ export default class Leaflet {
         boxes.push(L.latLngBounds(L.latLng(lat, lon), L.latLng(bbox.getNorth(), bbox.getEast())));
         boxes.push(L.latLngBounds(L.latLng(lat, bbox.getWest()), L.latLng(bbox.getNorth(), lon)));
 
-        bboxs = bboxs.concat(boxes);
+        bboxs = [...bboxs, ...boxes];
       }
       bounds = bboxs;
     }

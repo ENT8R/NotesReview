@@ -51,7 +51,8 @@
     "limit": "Limit",
     "user": "User",
     "from": "From",
-    "to": "To"
+    "to": "To",
+    "sort": "Sort by"
   },
   "description": {
     "deprecationWarning": "The browser you are currently using does not support NotesReview. Please consider to switch to another browser to be able to use NotesReview.",
@@ -66,7 +67,14 @@
     "nothingFound": "Nothing found!",
     "autoLimit": "Automatically set limit to 10000, because higher values are not allowed",
     "sort": {
-      "desc": "Newest first"
+      "created": {
+        "desc": "Newest",
+        "asc": "Oldest"
+      },
+      "updated": {
+        "desc": "Recently updated",
+        "asc": "Least recently updated"
+      }
     }
   },
   "accessibility": {

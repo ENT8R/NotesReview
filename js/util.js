@@ -47,36 +47,34 @@ export function parseDate(date) {
   *
   * @function
   * @param {Note} note Single note which should be checked.
-  * @param {String} api The endpoint which was used to find the note
+  * @param {Query} query The query which was used in order to find the note
   * @returns {Boolean}
   */
-export function isNoteVisible(note, api) {
-  const query = document.getElementById('query').value;
-  const user = document.getElementById('user').value;
-  let from = document.getElementById('from').value;
-  let to = document.getElementById('to').value;
-
+export function isNoteVisible(note, query) {
   let visible = true;
 
   // If the default endpoint has been used, some additional checks are necessary to make sure only the right notes are returned
-  if (api === ENDPOINT.DEFAULT) {
-    from = from === '' ? new Date(0) : new Date(from);
-    to = to === '' ? new Date() : new Date(to);
+  if (query.endpoint === ENDPOINT.DEFAULT) {
+    const date = query.sort === 'updated_at' ? note.updated : note.created;
+    const from = query.from === null ? new Date(0) : new Date(query.from);
+    const to = query.to === null ? new Date() : new Date(query.to);
+    // Check whether the note is in the correct date range
+    visible = (date > from && date < to);
 
     // Check whether the query is included in the comment
-    visible = (note.comments.map(comment => comment.text).join(' ').toLocaleUpperCase().includes(query.toLocaleUpperCase())) &&
-              // Check whether the note is in the correct date range
-              /* Use the date of the note creation to be consistent with the search endpoint.
-                 This has to be changed once https://github.com/openstreetmap/openstreetmap-website/pull/2381 is merged */
-              (note.created > from && note.created < to) &&
-              // Check whether the specified user also created the note
-              (!['', 'anonymous', Localizer.message('note.anonymous')].includes(user) ? user.localeCompare(note.user.name) === 0 : true);
+    if (query.query && note.comments.map(comment => comment.text).join(' ').toLocaleUpperCase().includes(query.query.toLocaleUpperCase())) {
+      visible = false;
+    }
+    // Check whether the specified user also created the note
+    if (query.user && !['', 'anonymous', Localizer.message('note.anonymous')].includes(query.user)) {
+      visible = query.user.localeCompare(note.user) === 0;
+    }
   }
 
   return visible &&
-         (document.getElementById('show-closed').checked ? true : note.status === 'open') &&
+         (query.closed ? true : note.status === 'open') &&
          (document.getElementById('hide-anonymous').checked ? !note.anonymous : true) &&
-         (['anonymous', Localizer.message('note.anonymous')].includes(user) ? note.anonymous : true);
+         (['anonymous', Localizer.message('note.anonymous')].includes(query.user) ? note.anonymous : true);
 }
 
 /**

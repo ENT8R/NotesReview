@@ -20,17 +20,26 @@ export default class Query {
     * @param {String} user
     * @param {String} from
     * @param {String} to
+    * @param {String} sort
+    * @param {String} order
     */
-  constructor(query, limit, closed, user, from, to) {
+  constructor(query, limit, closed, user, from, to, sort, order) {
     this.query = query || null;
     this.limit = limit || null;
     this.closed = closed || false;
     this.user = user || null;
     this.from = from || null;
     this.to = to || null;
-    this.notes = new Set();
-    this.api = ENDPOINT.SEARCH;
+    this.sort = sort || null;
+    this.order = order || null;
+
+    this.endpoint = ENDPOINT.SEARCH;
     this.url = this.build();
+
+    // If there is an end date but no start date, set it automatically because otherwise the API is not able to handle this
+    if (this.to && !this.from) {
+      this.from = new Date(0).toISOString().slice(0, 10);
+    }
   }
 
   /**
@@ -40,7 +49,7 @@ export default class Query {
     * @returns {Promise}
     */
   async search() {
-    this.notes = new Set();
+    let notes = new Set();
     let users = new Set();
 
     const { url } = this;
@@ -56,35 +65,40 @@ export default class Query {
       for (let i = 0; i < url.length; i++) {
         const body = await Request.get(url[i], Request.MEDIA_TYPE.JSON);
         if (body && body.features) {
-          result.features = result.features.concat(body.features);
+          result.features = [...result.features, ...body.features];
         }
       }
     }
 
     // Return as early as possible if there was no result
     if (!result || result.features.length === 0) {
-      return this.notes;
+      return notes;
     }
 
     result.features.forEach(feature => {
       try {
         const note = new Note(feature);
-        this.notes.add(note);
+        notes.add(note);
         users = new Set([...users, ...note.users]);
       } catch (e) {
         console.error(e); // eslint-disable-line no-console
       }
     });
 
-    this.notes = Array.from(this.notes);
-    this.notes.sort((a, b) => {
-      return b.id - a.id;
-    });
+    if (this.endpoint === ENDPOINT.DEFAULT) {
+      notes = Array.from(notes);
+      notes.sort((a, b) => {
+        const first = this.sort === 'updated_at' ? a.updated : a.created;
+        const second = this.sort === 'updated_at' ? b.updated : b.created;
+        return this.order === 'newest' ? first < second : first > second;
+      });
+      notes = notes.slice(0, this.limit);
+    }
 
     // Load additional information of all users
     await Users.load(users);
 
-    return this.notes;
+    return notes;
   }
 
   /**
@@ -101,33 +115,33 @@ export default class Query {
       const size = map.boundsSize();
 
       if (size < 0.25) {
-        this.api = ENDPOINT.DEFAULT;
+        this.endpoint = ENDPOINT.DEFAULT;
         // Search only in a single bounding box
-        result = Request.build(map.bounds().toBBoxString(), this.limit, this.closed, this.user, this.from, this.to, this.api);
+        result = Request.build(this, map.bounds().toBBoxString());
       } else if (size >= 0.25 && size <= 1) {
-        this.api = ENDPOINT.DEFAULT;
+        this.endpoint = ENDPOINT.DEFAULT;
         result = [];
         // Split the bounding box into four parts
         const bounds = map.splitBounds(map.bounds(), 1);
         bounds.forEach(bbox => {
-          result.push(Request.build(bbox.toBBoxString(), this.limit, this.closed, this.user, this.from, this.to, this.api));
+          result.push(Request.build(this, bbox.toBBoxString()));
         });
       } else if (size >= 1 && size <= 4) {
-        this.api = ENDPOINT.DEFAULT;
+        this.endpoint = ENDPOINT.DEFAULT;
         result = [];
         // Split the bounding box into sixteen parts
         const bounds = map.splitBounds(map.bounds(), 2);
         bounds.forEach(bbox => {
-          result.push(Request.build(bbox.toBBoxString(), this.limit, this.closed, this.user, this.from, this.to, this.api));
+          result.push(Request.build(this, bbox.toBBoxString()));
         });
       } else {
-        this.api = ENDPOINT.SEARCH;
-        result = Request.build(this.query, this.limit, this.closed, this.user, this.from, this.to, this.api);
+        this.endpoint = ENDPOINT.SEARCH;
+        result = Request.build(this);
       }
 
     } else {
-      this.api = ENDPOINT.SEARCH;
-      result = Request.build(this.query, this.limit, this.closed, this.user, this.from, this.to, this.api);
+      this.endpoint = ENDPOINT.SEARCH;
+      result = Request.build(this);
     }
 
     return result;

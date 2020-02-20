@@ -18,17 +18,18 @@ export default class Users {
     for (let i = 0; i < ids.length; i++) {
       const url = `${OPENSTREETMAP_SERVER}/api/0.6/users?users=${ids[i].join(',')}`;
       const xml = await Request.get(url, Request.MEDIA_TYPE.XML);
-
-      xml.documentElement.children.forEach(user => {
-        Users.all.add({
-          id: Number.parseInt(user.getAttribute('id')),
-          name: user.getAttribute('display_name'),
-          created: new Date(user.getAttribute('account_created')),
-          description: user.getElementsByTagName('description')[0].innerText,
-          image: user.querySelector('img[href]') ? user.getElementsByTagName('img')[0].getAttribute('href') : null,
-          changesets: user.getElementsByTagName('changesets')[0].getAttribute('count')
+      if (xml && xml.documentElement) {
+        xml.documentElement.children.forEach(user => {
+          Users.all.add({
+            id: Number.parseInt(user.getAttribute('id')),
+            name: user.getAttribute('display_name'),
+            created: new Date(user.getAttribute('account_created')),
+            description: user.getElementsByTagName('description')[0].innerText,
+            image: user.querySelector('img[href]') ? user.getElementsByTagName('img')[0].getAttribute('href') : null,
+            changesets: user.getElementsByTagName('changesets')[0].getAttribute('count')
+          });
         });
-      });
+      }
     }
   }
 
@@ -61,8 +62,10 @@ export default class Users {
     }
     await Users.load(new Set([uid]));
     const user = Users.get(Number.parseInt(uid));
-    avatar.style.display = 'inline-block';
-    avatar.dataset.initial = Util.initials(user.name);
-    avatar.innerHTML = user.image ? `<img src="${user.image}">` : '';
+    if (user) {
+      avatar.style.display = 'inline-block';
+      avatar.dataset.initial = Util.initials(user.name);
+      avatar.innerHTML = user.image ? `<img src="${user.image}">` : '';
+    }
   }
 }

@@ -12,31 +12,28 @@ export const MEDIA_TYPE = {
   * Build a URL from all given parameters
   *
   * @function
-  * @param {String} query
-  * @param {Number} limit
-  * @param {Boolean} closed
-  * @param {String} user
-  * @param {String} from
-  * @param {String} to
-  * @param {String} endpoint Which endpoint should be used to search the notes
+  * @param {Query} query
+  * @param {String} bounds
   * @returns {String}
   */
-export function build(query, limit, closed, user, from, to, endpoint) {
+export function build(query, bounds) {
   const url = new URL(OPENSTREETMAP_SERVER);
-  url.pathname = endpoint === ENDPOINT.DEFAULT ? '/api/0.6/notes.json' : '/api/0.6/notes/search.json';
+  url.pathname = query.endpoint === ENDPOINT.DEFAULT ? '/api/0.6/notes.json' : '/api/0.6/notes/search.json';
 
   const data = {
-    q: query,
-    limit,
-    display_name: user, // eslint-disable-line camelcase
-    closed: closed ? '-1' : '0',
-    from,
-    to
+    q: query.query,
+    limit: query.limit,
+    display_name: query.user, // eslint-disable-line camelcase
+    closed: query.closed ? '-1' : '0',
+    from: query.from,
+    to: query.to,
+    sort: query.sort,
+    order: query.order
   };
 
-  if (endpoint === ENDPOINT.DEFAULT) {
+  if (query.endpoint === ENDPOINT.DEFAULT) {
     delete data.q;
-    data.bbox = query;
+    data.bbox = bounds;
   }
 
   url.search = encodeQueryData(data, true);
@@ -71,11 +68,11 @@ export function get(url, mediaType) {
     default:
       return text;
     }
-  }).catch(e => {
-    console.log(`Error while fetching file at ${url}: ${e}`); // eslint-disable-line no-console
-  }).finally(() => {
-    running = false;
-  });
+  }).catch(e =>
+    console.log(`Error while fetching file at ${url}: ${e}`) // eslint-disable-line no-console
+  ).finally(() =>
+    running = false
+  );
 }
 
 /**

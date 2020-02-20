@@ -54,11 +54,6 @@ header.navbar {
   justify-content: space-around;
 }
 
-#notes.reverse {
-  flex-direction: row-reverse;
-  flex-wrap: wrap-reverse;
-}
-
 #notes > .column > .card {
   border: 0;
   box-shadow: 0 .3rem 1rem rgba(50,50,50,.2);

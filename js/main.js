@@ -39,6 +39,7 @@ async function search() {
   let user = document.getElementById('user').value;
   const from = document.getElementById('from').value;
   const to = document.getElementById('to').value;
+  const [ sort, order ] = document.getElementById('sort').selectedOptions[0].value.split('-');
 
   if (limit > 10000) {
     limit = 10000;
@@ -54,22 +55,22 @@ async function search() {
     document.getElementById('hide-anonymous').removeAttribute('disabled');
   }
 
-  document.getElementById('preloader').classList.remove('d-hide');
+  document.getElementById('preloader').classList.remove('d-invisible');
   document.getElementById('search').classList.add('d-hide');
   document.getElementById('cancel').classList.remove('d-hide');
 
-  query = new Query(q, limit, closed, user, from, to);
+  query = new Query(q, limit, closed, user, from, to, sort, order);
 
   const previous = Preferences.get('previous', true);
   if (previous) {
     query.url = previous.url;
-    query.api = previous.api;
+    query.endpoint = previous.endpoint;
     Preferences.remove('previous', true);
   }
 
   const notes = await query.search();
   ui.show(Array.from(notes), query).then(details).finally(() => {
-    document.getElementById('preloader').classList.add('d-hide');
+    document.getElementById('preloader').classList.add('d-invisible');
     document.getElementById('search').classList.remove('d-hide');
     document.getElementById('cancel').classList.add('d-hide');
   });
@@ -166,14 +167,6 @@ function listener() {
   document.getElementById('search').addEventListener('click', () => search());
   document.getElementById('cancel').addEventListener('click', () => Request.cancel());
 
-  if (document.getElementById('sort-order')) {
-    document.getElementById('sort-order').checked = true;
-    document.getElementById('sort-order').addEventListener('change', () => {
-      // Reverse the order of the notes in the list view
-      document.getElementById('notes').classList.toggle('reverse');
-    });
-  }
-
   document.getElementById('hide-anonymous').addEventListener('change', () => {
     ui.reload().then(details);
   });
@@ -222,7 +215,7 @@ function listener() {
       const text = document.getElementById('note-comment').value.trim();
 
       api.comment(id, text, element.dataset.action).then(note => {
-        ui.update(id, new Note(JSON.parse(note), query.api)).then(details);
+        ui.update(id, new Note(JSON.parse(note))).then(details);
         Comments.load(ui.get(id));
       }).catch(error => {
         console.log(error); // eslint-disable-line no-console
@@ -272,7 +265,7 @@ function listener() {
     Preferences.set({
       previous: {
         url: query.url,
-        api: query.api
+        endpoint: query.endpoint
       }
     }, true);
   });
@@ -286,13 +279,10 @@ function listener() {
       }
 
       if (Request.isRunning()) {
-        Request.cancel();
-        document.getElementById('preloader').classList.add('d-hide');
-        document.getElementById('search').classList.remove('d-hide');
-        document.getElementById('cancel').classList.add('d-hide');
-      } else {
-        search();
+        return Request.cancel();
       }
+
+      search();
     }
   });
 

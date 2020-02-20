@@ -20,16 +20,13 @@ export default class Expert extends UI {
       return Promise.resolve();
     }
 
-    const ids = [];
     let amount = 0;
     let average = 0;
 
     const fragment = document.createDocumentFragment();
 
     notes.forEach(note => {
-      // TODO: the second check can be removed once https://github.com/openstreetmap/openstreetmap-website/pull/2381 is merged
-      if (Util.isNoteVisible(note, query.api) && !ids.includes(note.id)) {
-        ids.push(note.id);
+      if (Util.isNoteVisible(note, query)) {
         amount++;
         average += note.created.getTime();
 
