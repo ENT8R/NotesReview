@@ -2,8 +2,7 @@ const JSON_REGEX = /^({|\[)[\s\S]*(}|\])$/m;
 
 const DEFAULTS = {
   map: {
-    latitude: 0,
-    longitude: 0,
+    center: [0, 0],
     zoom: 2
   },
   theme: 'system',

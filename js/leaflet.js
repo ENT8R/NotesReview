@@ -1,14 +1,17 @@
 import * as Localizer from './localizer.js';
+import Preferences from './preferences.js';
 import * as Theme from './theme.js';
 
 const instances = {};
 let tileLayer;
 
 const OPTIONS = {
-  minZoom: 2,
-  maxZoom: 18,
-  center: [0, 0],
-  zoom: 2
+  center: Preferences.get('map').center,
+  zoom: {
+    min: 2,
+    max: 18,
+    current: Preferences.get('map').zoom
+  }
 };
 
 // Class with simplifies the interaction with the Leaflet map library
@@ -25,10 +28,10 @@ export default class Leaflet {
       this.map = instances[id];
     } else {
       this.map = L.map(id, {
-        minZoom: OPTIONS.minZoom,
-        maxZoom: OPTIONS.maxZoom,
         center: OPTIONS.center,
-        zoom: OPTIONS.zoom,
+        minZoom: OPTIONS.zoom.min,
+        maxZoom: OPTIONS.zoom.max,
+        zoom: OPTIONS.zoom.current,
         maxBounds: L.latLngBounds(
           L.latLng(-90, -180),
           L.latLng(90, 180)

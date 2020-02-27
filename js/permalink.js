@@ -12,45 +12,56 @@ export default function update() {
   const url = new URL(window.location);
   url.hash = '';
 
-  const query = document.getElementById('query').value;
-  const limit = document.getElementById('limit').value;
-  const closed = document.getElementById('show-closed').checked;
-  const user = document.getElementById('user').value;
-  const from = document.getElementById('from').value;
-  const to = document.getElementById('to').value;
-  const hideAnonymous = document.getElementById('hide-anonymous').checked;
+  const [ sort, order ] = document.getElementById('sort').value.split('-');
 
-  let data = {
-    query,
-    limit,
-    user,
-    from,
-    to
-  };
+  let data = clean({
+    query: document.getElementById('query').value,
+    limit: document.getElementById('limit').value,
+    closed: document.getElementById('show-closed').checked,
+    user: document.getElementById('user').value,
+    from: document.getElementById('from').value,
+    to: document.getElementById('to').value,
+    sort,
+    order,
+    anonymous: !document.getElementById('hide-anonymous').checked
+  });
 
-  if (closed) {
-    data.closed = true;
-  }
-  if (hideAnonymous) {
-    data.anonymous = false;
-  }
-
-  if (Mode.get() === Mode.MAPS) {
+  if (Mode.get() === Mode.MAPS && document.getElementById('show-map').checked) {
     const map = new Leaflet('map');
-    const showMap = document.getElementById('show-map').checked;
-
-    const position = `${map.zoom()}/${map.center().lat}/${map.center().lng}`;
-
-    if (showMap && position) {
-      data.map = position;
-    }
+    data.map = `${map.zoom()}/${map.center().lat}/${map.center().lng}`;
   }
 
   url.search = Request.encodeQueryData(data);
+  document.getElementById('permalink').value = url.toString();
+
   // Map position and zoom is not needed as an URL parameter to switch between views
   delete data.map;
   data = Request.encodeQueryData(data);
-
   document.getElementById('link').href = Mode.get() === Mode.MAPS ? `./expert/?${data}` : `../?${data}`;
-  document.getElementById('permalink').value = url.toString();
+}
+
+/**
+  * Removes all unnecessary default values
+  *
+  * @function
+  * @param  {Object} data
+  * @returns {Object}
+  */
+function clean(data) {
+  const DEFAULTS = {
+    limit: '100',
+    closed: false,
+    sort: 'created_at',
+    order: 'newest',
+    anonymous: true
+  };
+
+  Object.entries(DEFAULTS).forEach(entry => {
+    const [ key, value ] = entry;
+    if (data[key] === value) {
+      delete data[key];
+    }
+  });
+
+  return data;
 }

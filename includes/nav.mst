@@ -30,7 +30,7 @@
 
   <div class="column {{#map}}col-12{{/map}}{{#expert}}col-2 col-md-4 col-sm-12{{/expert}}">
     <label class="form-label" for="sort" data-i18n="header.sort">Sort by</label>
-    <select id="sort" class="form-select update_link">
+    <select id="sort" class="form-select update-link">
       <option value="created_at-newest" data-i18n="description.sort.created.desc">Newest</option>
       <option value="created_at-oldest" data-i18n="description.sort.created.asc">Oldest</option>
       <option value="updated_at-newest" data-i18n="description.sort.updated.desc">Recently updated</option>
@@ -69,15 +69,17 @@
     </a>
   </div>
 
-  <div class="divider column col-12 {{#map}}hide-md{{/map}}"></div>
-
-  <div class="column {{#map}}col-12 hide-md{{/map}}{{#expert}}col-6{{/expert}}">
-    <span id="found-notes" {{#expert}}class="float-left"{{/expert}}></span>
-  </div>
-
-  <div class="column {{#map}}col-12 hide-md{{/map}}{{#expert}}col-6{{/expert}}">
-    <span id="average-date" {{#expert}}class="float-right"{{/expert}}></span>
-  </div>
-
   <div class="divider column col-12"></div>
+
+  <div id="details" class="columns column col-12">
+    <div class="column {{#map}}col-12 hide-md{{/map}}{{#expert}}col-6{{/expert}}">
+      <span id="found-notes" {{#expert}}class="float-left"{{/expert}}></span>
+    </div>
+
+    <div class="column {{#map}}col-12 hide-md{{/map}}{{#expert}}col-6{{/expert}}">
+      <span id="average-date" {{#expert}}class="float-right"{{/expert}}></span>
+    </div>
+
+    <div class="divider column col-12 {{#map}}hide-md{{/map}}"></div>
+  </div>
 </div>

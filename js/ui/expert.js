@@ -16,10 +16,6 @@ export default class Expert extends UI {
     this.notes = notes;
     this.query = query;
 
-    if (notes.length === 0) {
-      return Promise.resolve();
-    }
-
     let amount = 0;
     let average = 0;
 

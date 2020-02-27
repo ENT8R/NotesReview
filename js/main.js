@@ -39,7 +39,7 @@ async function search() {
   let user = document.getElementById('user').value;
   const from = document.getElementById('from').value;
   const to = document.getElementById('to').value;
-  const [ sort, order ] = document.getElementById('sort').selectedOptions[0].value.split('-');
+  const [ sort, order ] = document.getElementById('sort').value.split('-');
 
   if (limit > 10000) {
     limit = 10000;
@@ -138,20 +138,15 @@ function tooltip() {
   * @returns {void}
   */
 function details(result) {
-  if (result) {
-    if (result.amount === 0) {
-      toast(Localizer.message('description.nothingFound'), 'toast-error');
-      document.getElementById('found-notes').textContent = '';
-    } else if (result.amount) {
-      // Display how much notes are shown
-      document.getElementById('found-notes').textContent = Localizer.message('note.amount', result.amount);
-    }
-
-    if (result.average) {
-      document.getElementById('average-date').innerHTML =
-        Localizer.message('note.average', Badges.age(Util.parseDate(result.average), result.average, true));
-    }
+  if (result.amount === 0) {
+    toast(Localizer.message('description.nothingFound'), 'toast-error');
+    document.getElementById('details').classList.add('d-hide');
+  } else {
+    document.getElementById('details').classList.remove('d-hide');
   }
+
+  document.getElementById('found-notes').textContent = Localizer.message('note.amount', result.amount);
+  document.getElementById('average-date').innerHTML = Localizer.message('note.average', Badges.age(Util.parseDate(result.average), result.average, true));
 }
 
 /**
@@ -295,8 +290,7 @@ function listener() {
       const center = map.center();
       Preferences.set({
         map: {
-          latitude: center.lat,
-          longitude: center.lng,
+          center: [center.lat, center.lng],
           zoom: map.zoom()
         }
       });
@@ -327,7 +321,8 @@ function listener() {
   * @returns {void}
   */
 function searchParameter() {
-  new URL(window.location.href).searchParams.forEach((value, key) => {
+  const params = new URL(window.location.href).searchParams;
+  params.forEach((value, key) => {
     switch (key) {
     case 'map':
       if (Mode.get() === Mode.MAPS) {
@@ -350,6 +345,14 @@ function searchParameter() {
     case 'to':
       document.getElementById('to').value = value;
       break;
+    case 'sort':
+      document.getElementById('sort').value =
+        `${value === 'updated_at' ? 'updated_at' : 'created_at'}-${params.get('order') === 'oldest' ? 'oldest' : 'newest'}`;
+      break;
+    case 'order':
+      document.getElementById('sort').value =
+        `${params.get('sort') === 'updated_at' ? 'updated_at' : 'created_at'}-${value === 'oldest' ? 'oldest' : 'newest'}`;
+      break;
     case 'closed':
       document.getElementById('show-closed').checked = value === 'true' ? true : false;
       break;
@@ -363,8 +366,6 @@ function searchParameter() {
   if (uri.indexOf('?') > 0) {
     window.history.replaceState({}, document.title, uri.substring(0, uri.indexOf('?')));
   }
-
-  Permalink();
 }
 
 /**
@@ -402,7 +403,7 @@ function settings() {
   * @private
   * @returns {void}
   */
-async function init() {
+(async function() {
   // Detect either the use of the Internet Explorer
   // or the absence of "modern" browser features like Promise or fetch
   // and show a deprecation warning
@@ -424,14 +425,8 @@ async function init() {
   const { default: UI } = await import(/* webpackChunkName: "ui/[request]" */ `./ui/${mode}`);
   ui = new UI();
 
-  if (Mode.get() === Mode.MAPS) {
+  if (mode === Mode.MAPS) {
     map = new Leaflet('map', tooltip);
-    if (!new URL(window.location.href).searchParams.has('map')) {
-      const { latitude, longitude, zoom } = Preferences.get('map') || {};
-      if (latitude && longitude && zoom) {
-        map.setView([latitude, longitude], zoom);
-      }
-    }
   }
 
   const authenticated = api.authenticated();
@@ -448,7 +443,6 @@ async function init() {
   listener();
   settings();
   searchParameter();
+  Permalink();
   search();
-}
-
-init();
+})();
