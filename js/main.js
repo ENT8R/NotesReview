@@ -301,11 +301,6 @@ function listener() {
         }
       });
     }
-
-    // Save the last visit
-    Preferences.set({
-      lastVisit: new Date().getTime()
-    });
   });
 
   // Dynamic listeners
@@ -429,19 +424,10 @@ async function init() {
   const { default: UI } = await import(/* webpackChunkName: "ui/[request]" */ `./ui/${mode}`);
   ui = new UI();
 
-  if (Preferences.get('lastVisit') === null) {
-    Preferences.reset();
-    Preferences.set({
-      lastVisit: new Date().getTime()
-    });
-  }
-
   if (Mode.get() === Mode.MAPS) {
     map = new Leaflet('map', tooltip);
-
     if (!new URL(window.location.href).searchParams.has('map')) {
       const { latitude, longitude, zoom } = Preferences.get('map') || {};
-
       if (latitude && longitude && zoom) {
         map.setView([latitude, longitude], zoom);
       }
@@ -460,8 +446,8 @@ async function init() {
   }
 
   listener();
-  searchParameter();
   settings();
+  searchParameter();
   search();
 }
 
