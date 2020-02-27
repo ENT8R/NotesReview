@@ -46,7 +46,7 @@
         integrity="sha384-5kMSQJ6S4Qj5i09mtMNrWpSi8iXw230pKU76xTmrpezGnNJQzj0NzXjQLLg+jE7k"
         crossorigin="anonymous">
   <link rel="stylesheet"
-        href="https://unpkg.com/leaflet-control-geocoder@1.12.0/dist/Control.Geocoder.css"
+        href="https://unpkg.com/leaflet-control-geocoder@1.12.1/dist/Control.Geocoder.css"
         integrity="sha384-GYIVVla1kPOSadz3bVWkpGaPbyHKKs8Uey0UONRlbfjOa+703j/CqO5k81hP5JCi"
         crossorigin="anonymous">
   {{/map}}
@@ -56,8 +56,8 @@
   <link rel="shortcut icon" type="image/x-icon" href="{{#expert}}../{{/expert}}assets/icon.png">
 
   <!-- chrome >= 67, edge >= 75, firefox >= 63, not ie <= 11, not opera all, not safari all -->
-  <script src="https://unpkg.com/@webcomponents/custom-elements@1.3.2/custom-elements.min.js"
-          integrity="sha384-d4ryOI4Ng+/P1p3ZWsXqWquUYtNHWo9FMxDmDCQhnvogfIzbSz5DoBDfpmqAEBnV"
+  <script src="https://unpkg.com/@webcomponents/custom-elements@1.4.0/custom-elements.min.js"
+          integrity="sha384-3WvTnjUaZtZzp/QhGPBo9aQ8pH36ks012zH4KnNF0qjnz1sHpwVvYVosM+EeuiDI"
           crossorigin="anonymous"></script>
 
   <script type="application/ld+json">
