@@ -62,7 +62,7 @@ export function isNoteVisible(note, query) {
     visible = (date > from && date < to);
 
     // Check whether the query is included in the comment
-    if (query.query && note.comments.map(comment => comment.text).join(' ').toLocaleUpperCase().includes(query.query.toLocaleUpperCase())) {
+    if (query.query && !note.comments.map(comment => comment.text).join(' ').toLocaleUpperCase().includes(query.query.toLocaleUpperCase())) {
       visible = false;
     }
     // Check whether the specified user also created the note
