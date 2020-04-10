@@ -61,8 +61,8 @@ export function isNoteVisible(note, query) {
     // Check whether the note is in the correct date range
     visible = (date > from && date < to);
 
-    // Check whether the query is included in the comment
-    if (query.query && !note.comments.map(comment => comment.text).join(' ').toLocaleUpperCase().includes(query.query.toLocaleUpperCase())) {
+    // Check whether the query is included in the comments
+    if (query.query && !containsQuery(note.comments, query.query)) {
       visible = false;
     }
     // Check whether the specified user also created the note
@@ -75,6 +75,21 @@ export function isNoteVisible(note, query) {
          (query.closed ? true : note.status === 'open') &&
          (document.getElementById('hide-anonymous').checked ? !note.anonymous : true) &&
          (['anonymous', Localizer.message('note.anonymous')].includes(query.user) ? note.anonymous : true);
+}
+
+/**
+  * Check whether the comments of a note contain the specified query
+  *
+  * @function
+  * @param {Array} comments
+  * @param {String} query
+  * @returns {Boolean}
+  */
+function containsQuery(comments, query) {
+  comments = comments.map(comment => comment.text).join(' '); // Extract text from the comments array
+  comments = comments.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleUpperCase(); // Normalize the comments in order to remove all diacritics
+  query = query.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleUpperCase(); // Normalize the query in order to remove all diacritics too
+  return comments.includes(query);
 }
 
 /**
