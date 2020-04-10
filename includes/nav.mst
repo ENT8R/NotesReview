@@ -10,7 +10,7 @@
 
   <div class="column {{#map}}col-6 col-lg-12 col-sm-4{{/map}}{{#expert}}col-1 col-md-2 col-sm-4{{/expert}}">
     <label class="form-label" for="limit" data-i18n="header.limit">Limit</label>
-    <input class="form-input update-link" id="limit" type="number" value="100" max="10000">
+    <input class="form-input update-link" id="limit" type="number" value="100" min="0" max="10000">
   </div>
 
   <div class="column {{#map}}col-6 col-lg-12 col-sm-8{{/map}}{{#expert}}col-2 col-md-4 col-sm-8{{/expert}}">
