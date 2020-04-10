@@ -38,7 +38,9 @@
     "logout": "Cerrar Sesión",
     "comment": "Comentar",
     "commentClose": "Comentar y cerrar",
-    "commentReopen": "Reactivar y comentar"
+    "commentReopen": "Reactivar y comentar",
+    "mapillary": "Mapillary",
+    "report": "Reportar nota"
   },
   "header": {
     "share": "Compartir",
@@ -52,6 +54,7 @@
     "to": "A"
   },
   "description": {
+    "deprecationWarning": "El navegador que está utilizando actualmente no es compatible con NotesReview. Considere cambiar a otro navegador para poder usar NotesReview.",
     "share": "Copia este enlace para compartir la consulta actual:",
     "startQuery": "Iniciar consulta directamente después de abrir el enlace",
     "shareView": "Compartir la vista actual del mapa",
@@ -71,9 +74,11 @@
       "dark": "Oscuro",
       "system": "Usar la configuración del sistema"
     },
-    "editor": {
-      "title": "Atajos de editor",
-      "description": "Selecciona tu editor favorito"
+    "tools": {
+      "title": "Herramientas",
+      "description": "Selecciona tu herramienta(s) favorita",
+      "editors": "Editores",
+      "other": "Otros"
     }
   },
   "note": {
@@ -87,6 +92,21 @@
       "closed": "Resolver nota",
       "reopened": "Reactivar nota"
     }
+  },
+  "accessibility": {
+    "openFaq": "Abrir preguntas frecuentes",
+    "openSettings": "Abrir ajustes",
+    "shareQuery": "Compartir la consulta actual"
+  },
+  "mapillary": {
+    "empty": {
+      "add": "Añadir fotos de este lugar",
+      "title": "Todavía no hay fotos de este lugar",
+      "subtitle": "Tu puede ayudar a otros mapeadores cargando imágenes a nivel de calle en Mapillary."
+    }
+  },
+  "user": {
+    "created": "Usuario desde %s"
   },
   "comments": {
     "inputPlaceholder": "Escribe un comentario para el resto de usuarios"

@@ -12,11 +12,11 @@
       "orange": "Arancione",
       "red": "Rosso",
       "descriptions": {
-        "darkgreen": "Tra un secondo e un giorno",
-        "green": "Tra uno e 31 giorni",
-        "yellow": "Tra uno e sei mesi",
-        "amber": "Tra sei mesi e un anno",
-        "orange": "Tra uno e due anni",
+        "darkgreen": "Da un secondo a un giorno",
+        "green": "Da uno a 31 giorni",
+        "yellow": "Da uno a sei mesi",
+        "amber": "Da sei mesi a un anno",
+        "orange": "Da uno a due anni",
         "red": "Due o più anni"
       }
     }
@@ -38,20 +38,23 @@
     "logout": "Esci",
     "comment": "Commenta",
     "commentClose": "Commenta e chiudi",
-    "commentReopen": "Riapri e commenta"
+    "commentReopen": "Riapri e commenta",
+    "mapillary": "Mapillary",
+    "report": "Segnala nota"
   },
   "header": {
     "share": "Condividi",
     "faq": "FAQ",
     "about": "Informazioni",
     "settings": "Impostazioni",
-    "query": "Richiesta",
+    "query": "Cerca",
     "limit": "Limita",
     "user": "Utente",
     "from": "Da",
     "to": "A"
   },
   "description": {
+    "deprecationWarning": "Il browser che stai usando non è compatibile con NotesReview. Prova a cambiare browser per poter usare NotesReview.",
     "share": "Copia il collegamento per condividere la richiesta corrente:",
     "startQuery": "Fai partire la richiesta non appena si apre il collegamento",
     "shareView": "Condividi la vista corrente della mappa",
@@ -71,9 +74,11 @@
       "dark": "Scuro",
       "system": "Usa le impostazioni di sistema"
     },
-    "editor": {
-      "title": "Pulsanti degli editor",
-      "description": "Seleziona uno o più editor preferiti"
+    "tools": {
+      "title": "Strumenti",
+      "description": "Seleziona i tuoi strumenti preferiti",
+      "editors": "Editor",
+      "other": "Altro"
     }
   },
   "note": {
@@ -87,6 +92,21 @@
       "closed": "Nota chiusa",
       "reopened": "Nota riaperta"
     }
+  },
+  "accessibility": {
+    "openFaq": "Accedi alle domande più frequenti",
+    "openSettings": "Apri impostazioni",
+    "shareQuery": "Condividi la richiesta corrente"
+  },
+  "mapillary": {
+    "empty": {
+      "add": "Aggiungi foto di questo posto",
+      "title": "Non ci sono ancora foto di qua",
+      "subtitle": "Puoi aiutare altri mappatori caricando immagini su Mapillary"
+    }
+  },
+  "user": {
+    "created": "Utente da %s"
   },
   "comments": {
     "inputPlaceholder": "Scrivi un commento per tutti gli altri utenti"
