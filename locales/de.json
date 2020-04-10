@@ -66,6 +66,7 @@
     "worldwideQuery": "Weltweite Abfrage ist aktiv.\nZoome weiter, um eine schnellere Abfrage\nfür einen begrenzten Bereich zu erhalten.",
     "nothingFound": "Nichts gefunden!",
     "autoLimit": "Limit automatisch auf 10000 gesetzt, da höhere Werte nicht erlaubt sind",
+    "query": "Ein Wort oder ein Satz, der in der Notiz enthalten ist",
     "sort": {
       "created": {
         "desc": "Neueste",

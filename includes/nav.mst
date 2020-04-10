@@ -4,7 +4,10 @@
   </div>
 
   <div class="column {{#map}}col-12{{/map}}{{#expert}}col-3 col-md-6 col-sm-12{{/expert}}">
-    <label class="form-label" for="query" data-i18n="header.query">Query</label>
+    <label class="form-label" for="query">
+      <span data-i18n="header.query">Query</span>
+      <span class="icon icon-help icon-small tooltip tooltip-right" data-tooltip="A word or phrase mentioned in the note" data-i18n data-i18n-data-tooltip="description.query"></span>
+    </label>
     <input class="form-input update-link" id="query" type="text">
   </div>
 

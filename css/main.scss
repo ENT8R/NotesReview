@@ -59,6 +59,10 @@ header.navbar {
   box-shadow: 0 .3rem 1rem rgba(50,50,50,.2);
 }
 
+.tooltip::after {
+  max-width: none;
+}
+
 /*---------- Other ------------*/
 body.deprecated-browser #deprecation-warning {
   display: block !important;

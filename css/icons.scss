@@ -4,6 +4,12 @@
   width: 24px;
   height: 24px;
   margin-bottom: 4px;
+  &.icon-small {
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
   &.icon-clipboard {
     background-image: url("../../icons/clipboard.svg");
   }
