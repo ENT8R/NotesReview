@@ -56,8 +56,8 @@
   <link rel="shortcut icon" type="image/x-icon" href="{{#expert}}../{{/expert}}assets/icon.png">
 
   <!-- chrome >= 67, edge >= 75, firefox >= 63, not ie <= 11, not opera all, not safari all -->
-  <script src="https://unpkg.com/@webcomponents/custom-elements@1.4.0/custom-elements.min.js"
-          integrity="sha384-3WvTnjUaZtZzp/QhGPBo9aQ8pH36ks012zH4KnNF0qjnz1sHpwVvYVosM+EeuiDI"
+  <script src="https://unpkg.com/@webcomponents/custom-elements@1.4.1/custom-elements.min.js"
+          integrity="sha384-xyhN4T4+9VPh8uXl6uWjGzsqwNXN9C2tla8b6zSrSqYlMFUoeCdoxiEJU0js+GNE"
           crossorigin="anonymous"></script>
 
   <script type="application/ld+json">
