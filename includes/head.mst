@@ -23,13 +23,13 @@
   <title>NotesReview</title>
 
   <link rel="stylesheet"
-        href="https://unpkg.com/spectre.css@0.5.8/dist/spectre.min.css"
-        integrity="sha384-k6VaK8SMn/Mpo78m3i6rYNBu5DlUY1ef2j/LBES5AloJ8J2OwFtKiC4R4dHHo6Qg"
+        href="https://unpkg.com/spectre.css@0.5.9/dist/spectre.min.css"
+        integrity="sha384-0pZXcd7Aq/G9HTCOUwvvpy9s5QCu8jkdmAcsCLFchXEH95ixikypH8uUia/pJw/h"
         crossorigin="anonymous">
   <!-- Experimental features are needed because of the progress bar https://picturepan2.github.io/spectre/experimentals/progress.html -->
   <link rel="stylesheet"
-        href="https://unpkg.com/spectre.css@0.5.8/dist/spectre-exp.min.css"
-        integrity="sha384-TOb2Mf42ERXPAnW0hxvER61VlWLhqOA84KapqRoUU/An/T65J0zgA38DxzMhob8H"
+        href="https://unpkg.com/spectre.css@0.5.9/dist/spectre-exp.min.css"
+        integrity="sha384-QmU+qsBCrMa/VMrdWpy6uHH3lweFqWcyTD96CeuyY6dqOgqYXca465g5BbCYgVco"
         crossorigin="anonymous">
 
   <link rel="stylesheet"
@@ -46,7 +46,7 @@
         integrity="sha384-5kMSQJ6S4Qj5i09mtMNrWpSi8iXw230pKU76xTmrpezGnNJQzj0NzXjQLLg+jE7k"
         crossorigin="anonymous">
   <link rel="stylesheet"
-        href="https://unpkg.com/leaflet-control-geocoder@1.12.1/dist/Control.Geocoder.css"
+        href="https://unpkg.com/leaflet-control-geocoder@1.13.0/dist/Control.Geocoder.css"
         integrity="sha384-GYIVVla1kPOSadz3bVWkpGaPbyHKKs8Uey0UONRlbfjOa+703j/CqO5k81hP5JCi"
         crossorigin="anonymous">
   {{/map}}
