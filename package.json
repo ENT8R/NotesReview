@@ -4,7 +4,7 @@
   "description": "An interface for searching and resolving OpenStreetMap notes",
   "scripts": {
     "start": "npm run build && npx webpack-dev-server",
-    "build": "node build",
+    "build": "node build && npx webpack",
     "lint": "npx eslint js/**.js",
     "test": "npm run lint"
   },
