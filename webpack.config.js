@@ -31,7 +31,7 @@ module.exports = {
     compress: true,
     port: 8000,
     watchOptions: {
-      ignored: ['node_modules']
+      ignored: ['.git', 'node_modules']
     }
   },
   plugins: [
