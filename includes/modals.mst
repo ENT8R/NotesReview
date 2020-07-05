@@ -12,38 +12,38 @@
         <div class="columns">
           <div class="column col-4 col-md-6">
             <div class="faq-color label-green-dark">
-              <div data-i18n="help.colors.darkgreen">Dark Green</div>
-              <div data-i18n="help.colors.descriptions.darkgreen">Between one second and one day</div>
+              <b data-i18n="help.colors.darkgreen">Dark Green</b>
+              <div data-i18n="help.colors.descriptions.darkgreen" class="text-small">Between one second and one day</div>
             </div>
           </div>
           <div class="column col-4 col-md-6">
             <div class="faq-color label-green">
-              <div data-i18n="help.colors.green">Green</div>
-              <div data-i18n="help.colors.descriptions.green">Between one and 31 days</div>
+              <b data-i18n="help.colors.green">Green</b>
+              <div data-i18n="help.colors.descriptions.green" class="text-small">Between one and 31 days</div>
             </div>
           </div>
           <div class="column col-4 col-md-6">
             <div class="faq-color label-yellow">
-              <div data-i18n="help.colors.yellow">Yellow</div>
-              <div data-i18n="help.colors.descriptions.yellow">Between one and six months</div>
+              <b data-i18n="help.colors.yellow">Yellow</b>
+              <div data-i18n="help.colors.descriptions.yellow" class="text-small">Between one and six months</div>
             </div>
           </div>
           <div class="column col-4 col-md-6">
             <div class="faq-color label-amber">
-              <div data-i18n="help.colors.amber">Amber</div>
-              <div data-i18n="help.colors.descriptions.amber">Between six months and one year</div>
+              <b data-i18n="help.colors.amber">Amber</b>
+              <div data-i18n="help.colors.descriptions.amber" class="text-small">Between six months and one year</div>
             </div>
           </div>
           <div class="column col-4 col-md-6">
             <div class="faq-color label-orange">
-              <div data-i18n="help.colors.orange">Orange</div>
-              <div data-i18n="help.colors.descriptions.orange">Between one and two years</div>
+              <b data-i18n="help.colors.orange">Orange</b>
+              <div data-i18n="help.colors.descriptions.orange" class="text-small">Between one and two years</div>
             </div>
           </div>
           <div class="column col-4 col-md-6">
             <div class="faq-color label-red">
-              <div data-i18n="help.colors.red">Red</div>
-              <div data-i18n="help.colors.descriptions.red">Two or more years</div>
+              <b data-i18n="help.colors.red">Red</b>
+              <div data-i18n="help.colors.descriptions.red" class="text-small">Two or more years</div>
             </div>
           </div>
         </div>
@@ -51,22 +51,24 @@
         <div class="divider"></div>
 
         <h3 class="text-center" data-i18n="header.about">About</h3>
-        <p data-i18n="help.about">
+        <p data-i18n="about.description">
           NotesReview is an open source project. You are currently using version {{version}}.
           The source code is available on <a href="https://github.com/ENT8R/NotesReview" target="_blank" rel="noopener">Github</a>.
         </p>
-        <p data-i18n="help.contribution">
+        <p data-i18n="about.contribution">
           You can support the project by <a href="https://poeditor.com/join/project/oVilUChBdf" target="_blank" rel="noopener">translating</a>
           it or by <a href="https://github.com/ENT8R/NotesReview/issues" target="_blank" rel="noopener">reporting bugs</a>.
         </p>
-        <p class="text-center">
+        <p class="text-center" data-i18n="about.author">
           Made with ❤️ by <a href="mailto:info.ent8r@gmail.com">ENT8R</a>
         </p>
-        <p class="text-center">
+        <div class="text-center">
           <a href="https://liberapay.com/ENT8R/donate" target="_blank" rel="noopener">
-            <img alt="Donate using Liberapay" src="{{#expert}}../{{/expert}}assets/logos/liberapay.svg">
+            <div class="liberapay-logo">
+              <img src="{{#expert}}../{{/expert}}assets/logos/liberapay.svg"><b data-i18n="about.donate">Donate</b>
+            </div>
           </a>
-        </p>
+        </div>
       </div>
     </div>
 

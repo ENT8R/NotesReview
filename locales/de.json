@@ -1,7 +1,5 @@
 {
   "help": {
-    "about": "!HTML! NotesReview ist ein quelloffenes Projekt. Du benutzt gerade Version {{version}}. Der Quellcode ist auf <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\" rel=\"noopener\">Github</a> verfügbar.",
-    "contribution": "!HTML! Du kannst das Projekt mit <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">Übersetzungen</a> oder <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">Fehlermeldungen</a> unterstützen.",
     "colors": {
       "title": "Welche Bedeutung haben die Farben?",
       "description": "Jede Farbe stellt das Alter der Notiz dar.",
@@ -20,6 +18,12 @@
         "red": "Zwei Jahre oder mehr"
       }
     }
+  },
+  "about": {
+    "description": "!HTML! NotesReview ist ein quelloffenes Projekt. Du benutzt gerade Version {{version}}. Der Quellcode ist auf <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\" rel=\"noopener\">Github</a> verfügbar.",
+    "contribution": "!HTML! Du kannst das Projekt mit <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">Übersetzungen</a> oder <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">Fehlermeldungen</a> unterstützen.",
+    "author": "!HTML! Erstellt mit ❤️ von <a href=\"mailto:info.ent8r@gmail.com\">ENT8R</a>",
+    "donate": "Spenden"
   },
   "action": {
     "cancel": "Abbrechen",

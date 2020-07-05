@@ -32,11 +32,11 @@ header.navbar {
 }
 
 .modal-container {
-  max-width: 800px;
+  max-width: 850px;
 }
 
 #map {
-  height: 93.9vh;
+  height: 94vh;
   z-index: 0;
 }
 
@@ -84,11 +84,27 @@ body.deprecated-browser #deprecation-warning {
   border-radius: .1rem;
   margin: .25rem 0;
   padding: 3rem .5rem .5rem;
-  min-height: 150px;
+  min-height: 140px;
 }
 
 img.marker-icon {
   filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
+}
+
+/*---------- Liberapay ----------*/
+.liberapay-logo {
+  display: inline-block;
+  background-color: #f6c915;
+  border-radius: 4px;
+  padding: 0px 5px;
+  img {
+    vertical-align: top;
+  }
+  b {
+    color: black;
+    text-decoration: none;
+    vertical-align: middle;
+  }
 }
 
 /*---------- Mapillary ----------*/

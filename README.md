@@ -10,7 +10,7 @@ Displays OpenStreetMap Notes in a way it is fun working with them 😎
 
 Notes are a very important part of the OpenStreetMap ecosystem. Every user of the map can report missing things or outdated details. But very often the notes are never resolved at all which could lead to frustrated users 😞. This website provides a better way to resolve notes and improve the map. ✔️
 
-## Highlights
+## Features
 
 - 📍 Notes can be viewed either on a map or in a list
 - ✂️ Useful filters to show only the notes you are interested in

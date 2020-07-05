@@ -1,7 +1,5 @@
 {
   "help": {
-    "about": "!HTML! NotesReview è un progetto open source. La versione attuale è {{version}}. Il codice sorgente è disponibile su <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\" rel=\"noopener\">Github</a>.",
-    "contribution": "!HTML! È possibile supportare questo progetto <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">traducendolo</a> oppure <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">segnalando degli errori</a>.",
     "colors": {
       "title": "Qual è il significato dei colori?",
       "description": "Ogni colore rappresenta l’età della nota",
@@ -51,10 +49,10 @@
     "limit": "Limita",
     "user": "Utente",
     "from": "Da",
-    "to": "A"
+    "to": "A",
+    "sort": "Ordina per"
   },
   "description": {
-    "deprecationWarning": "Il browser che stai usando non è compatibile con NotesReview. Prova a cambiare browser per poter usare NotesReview.",
     "share": "Copia il collegamento per condividere la richiesta corrente:",
     "startQuery": "Fai partire la richiesta non appena si apre il collegamento",
     "shareView": "Condividi la vista corrente della mappa",
@@ -64,7 +62,19 @@
     "hideAnonymous": "Nascondi note anonime",
     "worldwideQuery": "Richiesta globale abilitata.\nIngrandisci ancora per ottenere\nuna richiesta più rapida\nin un’area meno estesa.",
     "nothingFound": "Non è stato trovato niente!",
-    "autoLimit": "Impostato limite automatico a 10000 perché valori più grandi non sono ammessi"
+    "autoLimit": "Impostato limite automatico a 10000 perché valori più grandi non sono ammessi",
+    "deprecationWarning": "Il browser che stai usando non è compatibile con NotesReview. Prova a cambiare browser per poter usare NotesReview.",
+    "sort": {
+      "created": {
+        "desc": "Più nuove",
+        "asc": "Più vecchie"
+      },
+      "updated": {
+        "desc": "Aggiornate di recente",
+        "asc": "Aggiornate meno di recente"
+      }
+    },
+    "query": "Una parola o una frase presente nella nota"
   },
   "settings": {
     "choose": "Scegli un’opzione",
@@ -93,12 +103,18 @@
       "reopened": "Nota riaperta"
     }
   },
+  "map": {
+    "attribution": "&copy; <a href=\"https://osm.org/copyright\">OpenStreetMap</a> contributors, &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
+  },
+  "comments": {
+    "inputPlaceholder": "Scrivi un commento per tutti gli altri utenti"
+  },
   "accessibility": {
     "openFaq": "Accedi alle domande più frequenti",
     "openSettings": "Apri impostazioni",
     "shareQuery": "Condividi la richiesta corrente"
   },
-  "mapillary": {
+"mapillary": {
     "empty": {
       "add": "Aggiungi foto di questo posto",
       "title": "Non ci sono ancora foto di qua",
@@ -108,10 +124,8 @@
   "user": {
     "created": "Utente da %s"
   },
-  "comments": {
-    "inputPlaceholder": "Scrivi un commento per tutti gli altri utenti"
-  },
-  "map": {
-    "attribution": "&copy; <a href=\"https://osm.org/copyright\">OpenStreetMap</a> contributors, &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
+  "about": {
+    "description": "!HTML! NotesReview è un progetto open source. La versione attuale è {{version}}. Il codice sorgente è disponibile su <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\" rel=\"noopener\">Github</a>.",
+    "contribution": "!HTML! È possibile supportare questo progetto <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">traducendolo</a> oppure <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">segnalando degli errori</a>."
   }
 }
