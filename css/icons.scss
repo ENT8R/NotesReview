@@ -1,46 +1,16 @@
+/* Class selector is used twice in order to increase specificity
+and override additional layout used by Spectre.css
+see https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity */
 .icon.icon {
-  display: inline-block;
-  vertical-align: middle;
+  vertical-align: bottom;
   width: 24px;
   height: 24px;
-  margin-bottom: 4px;
   &.icon-small {
-    background-size: 20px;
     width: 20px;
     height: 20px;
   }
+}
 
-  &.icon-clipboard {
-    background-image: url("../../icons/clipboard.svg");
-  }
-  &.icon-close {
-    background-image: url("../../icons/close.svg");
-  }
-  &.icon-external {
-    background-image: url("../../icons/external.svg");
-  }
-  &.icon-flag {
-    background-image: url("../../icons/flag.svg");
-  }
-  &.icon-flash {
-    background-image: url("../../icons/flash.svg");
-  }
-  &.icon-help {
-    background-image: url("../../icons/help.svg");
-  }
-  &.icon-mapillary {
-    background-image: url("../../icons/mapillary.svg");
-  }
-  &.icon-pencil {
-    background-image: url("../../icons/pencil.svg");
-  }
-  &.icon-search {
-    background-image: url("../../icons/search.svg");
-  }
-  &.icon-settings {
-    background-image: url("../../icons/settings.svg");
-  }
-  &.icon-share {
-    background-image: url("../../icons/share.svg");
-  }
+.country-flag {
+  vertical-align: text-top;
 }

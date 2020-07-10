@@ -1,33 +1,70 @@
-body[data-theme="dark"] {
-  background-color: #263238;
-  color: white;
+$main-color: #263238; // blue-grey darken-4
+$main-color-surface: #37474f; // blue-grey darken-3
+$main-color-surface-light: #455a64; // blue-grey darken-2
+$main-color-surface-light-variant: #546e7a; // blue-grey darken-1
+$minor-color: #78909c; // blue-grey lighten-1
 
-  .modal-header,
+$link-color: #81d4fa; // light-blue lighten-3
+$text-color: rgba(255, 255, 255, 0.8);
+
+body[data-theme="dark"] {
+  &,
   .modal-container,
+  .modal-header,
   header.navbar {
-    background-color: #263238;
-    color: white;
+    background-color: $main-color;
+    color: $text-color;
   }
 
   .card,
-  .btn,
   .empty,
   .form-select,
   .form-input,
   .form-checkbox .form-icon,
+  .leaflet-popup-tip,
   .leaflet-popup-content-wrapper,
-  .leaflet-bar a {
-    background-color: #37474f !important;
-    color: white;
+  .leaflet-bar a,
+  .leaflet-container,
+  .leaflet-control-attribution {
+    background-color: $main-color-surface !important;
+    color: $text-color;
+  }
+
+  .btn {
+    background-color: $main-color-surface-light !important;
+    color: $text-color;
+    border-color: $minor-color !important;
+    &.btn-primary {
+      background-color: $main-color-surface-light-variant !important;
+    }
+    &.btn-link:hover {
+      color: $minor-color;
+    }
+  }
+
+  ::selection {
+    background-color: $minor-color;
+  }
+
+  a {
+    color: $link-color;
+  }
+
+  .avatar {
+    background-color: #0288d1; // light-blue darken-2
   }
 
   .divider {
-    border-top-color: #37474f;
+    border-top-color: $main-color-surface;
   }
 
   .modal {
     &.active .modal-overlay, &:target .modal-overlay {
       background: rgba(75, 75, 75, 0.5);
     }
+  }
+
+  img:not(.leaflet-tile):not(.marker-icon) {
+    filter: brightness(.8) contrast(1.2);
   }
 }

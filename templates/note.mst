@@ -3,7 +3,7 @@
     {{{badges.user}}}
     {{{badges.age}}}
     {{{badges.comments}}}
-    {{#list}}{{{badges.country}}}{{/list}}
+    {{#expert}}{{{badges.country}}}{{/expert}}
     {{{badges.report}}}
   </div>
 
@@ -16,13 +16,13 @@
       {{#link}}
       <a class="btn btn-primary btn-sm my-1 {{class}}" href="{{link}}"
         {{#remote}}target="remote"{{/remote}}{{^remote}}target="_blank" rel="noopener"{{/remote}}>
-        <span class="icon {{icon}}"></span>
+        <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-{{icon}}"></use></svg>
         {{text}}
       </a>
       {{/link}}
       {{^link}}
       <button class="btn btn-primary btn-sm my-1 {{class}}">
-        <span class="icon {{icon}}"></span>
+        <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-{{icon}}"></use></svg>
         {{text}}
       </button>
       {{/link}}

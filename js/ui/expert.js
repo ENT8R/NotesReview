@@ -29,7 +29,7 @@ export default class Expert extends UI {
         const div = document.createElement('div');
         div.classList.add('column', 'col-4', 'col-md-6', 'col-sm-12', 'p-1');
         div.innerHTML = template({
-          list: true,
+          expert: true,
           id: note.id,
           badges: note.badges,
           comment: note.comments[0].html,

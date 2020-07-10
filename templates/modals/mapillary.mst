@@ -25,7 +25,7 @@
   <p class="empty-subtitle" data-i18n="mapillary.empty.subtitle">You can help other mappers by uploading street-level imagery to Mapillary.</p>
   <div class="empty-action">
     <a class="btn btn-primary" href="{{link}}" target="_blank" rel="noopener">
-      <span class="icon icon-mapillary"></span>
+      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-mapillary"></use></svg>
       <span data-i18n="mapillary.empty.add">Add photos of this place</span>
     </a>
   </div>

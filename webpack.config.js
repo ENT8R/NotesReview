@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 
 module.exports = {
   // devtool: 'source-map',
@@ -45,6 +46,16 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'css/[name].min.css',
       chunkFilename: 'css/[id].min.css'
+    }),
+    new SVGSpritemapPlugin('icons/*.svg', {
+      output: {
+        filename: 'svg/icons.svg'
+      },
+      sprite: {
+        generate: {
+          title: false
+        }
+      }
     })
   ],
   module: {

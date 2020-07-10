@@ -1,14 +1,5 @@
-@import 'dark';
-@import 'icons';
-
-.leaflet-control-attribution a {
-  color: #302ecd;
-}
-
-.leaflet-touch .leaflet-control-layers,
-.leaflet-touch .leaflet-bar {
-  border: none;
-}
+@use 'dark';
+@use 'icons';
 
 /*---------- Content ------------*/
 body {
@@ -35,21 +26,6 @@ header.navbar {
   max-width: 850px;
 }
 
-#map {
-  height: 94vh;
-  z-index: 0;
-}
-
-.leaflet-popup-content-wrapper {
-  padding: 0;
-  .leaflet-popup-content {
-    margin: 0;
-    .card {
-      border: 0;
-    }
-  }
-}
-
 #notes {
   justify-content: space-around;
 }
@@ -61,6 +37,31 @@ header.navbar {
 
 .tooltip::after {
   max-width: none;
+}
+
+/*---------- Leaflet ------------*/
+#map {
+  height: 94vh;
+  z-index: 0;
+}
+
+.leaflet-control-attribution a {
+  color: #302ecd;
+}
+
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+  border: none;
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 0;
+  .leaflet-popup-content {
+    margin: 0;
+    .card {
+      border: 0;
+    }
+  }
 }
 
 /*---------- Other ------------*/

@@ -5,8 +5,8 @@
     <div class="modal-body">
       <div class="content">
 
-        <h3 class="text-center" data-i18n="header.faq">FAQ</h3>
-        <h5 data-i18n="help.colors.title">What is the meaning of the colours?</h5>
+        <h2 class="text-center" data-i18n="header.faq">FAQ</h2>
+        <h4 data-i18n="help.colors.title">What is the meaning of the colours?</h4>
         <p data-i18n="help.colors.description">Every colors represents the age of the note</p>
 
         <div class="columns">
@@ -50,7 +50,7 @@
 
         <div class="divider"></div>
 
-        <h3 class="text-center" data-i18n="header.about">About</h3>
+        <h2 class="text-center" data-i18n="header.about">About</h2>
         <p data-i18n="about.description">
           NotesReview is an open source project. You are currently using version {{version}}.
           The source code is available on <a href="https://github.com/ENT8R/NotesReview" target="_blank" rel="noopener">Github</a>.
@@ -83,7 +83,7 @@
 
   <div class="modal-container">
     <div class="modal-header">
-      <div class="modal-title h3 text-center" data-i18n="header.share">Share</div>
+      <div class="modal-title h2 text-center" data-i18n="header.share">Share</div>
     </div>
 
     <div class="modal-body">
@@ -93,7 +93,7 @@
         <div class="form-group">
           <div class="has-icon-right">
             <input class="form-input" type="text" id="permalink" readonly>
-            <button class="btn btn-link form-icon icon icon-clipboard" id="permalink-copy"></button>
+            <svg id="permalink-copy" class="btn btn-link icon form-icon p-0"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-clipboard"></use></svg>
           </div>
         </div>
 
@@ -120,7 +120,7 @@
 
   <div class="modal-container">
     <div class="modal-header">
-      <div class="modal-title h3 text-center" data-i18n="header.settings">Settings</div>
+      <div class="modal-title h2 text-center" data-i18n="header.settings">Settings</div>
     </div>
 
     <div class="modal-body">
@@ -204,7 +204,7 @@
 
     <div class="modal-footer">
       <a class="btn btn-primary float-left" id="note-link" target="_blank" rel="noopener">
-        <span class="icon icon-external"></span>
+        <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-external"></use></svg>
         <span data-i18n="action.openstreetmap">OpenStreetMap</span>
       </a>
       <a class="btn btn-link modal-close" data-i18n="action.close">Close</a>
@@ -224,7 +224,7 @@
 
     <div class="modal-footer">
       <a class="btn btn-primary float-left" id="mapillary-link" target="_blank" rel="noopener">
-        <span class="icon icon-external"></span>
+        <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-external"></use></svg>
         <span data-i18n="action.mapillary">Mapillary</span>
       </a>
       <a class="btn btn-link modal-close" data-i18n="action.close">Close</a>

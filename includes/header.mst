@@ -17,18 +17,22 @@
   </section>
 
   <section class="navbar-section">
-    <img alt="" src="{{#expert}}../{{/expert}}assets/logos/notesreview-horizontal.svg" class="p-centered hide-md" height="44">
+    <div class="p-centered hide-md">
+      <svg height="44" viewBox="0 0 706 176">
+        <use xlink:href="{{#expert}}../{{/expert}}assets/logos/notesreview-horizontal.svg#logo"></use>
+      </svg>
+    </div>
   </section>
 
   <section class="navbar-section">
     <button class="btn btn-action modal-trigger m-1" data-modal="help" aria-label="Open frequently asked questions" data-i18n data-i18n-aria-label="accessibility.openFaq">
-      <span class="icon icon-help"></span>
+      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-help"></use></svg>
     </button>
     <button class="btn btn-action modal-trigger m-1" data-modal="share" aria-label="Share the current query" data-i18n data-i18n-aria-label="accessibility.shareQuery">
-      <span class="icon icon-share"></span>
+      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-share"></use></svg>
     </button>
     <button class="btn btn-action modal-trigger m-1" data-modal="settings" aria-label="Open settings" data-i18n data-i18n-aria-label="accessibility.openSettings">
-      <span class="icon icon-settings"></span>
+      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-settings"></use></svg>
     </button>
   </section>
 </header>

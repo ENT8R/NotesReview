@@ -61,10 +61,7 @@ export function country(coordinates) {
     emoji.push(codePoint.codePointAt(0).toString(16));
   }
   const url = `https://twemoji.maxcdn.com/v/latest/svg/${emoji.join('-')}.svg`;
-
-  return `<span class="my-1">
-            <img class="icon" src="${url}">
-          </span>`;
+  return `<span><img class="country-flag" src="${url}" height="24" width="24"></span>`;
 }
 
 /**
@@ -116,7 +113,10 @@ export function status(action) {
   * @returns {String}
   */
 export function report(id) {
+  const icon = Mode.get() === Mode.MAPS ? 'dist/svg/icons.svg#sprite-flag' : '../dist/svg/icons.svg#sprite-flag';
   return `<a href="${OPENSTREETMAP_SERVER}/reports/new?reportable_type=Note&reportable_id=${id}" target="_blank" rel="noopener">
-            <span class="icon icon-flag float-right tooltip tooltip-bottom" data-tooltip="${Localizer.message('action.report')}"></span>
+            <span class="float-right tooltip tooltip-bottom" data-tooltip="${Localizer.message('action.report')}">
+              <svg class="icon"><use xlink:href="${icon}"></use></svg>
+            </span>
           </a>`;
 }

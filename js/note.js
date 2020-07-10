@@ -53,36 +53,36 @@ export default class Note {
       osm: {
         class: 'link-osm',
         link: `${OPENSTREETMAP_SERVER}/note/${this.id}`,
-        icon: 'icon-external',
+        icon: 'external',
         text: Localizer.message('action.openstreetmap')
       },
       iD: {
         class: 'link-editor-id',
         link: `${OPENSTREETMAP_SERVER}/edit?editor=id#map=19/${this.coordinates.join('/')}`,
-        icon: 'icon-external',
+        icon: 'external',
         text: Localizer.message('action.edit.id')
       },
       josm: {
         class: 'link-editor-josm',
         link: `http://127.0.0.1:8111/load_and_zoom?left=${bbox.left}&bottom=${bbox.bottom}&right=${bbox.right}&top=${bbox.top}`,
-        icon: 'icon-external',
+        icon: 'external',
         text: Localizer.message('action.edit.josm'),
         remote: true
       },
       level0: {
         class: 'link-editor-level0',
         link: `http://level0.osmz.ru/?center=${this.coordinates.join()}`,
-        icon: 'icon-external',
+        icon: 'external',
         text: Localizer.message('action.edit.level0')
       },
       mapillary: {
         class: 'link-tool-mapillary',
-        icon: 'icon-mapillary',
+        icon: 'mapillary',
         text: Localizer.message('action.mapillary')
       },
       comment: {
         class: 'comments-modal-trigger requires-authentication',
-        icon: 'icon-pencil',
+        icon: 'pencil',
         text: Localizer.message('action.comment')
       }
     };
@@ -155,7 +155,7 @@ export default class Note {
       }
       comment.date = new Date(comment.date.replace(/-/g, '/'));
       comment.color = Util.parseDate(comment.date);
-      
+
       const linkified = Linkify(comment.text);
       comment.html = linkified.html;
       comment.images = linkified.images;

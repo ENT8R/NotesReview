@@ -6,7 +6,9 @@
   <div class="column {{#map}}col-12{{/map}}{{#expert}}col-3 col-md-6 col-sm-12{{/expert}}">
     <label class="form-label" for="query">
       <span data-i18n="header.query">Query</span>
-      <span class="icon icon-help icon-small tooltip tooltip-right" data-tooltip="A word or phrase mentioned in the note" data-i18n data-i18n-data-tooltip="description.query"></span>
+      <span class="tooltip tooltip-right" data-tooltip="A word or phrase mentioned in the note" data-i18n data-i18n-data-tooltip="description.query">
+        <svg class="icon icon-small"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-help"></use></svg>
+      </span>
     </label>
     <input class="form-input update-link" id="query" type="text">
   </div>
@@ -62,12 +64,12 @@
 
   <div class="column {{#map}}col-12{{/map}}{{#expert}}col-6 col-md-6 col-sm-12{{/expert}}">
     <a id="search" class="btn btn-primary btn-lg col-12 tooltip-bottom" data-i18n data-i18n-data-tooltip="description.worldwideQuery">
-      <span class="icon icon-search"></span>
+      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-search"></use></svg>
       <span data-i18n="action.search">Search</span>
       {{#map}}<span id="fast-search" class="icon icon-flash d-hide"></span>{{/map}}
     </a>
     <a id="cancel" class="btn btn-primary btn-lg col-12 d-hide">
-      <span class="icon icon-close"></span>
+      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-close"></use></svg>
       <span data-i18n="action.cancel">Cancel</span>
     </a>
   </div>
