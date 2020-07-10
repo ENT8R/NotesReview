@@ -31,6 +31,10 @@ Follow [**this link** to improve the translations](https://poeditor.com/join/pro
 
 You found an issue or want to propose a new feature? Then please use the [issue tracker](https://github.com/ENT8R/NotesReview/issues/) of this repository.
 
+---
+
+For further information on how to contribute you might also want to read the [contributing guidelines](https://github.com/ENT8R/NotesReview/blob/master/CONTRIBUTING.md).
+
 ## Screenshots
 
 <img src="assets/screenshots/light/map.png" width="400px"> <img src="assets/screenshots/dark/map.png" width="400px">
