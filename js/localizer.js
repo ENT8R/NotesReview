@@ -198,6 +198,9 @@ export async function init() {
     case 'it':
       locale = await import(/* webpackChunkName: "relative-time-format/it" */ 'relative-time-format/locale/it');
       break;
+    case 'pt':
+      locale = await import(/* webpackChunkName: "relative-time-format/pt" */ 'relative-time-format/locale/pt');
+      break;
     default:
       locale = await import(/* webpackChunkName: "relative-time-format/en" */ 'relative-time-format/locale/en');
     }
