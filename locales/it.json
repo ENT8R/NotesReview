@@ -114,7 +114,7 @@
     "openSettings": "Apri impostazioni",
     "shareQuery": "Condividi la richiesta corrente"
   },
-"mapillary": {
+  "mapillary": {
     "empty": {
       "add": "Aggiungi foto di questo posto",
       "title": "Non ci sono ancora foto di qua",
@@ -126,6 +126,8 @@
   },
   "about": {
     "description": "!HTML! NotesReview è un progetto open source. La versione attuale è {{version}}. Il codice sorgente è disponibile su <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\" rel=\"noopener\">Github</a>.",
-    "contribution": "!HTML! È possibile supportare questo progetto <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">traducendolo</a> oppure <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">segnalando degli errori</a>."
+    "contribution": "!HTML! È possibile supportare questo progetto <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">traducendolo</a> oppure <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">segnalando degli errori</a>.",
+    "author": "!HTML! Realizzato con ❤️ da <a href=\"mailto:info.ent8r@gmail.com\">ENT8R</a>\n",
+    "donate": "Dona"
   }
 }

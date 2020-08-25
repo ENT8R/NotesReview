@@ -19,10 +19,6 @@
       }
     }
   },
-  "about": {
-    "description": "!HTML! NotesReview est un projet open source. Vous utilisez la version {{version}}. Le code source est disponible sur <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\" rel=\"noopener\">Github</a>.",
-    "contribution": "!HTML! Vous pouvez aider ce projet en le <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">traduisant</a> ou en <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">décrivant un problème</a>."
-  },
   "action": {
     "cancel": "Annuler",
     "close": "Fermer",
@@ -30,19 +26,19 @@
     "save": "Enregistrer",
     "search": "Chercher",
     "more": "Plus",
-    "mapillary": "Mapillary",
     "openstreetmap": "OpenStreetMap",
-    "login": "Connexion",
-    "logout": "Déconnexion",
-    "report": "Signaler une note",
-    "comment": "Commenter",
-    "commentClose": "Commenter et fermer",
-    "commentReopen": "Réouvrir et commenter",
     "edit": {
       "id": "iD",
       "josm": "JOSM",
       "level0": "Level0"
-    }
+    },
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "comment": "Commenter",
+    "commentClose": "Commenter et fermer",
+    "commentReopen": "Réouvrir et commenter",
+    "mapillary": "Mapillary",
+    "report": "Signaler une note"
   },
   "header": {
     "share": "Partager",
@@ -57,7 +53,6 @@
     "sort": "Tri"
   },
   "description": {
-    "deprecationWarning": "Votre navigateur ne supporte pas NotesReview. Essayez d'en utiliser un autre pour utiliser NotesReview.",
     "share": "Copiez ce lien pour partager la recherche courante :",
     "startQuery": "Démarrer la recherche automatiquement à l'ouverture du lien",
     "shareView": "Partagez aussi l'affichage de la carte",
@@ -68,6 +63,7 @@
     "worldwideQuery": "Recherche mondiale activée.\nZoomez pour limiter la zone \net accélérer la recherche.",
     "nothingFound": "Aucun résultat !",
     "autoLimit": "Limitation automatique à 10 000 notes, les valeurs plus grandes ne sont pas autorisées",
+    "deprecationWarning": "Votre navigateur ne supporte pas NotesReview. Essayez d'en utiliser un autre pour utiliser NotesReview.",
     "sort": {
       "created": {
         "desc": "Récentes",
@@ -77,18 +73,6 @@
         "desc": "Récentes mises à jour",
         "asc": "Anciennes mise à jour"
       }
-    }
-  },
-  "accessibility": {
-    "openFaq": "Ouvrez la foire aux questions",
-    "openSettings": "Ouvrez les réglages",
-    "shareQuery": "Partagez la recherche courante"
-  },
-  "mapillary": {
-    "empty": {
-      "add": "Ajoutez des photos de ce lieu",
-      "title": "Il n'y a pas encore de photos de ce lieu",
-      "subtitle": "Vous pouvez aider les autres contributeurs en ajoutant des photos dans Mapillary."
     }
   },
   "settings": {
@@ -118,13 +102,29 @@
       "reopened": "Note réouverte"
     }
   },
-  "user": {
-    "created": "Contributeur depuis %s"
+  "map": {
+    "attribution": "&copy; contributeurs <a href=\"https://osm.org/copyright\">OpenStreetMap</a>, &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
   },
   "comments": {
     "inputPlaceholder": "Écrivez un commentaire pour les autres contributeurs"
   },
-  "map": {
-    "attribution": "&copy; contributeurs <a href=\"https://osm.org/copyright\">OpenStreetMap</a>, &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
+  "accessibility": {
+    "openFaq": "Ouvrez la foire aux questions",
+    "openSettings": "Ouvrez les réglages",
+    "shareQuery": "Partagez la recherche courante"
+  },
+  "mapillary": {
+    "empty": {
+      "add": "Ajoutez des photos de ce lieu",
+      "title": "Il n'y a pas encore de photos de ce lieu",
+      "subtitle": "Vous pouvez aider les autres contributeurs en ajoutant des photos dans Mapillary."
+    }
+  },
+  "user": {
+    "created": "Contributeur depuis %s"
+  },
+  "about": {
+    "description": "!HTML! NotesReview est un projet open source. Vous utilisez la version {{version}}. Le code source est disponible sur <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\" rel=\"noopener\">Github</a>.",
+    "contribution": "!HTML! Vous pouvez aider ce projet en le <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">traduisant</a> ou en <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">décrivant un problème</a>."
   }
 }

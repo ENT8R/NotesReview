@@ -126,6 +126,8 @@
   },
   "about": {
     "description": "!HTML! NotesReview es un proyecto de código abierto. Actualmente está utilizando la versión {{version}}. El código fuente esta disponible en <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\" rel=\"noopener\">Github</a>.",
-    "contribution": "!HTML! Puede apoyar el proyecto <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">traduciéndolo</a> o <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">informando de errores</a>."
+    "contribution": "!HTML! Puede apoyar el proyecto <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">traduciéndolo</a> o <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">informando de errores</a>.",
+    "author": "!HTML! Hecho con ❤️ por <a href=\"mailto:info.ent8r@gmail.com\">ENT8R</a>",
+    "donate": "Donar"
   }
 }
