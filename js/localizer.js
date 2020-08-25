@@ -117,7 +117,7 @@ export function message(tag, string) {
 
   if (typeof value === 'string') {
     // Replace values which can not be included in the hardcoded string
-    return value.replace('{{version}}', VERSION);
+    return value.replace('{{version}}', VERSION).trim();
   } else {
     return value;
   }
