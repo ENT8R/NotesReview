@@ -1,5 +1,5 @@
-<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-        integrity="sha384-wKOriz2x8/bF1D9t6PuKhSpxfhHeVi9huvyuxJrrShSJpi5+rmRIsM90UuWbdAYJ"
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha384-RFZC58YeKApoNsIbBxf4z6JJXmh+geBSgkCQXFyh+4tiFSJmJBt+2FbjxW7Ar16M"
         crossorigin="anonymous"></script>
 
 {{#map}}
