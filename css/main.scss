@@ -39,6 +39,11 @@ header.navbar {
   max-width: none;
 }
 
+input:disabled ~ span {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
 /*---------- Leaflet ------------*/
 #map {
   height: 94vh;

@@ -50,7 +50,6 @@ export default function replace(input) {
     extensions
   }).replace(/\r?\n/g, '<br>') // 1. Replace all newlines with the corresponding HTML element
     .replace(/(\/a>)(<br>)(<a)/g, '$1$3'); // 2. Remove all line breaks between multiple images
-  console.log(images);
 
   return {
     images,

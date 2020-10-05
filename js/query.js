@@ -4,6 +4,12 @@ import Note from './note.js';
 import * as Request from './request.js';
 import Users from './users.js';
 
+export const ANONYMOUS = {
+  INCLUDE: 'include',
+  HIDE: 'hide',
+  ONLY: 'only'
+};
+
 export const ENDPOINT = {
   DEFAULT: 'default',
   SEARCH: 'search'
@@ -18,16 +24,18 @@ export default class Query {
     * @param {Number} limit
     * @param {Boolean} closed
     * @param {String} user
+    * @param {String} anonymous
     * @param {String} from
     * @param {String} to
     * @param {String} sort
     * @param {String} order
     */
-  constructor(query, limit, closed, user, from, to, sort, order) {
+  constructor(query, limit, closed, user, anonymous, from, to, sort, order) {
     this.query = query || null;
     this.limit = limit || null;
     this.closed = closed || false;
     this.user = user || null;
+    this.anonymous = anonymous || ANONYMOUS.INCLUDE;
     this.from = from || null;
     this.to = to || null;
     this.sort = sort || null;

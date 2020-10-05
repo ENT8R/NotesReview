@@ -1,5 +1,4 @@
-import * as Localizer from './localizer.js';
-import { ENDPOINT } from './query.js';
+import { ANONYMOUS, ENDPOINT } from './query.js';
 
 const EARTH_RADIUS = 6371000; // In meters. See https://en.wikipedia.org/wiki/Earth_radius#Mean_radius
 const EARTH_CIRCUMFERENCE = 2 * Math.PI * EARTH_RADIUS;
@@ -66,7 +65,7 @@ export function isNoteVisible(note, query) {
       visible = false;
     }
     // Check whether the specified user also created the note
-    if (query.user && !['', 'anonymous', Localizer.message('note.anonymous')].includes(query.user)) {
+    if (query.user && query.anonymous !== ANONYMOUS.ONLY) {
       visible = query.user.localeCompare(note.user) === 0;
     }
   }
@@ -74,7 +73,7 @@ export function isNoteVisible(note, query) {
   return visible &&
          (query.closed ? true : note.status === 'open') &&
          (document.getElementById('hide-anonymous').checked ? !note.anonymous : true) &&
-         (['anonymous', Localizer.message('note.anonymous')].includes(query.user) ? note.anonymous : true);
+         (query.anonymous === ANONYMOUS.ONLY ? note.anonymous : true);
 }
 
 /**

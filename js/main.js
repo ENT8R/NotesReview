@@ -11,7 +11,7 @@ import * as Mode from './mode.js';
 import Note from './note.js';
 import Permalink from './permalink.js';
 import Preferences from './preferences.js';
-import Query from './query.js';
+import Query, { ANONYMOUS } from './query.js';
 import * as Request from './request.js';
 import * as Theme from './theme.js';
 import Users from './users.js';
@@ -37,6 +37,7 @@ async function search() {
   let limit = document.getElementById('limit').value;
   const closed = document.getElementById('show-closed').checked;
   let user = document.getElementById('user').value;
+  let anonymous = ANONYMOUS.INCLUDE;
   const from = document.getElementById('from').value;
   const to = document.getElementById('to').value;
   const [ sort, order ] = document.getElementById('sort').value.split('-');
@@ -49,6 +50,7 @@ async function search() {
 
   if (['anonymous', Localizer.message('note.anonymous')].includes(user)) {
     user = null;
+    anonymous = ANONYMOUS.ONLY;
     document.getElementById('hide-anonymous').checked = false;
     document.getElementById('hide-anonymous').setAttribute('disabled', 'true');
   } else {
@@ -59,7 +61,7 @@ async function search() {
   document.getElementById('search').classList.add('d-hide');
   document.getElementById('cancel').classList.remove('d-hide');
 
-  query = new Query(q, limit, closed, user, from, to, sort, order);
+  query = new Query(q, limit, closed, user, anonymous, from, to, sort, order);
 
   const previous = Preferences.get('previous', true);
   if (previous) {
