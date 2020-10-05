@@ -19,10 +19,10 @@
     "@ideditor/country-coder": "^3.2.0",
     "@webcomponents/custom-elements": "^1.4.2",
     "abortcontroller-polyfill": "^1.5.0",
+    "anchorme": "^2.1.2",
     "leaflet": "^1.6.0",
     "leaflet-control-geocoder": "^1.13.0",
     "leaflet.markercluster": "^1.4.1",
-    "linkify-it": "^3.0.2",
     "osm-auth": "^1.1.0",
     "relative-time-format": "^1.0.5",
     "spectre.css": "^0.5.9"

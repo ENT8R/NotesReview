@@ -1,12 +1,11 @@
-import Linkify from 'linkify-it';
-const linkify = new Linkify();
+const anchorme = require('anchorme').default;
 
 const IMAGE_HOSTING_REGEX = {
-  imgur: /(http(s)?:\/\/)?i\.imgur\.com\/\w+\.(jpg|png)/i,
-  framapic: /(http(s)?:\/\/)?(www\.)?framapic\.org\/(random\?i=)?\w+\/\w+(\.(jpg|jpeg|png))?/i,
-  westnordost: /https:\/\/westnordost\.de\/p\/[0-9]+\.jpg/i,
-  wikimedia: /http(?:s)?:\/\/upload\.wikimedia\.org\/wikipedia\/(.+?)\/(?:thumb\/)?(\w\/\w\w)\/(.+?\.(?:jpg|jpeg|png))(?:\/.+?\.(?:jpg|jpeg|png))?/i,
-  commons: /http(?:s)?:\/\/commons\.wikimedia\.org\/wiki\/File:(.+?\.(?:jpg|jpeg|png|svg))/i
+  imgur: /(http(s)?:\/\/)?i\.imgur\.com\/\w+\.(jpg|png)/gi,
+  framapic: /(http(s)?:\/\/)?(www\.)?framapic\.org\/(random\?i=)?\w+\/\w+(\.(jpg|jpeg|png))?/gi,
+  westnordost: /https:\/\/westnordost\.de\/p\/[0-9]+\.jpg/gi,
+  wikimedia: /http(?:s)?:\/\/upload\.wikimedia\.org\/wikipedia\/(.+?)\/(?:thumb\/)?(\w\/\w\w)\/(.+?\.(?:jpg|jpeg|png))(?:\/.+?\.(?:jpg|jpeg|png))?/gi,
+  commons: /http(?:s)?:\/\/commons\.wikimedia\.org\/wiki\/File:(.+?\.(?:jpg|jpeg|png|svg))/gi
 };
 
 const IMAGE_HOSTING_ADDITIONAL_FORMATTING = {
@@ -18,86 +17,44 @@ const IMAGE_HOSTING_ADDITIONAL_FORMATTING = {
   * Linkify a given string
   *
   * @function
-  * @param {String} string
+  * @param {String} input
   * @returns {String}
   */
-export default function replace(string) {
-  const links = linkify.match(string) || [];
+export default function replace(input) {
+  input = escape(input); // Sanitize the input
 
-  const result = [];
   const images = [];
-  let last = 0;
-
-  links.forEach(link => {
-    // Test whether the link is actually an image
-    const { image, formatted } = isImage(link.url);
-    if (formatted) {
-      link.url = formatted;
-    }
-
-    // Append everything which was before the link in the comment
-    if (last < link.index) {
-      let content = escape(string.slice(last, link.index));
-
-      const isEmpty = link.index - 1 === last;
-      // Only replace line breaks when there was no other link in between
-      content = content.replace(/\r?\n/g, isEmpty ? '' : '<br>');
-      // If it is the first image, add a new line break
-      if (!isEmpty && image && !content.endsWith('<br>')) {
-        content += '<br>';
+  const extensions = Object.entries(IMAGE_HOSTING_REGEX).map(([ provider, regex ]) => {
+    return {
+      test: regex,
+      transform: url => {
+        images.push(url);
+        const formatting = IMAGE_HOSTING_ADDITIONAL_FORMATTING[provider];
+        if (formatting) {
+          url = url.replace(regex, formatting);
+        }
+        const image = `<img class="img-responsive img-preview p-1" src="${escape(url)}" alt="${escape(url)}">`;
+        return `<a href="${escape(url)}" target="_blank" rel="noopener noreferrer">${image}</a>`;
       }
-      result.push(content);
-    }
-
-    let text = decodeURI(link.text);
-    if (image) {
-      images.push(link.url);
-      text = `<img class="img-responsive img-preview p-1" src="${escape(link.url)}" alt="${text}">`;
-    }
-    result.push(`<a href="${escape(link.url)}" target="_blank" rel="noopener noreferrer">${text}</a>`);
-
-    last = link.lastIndex;
+    };
   });
 
-  // Append everything after the last found link
-  if (last < string.length) {
-    result.push(escape(string.slice(last)).replace(/\r?\n/g, '<br>'));
-  }
+  const result = anchorme({
+    input,
+    options: {
+      attributes: {
+        target: '_blank',
+        rel: 'noopener noreferrer'
+      },
+    },
+    extensions
+  }).replace(/\r?\n/g, '<br>') // 1. Replace all newlines with the corresponding HTML element
+    .replace(/(\/a>)(<br>)(<a)/g, '$1$3'); // 2. Remove all line breaks between multiple images
+  console.log(images);
 
   return {
     images,
-    html: result.join('')
-  };
-}
-
-/**
-  * Check whether an URL is actually an image
-  *
-  * @function
-  * @private
-  * @param {String} url
-  * @returns {Object}
-  */
-function isImage(url) {
-  let image = false;
-  let formatted = null;
-
-  Object.entries(IMAGE_HOSTING_REGEX).forEach(entry => {
-    const [ provider, regex ] = entry;
-    const formatting = IMAGE_HOSTING_ADDITIONAL_FORMATTING[provider];
-
-    if (regex.test(url)) {
-      image = true;
-
-      if (formatting) {
-        formatted = url.replace(new RegExp(regex.source, 'gi'), formatting);
-      }
-    }
-  });
-
-  return {
-    image,
-    formatted
+    html: result
   };
 }
 
