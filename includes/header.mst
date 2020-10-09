@@ -17,11 +17,9 @@
   </section>
 
   <section class="navbar-section">
-    <div class="p-centered hide-md">
-      <svg height="44" viewBox="0 0 706 176">
-        <use xlink:href="{{#expert}}../{{/expert}}assets/logos/notesreview-horizontal.svg#logo"></use>
-      </svg>
-    </div>
+    <svg class="p-centered hide-md" height="44" viewBox="0 0 706 176">
+      <use xlink:href="{{#expert}}../{{/expert}}assets/logos/notesreview-horizontal.svg#logo"></use>
+    </svg>
   </section>
 
   <section class="navbar-section">

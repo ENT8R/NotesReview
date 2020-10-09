@@ -22,19 +22,21 @@
   {{> header}}
 
   {{#expert}}
+  <div class="pt-44">
     {{> nav}}
+  </div>
   {{/expert}}
 
   {{> modals}}
 
   {{#map}}
-  <div class="columns col-gapless">
-      <div class="column col-sm-12 col-3 px-2">
-        {{> nav}}
-      </div>
-      <div class="column col-sm-12 col-9 no-padding">
-        <div id="map"></div>
-      </div>
+  <div id="content" class="columns col-gapless pt-44">
+    <div class="column col-sm-12 col-3 px-2">
+      {{> nav}}
+    </div>
+    <div id="map-container" class="column col-sm-12 col-9 no-padding">
+      <div id="map"></div>
+    </div>
   </div>
   {{/map}}
 

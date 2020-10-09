@@ -2,6 +2,10 @@
 @use 'icons';
 
 /*---------- Content ------------*/
+html, body, #content {
+  height: 100%;
+}
+
 body {
   &[data-editor-id="false"] .link-editor-id,
   &[data-editor-josm="false"] .link-editor-josm,
@@ -16,8 +20,8 @@ body {
 }
 
 header.navbar {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  width: 100%;
   background-color: white;
   z-index: 2;
 }
@@ -35,18 +39,36 @@ header.navbar {
   box-shadow: 0 .3rem 1rem rgba(50,50,50,.2);
 }
 
-.tooltip::after {
-  max-width: none;
+@media only screen and (max-width: 600px) {
+  /* Adjustments for the alignment of the map on small screens */
+  #content {
+    flex-direction: column;
+  }
+  #map-container {
+    flex-grow: 1;
+  }
+  #map {
+    height: 300% !important;
+  }
+
+  /* Tooltip for faster search should be shown below the button on small devices */
+  #search::after {
+    bottom: auto;
+  	top: 100%;
+    left: 50%;
+  	transform: translate(-50%,-.4rem);
+  }
 }
 
-input:disabled ~ span {
-  cursor: not-allowed;
-  opacity: .5;
+@media only screen and (min-width: 600px) and (max-width: 840px) {
+  .hide-md-only {
+    display: none;
+  }
 }
 
 /*---------- Leaflet ------------*/
 #map {
-  height: 94vh;
+  height: 100%;
   z-index: 0;
 }
 
@@ -82,8 +104,21 @@ body.deprecated-browser #deprecation-warning {
   }
 }
 
+.pt-44 {
+  padding-top: 44px;
+}
+
 .c-default {
   cursor: default;
+}
+
+input:disabled ~ span {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.tooltip::after {
+  max-width: none;
 }
 
 .faq-color {
