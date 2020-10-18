@@ -1,19 +1,26 @@
 <header class="navbar px-1">
   <section class="navbar-section">
-    <a id="login" class="btn m-1" data-i18n="action.login">Login</a>
+    <a id="login" class="btn m-1">
+      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-account"></use></svg>
+      <span class="hide-xs" data-i18n="action.login">Login</span>
+    </a>
     <a id="logout" class="btn m-1 d-hide">
       <figure id="user-avatar" class="avatar avatar-sm mx-1 mb-1"></figure>
       <span data-i18n="action.logout">Login</span>
     </a>
 
-    <div class="hide-xs">
-      {{#map}}
-      <a id="link" class="btn m-1" data-i18n="description.showList">Show in a list</a>
-      {{/map}}
-      {{#expert}}
-      <a id="link" class="btn m-1" data-i18n="description.showMap">Show on a map</a>
-      {{/expert}}
-    </div>
+    {{#map}}
+    <a id="link" class="btn m-1">
+      <svg class="icon"><use xlink:href="dist/svg/icons.svg#sprite-list"></use></svg>
+      <span class="hide-xs" data-i18n="description.showList">Show in a list</span>
+    </a>
+    {{/map}}
+    {{#expert}}
+    <a id="link" class="btn m-1">
+      <svg class="icon"><use xlink:href="../dist/svg/icons.svg#sprite-map"></use></svg>
+      <span class="hide-xs" data-i18n="description.showMap">Show on a map</span>
+    </a>
+    {{/expert}}
   </section>
 
   <section class="navbar-section">
