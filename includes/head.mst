@@ -1,7 +1,7 @@
 <head>
   <meta charset="utf-8">
 
-  <meta name="description" content="An interface for searching OSM notes with a specific keyword">
+  <meta name="description" content="An interface for searching and resolving OpenStreetMap notes">
   <meta name="keywords" content="OpenStreetMap, OSM, notes, OpenStreetMap Notes, NotesReview, review, search, find">
   <meta name="author" content="ENT8R">
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
@@ -61,35 +61,5 @@
           integrity="sha384-xyhN4T4+9VPh8uXl6uWjGzsqwNXN9C2tla8b6zSrSqYlMFUoeCdoxiEJU0js+GNE"
           crossorigin="anonymous"></script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "NotesReview",
-    "author": "ENT8R",
-    "description": "An interface for searching and resolving OpenStreetMap notes",
-    "logo": "https://ent8r.github.io/NotesReview/assets/icon.png",
-    "url": "https://ent8r.github.io/NotesReview/",
-
-    "applicationCategory": "Utility",
-    "applicationSubCategory": "OpenStreetMap Utility",
-    "browserRequirements": "Requires JavaScript. Requires HTML5.",
-    "isAccessibleForFree": true,
-    "license": "https://www.gnu.org/licenses/gpl-3.0.html",
-    "operatingSystem": "All",
-    "releaseNotes": "https://github.com/ENT8R/NotesReview/releases",
-    "softwareHelp": {
-      "@type": "CreativeWork",
-    	"url": "https://github.com/ENT8R/NotesReview/issues"
-    },
-    "softwareVersion": "{{version}}",
-    "screenshot": "https://ent8r.github.io/NotesReview/assets/screenshots/light/map",
-
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://ent8r.github.io/NotesReview/?query={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
+  <script type="application/ld+json">{{> structuredData}}</script>
 </head>

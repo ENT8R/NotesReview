@@ -9,18 +9,16 @@
       <span data-i18n="action.logout">Login</span>
     </a>
 
-    {{#map}}
     <a id="link" class="btn m-1">
+    {{#map}}
       <svg class="icon"><use xlink:href="dist/svg/icons.svg#sprite-list"></use></svg>
       <span class="hide-xs" data-i18n="description.showList">Show in a list</span>
-    </a>
     {{/map}}
     {{#expert}}
-    <a id="link" class="btn m-1">
       <svg class="icon"><use xlink:href="../dist/svg/icons.svg#sprite-map"></use></svg>
       <span class="hide-xs" data-i18n="description.showMap">Show on a map</span>
-    </a>
     {{/expert}}
+    </a>
   </section>
 
   <section class="navbar-section">

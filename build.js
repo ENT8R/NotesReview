@@ -3,6 +3,8 @@ const { minify } = require('html-minifier');
 const fs = require('fs');
 
 const VERSION = require('./package.json').version;
+const STRUCTURED_DATA = require('./includes/structuredData.json');
+STRUCTURED_DATA.softwareVersion = VERSION;
 
 const template = fs.readFileSync('./templates/index.mst', 'utf8');
 
@@ -11,7 +13,8 @@ const partials = {
   header: fs.readFileSync('./includes/header.mst', 'utf8'),
   modals: fs.readFileSync('./includes/modals.mst', 'utf8'),
   nav: fs.readFileSync('./includes/nav.mst', 'utf8'),
-  scripts: fs.readFileSync('./includes/scripts.mst', 'utf8')
+  scripts: fs.readFileSync('./includes/scripts.mst', 'utf8'),
+  structuredData: JSON.stringify(STRUCTURED_DATA)
 };
 
 const files = [
