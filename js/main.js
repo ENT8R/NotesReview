@@ -57,9 +57,7 @@ async function search() {
     document.getElementById('hide-anonymous').removeAttribute('disabled');
   }
 
-  document.getElementById('preloader').classList.remove('d-invisible');
-  document.getElementById('search').classList.add('d-hide');
-  document.getElementById('cancel').classList.remove('d-hide');
+  document.getElementById('preloader').classList.remove('d-hide');
 
   query = new Query(q, limit, closed, user, anonymous, from, to, sort, order);
 
@@ -72,9 +70,7 @@ async function search() {
 
   const notes = await query.search();
   ui.show(Array.from(notes), query).then(details).finally(() => {
-    document.getElementById('preloader').classList.add('d-invisible');
-    document.getElementById('search').classList.remove('d-hide');
-    document.getElementById('cancel').classList.add('d-hide');
+    document.getElementById('preloader').classList.add('d-hide');
   });
 }
 

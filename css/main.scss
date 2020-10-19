@@ -2,7 +2,7 @@
 @use 'icons';
 
 /*---------- Content ------------*/
-html, body, #content {
+html, body {
   height: 100%;
 }
 
@@ -23,7 +23,13 @@ header.navbar {
   position: fixed;
   width: 100%;
   background-color: white;
-  z-index: 2;
+  z-index: 1;
+}
+
+#content {
+  position: absolute;
+  height: calc(100% - 44px);
+  bottom: 0;
 }
 
 .modal-container {
@@ -104,10 +110,6 @@ body.deprecated-browser #deprecation-warning {
   }
 }
 
-.pt-44 {
-  padding-top: 44px;
-}
-
 .c-default {
   cursor: default;
 }
@@ -130,6 +132,22 @@ input:disabled ~ span {
 
 img.marker-icon {
   filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  > * {
+    position: relative;
+    top: 50%;
+    width: 33%;
+    margin: auto;
+  }
 }
 
 /*---------- Liberapay ----------*/

@@ -1,8 +1,4 @@
 <div class="columns {{#expert}}px-2{{/expert}}">
-  <div class="column col-12">
-    <progress id="preloader" class="progress d-invisible" max="100"></progress>
-  </div>
-
   <div class="column {{#map}}col-12{{/map}}{{#expert}}col-3 col-md-6 col-sm-12{{/expert}}">
     <label class="form-label" for="query">
       <span data-i18n="header.query">Query</span>
@@ -67,10 +63,6 @@
       <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-search"></use></svg>
       <span data-i18n="action.search">Search</span>
       {{#map}}<svg id="fast-search" class="icon d-hide"><use xlink:href="dist/svg/icons.svg#sprite-flash"></use></svg>{{/map}}
-    </a>
-    <a id="cancel" class="btn btn-primary btn-lg col-12 d-hide">
-      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-close"></use></svg>
-      <span data-i18n="action.cancel">Cancel</span>
     </a>
   </div>
 

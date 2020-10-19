@@ -21,28 +21,33 @@
 
   {{> header}}
 
-  {{#expert}}
-  <div class="pt-44">
-    {{> nav}}
-  </div>
-  {{/expert}}
-
   {{> modals}}
 
-  {{#map}}
-  <div id="content" class="columns col-gapless pt-44">
-    <div class="column col-sm-12 col-3 px-2">
+  <div id="content" class="columns col-gapless">
+    <div class="{{#map}}column col-sm-12 col-3 px-2{{/map}}">
       {{> nav}}
     </div>
+
+    {{#map}}
     <div id="map-container" class="column col-sm-12 col-9 no-padding">
       <div id="map"></div>
     </div>
-  </div>
-  {{/map}}
+    {{/map}}
 
-  {{#expert}}
-  <div id="notes" class="columns mx-1"></div>
-  {{/expert}}
+    {{#expert}}
+    <div id="notes" class="columns mx-1"></div>
+    {{/expert}}
+  </div>
+
+  <div id="preloader" class="overlay d-hide">
+    <div>
+      <progress class="progress my-2" max="100"></progress>
+      <a id="cancel" class="btn btn-primary btn-lg col-12 my-2">
+        <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-close"></use></svg>
+        <span data-i18n="action.cancel">Cancel</span>
+      </a>
+    </div>
+  </div>
 
   <iframe id="remote" name="remote" class="d-hide"></iframe>
 
