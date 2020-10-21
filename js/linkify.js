@@ -5,12 +5,14 @@ const IMAGE_HOSTING_REGEX = {
   framapic: /(http(s)?:\/\/)?(www\.)?framapic\.org\/(random\?i=)?\w+\/\w+(\.(jpg|jpeg|png))?/gi,
   westnordost: /https:\/\/westnordost\.de\/p\/[0-9]+\.jpg/gi,
   wikimedia: /http(?:s)?:\/\/upload\.wikimedia\.org\/wikipedia\/(.+?)\/(?:thumb\/)?(\w\/\w\w)\/(.+?\.(?:jpg|jpeg|png))(?:\/.+?\.(?:jpg|jpeg|png))?/gi,
-  commons: /http(?:s)?:\/\/commons\.wikimedia\.org\/wiki\/File:(.+?\.(?:jpg|jpeg|png|svg))/gi
+  commons: /http(?:s)?:\/\/commons\.wikimedia\.org\/wiki\/File:(.+?\.(?:jpg|jpeg|png|svg))/gi,
+  mapillary: /http(?:s)?:\/\/(?:www\.)?mapillary\.com\/map\/im\/(\w+)/gi
 };
 
 const IMAGE_HOSTING_ADDITIONAL_FORMATTING = {
   wikimedia: 'https://upload.wikimedia.org/wikipedia/$1/thumb/$2/$3/300px-$3',
-  commons: 'https://commons.wikimedia.org/wiki/Special:FilePath/$1?width=300'
+  commons: 'https://commons.wikimedia.org/wiki/Special:FilePath/$1?width=300',
+  mapillary: 'https://images.mapillary.com/$1/thumb-320.jpg'
 };
 
 /**
