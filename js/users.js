@@ -7,30 +7,34 @@ export default class Users {
     *
     * @constructor
     * @param {Set} ids
-    * @returns {void}
+    * @returns {Promise}
     */
-  static async load(ids) {
+  static load(ids) {
     if (!Users.all) {
       Users.all = new Set();
     }
 
+    const requests = [];
     ids = Util.chunk(Array.from(ids), 500);
     for (let i = 0; i < ids.length; i++) {
       const url = `${OPENSTREETMAP_SERVER}/api/0.6/users?users=${ids[i].join(',')}`;
-      const xml = await Request.get(url, Request.MEDIA_TYPE.XML);
-      if (xml && xml.documentElement) {
-        xml.documentElement.children.forEach(user => {
-          Users.all.add({
-            id: Number.parseInt(user.getAttribute('id')),
-            name: user.getAttribute('display_name'),
-            created: new Date(user.getAttribute('account_created')),
-            description: user.getElementsByTagName('description')[0].innerText,
-            image: user.querySelector('img[href]') ? user.getElementsByTagName('img')[0].getAttribute('href') : null,
-            changesets: user.getElementsByTagName('changesets')[0].getAttribute('count')
+      const request = Request.get(url, Request.MEDIA_TYPE.XML).then(xml => {
+        if (xml && xml.documentElement) {
+          xml.documentElement.children.forEach(user => {
+            Users.all.add({
+              id: Number.parseInt(user.getAttribute('id')),
+              name: user.getAttribute('display_name'),
+              created: new Date(user.getAttribute('account_created')),
+              description: user.getElementsByTagName('description')[0].innerText,
+              image: user.querySelector('img[href]') ? user.getElementsByTagName('img')[0].getAttribute('href') : null,
+              changesets: user.getElementsByTagName('changesets')[0].getAttribute('count')
+            });
           });
-        });
-      }
+        }
+      });
+      requests.push(request);
     }
+    return Promise.all(requests);
   }
 
   /**
