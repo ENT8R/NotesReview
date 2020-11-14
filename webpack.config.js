@@ -1,6 +1,5 @@
 const config = require('./config/application.json');
 
-const path = require('path');
 const webpack = require('webpack');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -15,14 +14,13 @@ module.exports = {
     './js/main.js'
   ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].min.js',
     chunkFilename: 'js/[name].min.js',
     publicPath: 'dist/'
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',
+      chunks: 'all'
     },
   },
   devServer: {
