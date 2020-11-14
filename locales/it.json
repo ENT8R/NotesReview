@@ -5,14 +5,14 @@
             "description": "Ogni colore rappresenta l’età della nota",
             "darkgreen": "Verde scuro",
             "green": "Verde",
-            "yellow": "Giallo",
+            "lime": "Lime",
             "amber": "Ambra",
             "orange": "Arancione",
             "red": "Rosso",
             "descriptions": {
                 "darkgreen": "Da un secondo a un giorno",
                 "green": "Da uno a 31 giorni",
-                "yellow": "Da uno a sei mesi",
+                "lime": "Da uno a sei mesi",
                 "amber": "Da sei mesi a un anno",
                 "orange": "Da uno a due anni",
                 "red": "Due o più anni"

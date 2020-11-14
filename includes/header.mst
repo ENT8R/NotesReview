@@ -22,7 +22,7 @@
   </section>
 
   <section class="navbar-section">
-    <svg class="p-centered hide-md" height="44" viewBox="0 0 706 176">
+    <svg class="p-centered hide-md" height="44" viewBox="0 -12 706 176">
       <use xlink:href="{{#expert}}../{{/expert}}assets/logos/notesreview-horizontal.svg#logo"></use>
     </svg>
   </section>

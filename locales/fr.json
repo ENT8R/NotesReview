@@ -5,14 +5,14 @@
             "description": "Elles représentent l'âge d'une note",
             "darkgreen": "Vert foncé",
             "green": "Vert",
-            "yellow": "Jaune",
+            "lime": "Lime",
             "amber": "Ambre",
             "orange": "Orange",
             "red": "Rouge",
             "descriptions": {
                 "darkgreen": "De 1 seconde à 1 jour",
                 "green": "De 1 à 31 jours",
-                "yellow": "De 1 à 6 mois",
+                "lime": "De 1 à 6 mois",
                 "amber": "De 6 mois à 1 an",
                 "orange": "De 1 à 2 ans",
                 "red": "Plus de 2 ans"
@@ -73,7 +73,8 @@
                 "desc": "Récentes mises à jour",
                 "asc": "Anciennes mise à jour"
             }
-        }
+        },
+        "query": "Mot ou phrase contenu dans la note"
     },
     "settings": {
         "choose": "Choisissez une option",

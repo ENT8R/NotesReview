@@ -5,14 +5,14 @@
             "description": "Cada cor representa a idade da nota",
             "darkgreen": "Verde escuro",
             "green": "Verde",
-            "yellow": "Amarelo",
+            "lime": "Lima",
             "amber": "Âmbar",
             "orange": "Laranja",
             "red": "Vermelho",
             "descriptions": {
                 "darkgreen": "Entre um segundo e um dia",
                 "green": "Entre um e 31 dias",
-                "yellow": "Entre um e seis meses",
+                "lime": "Entre um e seis meses",
                 "amber": "Entre seis meses e um ano",
                 "orange": "Entre um e dois anos",
                 "red": "Dois ou mais anos"

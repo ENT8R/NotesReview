@@ -42,7 +42,8 @@ export default class Map extends UI {
         L.marker(note.coordinates, {
           icon: new L.divIcon({
             html: `<img alt="" src="${icon}" class="marker-icon">`,
-            iconAnchor: [12.5, 40], // [width / 2, height]
+            iconSize: [25, 40],// [width, height]
+            iconAnchor: [25 / 2, 40], // [width / 2, height]
             popupAnchor: [0, -30],
             className: 'marker-icon'
           })

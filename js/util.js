@@ -29,7 +29,7 @@ export function parseDate(date) {
   } else if (age.days <= 31) {
     color = 'green';
   } else if (age.months < 6) {
-    color = 'yellow';
+    color = 'lime';
   } else if (age.months < 12) {
     color = 'amber';
   } else if (age.years <= 1) {

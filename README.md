@@ -4,8 +4,6 @@
 
 > Tool for solving OpenStreetMap Notes
 
-![Dependencies](https://img.shields.io/david/ENT8R/NotesReview.svg?style=flat-square&logo=npm) [![License](https://img.shields.io/github/license/ENT8R/NotesReview.svg?style=flat-square&logo=gnu)](https://opensource.org/licenses/GPL-3.0) [![Bitcoin](https://img.shields.io/badge/donate-bitcoin-yellowgreen.svg?style=flat-square&logo=bitcoin)](https://en.cryptobadges.io/donate/12CHEKmaPFcD7Mwqycndz3QSHK7cD11g7U) [![Liberapay](https://img.shields.io/badge/donate-liberapay-yellow.svg?style=flat-square&logo=liberapay)](https://liberapay.com/ENT8R)
-
 Displays OpenStreetMap Notes in a way it is fun working with them 😎
 
 Notes are a very important part of the OpenStreetMap ecosystem. Every user of the map can report missing things or outdated details. But very often the notes are never resolved at all which could lead to frustrated users 😞. This website provides a better way to resolve notes and improve the map. ✔️

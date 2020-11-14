@@ -23,9 +23,9 @@
             </div>
           </div>
           <div class="column col-4 col-md-6">
-            <div class="faq-color label-yellow">
-              <b data-i18n="help.colors.yellow">Yellow</b>
-              <div data-i18n="help.colors.descriptions.yellow" class="text-small">Between one and six months</div>
+            <div class="faq-color label-lime">
+              <b data-i18n="help.colors.lime">Lime</b>
+              <div data-i18n="help.colors.descriptions.lime" class="text-small">Between one and six months</div>
             </div>
           </div>
           <div class="column col-4 col-md-6">
