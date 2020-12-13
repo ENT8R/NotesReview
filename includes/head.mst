@@ -47,8 +47,8 @@
         integrity="sha384-5kMSQJ6S4Qj5i09mtMNrWpSi8iXw230pKU76xTmrpezGnNJQzj0NzXjQLLg+jE7k"
         crossorigin="anonymous">
   <link rel="stylesheet"
-        href="https://unpkg.com/leaflet-control-geocoder@1.13.0/dist/Control.Geocoder.css"
-        integrity="sha384-GYIVVla1kPOSadz3bVWkpGaPbyHKKs8Uey0UONRlbfjOa+703j/CqO5k81hP5JCi"
+        href="https://unpkg.com/leaflet-control-geocoder@2.1.0/dist/Control.Geocoder.css"
+        integrity="sha384-gOibXC9S5JpMrpEP0ee6wCSVHjFSEuOzLLzTUmg58qM+mJ1rI8h/aY3lS9YUmo55"
         crossorigin="anonymous">
   {{/map}}
 
