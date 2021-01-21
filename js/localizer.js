@@ -5,7 +5,7 @@
 const I18N_ATTRIBUTE = 'data-i18n';
 const I18N_DATASET = 'i18n';
 
-const LANGUAGE = navigator.language.split('-')[0] || navigator.userLanguage.split('-')[0];
+const LANGUAGE = navigator.language || navigator.userLanguage;
 const FALLBACK_LANGUAGE = 'en';
 
 const STRINGS = {
@@ -185,7 +185,7 @@ export async function init() {
    */
   if (!('Intl' in window) || !('RelativeTimeFormat' in window.Intl)) {
     let locale;
-    switch (LANGUAGE) {
+    switch (LANGUAGE.split('-')[0]) {
     case 'de':
       locale = await import(/* webpackChunkName: "relative-time-format/de" */ 'relative-time-format/locale/de');
       break;
@@ -200,6 +200,9 @@ export async function init() {
       break;
     case 'pt':
       locale = await import(/* webpackChunkName: "relative-time-format/pt" */ 'relative-time-format/locale/pt');
+      break;
+    case 'zh':
+      locale = await import(/* webpackChunkName: "relative-time-format/zh" */ 'relative-time-format/locale/zh');
       break;
     default:
       locale = await import(/* webpackChunkName: "relative-time-format/en" */ 'relative-time-format/locale/en');
