@@ -3,7 +3,7 @@ import * as Mode from './mode.js';
 import Users from './users.js';
 import * as Util from './util.js';
 
-import * as CountryCoder from '@ideditor/country-coder';
+const CountryCoder = await import(/* webpackChunkName: "@ideditor/country-coder" */ '@ideditor/country-coder');
 
 /**
   * Generate a badge for the date a note was created on (the age of it)

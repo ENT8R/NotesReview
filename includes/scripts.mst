@@ -3,11 +3,11 @@
         crossorigin="anonymous"></script>
 
 {{#map}}
-<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"
-        integrity="sha384-RLIyj5q1b5XJTn0tqUhucRZe40nFTocRP91R/NkRJHwAe4XxnTV77FXy/vGLiec2"
+<script src="https://unpkg.com/leaflet.markercluster@1.5.0/dist/leaflet.markercluster.js"
+        integrity="sha384-89yDmbSkL9reFc77m10ZbqLaUMf1sp7FAJs2oAD/rczNnY7I+17yN9KML6tpYpCk"
         crossorigin="anonymous"></script>
-<script src="https://unpkg.com/leaflet-control-geocoder@2.1.0/dist/Control.Geocoder.js"
-        integrity="sha384-QOCZa8b4qLasR97c1l4Mydxbmec1775sueajNGFV0Xo3Wq1G8EDwwybYCF9QqY1R"
+<script src="https://unpkg.com/leaflet-control-geocoder@2.2.0/dist/Control.Geocoder.js"
+        integrity="sha384-MNzcZYQzrn8oiAfogm4YQ/hwqu+C1fNwHVdpElY3kN4yFWru/YZsmFC5jPE8ZUL4"
         crossorigin="anonymous"></script>
 {{/map}}
 
@@ -15,5 +15,4 @@
         integrity="sha384-Q9r1nd0FeP7LjBAYKFt035baNDhMkGYYLFIzolLNUlUvxaBgD972E7bij56RiNgA"
         crossorigin="anonymous"></script>
 
-<script src="{{#expert}}../{{/expert}}dist/js/222.min.js" defer></script>
 <script src="{{#expert}}../{{/expert}}dist/js/main.min.js" defer></script>

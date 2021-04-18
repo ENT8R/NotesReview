@@ -39,15 +39,15 @@
         crossorigin="anonymous">
   {{#map}}
   <link rel="stylesheet"
-        href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"
-        integrity="sha384-lPzjPsFQL6te2x+VxmV6q1DpRxpRk0tmnl2cpwAO5y04ESyc752tnEWPKDfl1olr"
+        href="https://unpkg.com/leaflet.markercluster@1.5.0/dist/MarkerCluster.css"
+        integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV"
         crossorigin="anonymous">
   <link rel="stylesheet"
-        href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"
-        integrity="sha384-5kMSQJ6S4Qj5i09mtMNrWpSi8iXw230pKU76xTmrpezGnNJQzj0NzXjQLLg+jE7k"
+        href="https://unpkg.com/leaflet.markercluster@1.5.0/dist/MarkerCluster.Default.css"
+        integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+"
         crossorigin="anonymous">
   <link rel="stylesheet"
-        href="https://unpkg.com/leaflet-control-geocoder@2.1.0/dist/Control.Geocoder.css"
+        href="https://unpkg.com/leaflet-control-geocoder@2.2.0/dist/Control.Geocoder.css"
         integrity="sha384-gOibXC9S5JpMrpEP0ee6wCSVHjFSEuOzLLzTUmg58qM+mJ1rI8h/aY3lS9YUmo55"
         crossorigin="anonymous">
   {{/map}}

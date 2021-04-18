@@ -1,4 +1,5 @@
 import './polyfills.js';
+import './public-path.js';
 
 import API from './api.js';
 import * as Badges from './badges.js';
@@ -16,8 +17,6 @@ import * as Request from './request.js';
 import * as Theme from './theme.js';
 import Users from './users.js';
 import * as Util from './util.js';
-
-__webpack_public_path__ = Mode.get() === Mode.MAPS ? 'dist/' : '../dist/'; // eslint-disable-line camelcase, no-undef
 
 let map;
 let ui;

@@ -1,4 +1,4 @@
-const anchorme = require('anchorme').default;
+import anchorme from 'anchorme';
 
 const IMAGE_HOSTING_REGEX = {
   imgur: /(http(s)?:\/\/)?i\.imgur\.com\/\w+\.(jpg|png)/gi,

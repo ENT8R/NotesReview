@@ -8,7 +8,6 @@ const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 module.exports = {
   // devtool: 'source-map',
   mode: 'production',
-  watch: true,
   entry: [
     './css/main.scss',
     './js/main.js'
@@ -18,10 +17,8 @@ module.exports = {
     chunkFilename: 'js/[name].min.js',
     publicPath: 'dist/'
   },
-  optimization: {
-    splitChunks: {
-      chunks: 'all'
-    },
+  experiments: {
+    topLevelAwait: true
   },
   devServer: {
     contentBase: __dirname,
