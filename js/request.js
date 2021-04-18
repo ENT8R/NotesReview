@@ -48,7 +48,7 @@ export function build(query, bounds) {
   * @param {MEDIA_TYPE} mediaType
   * @returns {Promise}
   */
-export function get(url, mediaType) {
+export function get(url, mediaType = MEDIA_TYPE.JSON) {
   running = true;
   controller = new AbortController();
 

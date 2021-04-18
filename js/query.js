@@ -63,7 +63,7 @@ export default class Query {
     const { url } = this;
     let result;
     if (typeof url === 'string') {
-      result = await Request.get(url, Request.MEDIA_TYPE.JSON);
+      result = await Request.get(url);
     } else if (Array.isArray(url)) {
       result = {
         type: 'FeatureCollection',
@@ -71,7 +71,7 @@ export default class Query {
       };
 
       for (let i = 0; i < url.length; i++) {
-        const body = await Request.get(url[i], Request.MEDIA_TYPE.JSON);
+        const body = await Request.get(url[i]);
         if (body && body.features) {
           result.features = [...result.features, ...body.features];
         }
