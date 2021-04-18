@@ -41,13 +41,13 @@ export default class Query {
     this.sort = sort || null;
     this.order = order || null;
 
-    this.endpoint = ENDPOINT.SEARCH;
-    this.url = this.build();
-
     // If there is an end date but no start date, set it automatically because otherwise the API is not able to handle this
-    if (this.to && !this.from) {
+    if (!this.from && this.to) {
       this.from = new Date(0).toISOString().slice(0, 10);
     }
+
+    this.endpoint = ENDPOINT.SEARCH;
+    this.url = this.build();
   }
 
   /**
