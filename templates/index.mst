@@ -24,9 +24,9 @@
   {{> modals}}
 
   <div id="content" class="{{#map}}columns col-gapless{{/map}}">
-    {{#map}}<div class="column col-sm-12 col-3">{{/map}}
+    <div id="navigation-container" class="{{#map}}column col-sm-12 col-3{{/map}}">
       {{> nav}}
-    {{#map}}</div>{{/map}}
+    </div>
 
     {{#map}}
     <div id="map-container" class="column col-sm-12 col-9">

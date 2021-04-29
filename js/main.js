@@ -262,19 +262,17 @@ function listener() {
     }, true);
   });
 
-  document.addEventListener('keydown', e => {
-    // Start a new search if the enter button was pressed and there is no ongoing request
-    if (e.which === 13) {
-      // Don't start a new search if the geocoding input is focused
-      if (Mode.get() === Mode.MAPS && document.querySelector('.leaflet-control-geocoder-form input') === document.activeElement) {
-        return;
-      }
-
+  document.addEventListener('keydown', event => {
+    if (event.which === 13) {
+      // Stop an ongoing request if it is already running
       if (Request.isRunning()) {
         return Request.cancel();
       }
 
-      search();
+      // Start a new search if the event was triggered inside the navigation
+      if (document.getElementById('navigation-container').contains(event.target)) {
+        search();
+      }
     }
   });
 
