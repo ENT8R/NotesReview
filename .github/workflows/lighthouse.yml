@@ -9,7 +9,7 @@ jobs:
         uses: treosh/lighthouse-ci-action@v7
         with:
           urls: |
-            https://ent8r.github.io/NotesReview
+            https://ent8r.github.io/NotesReview/
           configPath: '.github/lighthouse/lighthouserc.json'
           uploadArtifacts: true
           temporaryPublicStorage: true
