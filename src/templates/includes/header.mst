@@ -1,7 +1,7 @@
 <header class="navbar px-1">
   <section class="navbar-section">
     <a id="login" class="btn m-1">
-      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-account"></use></svg>
+      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/sprite.svg#account"></use></svg>
       <span class="hide-xs" data-i18n="action.login">Login</span>
     </a>
     <a id="logout" class="btn m-1 d-hide">
@@ -11,11 +11,11 @@
 
     <a id="link" class="btn m-1">
     {{#map}}
-      <svg class="icon"><use xlink:href="dist/svg/icons.svg#sprite-list"></use></svg>
+      <svg class="icon"><use xlink:href="dist/svg/sprite.svg#list"></use></svg>
       <span class="hide-xs" data-i18n="description.showList">Show in a list</span>
     {{/map}}
     {{#expert}}
-      <svg class="icon"><use xlink:href="../dist/svg/icons.svg#sprite-map"></use></svg>
+      <svg class="icon"><use xlink:href="../dist/svg/sprite.svg#map"></use></svg>
       <span class="hide-xs" data-i18n="description.showMap">Show on a map</span>
     {{/expert}}
     </a>
@@ -29,13 +29,13 @@
 
   <section class="navbar-section">
     <button class="btn btn-action modal-trigger m-1" data-modal="help" aria-label="Open frequently asked questions" data-i18n data-i18n-aria-label="accessibility.openFaq">
-      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-help"></use></svg>
+      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/sprite.svg#help"></use></svg>
     </button>
     <button class="btn btn-action modal-trigger m-1" data-modal="share" aria-label="Share the current query" data-i18n data-i18n-aria-label="accessibility.shareQuery">
-      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-share"></use></svg>
+      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/sprite.svg#share"></use></svg>
     </button>
     <button class="btn btn-action modal-trigger m-1" data-modal="settings" aria-label="Open settings" data-i18n data-i18n-aria-label="accessibility.openSettings">
-      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-settings"></use></svg>
+      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/sprite.svg#settings"></use></svg>
     </button>
   </section>
 </header>

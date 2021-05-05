@@ -3,7 +3,7 @@
     <label class="form-label" for="query">
       <span data-i18n="header.query">Query</span>
       <span class="tooltip tooltip-right" data-tooltip="A word or phrase mentioned in the note" data-i18n data-i18n-data-tooltip="description.query">
-        <svg class="icon icon-small"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-help"></use></svg>
+        <svg class="icon icon-small"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/sprite.svg#help"></use></svg>
       </span>
     </label>
     <input class="form-input update-link" id="query" type="text">
@@ -60,9 +60,9 @@
 
   <div class="column {{#map}}col-12{{/map}}{{#expert}}col-6 col-md-6 col-sm-12{{/expert}}">
     <a id="search" class="btn btn-primary btn-lg col-12 {{#map}}tooltip tooltip-right{{/map}}" data-i18n data-i18n-data-tooltip="description.worldwideQuery">
-      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-search"></use></svg>
+      <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/sprite.svg#search"></use></svg>
       <span data-i18n="action.search">Search</span>
-      {{#map}}<svg id="fast-search" class="icon d-hide"><use xlink:href="dist/svg/icons.svg#sprite-flash"></use></svg>{{/map}}
+      {{#map}}<svg id="fast-search" class="icon d-hide"><use xlink:href="dist/svg/sprite.svg#flash"></use></svg>{{/map}}
     </a>
   </div>
 

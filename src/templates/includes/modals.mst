@@ -93,7 +93,7 @@
         <div class="form-group">
           <div class="has-icon-right">
             <input class="form-input" type="text" id="permalink" readonly>
-            <svg id="permalink-copy" class="btn btn-link icon form-icon p-0"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-clipboard"></use></svg>
+            <svg id="permalink-copy" class="btn btn-link icon form-icon p-0"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/sprite.svg#clipboard"></use></svg>
           </div>
         </div>
 
@@ -199,7 +199,7 @@
 
     <div class="modal-footer">
       <a class="btn btn-primary float-left" id="note-link" target="_blank" rel="noopener">
-        <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-external"></use></svg>
+        <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/sprite.svg#external"></use></svg>
         <span data-i18n="action.openstreetmap">OpenStreetMap</span>
       </a>
       <a class="btn btn-link modal-close" data-i18n="action.close">Close</a>
@@ -219,7 +219,7 @@
 
     <div class="modal-footer">
       <a class="btn btn-primary float-left" id="mapillary-link" target="_blank" rel="noopener">
-        <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-external"></use></svg>
+        <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/sprite.svg#external"></use></svg>
         <span data-i18n="action.mapillary">Mapillary</span>
       </a>
       <a class="btn btn-link modal-close" data-i18n="action.close">Close</a>

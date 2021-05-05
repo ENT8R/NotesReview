@@ -16,13 +16,13 @@
       {{#link}}
       <a class="btn btn-primary btn-sm my-1 {{class}}" href="{{link}}"
         {{#remote}}target="remote"{{/remote}}{{^remote}}target="_blank" rel="noopener"{{/remote}}>
-        <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-{{icon}}"></use></svg>
+        <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/sprite.svg#{{icon}}"></use></svg>
         {{text}}
       </a>
       {{/link}}
       {{^link}}
       <button class="btn btn-primary btn-sm my-1 {{class}}">
-        <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/icons.svg#sprite-{{icon}}"></use></svg>
+        <svg class="icon"><use xlink:href="{{#expert}}../{{/expert}}dist/svg/sprite.svg#{{icon}}"></use></svg>
         {{text}}
       </button>
       {{/link}}

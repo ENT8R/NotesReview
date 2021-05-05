@@ -31,7 +31,7 @@ You found an issue or want to propose a new feature? Then please use the [issue 
 
 ---
 
-For further information on how to contribute you might also want to read the [contributing guidelines](https://github.com/ENT8R/NotesReview/blob/master/CONTRIBUTING.md).
+For further information on how to contribute you might also want to read the [contributing guidelines](https://github.com/ENT8R/NotesReview/blob/main/CONTRIBUTING.md).
 
 ## Screenshots
 

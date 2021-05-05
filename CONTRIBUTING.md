@@ -6,7 +6,7 @@ If you want to work on improving the application, the following tips and hints m
 ## Building and running
 NotesReview is a web application and is therefore mainly written in Javascript. `npm` is used as the preferred package manager, `webpack` is used as a module bundler.
 
-You may want to take a look at the [`package.json`](https://github.com/ENT8R/NotesReview/blob/master/package.json) file in order to get an overview on which modules are being used and what commands to run.
+You may want to take a look at the [`package.json`](https://github.com/ENT8R/NotesReview/blob/main/package.json) file in order to get an overview on which modules are being used and what commands to run.
 
 To setup, change and run the application locally, simply follow these commands:
 ```shell

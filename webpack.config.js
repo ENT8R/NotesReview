@@ -9,8 +9,8 @@ module.exports = {
   // devtool: 'source-map',
   mode: 'production',
   entry: [
-    './css/main.scss',
-    './js/main.js'
+    './src/css/main.scss',
+    './src/js/main.js'
   ],
   output: {
     filename: 'js/[name].min.js',
@@ -42,11 +42,12 @@ module.exports = {
       filename: 'css/[name].min.css',
       chunkFilename: 'css/[id].min.css'
     }),
-    new SVGSpritemapPlugin('icons/*.svg', {
+    new SVGSpritemapPlugin('src/svg/*.svg', {
       output: {
-        filename: 'svg/icons.svg'
+        filename: 'svg/sprite.svg'
       },
       sprite: {
+        prefix: false,
         generate: {
           title: false
         }

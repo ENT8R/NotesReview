@@ -5,7 +5,7 @@ const fs = require('fs');
 const COLORS = require('./assets/colors.json');
 
 const VERSION = require('./package.json').version;
-const STRUCTURED_DATA = require('./includes/structuredData.json');
+const STRUCTURED_DATA = require('./src/templates/includes/structuredData.json');
 STRUCTURED_DATA.softwareVersion = VERSION;
 
 /**
@@ -16,13 +16,13 @@ STRUCTURED_DATA.softwareVersion = VERSION;
   * @returns {void}
   */
 function html() {
-  const template = fs.readFileSync('./templates/index.mst', 'utf8');
+  const template = fs.readFileSync('./src/templates/index.mst', 'utf8');
   const partials = {
-    head: fs.readFileSync('./includes/head.mst', 'utf8'),
-    header: fs.readFileSync('./includes/header.mst', 'utf8'),
-    modals: fs.readFileSync('./includes/modals.mst', 'utf8'),
-    nav: fs.readFileSync('./includes/nav.mst', 'utf8'),
-    scripts: fs.readFileSync('./includes/scripts.mst', 'utf8'),
+    head: fs.readFileSync('./src/templates/includes/head.mst', 'utf8'),
+    header: fs.readFileSync('./src/templates/includes/header.mst', 'utf8'),
+    modals: fs.readFileSync('./src/templates/includes/modals.mst', 'utf8'),
+    nav: fs.readFileSync('./src/templates/includes/nav.mst', 'utf8'),
+    scripts: fs.readFileSync('./src/templates/includes/scripts.mst', 'utf8'),
     structuredData: JSON.stringify(STRUCTURED_DATA)
   };
 

@@ -113,7 +113,7 @@ export function status(action) {
   * @returns {String}
   */
 export function report(id) {
-  const icon = Mode.get() === Mode.MAPS ? 'dist/svg/icons.svg#sprite-flag' : '../dist/svg/icons.svg#sprite-flag';
+  const icon = Mode.get() === Mode.MAPS ? 'dist/svg/sprite.svg#flag' : '../dist/svg/sprite.svg#flag';
   return `<a href="${OPENSTREETMAP_SERVER}/reports/new?reportable_type=Note&reportable_id=${id}" target="_blank" rel="noopener">
             <span class="float-right tooltip tooltip-bottom" data-tooltip="${Localizer.message('action.report')}">
               <svg class="icon"><use xlink:href="${icon}"></use></svg>
