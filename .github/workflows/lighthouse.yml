@@ -1,0 +1,15 @@
+name: Lighthouse CI
+on: push
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v7
+        with:
+          urls: |
+            https://ent8r.github.io/NotesReview
+          configPath: '.github/lighthouse/lighthouserc.json'
+          uploadArtifacts: true
+          temporaryPublicStorage: true
