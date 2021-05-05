@@ -2,7 +2,7 @@
     "help": {
         "colors": {
             "title": "What is the meaning of the colours?",
-            "description": "Every colors represents the age of the note",
+            "description": "Every colour represents the age of the note",
             "darkgreen": "Dark Green",
             "green": "Green",
             "lime": "Lime",

@@ -6,7 +6,7 @@
     "start": "npx webpack serve",
     "build": "node build && npx webpack",
     "watch": "npx webpack watch",
-    "lint": "npx eslint js/**.js",
+    "lint": "npx eslint src/js/**.js",
     "test": "npm run lint"
   },
   "author": "ENT8R <info.ent8r@gmail.com>",
