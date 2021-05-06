@@ -1,10 +1,10 @@
-name: Build and Deploy to Github Pages
+name: Deploy to Github Pages
 on:
   push:
     branches:
       - main
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -28,10 +28,6 @@ jobs:
           npm ci
           npm run build
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -39,16 +35,3 @@ jobs:
           publish_dir: ./app/dist
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-
-  lighthouse:
-    needs: deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Audit URLs using Lighthouse
-        uses: treosh/lighthouse-ci-action@v7
-        with:
-          urls: |
-            https://ent8r.github.io/NotesReview/
-          configPath: '.github/lighthouse/lighthouserc.json'
-          uploadArtifacts: true
-          temporaryPublicStorage: true
