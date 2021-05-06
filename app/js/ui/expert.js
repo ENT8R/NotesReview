@@ -2,7 +2,7 @@ import UI from './ui.js';
 import * as Util from '../util.js';
 
 import * as Handlebars from 'handlebars';
-import t from '../../templates/note.hbs?raw';
+import t from '../../templates/dynamic/note.hbs?raw';
 const template = Handlebars.compile(t);
 
 export default class Expert extends UI {

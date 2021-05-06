@@ -1,0 +1,60 @@
+<div class="modal" data-modal="settings">
+  <a class="modal-overlay modal-close" aria-label="Close" data-i18n-aria-label="action.close"></a>
+
+  <div class="modal-container">
+    <div class="modal-header">
+      <div class="modal-title h2 text-center" data-i18n="header.settings">Settings</div>
+    </div>
+
+    <div class="modal-body">
+      <div class="content">
+
+        <h5 data-i18n="settings.theme.title">Select theme</h5>
+        <div class="form-group">
+          <select id="theme-selection" class="form-select setting">
+            <option value="" disabled data-i18n="settings.choose">Choose an option</option>
+            <option value="light" data-i18n="settings.theme.light">Light</option>
+            <option value="dark" data-i18n="settings.theme.dark">Dark</option>
+            <option value="system" data-i18n="settings.theme.system">Use system setting</option>
+          </select>
+        </div>
+
+        <div class="divider"></div>
+
+        <h5 data-i18n="settings.tools.title">Tools</h5>
+        <p class="text-gray m-0" data-i18n="settings.tools.description">Select your favorite tool(s)</p>
+        <div class="form-group">
+          <label class="form-label" data-i18n="settings.tools.editors">Editors</label>
+          <label class="form-checkbox form-inline">
+            <input id="editor-id" type="checkbox" class="setting"><i class="form-icon"></i>
+            <span data-i18n="action.edit.id">iD</span>
+          </label>
+          <label class="form-checkbox form-inline">
+            <input id="editor-josm" type="checkbox" class="setting"><i class="form-icon"></i>
+            <span data-i18n="action.edit.josm">JOSM</span>
+          </label>
+          <label class="form-checkbox form-inline">
+            <input id="editor-level0" type="checkbox" class="setting"><i class="form-icon"></i>
+            <span data-i18n="action.edit.level0">Level0</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-i18n="settings.tools.other">Other</label>
+          <label class="form-checkbox form-inline">
+            <input id="tool-openstreetmap" type="checkbox" class="setting"><i class="form-icon"></i>
+            <span data-i18n="action.openstreetmap">OpenStreetMap</span>
+          </label>
+          <label class="form-checkbox form-inline">
+            <input id="tool-mapillary" type="checkbox" class="setting"><i class="form-icon"></i>
+            <span data-i18n="action.mapillary">Mapillary</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <a class="btn btn-primary modal-close" data-i18n="action.save">Save</a>
+      <a class="btn btn-link modal-close" data-i18n="action.close">Close</a>
+    </div>
+  </div>
+</div>

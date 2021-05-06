@@ -2,7 +2,7 @@ import * as Badges from '../badges.js';
 import Modal from './modal.js';
 
 import * as Handlebars from 'handlebars';
-import t from '../../templates/modals/comment.hbs?raw';
+import t from '../../templates/dynamic/comment.hbs?raw';
 const template = Handlebars.compile(t);
 
 export default class Comments extends Modal {

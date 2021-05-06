@@ -21,7 +21,14 @@
 
   {{> header}}
 
-  {{> modals}}
+  <div id="modals">
+    {{> help}}
+    {{> share}}
+    {{> settings}}
+
+    {{> comments}}
+    {{> mapillary}}
+  </div>
 
   <div id="content" class="{{#map}}columns col-gapless{{/map}}">
     <div id="navigation-container" class="{{#map}}column col-sm-12 col-3{{/map}}">

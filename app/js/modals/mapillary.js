@@ -4,7 +4,7 @@ import * as Localizer from '../localizer.js';
 import * as Request from '../request.js';
 
 import * as Handlebars from 'handlebars';
-import t from '../../templates/modals/mapillary.hbs?raw';
+import t from '../../templates/dynamic/mapillary.hbs?raw';
 const template = Handlebars.compile(t);
 
 export default class Mapillary extends Modal {

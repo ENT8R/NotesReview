@@ -59,7 +59,8 @@ export default () => {
       handlebars({
         partialDirectory: [
           resolve(root, 'templates'),
-          resolve(root, 'templates/includes')
+          resolve(root, 'templates/includes'),
+          resolve(root, 'templates/modals')
         ],
         context: {
           structuredData: JSON.stringify(structuredData)
