@@ -1,0 +1,27 @@
+name: Build and Deploy
+on: push
+#  push:
+#    branches:
+#      - master
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install and Build
+        env:
+          OPENSTREETMAP_SERVER: ${{ secrets.OPENSTREETMAP_SERVER }}
+          OPENSTREETMAP_OAUTH_KEY: ${{ secrets.OPENSTREETMAP_OAUTH_KEY }}
+          OPENSTREETMAP_OAUTH_SECRET: ${{ secrets.OPENSTREETMAP_OAUTH_SECRET }}
+          MAPILLARY_CLIENT_ID: ${{ secrets.MAPILLARY_CLIENT_ID }}
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./app/dist

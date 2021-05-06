@@ -1,19 +1,20 @@
 {
     "root": true,
-    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+      "sourceType": "module"
+    },
     "env": {
-      "node": true,
       "browser": true,
-      "es6": true
+      "es2020": true
     },
     "globals": {
       "L": "readonly",
-      "MAPILLARY_CLIENT_ID": "readonly",
       "osmAuth": "readonly",
+      "__VERSION__": "readonly",
       "OPENSTREETMAP_SERVER": "readonly",
       "OPENSTREETMAP_OAUTH_KEY": "readonly",
       "OPENSTREETMAP_OAUTH_SECRET": "readonly",
-      "VERSION": "readonly"
+      "MAPILLARY_CLIENT_ID": "readonly"
     },
     "extends": ["eslint:recommended"],
     "rules": {

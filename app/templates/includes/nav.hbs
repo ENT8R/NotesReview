@@ -1,0 +1,82 @@
+<div class="columns px-2">
+  <div class="column {{#map}}col-12{{/map}}{{#expert}}col-3 col-md-6 col-sm-12{{/expert}}">
+    <label class="form-label" for="query">
+      <span data-i18n="header.query">Query</span>
+      <span class="tooltip tooltip-right" data-tooltip="A word or phrase mentioned in the note" data-i18n data-i18n-data-tooltip="description.query">
+        <svg class="icon icon-small"><use xlink:href="#icon-help"></use></svg>
+      </span>
+    </label>
+    <input class="form-input update-link" id="query" type="text">
+  </div>
+
+  <div class="column {{#map}}col-6 col-lg-12 col-sm-4{{/map}}{{#expert}}col-1 col-md-2 col-sm-4{{/expert}}">
+    <label class="form-label" for="limit" data-i18n="header.limit">Limit</label>
+    <input class="form-input update-link" id="limit" type="number" value="100" min="0" max="10000">
+  </div>
+
+  <div class="column {{#map}}col-6 col-lg-12 col-sm-8{{/map}}{{#expert}}col-2 col-md-4 col-sm-8{{/expert}}">
+    <label class="form-label" for="user" data-i18n="header.user">User</label>
+    <input class="form-input update-link" id="user" type="text">
+  </div>
+
+  <div class="column {{#map}}col-6 col-md-12 col-sm-6{{/map}}{{#expert}}col-2 col-md-4 col-sm-6{{/expert}}">
+    <label class="form-label" for="from" data-i18n="header.from">From</label>
+    <input class="form-input update-link" id="from" type="date">
+  </div>
+
+  <div class="column {{#map}}col-6 col-md-12 col-sm-6{{/map}}{{#expert}}col-2 col-md-4 col-sm-6{{/expert}}">
+    <label class="form-label" for="to" data-i18n="header.to">To</label>
+    <input class="form-input update-link" id="to" type="date">
+  </div>
+
+  <div class="column {{#map}}col-12{{/map}}{{#expert}}col-2 col-md-4 col-sm-12{{/expert}}">
+    <label class="form-label" for="sort" data-i18n="header.sort">Sort by</label>
+    <select id="sort" class="form-select update-link">
+      <option value="created_at-newest" data-i18n="description.sort.created.desc">Newest</option>
+      <option value="created_at-oldest" data-i18n="description.sort.created.asc">Oldest</option>
+      <option value="updated_at-newest" data-i18n="description.sort.updated.desc">Recently updated</option>
+      <option value="updated_at-oldest" data-i18n="description.sort.updated.asc">Least recently updated</option>
+    </select>
+  </div>
+
+  {{#expert}}<div class="divider column col-12 hide-sm"></div>{{/expert}}
+
+  <div class="column {{#map}}col-6 col-lg-12 col-sm-6{{/map}}{{#expert}}col-3 col-sm-6{{/expert}}">
+    <label class="form-checkbox">
+      <input type="checkbox" class="update-link" id="show-closed">
+      <i class="form-icon"></i>
+      <span data-i18n="description.showClosed">Show closed notes</span>
+    </label>
+  </div>
+
+  <div class="column {{#map}}col-6 col-lg-12 col-sm-6{{/map}}{{#expert}}col-3 col-sm-6{{/expert}}">
+    <label class="form-checkbox">
+      <input type="checkbox" class="update-link" id="hide-anonymous">
+      <i class="form-icon"></i>
+      <span data-i18n="description.hideAnonymous">Hide anonymous notes</span>
+    </label>
+  </div>
+
+
+  <div class="column {{#map}}col-12{{/map}}{{#expert}}col-6 col-md-6 col-sm-12{{/expert}}">
+    <a id="search" class="btn btn-primary btn-lg col-12 {{#map}}tooltip tooltip-right{{/map}}" data-i18n data-i18n-data-tooltip="description.worldwideQuery">
+      <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+      <span data-i18n="action.search">Search</span>
+      {{#map}}<svg id="fast-search" class="icon d-hide"><use xlink:href="#icon-flash"></use></svg>{{/map}}
+    </a>
+  </div>
+
+  <div class="divider column col-12"></div>
+
+  <div id="details" class="columns column col-12 {{#map}}hide-md-only{{/map}}">
+    <div class="column {{#map}}col-12{{/map}}{{#expert}}col-6{{/expert}}">
+      <span id="found-notes" {{#expert}}class="float-left"{{/expert}}></span>
+    </div>
+
+    <div class="column {{#map}}col-12{{/map}}{{#expert}}col-6{{/expert}}">
+      <span id="average-date" {{#expert}}class="float-right"{{/expert}}></span>
+    </div>
+
+    <div class="divider column col-12"></div>
+  </div>
+</div>

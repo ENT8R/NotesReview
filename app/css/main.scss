@@ -1,0 +1,220 @@
+@use 'dark';
+@use 'icons';
+
+/*---------- Content ------------*/
+html, body {
+  height: 100%;
+}
+
+body {
+  &[data-editor-id="false"] .link-editor-id,
+  &[data-editor-josm="false"] .link-editor-josm,
+  &[data-editor-level0="false"] .link-editor-level0,
+
+  &[data-tool-openstreetmap="false"] .link-osm,
+  &[data-tool-mapillary="false"] .link-tool-mapillary,
+
+  &[data-authenticated="false"] .requires-authentication {
+    display: none;
+  }
+}
+
+header.navbar {
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  z-index: 2;
+}
+
+#content {
+  position: absolute;
+  height: calc(100% - 44px);
+  bottom: 0;
+}
+
+.modal-container {
+  max-width: 850px;
+}
+
+#notes {
+  justify-content: space-around;
+}
+
+#notes > .column > .card {
+  border: 0;
+  box-shadow: 0 .3rem 1rem rgba(50,50,50,.2);
+}
+
+@media only screen and (max-width: 600px) {
+  /* Adjustments for the alignment of the map on small screens */
+  #content {
+    flex-direction: column;
+  }
+  #map-container {
+    flex-grow: 1;
+  }
+  #map {
+    height: 300% !important;
+  }
+
+  /* Tooltip for faster search should be shown below the button on small devices */
+  #search::after {
+    bottom: auto;
+  	top: 100%;
+    left: 50%;
+  	transform: translate(-50%,-.4rem);
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 840px) {
+  .hide-md-only {
+    display: none;
+  }
+}
+
+/*---------- Leaflet ------------*/
+#map {
+  height: 100%;
+  z-index: 0;
+}
+
+.leaflet-control-attribution a {
+  color: #302ecd;
+}
+
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+  border: none;
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 0;
+  .leaflet-popup-content {
+    margin: 0;
+    .card {
+      border: 0;
+    }
+  }
+}
+
+/*---------- Other ------------*/
+body.deprecated-browser #deprecation-warning {
+  display: block !important;
+}
+
+.img-preview {
+  display: inline-block;
+  max-height: 200px;
+  body[data-mode="map"] & {
+    max-width: 50%;
+  }
+}
+
+.c-default {
+  cursor: default;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+input:disabled ~ span {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.tooltip::after {
+  max-width: none;
+}
+
+.faq-color {
+  border-radius: .1rem;
+  margin: .25rem 0;
+  padding: 3rem .5rem .5rem;
+  min-height: 140px;
+}
+
+img.marker-icon {
+  filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+/*---------- Liberapay ----------*/
+.liberapay-logo {
+  display: inline-block;
+  background-color: #f6c915;
+  border-radius: 4px;
+  padding: 0px 5px;
+  b {
+    color: black;
+    text-decoration: none;
+    vertical-align: text-bottom;
+  }
+}
+
+/*---------- Mapillary ----------*/
+.mapillary-image {
+  max-width: 320px;
+  height: 100%;
+  max-height: 240px;
+  min-height: 18vh;
+
+  .mapillary-image-link {
+    top: 6px;
+    left: 0px;
+  }
+
+  .mapillary-image-user {
+    z-index: 1;
+    bottom: -24px;
+    right: 0px;
+    font-size: 0.5rem;
+  }
+}
+
+/*---------- Toasts ------------*/
+#toast-container {
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  z-index: 500;
+  > .toast {
+    margin-top: 10px;
+    cursor: default;
+  }
+}
+
+/*---------- Labels ------------*/
+.label-green-dark {
+  background: #2e7d32;
+  color: #fff;
+}
+.label-green {
+  background: #689f38;
+  color: #fff;
+}
+.label-lime {
+  background: #afb42b;
+  color: #fff;
+}
+.label-amber {
+  background: #ffa000;
+  color: #fff;
+}
+.label-orange {
+  background: #f57c00;
+  color: #fff;
+}
+.label-red {
+  background: #e53935;
+  color: #fff;
+}

@@ -1,5 +1,5 @@
 <h1 align="center">
-	<img width="400" src="assets/logos/notesreview.svg" alt="NotesReview">
+	<img width="400" src="app/svg/assets/notesreview.svg" alt="NotesReview">
 </h1>
 
 > Tool for solving OpenStreetMap Notes
