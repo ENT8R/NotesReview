@@ -70,14 +70,6 @@ export default () => {
         iconDirs: [resolve(root, 'svg')],
         symbolId: '[dir]-[name]'
       })
-    ],
-    build: {
-      rollupOptions: {
-        input: {
-          index: resolve(root, 'index.html'),
-          expert: resolve(root, 'expert/index.html')
-        }
-      }
-    }
+    ]
   };
 };

@@ -10,7 +10,6 @@ import Leaflet from './leaflet.js';
 import * as Localizer from './localizer.js';
 import Mapillary from './modals/mapillary.js';
 import Modal from './modals/modal.js';
-import * as Mode from './mode.js';
 import Note from './note.js';
 import Permalink from './permalink.js';
 import Preferences from './preferences.js';
@@ -255,13 +254,18 @@ function listener() {
     toast(Localizer.message('action.copyLinkSuccess'), 'toast-success');
   });
 
-  document.getElementById('link').addEventListener('click', () => {
-    Preferences.set({
-      previous: {
-        url: query.url,
-        endpoint: query.endpoint
-      }
-    }, true);
+  // Change the view based on the currently visible view
+  document.getElementById('toggle-view').addEventListener('click', () => {
+    const active = document.querySelector('#toggle-view div:not(.d-hide)');
+    const next = document.querySelector('#toggle-view div.d-hide');
+    active.classList.add('d-hide');
+    next.classList.remove('d-hide');
+
+    const { view } = next.dataset;
+    document.querySelector(`#${active.dataset.view}`).classList.add('d-hide');
+    document.querySelector(`#${view}`).classList.remove('d-hide');
+    ui.view = view;
+    document.body.dataset.view = view;
   });
 
   document.addEventListener('keydown', event => {
@@ -271,8 +275,8 @@ function listener() {
         return Request.cancel();
       }
 
-      // Start a new search if the event was triggered inside the navigation
-      if (document.getElementById('navigation-container').contains(event.target)) {
+      // Only start a new search if the event was triggered inside the filter modal
+      if (document.querySelector('.modal[data-modal="filter"]').contains(event.target)) {
         search();
       }
     }
@@ -282,16 +286,15 @@ function listener() {
     // Remove the iframe in order to prevent a restoring of the content when reloading the page
     document.getElementById('remote').remove();
 
-    // Save the map state
-    if (Mode.get() === Mode.MAPS) {
-      const center = map.center();
-      Preferences.set({
-        map: {
-          center: [center.lat, center.lng],
-          zoom: map.zoom()
-        }
-      });
-    }
+    // Save the state of the view
+    const center = map.center();
+    Preferences.set({
+      view: ui.view,
+      map: {
+        center: [center.lat, center.lng],
+        zoom: map.zoom()
+      }
+    });
   });
 
   // Dynamic listeners
@@ -318,14 +321,13 @@ function listener() {
   * @returns {void}
   */
 function searchParameter() {
-  const params = new URL(window.location.href).searchParams;
-  params.forEach((value, key) => {
+  const parameter = new URL(window.location.href).searchParams;
+  parameter.forEach((value, key) => {
     switch (key) {
     case 'map':
-      if (Mode.get() === Mode.MAPS) {
-        const position = value.split('/');
-        map.setView([position[1], position[2]], position[0]);
-      }
+      // TODO: Fix eslint warning
+      const position = value.split('/'); // eslint-disable-line no-case-declarations
+      map.setView([position[1], position[2]], position[0]);
       break;
     case 'query':
       document.getElementById('query').value = value;
@@ -344,11 +346,11 @@ function searchParameter() {
       break;
     case 'sort':
       document.getElementById('sort').value =
-        `${value === 'updated_at' ? 'updated_at' : 'created_at'}-${params.get('order') === 'oldest' ? 'oldest' : 'newest'}`;
+        `${value === 'updated_at' ? 'updated_at' : 'created_at'}-${parameter.get('order') === 'oldest' ? 'oldest' : 'newest'}`;
       break;
     case 'order':
       document.getElementById('sort').value =
-        `${params.get('sort') === 'updated_at' ? 'updated_at' : 'created_at'}-${value === 'oldest' ? 'oldest' : 'newest'}`;
+        `${parameter.get('sort') === 'updated_at' ? 'updated_at' : 'created_at'}-${value === 'oldest' ? 'oldest' : 'newest'}`;
       break;
     case 'closed':
       document.getElementById('show-closed').checked = value === 'true' ? true : false;
@@ -363,6 +365,7 @@ function searchParameter() {
   if (uri.indexOf('?') > 0) {
     window.history.replaceState({}, document.title, uri.substring(0, uri.indexOf('?')));
   }
+  return parameter;
 }
 
 /**
@@ -418,13 +421,7 @@ function settings() {
   await Localizer.init();
   Modal.init();
 
-  const mode = Mode.get() === Mode.MAPS ? 'map' : 'expert';
-  const { default: UI } = await import(`./ui/${mode}.js`);
-  ui = new UI();
-
-  if (mode === Mode.MAPS) {
-    map = new Leaflet('map', tooltip);
-  }
+  map = new Leaflet('map', tooltip);
 
   const authenticated = api.authenticated();
   document.body.dataset.authenticated = authenticated;
@@ -439,7 +436,16 @@ function settings() {
 
   listener();
   settings();
-  searchParameter();
+
+  const parameter = searchParameter();
+  const view = parameter.get('view') || Preferences.get('view');
+  const { default: UI } = await import('./ui/ui.js');
+  ui = new UI(view);
+
+  document.querySelector(`#toggle-view div[data-view="${view}"]`).classList.remove('d-hide');
+  document.querySelector(`#${view}`).classList.remove('d-hide');
+  document.body.dataset.view = view;
+
   Permalink();
   search();
 })();

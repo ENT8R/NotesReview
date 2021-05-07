@@ -1,5 +1,4 @@
 import Modal from './modal.js';
-import * as Mode from '../mode.js';
 import * as Localizer from '../localizer.js';
 import * as Request from '../request.js';
 
@@ -39,8 +38,7 @@ export default class Mapillary extends Modal {
 
     content.innerHTML = template({
       images,
-      link,
-      expert: Mode.get() === Mode.EXPERT
+      link
     });
     Localizer.localize(document.getElementById('mapillary'));
 

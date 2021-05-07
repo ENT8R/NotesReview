@@ -6,28 +6,32 @@
     </a>
     <a id="logout" class="btn m-1 d-hide">
       <figure id="user-avatar" class="avatar avatar-sm mx-1 mb-1"></figure>
-      <span data-i18n="action.logout">Login</span>
+      <span class="hide-xs" data-i18n="action.logout">Login</span>
     </a>
 
-    <a id="link" class="btn m-1">
-    {{#map}}
-      <svg class="icon"><use xlink:href="#icon-list"></use></svg>
-      <span class="hide-xs" data-i18n="description.showList">Show in a list</span>
-    {{/map}}
-    {{#expert}}
-      <svg class="icon"><use xlink:href="#icon-map"></use></svg>
-      <span class="hide-xs" data-i18n="description.showMap">Show on a map</span>
-    {{/expert}}
+    <a id="toggle-view" class="btn m-1">
+      <div data-view="map" class="d-hide">
+        <svg class="icon"><use xlink:href="#icon-list"></use></svg>
+        <span class="hide-xs" data-i18n="description.showList">Show in a list</span>
+      </div>
+      <div data-view="list" class="d-hide">
+        <svg class="icon"><use xlink:href="#icon-map"></use></svg>
+        <span class="hide-xs" data-i18n="description.showMap">Show on a map</span>
+      </div>
     </a>
   </section>
 
   <section class="navbar-section">
-    <svg class="p-centered hide-md" height="44" viewBox="0 -12 706 176">
+    <svg class="p-centered p-1 hide-md" height="44">
       <use xlink:href="#assets-notesreview-horizontal"></use>
     </svg>
   </section>
 
   <section class="navbar-section">
+    <button class="btn btn-primary modal-trigger flex-grow" data-modal="filter" aria-label="Apply a filter to the selection" data-i18n>
+      <svg class="icon"><use xlink:href="#icon-filter"></use></svg>
+      <span class="hide-xs" data-i18n>Filter</span>
+    </button>
     <button class="btn btn-action modal-trigger m-1" data-modal="help" aria-label="Open frequently asked questions" data-i18n data-i18n-aria-label="accessibility.openFaq">
       <svg class="icon"><use xlink:href="#icon-help"></use></svg>
     </button>

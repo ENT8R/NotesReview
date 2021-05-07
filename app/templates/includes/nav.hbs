@@ -1,5 +1,5 @@
 <div class="columns px-2">
-  <div class="column {{#map}}col-12{{/map}}{{#expert}}col-3 col-md-6 col-sm-12{{/expert}}">
+  <div class="column col-12">
     <label class="form-label" for="query">
       <span data-i18n="header.query">Query</span>
       <span class="tooltip tooltip-right" data-tooltip="A word or phrase mentioned in the note" data-i18n data-i18n-data-tooltip="description.query">
@@ -9,27 +9,27 @@
     <input class="form-input update-link" id="query" type="text">
   </div>
 
-  <div class="column {{#map}}col-6 col-lg-12 col-sm-4{{/map}}{{#expert}}col-1 col-md-2 col-sm-4{{/expert}}">
+  <div class="column col-6 col-sm-3">
     <label class="form-label" for="limit" data-i18n="header.limit">Limit</label>
     <input class="form-input update-link" id="limit" type="number" value="100" min="0" max="10000">
   </div>
 
-  <div class="column {{#map}}col-6 col-lg-12 col-sm-8{{/map}}{{#expert}}col-2 col-md-4 col-sm-8{{/expert}}">
+  <div class="column col-6 col-sm-9">
     <label class="form-label" for="user" data-i18n="header.user">User</label>
     <input class="form-input update-link" id="user" type="text">
   </div>
 
-  <div class="column {{#map}}col-6 col-md-12 col-sm-6{{/map}}{{#expert}}col-2 col-md-4 col-sm-6{{/expert}}">
+  <div class="column col-4 col-sm-12">
     <label class="form-label" for="from" data-i18n="header.from">From</label>
     <input class="form-input update-link" id="from" type="date">
   </div>
 
-  <div class="column {{#map}}col-6 col-md-12 col-sm-6{{/map}}{{#expert}}col-2 col-md-4 col-sm-6{{/expert}}">
+  <div class="column col-4 col-sm-12">
     <label class="form-label" for="to" data-i18n="header.to">To</label>
     <input class="form-input update-link" id="to" type="date">
   </div>
 
-  <div class="column {{#map}}col-12{{/map}}{{#expert}}col-2 col-md-4 col-sm-12{{/expert}}">
+  <div class="column col-4 col-sm-12">
     <label class="form-label" for="sort" data-i18n="header.sort">Sort by</label>
     <select id="sort" class="form-select update-link">
       <option value="created_at-newest" data-i18n="description.sort.created.desc">Newest</option>
@@ -39,9 +39,7 @@
     </select>
   </div>
 
-  {{#expert}}<div class="divider column col-12 hide-sm"></div>{{/expert}}
-
-  <div class="column {{#map}}col-6 col-lg-12 col-sm-6{{/map}}{{#expert}}col-3 col-sm-6{{/expert}}">
+  <div class="column col-6 col-sm-12">
     <label class="form-checkbox">
       <input type="checkbox" class="update-link" id="show-closed">
       <i class="form-icon"></i>
@@ -49,7 +47,7 @@
     </label>
   </div>
 
-  <div class="column {{#map}}col-6 col-lg-12 col-sm-6{{/map}}{{#expert}}col-3 col-sm-6{{/expert}}">
+  <div class="column col-6 col-sm-12">
     <label class="form-checkbox">
       <input type="checkbox" class="update-link" id="hide-anonymous">
       <i class="form-icon"></i>
@@ -57,26 +55,14 @@
     </label>
   </div>
 
-
-  <div class="column {{#map}}col-12{{/map}}{{#expert}}col-6 col-md-6 col-sm-12{{/expert}}">
-    <a id="search" class="btn btn-primary btn-lg col-12 {{#map}}tooltip tooltip-right{{/map}}" data-i18n data-i18n-data-tooltip="description.worldwideQuery">
-      <svg class="icon"><use xlink:href="#icon-search"></use></svg>
-      <span data-i18n="action.search">Search</span>
-      {{#map}}<svg id="fast-search" class="icon d-hide"><use xlink:href="#icon-flash"></use></svg>{{/map}}
-    </a>
-  </div>
-
-  <div class="divider column col-12"></div>
-
-  <div id="details" class="columns column col-12 {{#map}}hide-md-only{{/map}}">
-    <div class="column {{#map}}col-12{{/map}}{{#expert}}col-6{{/expert}}">
-      <span id="found-notes" {{#expert}}class="float-left"{{/expert}}></span>
+  <!-- TODO: Show this information somewhere else -->
+  <div id="details" class="columns column col-12">
+    <div class="column col-6 col-sm-12">
+      <span id="found-notes"></span>
     </div>
 
-    <div class="column {{#map}}col-12{{/map}}{{#expert}}col-6{{/expert}}">
-      <span id="average-date" {{#expert}}class="float-right"{{/expert}}></span>
+    <div class="column col-6 col-sm-12">
+      <span id="average-date"></span>
     </div>
-
-    <div class="divider column col-12"></div>
   </div>
 </div>

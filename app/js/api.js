@@ -1,11 +1,9 @@
-import * as Mode from './mode.js';
-
 const auth = osmAuth({
   url: OPENSTREETMAP_SERVER,
   oauth_consumer_key: OPENSTREETMAP_OAUTH_KEY, // eslint-disable-line camelcase
   oauth_secret: OPENSTREETMAP_OAUTH_SECRET, // eslint-disable-line camelcase
   auto: true,
-  landing: Mode.get() === Mode.MAPS ? 'landing.html' : '../landing.html'
+  landing: 'landing.html'
 });
 
 export default class API {

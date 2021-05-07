@@ -47,12 +47,10 @@ export default class Leaflet {
         );
       });
 
-      if (L.Control.geocoder) {
-        L.Control.geocoder({
-          placeholder: Localizer.message('action.search'),
-          errorMessage: Localizer.message('description.nothingFound')
-        }).addTo(this.map);
-      }
+      L.Control.geocoder({
+        placeholder: Localizer.message('action.search'),
+        errorMessage: Localizer.message('description.nothingFound')
+      }).addTo(this.map);
 
       this.tiles();
       document.addEventListener('color-scheme-changed', () => this.tiles());
@@ -61,6 +59,16 @@ export default class Leaflet {
     if (move) {
       this.map.on('move', move);
     }
+  }
+
+  /**
+    * Invalidate the map to trigger a redraw
+    *
+    * @function
+    * @returns {void}
+    */
+  resize() {
+    this.map.invalidateSize();
   }
 
   /**
@@ -95,31 +103,6 @@ export default class Leaflet {
     */
   addLayer(layer) {
     this.map.addLayer(layer);
-  }
-
-  /**
-    * Remove all current layers from the map but keep the tiles
-    *
-    * @function
-    * @returns {void}
-    */
-  removeLayers() {
-    this.map.eachLayer(layer => {
-      if (layer !== tileLayer) {
-        this.map.removeLayer(layer);
-      }
-    });
-  }
-
-  /**
-    * Add a marker at the specified position
-    *
-    * @function
-    * @param {LatLng} position
-    * @returns {void}
-    */
-  marker(position) {
-    L.marker(position).addTo(this.map);
   }
 
   /**

@@ -1,19 +1,68 @@
+import MapView from './map.js';
+import ListView from './list.js';
+import * as Util from '../util.js';
+
+const Views = {
+  map: new MapView(),
+  list: new ListView()
+};
+
 export default class UI {
   /**
-    * Constructor for an abstract view class (e.g. a map or a list)
+    * Constructor for controlling the view (e.g. a map or a list)
     *
     * @constructor
+    * @param {View} view
     */
-  constructor() {
-    if (new.target === UI) {
-      throw new TypeError('Abstract class "UI" cannot be instantiated directly');
-    }
-    if (this.show === undefined) {
-      throw new TypeError('Must override method show()');
-    }
-
+  constructor(view) {
     this.notes = [];
     this.query = null;
+    this.view = view;
+  }
+
+  set view(view) {
+    const values = Object.keys(Views);
+    if (!values.includes(view)) {
+      throw new TypeError(`Argument must be one of ${values.join(', ')}`);
+    }
+    this._view = {
+      name: view,
+      handler: Views[view]
+    };
+    this.reload();
+  }
+
+  get view() {
+    return this._view.name;
+  }
+
+  /**
+    * Delegate the information to all views
+    *
+    * @function
+    * @param {Array} notes
+    * @param {Query} query
+    * @param {Boolean} reload
+    * @returns {Promise}
+    */
+  show(notes, query, reload) {
+    this.query = query;
+
+    notes = notes.filter(note => Util.isNoteVisible(note, query));
+    this.notes = notes;
+
+    const amount = notes.length;
+    const average = notes.reduce((accumulator, current) => accumulator + current.created.getTime(), 0) / amount;
+
+    notes.forEach(note => {
+      this._view.handler.add(note, query);
+    });
+    this._view.handler.apply(reload);
+
+    return Promise.resolve({
+      amount,
+      average: new Date(average)
+    });
   }
 
   /**

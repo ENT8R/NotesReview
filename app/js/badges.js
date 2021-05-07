@@ -1,5 +1,4 @@
 import * as Localizer from './localizer.js';
-import * as Mode from './mode.js';
 import Users from './users.js';
 import * as Util from './util.js';
 
@@ -17,7 +16,7 @@ import * as CountryCoder from '@ideditor/country-coder';
 export function age(color, date, navigation) {
   let location = 'bottom';
   if (navigation) {
-    location = Mode.get() === Mode.MAPS ? 'right' : 'left';
+    location = 'right';
   }
 
   return `

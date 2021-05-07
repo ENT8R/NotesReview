@@ -1,5 +1,4 @@
 import Leaflet from './leaflet.js';
-import * as Mode from './mode.js';
 import * as Request from './request.js';
 
 /**
@@ -14,7 +13,8 @@ export default function update() {
 
   const [ sort, order ] = document.getElementById('sort').value.split('-');
 
-  let data = clean({
+  const data = clean({
+    view: document.body.dataset.view,
     query: document.getElementById('query').value,
     limit: document.getElementById('limit').value,
     closed: document.getElementById('show-closed').checked,
@@ -26,18 +26,13 @@ export default function update() {
     anonymous: !document.getElementById('hide-anonymous').checked
   });
 
-  if (Mode.get() === Mode.MAPS && document.getElementById('show-map').checked) {
+  if (document.getElementById('show-map').checked) {
     const map = new Leaflet('map');
     data.map = `${map.zoom()}/${map.center().lat}/${map.center().lng}`;
   }
 
   url.search = Request.encodeQueryData(data);
   document.getElementById('permalink').value = url.toString();
-
-  // Map position and zoom is not needed as an URL parameter to switch between views
-  delete data.map;
-  data = Request.encodeQueryData(data);
-  document.getElementById('link').href = Mode.get() === Mode.MAPS ? `./expert/?${data}` : `../?${data}`;
 }
 
 /**

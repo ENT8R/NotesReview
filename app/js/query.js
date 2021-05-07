@@ -1,5 +1,4 @@
 import Leaflet from './leaflet.js';
-import * as Mode from './mode.js';
 import Note from './note.js';
 import * as Request from './request.js';
 import Users from './users.js';
@@ -118,35 +117,29 @@ export default class Query {
   build() {
     let result;
 
-    if (Mode.get() === Mode.MAPS) {
-      const map = new Leaflet('map');
-      const size = map.boundsSize();
+    const map = new Leaflet('map');
+    const size = map.boundsSize();
 
-      if (size < 0.25) {
-        this.endpoint = ENDPOINT.DEFAULT;
-        // Search only in a single bounding box
-        result = Request.build(this, map.bounds().toBBoxString());
-      } else if (size >= 0.25 && size <= 1) {
-        this.endpoint = ENDPOINT.DEFAULT;
-        result = [];
-        // Split the bounding box into four parts
-        const bounds = map.splitBounds(map.bounds(), 1);
-        bounds.forEach(bbox => {
-          result.push(Request.build(this, bbox.toBBoxString()));
-        });
-      } else if (size >= 1 && size <= 4) {
-        this.endpoint = ENDPOINT.DEFAULT;
-        result = [];
-        // Split the bounding box into sixteen parts
-        const bounds = map.splitBounds(map.bounds(), 2);
-        bounds.forEach(bbox => {
-          result.push(Request.build(this, bbox.toBBoxString()));
-        });
-      } else {
-        this.endpoint = ENDPOINT.SEARCH;
-        result = Request.build(this);
-      }
-
+    if (size > 0 && size < 0.25) {
+      this.endpoint = ENDPOINT.DEFAULT;
+      // Search only in a single bounding box
+      result = Request.build(this, map.bounds().toBBoxString());
+    } else if (size >= 0.25 && size <= 1) {
+      this.endpoint = ENDPOINT.DEFAULT;
+      result = [];
+      // Split the bounding box into four parts
+      const bounds = map.splitBounds(map.bounds(), 1);
+      bounds.forEach(bbox => {
+        result.push(Request.build(this, bbox.toBBoxString()));
+      });
+    } else if (size >= 1 && size <= 4) {
+      this.endpoint = ENDPOINT.DEFAULT;
+      result = [];
+      // Split the bounding box into sixteen parts
+      const bounds = map.splitBounds(map.bounds(), 2);
+      bounds.forEach(bbox => {
+        result.push(Request.build(this, bbox.toBBoxString()));
+      });
     } else {
       this.endpoint = ENDPOINT.SEARCH;
       result = Request.build(this);

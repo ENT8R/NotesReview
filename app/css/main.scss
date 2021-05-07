@@ -23,6 +23,7 @@ header.navbar {
   position: fixed;
   width: 100%;
   background-color: white;
+  box-shadow: 0 10px 10px -10px #546e7a;
   z-index: 2;
 }
 
@@ -34,42 +35,6 @@ header.navbar {
 
 .modal-container {
   max-width: 850px;
-}
-
-#notes {
-  justify-content: space-around;
-}
-
-#notes > .column > .card {
-  border: 0;
-  box-shadow: 0 .3rem 1rem rgba(50,50,50,.2);
-}
-
-@media only screen and (max-width: 600px) {
-  /* Adjustments for the alignment of the map on small screens */
-  #content {
-    flex-direction: column;
-  }
-  #map-container {
-    flex-grow: 1;
-  }
-  #map {
-    height: 300% !important;
-  }
-
-  /* Tooltip for faster search should be shown below the button on small devices */
-  #search::after {
-    bottom: auto;
-  	top: 100%;
-    left: 50%;
-  	transform: translate(-50%,-.4rem);
-  }
-}
-
-@media only screen and (min-width: 600px) and (max-width: 840px) {
-  .hide-md-only {
-    display: none;
-  }
 }
 
 /*---------- Leaflet ------------*/
@@ -105,9 +70,7 @@ body.deprecated-browser #deprecation-warning {
 .img-preview {
   display: inline-block;
   max-height: 200px;
-  body[data-mode="map"] & {
-    max-width: 50%;
-  }
+  max-width: 50%;
 }
 
 .c-default {
@@ -116,6 +79,10 @@ body.deprecated-browser #deprecation-warning {
 
 .m-auto {
   margin: auto;
+}
+
+.flex-grow {
+  flex-grow: 1;
 }
 
 input:disabled ~ span {

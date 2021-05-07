@@ -1,1 +1,54 @@
-{{> main mode="map" map=true }}
+<!DOCTYPE html>
+<html>
+
+{{> head}}
+
+<body>
+
+  <div id="toast-container">
+    <noscript>
+      <div class="toast toast-error">
+        NotesReview is written in JavaScript and it seems that you deactivated it.
+        Please enable JavaScript in order to use NotesReview.
+      </div>
+    </noscript>
+
+    <div id="deprecation-warning" class="toast toast-warning d-hide" data-i18n="description.deprecationWarning">
+      The browser you are currently using does not support NotesReview.
+      Please consider to switch to another browser to be able to use NotesReview.
+    </div>
+  </div>
+
+  {{> header}}
+
+  <div id="modals">
+    {{> filter}}
+    {{> help}}
+    {{> share}}
+    {{> settings}}
+
+    {{> comments}}
+    {{> mapillary}}
+  </div>
+
+  <div id="content" class="columns col-gapless col-12">
+    <div id="map" class="d-hide col-12"></div>
+    <div id="list" class="d-hide columns m-2"></div>
+  </div>
+
+  <div id="preloader" class="columns overlay d-hide">
+    <div class="col-3 col-md-6 col-sm-8 m-auto">
+      <progress class="progress my-2" max="100"></progress>
+      <a id="cancel" class="btn btn-primary btn-lg col-12 my-2">
+        <svg class="icon"><use xlink:href="#icon-close"></use></svg>
+        <span data-i18n="action.cancel">Cancel</span>
+      </a>
+    </div>
+  </div>
+
+  <iframe id="remote" name="remote" class="d-hide"></iframe>
+
+  {{> scripts}}
+
+</body>
+</html>

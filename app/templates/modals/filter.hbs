@@ -1,0 +1,23 @@
+<div class="modal" data-modal="filter">
+  <a class="modal-overlay modal-close" aria-label="Close" data-i18n-aria-label="action.close"></a>
+
+  <div class="modal-container">
+    <div class="modal-body">
+      <div class="content">
+        {{> nav}}
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <a id="search" class="btn btn-primary btn-lg modal-close float-left tooltip"
+                     data-i18n data-i18n-data-tooltip="description.worldwideQuery">
+        <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+        <!-- TODO: Maybe change wording to filter or apply? -->
+        <span data-i18n="action.search">Search</span>
+        <svg id="fast-search" class="icon d-hide"><use xlink:href="#icon-flash"></use></svg>
+      </a>
+
+      <a class="btn btn-link modal-close" data-i18n="action.close">Close</a>
+    </div>
+  </div>
+</div>
