@@ -21,17 +21,24 @@
     </a>
   </section>
 
-  <section class="navbar-section">
-    <svg class="p-centered p-1 hide-md" height="44">
+  <section class="navbar-section hide-md">
+    <svg class="p-centered p-1" height="44">
       <use xlink:href="#assets-notesreview-horizontal"></use>
     </svg>
   </section>
 
   <section class="navbar-section">
-    <button class="btn btn-primary modal-trigger flex-grow" data-modal="filter" aria-label="Apply a filter to the selection" data-i18n>
+    <button id="search" class="btn btn-primary tooltip tooltip-bottom flex-grow m-1" data-i18n data-i18n-data-tooltip="description.worldwideQuery">
+      <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+      <span class="hide-xs" data-i18n="action.search">Search</span>
+      <svg id="fast-search" class="icon d-hide"><use xlink:href="#icon-flash"></use></svg>
+    </button>
+    <!-- TODO: Add translation -->
+    <button class="btn btn-primary modal-trigger flex-grow m-1" data-modal="filter" aria-label="Apply a filter to the selection" data-i18n>
       <svg class="icon"><use xlink:href="#icon-filter"></use></svg>
       <span class="hide-xs" data-i18n>Filter</span>
     </button>
+
     <button class="btn btn-action modal-trigger m-1" data-modal="help" aria-label="Open frequently asked questions" data-i18n data-i18n-aria-label="accessibility.openFaq">
       <svg class="icon"><use xlink:href="#icon-help"></use></svg>
     </button>
