@@ -3,24 +3,11 @@
 
   <div class="modal-container">
     <div class="modal-body">
-      <div class="content">
-        <div id="comments" class="clear-on-modal-close"></div>
-
-        <div class="form-group">
-          <textarea id="note-comment" class="form-input requires-authentication" laceholder="Write a comment for all other users"
-                    rows="3" data-i18n data-i18n-placeholder="comments.inputPlaceholder"></textarea>
-        </div>
-
-        <div id="note-comment-actions" class="btn-group btn-group-block d-hide requires-authentication">
-          <button class="btn comment-action" data-action="comment" data-i18n="action.comment">Comment</button>
-          <button class="btn comment-action" data-action="close" data-i18n="action.commentClose">Comment and close</button>
-          <button class="btn comment-action" data-action="reopen" data-i18n="action.commentReopen">Reopen and comment</button>
-        </div>
-      </div>
+      <div id="modal-comments-content" class="content clear-on-modal-close"></div>
     </div>
 
     <div class="modal-footer">
-      <a class="btn btn-primary float-left" id="note-link" target="_blank" rel="noopener">
+      <a id="modal-comments-note-link" class="btn btn-primary float-left" target="_blank" rel="noopener">
         <svg class="icon"><use xlink:href="#icon-external"></use></svg>
         <span data-i18n="action.openstreetmap">OpenStreetMap</span>
       </a>

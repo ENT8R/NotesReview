@@ -191,31 +191,17 @@ function listener() {
     document.body.dataset.authenticated = false;
   });
 
-  document.getElementById('note-comment').addEventListener('input', () => {
-    const text = document.getElementById('note-comment').value.trim();
-    if (text === '') {
-      document.getElementById('note-comment-actions').classList.add('d-hide');
-    } else {
-      document.getElementById('note-comment-actions').classList.remove('d-hide');
+  document.addEventListener('input', event => {
+    // Listen for changes of the note input and update the buttons accordingly
+    if (event.target.classList.contains('note-comment')) {
+      const text = event.target.value.trim();
+      const actions = event.target.parentElement.querySelector('.note-comment-actions');
+      if (text === '') {
+        actions.classList.add('d-hide');
+      } else {
+        actions.classList.remove('d-hide');
+      }
     }
-  });
-
-  document.getElementsByClassName('comment-action').forEach(element => {
-    element.addEventListener('click', () => {
-      element.classList.add('loading');
-
-      const id = Number.parseInt(document.getElementById('comments').dataset.noteId);
-      const text = document.getElementById('note-comment').value.trim();
-
-      api.comment(id, text, element.dataset.action).then(note => {
-        ui.update(id, new Note(JSON.parse(note))).then(details);
-        Comments.load(ui.get(id));
-      }).catch(error => {
-        console.log(error); // eslint-disable-line no-console
-      }).finally(() => {
-        element.classList.remove('loading');
-      });
-    });
   });
 
   document.getElementsByClassName('setting').forEach(element => {
@@ -309,6 +295,23 @@ function listener() {
     if (mapillaryModalTrigger) {
       const id = Number.parseInt(mapillaryModalTrigger.closest('[data-note-id]').dataset.noteId);
       Mapillary.load(ui.get(id));
+    }
+
+    const commentAction = event.target.closest('.comment-action');
+    if (commentAction) {
+      commentAction.classList.add('loading');
+
+      const id = Number.parseInt(commentAction.closest('[data-note-id]').dataset.noteId);
+      const text = commentAction.parentElement.parentElement.querySelector('.note-comment').value.trim();
+
+      api.comment(id, text, commentAction.dataset.action).then(note => {
+        ui.update(id, new Note(JSON.parse(note))).then(details);
+        Comments.load(ui.get(id));
+      }).catch(error => {
+        console.log(error); // eslint-disable-line no-console
+      }).finally(() => {
+        commentAction.classList.remove('loading');
+      });
     }
   });
 }

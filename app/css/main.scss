@@ -27,10 +27,11 @@ header.navbar {
   z-index: 2;
 }
 
-#content {
+main {
   position: absolute;
   height: calc(100% - 44px);
   bottom: 0;
+  width: 100%;
 }
 
 .modal-container {
@@ -62,7 +63,7 @@ header.navbar {
   }
 }
 
-/*---------- Other ------------*/
+/*---------- Other utility classes ------------*/
 body.deprecated-browser #deprecation-warning {
   display: block !important;
 }

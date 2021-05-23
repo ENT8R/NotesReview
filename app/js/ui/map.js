@@ -1,9 +1,5 @@
 import Leaflet from '../leaflet.js';
 
-import * as Handlebars from 'handlebars';
-import t from '../../templates/dynamic/note.hbs?raw';
-const template = Handlebars.compile(t);
-
 export default class Map {
   constructor() {
     this.cluster = L.markerClusterGroup({
@@ -33,24 +29,12 @@ export default class Map {
 
     const marker = L.marker(note.coordinates, {
       icon: new L.divIcon({
-        html: `<img alt="" src="${icon}" class="marker-icon">`,
+        html: `<img alt="" src="${icon}" class="marker-icon comments-modal-trigger" data-note-id="${note.id}">`,
         iconSize: [25, 40],// [width, height]
         iconAnchor: [25 / 2, 40], // [width / 2, height]
         popupAnchor: [0, -30],
         className: 'marker-icon'
       })
-    });
-    /* marker.on('click', event => {
-      console.log(event);
-    });*/
-    marker.bindPopup(template({
-      id: note.id,
-      badges: note.badges,
-      comment: note.comments[0].html,
-      actions: note.actions
-    }), {
-      // Expand the width of the popup if there is more than one image
-      maxWidth: note.comments[0].images.length > 1 ? document.getElementById('map').offsetWidth - 200 : 350,
     });
     this.markers.push(marker);
   }

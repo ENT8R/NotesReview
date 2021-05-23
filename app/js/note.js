@@ -1,5 +1,5 @@
 import * as Badges from './badges.js';
-import Linkify from './linkify.js';
+import Comment from './comment.js';
 import * as Localizer from './localizer.js';
 import * as Util from './util.js';
 
@@ -28,7 +28,7 @@ export default class Note {
     this.status = feature.properties.status;
     this.coordinates = feature.geometry.coordinates.reverse();
 
-    this.comments = this.parseComments(feature.properties.comments);
+    this.comments = feature.properties.comments.map(comment => new Comment(comment));
     this.users = this.comments.filter(comment => comment.uid !== null).map(comment => comment.uid);
     this.anonymous = this.comments[0].anonymous;
     this.user = this.comments[0].user;
@@ -121,7 +121,7 @@ export default class Note {
   }
 
   /**
-    * Dynamically creates all possible badges
+    * Create all necessary badges dynamically
     *
     * @function
     * @returns {Object}
@@ -134,40 +134,5 @@ export default class Note {
       user: Badges.user(this.comments[0].uid, this.anonymous),
       report: Badges.report(this.id)
     };
-  }
-
-  /**
-    * Parses the existing comments
-    *
-    * @function
-    * @param {Array} comments
-    * @returns {Array}
-    */
-  parseComments(comments) {
-    const texts = [];
-
-    for (let i = comments.length - 1; i >= 0; i--) {
-      const comment = comments[i];
-      comment.anonymous = comment.user ? false : true;
-      if (comment.anonymous) {
-        comment.user = Localizer.message('note.anonymous');
-        comment.uid = null;
-      }
-      comment.date = new Date(comment.date.replace(/-/g, '/'));
-      comment.color = Util.parseDate(comment.date);
-
-      const linkified = Linkify(comment.text);
-      comment.html = linkified.html;
-      comment.images = linkified.images;
-
-      // TODO: in some cases the API might supply multiple, not unique comments,
-      // see also https://github.com/ENT8R/NotesReview/issues/43#issuecomment-565805628
-      if (texts.includes(comment.text)) {
-        comments.splice(i, 1);
-      } else if (comment.text !== '') {
-        texts.push(comment.text);
-      }
-    }
-    return comments;
   }
 }

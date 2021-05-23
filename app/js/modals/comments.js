@@ -1,9 +1,12 @@
-import * as Badges from '../badges.js';
+import * as Localizer from '../localizer.js';
 import Modal from './modal.js';
 
 import * as Handlebars from 'handlebars';
 import t from '../../templates/dynamic/comment.hbs?raw';
 const template = Handlebars.compile(t);
+Handlebars.registerHelper('localizer', key => {
+  return Localizer.message(key);
+});
 
 export default class Comments extends Modal {
   /**
@@ -17,22 +20,17 @@ export default class Comments extends Modal {
   static load(note) {
     super.open('comments');
 
-    const { comments } = note;
-
-    comments.forEach((comment, i) => {
-      comments[i].badges = {
-        age: Badges.age(comment.color, comment.date),
-        user: Badges.user(comment.uid, comment.anonymous),
-        status: Badges.status(comment.action)
-      };
+    const content = document.getElementById('modal-comments-content');
+    content.innerHTML = template(note, {
+      allowedProtoProperties: {
+        badges: true
+      }
     });
-
-    document.getElementById('comments').innerHTML = template({ comments });
-    document.getElementById('comments').dataset.noteId = note.id;
-    document.getElementById('note-link').href = `${OPENSTREETMAP_SERVER}/note/${note.id}`;
+    content.dataset.noteId = note.id;
+    document.getElementById('modal-comments-note-link').href = `${OPENSTREETMAP_SERVER}/note/${note.id}`;
 
     // Clear the note input
-    const input = document.getElementById('note-comment');
+    const input = content.querySelector('.note-comment');
     input.value = '';
     input.dispatchEvent(new Event('input'));
 

@@ -40,13 +40,6 @@ export default class Leaflet {
 
       instances[id] = this.map;
 
-      // Update a popup after all images in it were loaded
-      this.map.on('popupopen', event => {
-        event.popup._container.querySelectorAll('img').forEach(element =>
-          element.onload = () => event.popup.update()
-        );
-      });
-
       L.Control.geocoder({
         placeholder: Localizer.message('action.search'),
         errorMessage: Localizer.message('description.nothingFound')
