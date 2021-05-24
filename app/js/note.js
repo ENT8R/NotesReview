@@ -20,22 +20,21 @@ export default class Note {
   constructor(feature) {
     /** Exclude invalid notes
       * See {@link https://github.com/openstreetmap/openstreetmap-website/issues/2146} */
-    if (feature.properties.comments.length === 0) {
-      throw new Error(`Note ${feature.properties.id} can not be parsed because there are no comments.`);
+    if (feature.comments.length === 0) {
+      throw new Error(`Note ${feature._id} can not be parsed because there are no comments.`);
     }
 
-    this.id = feature.properties.id;
-    this.status = feature.properties.status;
-    this.coordinates = feature.geometry.coordinates.reverse();
+    this.id = feature._id;
+    this.status = feature.status;
+    this.coordinates = feature.coordinates.reverse();
 
-    this.comments = feature.properties.comments.map(comment => new Comment(comment));
+    this.comments = feature.comments.map(comment => new Comment(comment));
+
     this.users = this.comments.filter(comment => comment.uid !== null).map(comment => comment.uid);
     this.anonymous = this.comments[0].anonymous;
     this.user = this.comments[0].user;
-    /** The dashes in the date string need to be replaced with slashes
-      * See {@link https://stackoverflow.com/a/3257513} for the reason */
-    this.created = new Date(feature.properties.date_created.replace(/-/g, '/'));
-    this.updated = this.comments[this.comments.length - 1].date;
+
+    this.created = this.comments[0].date;
     this.color = Util.parseDate(this.created);
   }
 

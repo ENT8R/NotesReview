@@ -62,7 +62,7 @@
         "hideAnonymous": "Masquer les notes anonymes",
         "worldwideQuery": "Recherche mondiale activée.\nZoomez pour limiter la zone \net accélérer la recherche.",
         "nothingFound": "Aucun résultat !",
-        "autoLimit": "Limitation automatique à 10 000 notes, les valeurs plus grandes ne sont pas autorisées",
+        "autoLimit": "Limitation automatique à 100 notes, les valeurs plus grandes ne sont pas autorisées",
         "deprecationWarning": "Votre navigateur ne supporte pas NotesReview. Essayez d'en utiliser un autre pour utiliser NotesReview.",
         "sort": {
             "created": {

@@ -45,6 +45,7 @@ export default () => {
 
   const globals = {
     __VERSION__: JSON.stringify(version),
+    NOTESREVIEW_API_URL: JSON.stringify(process.env.NOTESREVIEW_API_URL),
     OPENSTREETMAP_SERVER: JSON.stringify(process.env.OPENSTREETMAP_SERVER),
     OPENSTREETMAP_OAUTH_KEY: JSON.stringify(process.env.OPENSTREETMAP_OAUTH_KEY),
     OPENSTREETMAP_OAUTH_SECRET: JSON.stringify(process.env.OPENSTREETMAP_OAUTH_SECRET),

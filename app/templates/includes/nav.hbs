@@ -11,7 +11,7 @@
 
   <div class="column col-6 col-sm-3">
     <label class="form-label" for="limit" data-i18n="header.limit">Limit</label>
-    <input class="form-input update-link" id="limit" type="number" value="100" min="0" max="10000">
+    <input class="form-input update-link" id="limit" type="number" value="50" min="0" max="100">
   </div>
 
   <div class="column col-6 col-sm-9">
@@ -31,17 +31,17 @@
 
   <div class="column col-4 col-sm-12">
     <label class="form-label" for="sort" data-i18n="header.sort">Sort by</label>
-    <select id="sort" class="form-select update-link">
-      <option value="created_at-newest" data-i18n="description.sort.created.desc">Newest</option>
-      <option value="created_at-oldest" data-i18n="description.sort.created.asc">Oldest</option>
-      <option value="updated_at-newest" data-i18n="description.sort.updated.desc">Recently updated</option>
-      <option value="updated_at-oldest" data-i18n="description.sort.updated.asc">Least recently updated</option>
+    <select class="form-select update-link" id="sort">
+      <option value="created_at-descending" data-i18n="description.sort.created.desc">Newest</option>
+      <option value="created_at-ascending" data-i18n="description.sort.created.asc">Oldest</option>
+      <option value="updated_at-descending" data-i18n="description.sort.updated.desc">Recently updated</option>
+      <option value="updated_at-ascending" data-i18n="description.sort.updated.asc">Least recently updated</option>
     </select>
   </div>
 
   <div class="column col-6 col-sm-12">
     <label class="form-checkbox">
-      <input type="checkbox" class="update-link" id="show-closed">
+      <input class="update-link" id="show-closed" type="checkbox">
       <i class="form-icon"></i>
       <span data-i18n="description.showClosed">Show closed notes</span>
     </label>
@@ -49,9 +49,25 @@
 
   <div class="column col-6 col-sm-12">
     <label class="form-checkbox">
-      <input type="checkbox" class="update-link" id="hide-anonymous">
+      <input class="update-link" id="hide-anonymous" type="checkbox">
       <i class="form-icon"></i>
       <span data-i18n="description.hideAnonymous">Hide anonymous notes</span>
+    </label>
+  </div>
+
+  <div class="column col-6 col-sm-12">
+    <label class="form-checkbox">
+      <input class="update-link" id="apply-bbox" type="checkbox">
+      <i class="form-icon"></i>
+      <span data-i18n="description.applyBoundingBox">Search only in current view</span>
+    </label>
+  </div>
+
+  <div class="column col-6 col-sm-12">
+    <label class="form-checkbox">
+      <input class="update-link" id="only-uncommented" type="checkbox">
+      <i class="form-icon"></i>
+      <span data-i18n="description.onlyUncommented">Show only uncommented notes</span>
     </label>
   </div>
 

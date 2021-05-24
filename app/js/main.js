@@ -13,17 +13,18 @@ import Modal from './modals/modal.js';
 import Note from './note.js';
 import Permalink from './permalink.js';
 import Preferences from './preferences.js';
-import Query, { ANONYMOUS } from './query.js';
+import Query, { ANONYMOUS, STATUS } from './query.js';
 import * as Request from './request.js';
 import * as Theme from './theme.js';
+import Toast from './toast.js';
 import Users from './users.js';
 import * as Util from './util.js';
 
 let map;
 let ui;
-let query;
 
 const api = new API();
+const permalink = new Permalink(); // eslint-disable-line no-unused-vars
 
 /**
   * Initiate a new query and do some UI changes before and after it
@@ -33,98 +34,26 @@ const api = new API();
   * @returns {void}
   */
 async function search() {
-  const q = document.getElementById('query').value;
-  let limit = document.getElementById('limit').value;
-  const closed = document.getElementById('show-closed').checked;
-  let user = document.getElementById('user').value;
-  let anonymous = ANONYMOUS.INCLUDE;
-  const from = document.getElementById('from').value;
-  const to = document.getElementById('to').value;
-  const [ sort, order ] = document.getElementById('sort').value.split('-');
-
-  if (limit > 10000) {
-    limit = 10000;
-    document.getElementById('limit').value = 10000;
-    toast(Localizer.message('description.autoLimit'), 'toast-warning');
-  }
-
-  if (['anonymous', Localizer.message('note.anonymous')].includes(user)) {
-    user = null;
-    anonymous = ANONYMOUS.ONLY;
-    document.getElementById('hide-anonymous').checked = false;
-    document.getElementById('hide-anonymous').setAttribute('disabled', 'true');
-  } else {
-    document.getElementById('hide-anonymous').removeAttribute('disabled');
-  }
-
   document.getElementById('preloader').classList.remove('d-hide');
 
-  query = new Query(q, limit, closed, user, anonymous, from, to, sort, order);
-
-  const previous = Preferences.get('previous', true);
-  if (previous) {
-    query.url = previous.url;
-    query.endpoint = previous.endpoint;
-    Preferences.remove('previous', true);
-  }
+  const query = new Query({
+    query: document.getElementById('query').value,
+    bbox: document.getElementById('apply-bbox').checked ? map.bounds().toBBoxString() : null,
+    limit: document.getElementById('limit').value,
+    status: document.getElementById('show-closed').checked ? STATUS.ALL : STATUS.OPEN,
+    author: document.getElementById('user').value,
+    anonymous: document.getElementById('hide-anonymous').checked ? ANONYMOUS.HIDE : ANONYMOUS.INCLUDE,
+    after: document.getElementById('from').value,
+    before: document.getElementById('to').value,
+    comments: document.getElementById('only-uncommented').checked ? 0 : null,
+    sort_by: document.getElementById('sort').value.split('-')[0], // eslint-disable-line camelcase
+    order: document.getElementById('sort').value.split('-')[1]
+  });
 
   const notes = await query.search();
   ui.show(Array.from(notes), query).then(details).finally(() => {
     document.getElementById('preloader').classList.add('d-hide');
   });
-}
-
-/**
-  * Show a small toast notification with the given message
-  *
-  * @function
-  * @private
-  * @param {String} message
-  * @param {String} type
-  * @param {Number} duration
-  * @returns {void}
-  */
-async function toast(message, type, duration) {
-  const container = document.getElementById('toast-container');
-
-  const toast = document.createElement('div');
-  toast.classList.add('toast', type || 'toast-primary');
-
-  const close = document.createElement('button');
-  close.classList.add('btn', 'btn-clear', 'float-right');
-  close.addEventListener('click', () => {
-    document.getElementById('toast-container').removeChild(toast);
-  });
-
-  toast.appendChild(close);
-  toast.appendChild(document.createTextNode(message));
-
-  container.appendChild(toast);
-  await Util.wait(duration || 4000);
-  if (container.contains(toast)) {
-    container.removeChild(toast);
-  }
-}
-
-/**
-  * Show a hint (tooltip) to the user that the worldwide query is used
-  * if the bounding box is too large
-  *
-  * @function
-  * @private
-  * @returns {void}
-  */
-function tooltip() {
-  const search = document.getElementById('search');
-  const fastSearch = document.getElementById('fast-search');
-
-  if (map.boundsSize() < 4) {
-    fastSearch.classList.remove('d-hide');
-    search.classList.remove('tooltip');
-  } else {
-    fastSearch.classList.add('d-hide');
-    search.classList.add('tooltip');
-  }
 }
 
 /**
@@ -137,7 +66,7 @@ function tooltip() {
   */
 function details(result) {
   if (result.amount === 0) {
-    toast(Localizer.message('description.nothingFound'), 'toast-error');
+    new Toast(Localizer.message('description.nothingFound'), 'toast-error').show();
     document.getElementById('details').classList.add('d-hide');
   } else {
     document.getElementById('details').classList.remove('d-hide');
@@ -155,14 +84,8 @@ function details(result) {
   * @returns {void}
   */
 function listener() {
-  document.querySelector('.modal-trigger[data-modal="share"]').addEventListener('click', () => Permalink());
-
   document.getElementById('search').addEventListener('click', () => search());
   document.getElementById('cancel').addEventListener('click', () => Request.cancel());
-
-  document.getElementById('hide-anonymous').addEventListener('change', () => {
-    ui.reload().then(details);
-  });
 
   document.getElementById('login').addEventListener('click', () => {
     const login = document.getElementById('login');
@@ -220,24 +143,6 @@ function listener() {
       });
       settings();
     });
-  });
-
-  document.getElementsByClassName('update-link').forEach(element => {
-    element.addEventListener('change', () => Permalink());
-  });
-
-  document.getElementById('permalink').addEventListener('click', document.getElementById('permalink').select);
-
-  document.getElementById('permalink').addEventListener('dblclick', () => {
-    document.getElementById('permalink').select();
-    document.execCommand('copy');
-    toast(Localizer.message('action.copyLinkSuccess'), 'toast-success');
-  });
-
-  document.getElementById('permalink-copy').addEventListener('click', () => {
-    document.getElementById('permalink').select();
-    document.execCommand('copy');
-    toast(Localizer.message('action.copyLinkSuccess'), 'toast-success');
   });
 
   // Change the view based on the currently visible view
@@ -326,41 +231,29 @@ function listener() {
 function searchParameter() {
   const parameter = new URL(window.location.href).searchParams;
   parameter.forEach((value, key) => {
-    switch (key) {
-    case 'map':
-      // TODO: Fix eslint warning
+    if (key === 'map') {
       const position = value.split('/'); // eslint-disable-line no-case-declarations
       map.setView([position[1], position[2]], position[0]);
-      break;
-    case 'query':
+    } else if (key === 'query') {
       document.getElementById('query').value = value;
-      break;
-    case 'limit':
+    } else if (key === 'limit') {
       document.getElementById('limit').value = value;
-      break;
-    case 'user':
+    } else if (key === 'closed') {
+      document.getElementById('show-closed').checked = value;
+    } else if (key === 'author') {
       document.getElementById('user').value = value;
-      break;
-    case 'from':
+    } else if (key === 'anonymous') {
+      document.getElementById('hide-anonymous').checked = value === ANONYMOUS.HIDE ? true : false;
+    } else if (key === 'after') {
       document.getElementById('from').value = value;
-      break;
-    case 'to':
+    } else if (key === 'before') {
       document.getElementById('to').value = value;
-      break;
-    case 'sort':
+    } else if (key === 'sort') {
       document.getElementById('sort').value =
-        `${value === 'updated_at' ? 'updated_at' : 'created_at'}-${parameter.get('order') === 'oldest' ? 'oldest' : 'newest'}`;
-      break;
-    case 'order':
+        `${value === 'updated_at' ? 'updated_at' : 'created_at'}-${parameter.get('order') === 'oldest' ? 'ascending' : 'descending'}`;
+    } else if (key === 'order') {
       document.getElementById('sort').value =
-        `${parameter.get('sort') === 'updated_at' ? 'updated_at' : 'created_at'}-${value === 'oldest' ? 'oldest' : 'newest'}`;
-      break;
-    case 'closed':
-      document.getElementById('show-closed').checked = value === 'true' ? true : false;
-      break;
-    case 'anonymous':
-      document.getElementById('hide-anonymous').checked = value === 'true' ? false : true;
-      break;
+        `${parameter.get('sort') === 'updated_at' ? 'updated_at' : 'created_at'}-${value === 'oldest' ? 'ascending' : 'descending'}`;
     }
   });
 
@@ -424,7 +317,18 @@ function settings() {
   await Localizer.init();
   Modal.init();
 
-  map = new Leaflet('map', tooltip);
+  // Show a modal informing about the new backend
+  const noticeShown = Preferences.get('new-api-backend-notice-shown');
+  if (!noticeShown || Number.parseInt(noticeShown) < 2) {
+    Modal.open('notice');
+    document.querySelector('.modal[data-modal="notice"]').addEventListener('modal-close', () => {
+      Preferences.set({
+        'new-api-backend-notice-shown': (Number.parseInt(noticeShown) || 0) + 1
+      });
+    });
+  }
+
+  map = new Leaflet('map');
 
   const authenticated = api.authenticated();
   document.body.dataset.authenticated = authenticated;
@@ -442,13 +346,13 @@ function settings() {
 
   const parameter = searchParameter();
   const view = parameter.get('view') || Preferences.get('view');
-  const { default: UI } = await import('./ui/ui.js');
-  ui = new UI(view);
 
   document.querySelector(`#toggle-view div[data-view="${view}"]`).classList.remove('d-hide');
   document.querySelector(`#${view}`).classList.remove('d-hide');
   document.body.dataset.view = view;
 
-  Permalink();
+  const { default: UI } = await import('./ui/ui.js');
+  ui = new UI(view);
+
   search();
 })();

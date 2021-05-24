@@ -38,7 +38,8 @@
         "commentClose": "Comment and close",
         "commentReopen": "Reopen and comment",
         "mapillary": "Mapillary",
-        "report": "Report note"
+        "report": "Report note",
+        "filter": "Filter"
     },
     "header": {
         "share": "Share",
@@ -60,9 +61,8 @@
         "showMap": "Show on a map",
         "showClosed": "Show closed notes",
         "hideAnonymous": "Hide anonymous notes",
-        "worldwideQuery": "Worldwide query enabled.\nZoom in further to get a faster query\nfor a limited area.",
         "nothingFound": "Nothing found!",
-        "autoLimit": "Automatically set limit to 10000, because higher values are not allowed",
+        "autoLimit": "Automatically set limit to 100, because higher values are not allowed",
         "deprecationWarning": "The browser you are currently using does not support NotesReview. Please consider to switch to another browser to be able to use NotesReview.",
         "sort": {
             "created": {
@@ -74,7 +74,9 @@
                 "asc": "Least recently updated"
             }
         },
-        "query": "A word or phrase mentioned in the note"
+        "query": "A word or phrase mentioned in the note",
+        "applyBoundingBox": "Search only in current view",
+        "onlyUncommented": "Show only uncommented notes"
     },
     "settings": {
         "choose": "Choose an option",
@@ -112,7 +114,8 @@
     "accessibility": {
         "openFaq": "Open frequently asked questions",
         "openSettings": "Open settings",
-        "shareQuery": "Share the current query"
+        "shareQuery": "Share the current query",
+        "filter": "Apply a filter to the selection"
     },
     "mapillary": {
         "empty": {

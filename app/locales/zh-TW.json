@@ -62,7 +62,7 @@
         "hideAnonymous": "隱藏暱名的註解",
         "worldwideQuery": "已啟動全世界的檢索。\n請放大地圖限縮範圍\n讓檢索速度更快",
         "nothingFound": "什麼都找不到！",
-        "autoLimit": "自動設定限制為 10000，因為不能允許更高的數值",
+        "autoLimit": "自動設定限制為 100，因為不能允許更高的數值",
         "deprecationWarning": "你目前使用的瀏覽器並不支援 NotesReview，請考慮換到其他瀏覽器才能使用 NotesReview。",
         "sort": {
             "created": {

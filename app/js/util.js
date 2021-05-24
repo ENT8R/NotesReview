@@ -1,5 +1,3 @@
-import { ANONYMOUS, ENDPOINT } from './query.js';
-
 const EARTH_RADIUS = 6371000; // In meters. See https://en.wikipedia.org/wiki/Earth_radius#Mean_radius
 const EARTH_CIRCUMFERENCE = 2 * Math.PI * EARTH_RADIUS;
 const DISTANCE_BETWEEN_DEGREES = EARTH_CIRCUMFERENCE / 360;
@@ -39,56 +37,6 @@ export function parseDate(date) {
   }
 
   return color;
-}
-
-/**
-  * Check whether a note/marker can be shown
-  *
-  * @function
-  * @param {Note} note Single note which should be checked.
-  * @param {Query} query The query which was used in order to find the note
-  * @returns {Boolean}
-  */
-export function isNoteVisible(note, query) {
-  let visible = true;
-
-  // If the default endpoint has been used, some additional checks are necessary to make sure only the right notes are returned
-  if (query.endpoint === ENDPOINT.DEFAULT) {
-    const date = query.sort === 'updated_at' ? note.updated : note.created;
-    const from = query.from === null ? new Date(0) : new Date(query.from);
-    const to = query.to === null ? new Date() : new Date(query.to);
-    // Check whether the note is in the correct date range
-    visible = (date > from && date < to);
-
-    // Check whether the query is included in the comments
-    if (query.query && !containsQuery(note.comments, query.query)) {
-      visible = false;
-    }
-    // Check whether the specified user also created the note
-    if (query.user && query.anonymous !== ANONYMOUS.ONLY) {
-      visible = query.user.localeCompare(note.user) === 0;
-    }
-  }
-
-  return visible &&
-         (query.closed ? true : note.status === 'open') &&
-         (document.getElementById('hide-anonymous').checked ? !note.anonymous : true) &&
-         (query.anonymous === ANONYMOUS.ONLY ? note.anonymous : true);
-}
-
-/**
-  * Check whether the comments of a note contain the specified query
-  *
-  * @function
-  * @param {Array} comments
-  * @param {String} query
-  * @returns {Boolean}
-  */
-function containsQuery(comments, query) {
-  comments = comments.map(comment => comment.text).join(' '); // Extract text from the comments array
-  comments = comments.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleUpperCase(); // Normalize the comments in order to remove all diacritics
-  query = query.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleUpperCase(); // Normalize the query in order to remove all diacritics too
-  return comments.includes(query);
 }
 
 /**

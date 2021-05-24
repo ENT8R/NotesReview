@@ -21,9 +21,8 @@ export default class Leaflet {
     *
     * @constructor
     * @param {String} id The id of the map container
-    * @param {Function} move Callback function which is invoked when the map is moved
     */
-  constructor(id, move) {
+  constructor(id) {
     if (instances[id]) {
       this.map = instances[id];
     } else {
@@ -47,10 +46,6 @@ export default class Leaflet {
 
       this.tiles();
       document.addEventListener('color-scheme-changed', () => this.tiles());
-    }
-
-    if (move) {
-      this.map.on('move', move);
     }
   }
 
@@ -117,46 +112,6 @@ export default class Leaflet {
   boundsSize() {
     const bounds = this.bounds();
     return (bounds.getNorth() - bounds.getSouth()) * (bounds.getEast() - bounds.getWest());
-  }
-
-  /**
-    * Split a bounding box into 4^n pieces
-    *
-    * @function
-    * @param {LatLngBounds|Array} bounds
-    * @param {Number} repetitions How often the bounding box should be split.
-    * @returns {Array}
-    */
-  splitBounds(bounds, repetitions) {
-    if (!Array.isArray(bounds)) {
-      bounds = [ bounds ];
-    }
-
-    for (let repetition = 0; repetition < repetitions; repetition++) {
-      let bboxs = [];
-      for (let i = 0; i < bounds.length; i++) {
-        const boxes = [];
-        const bbox = bounds[i];
-
-        let lon = (bbox.getWest() + bbox.getEast()) / 2;
-        const lat = (bbox.getSouth() + bbox.getNorth()) / 2;
-        if (lon -180 > 0) {
-          lon -= 360;
-        } else if (lon + 180 < 0) {
-          lon += 360;
-        }
-
-        boxes.push(L.latLngBounds(L.latLng(bbox.getSouth(), bbox.getWest()), L.latLng(lat, lon)));
-        boxes.push(L.latLngBounds(L.latLng(bbox.getSouth(), lon), L.latLng(lat, bbox.getEast())));
-        boxes.push(L.latLngBounds(L.latLng(lat, lon), L.latLng(bbox.getNorth(), bbox.getEast())));
-        boxes.push(L.latLngBounds(L.latLng(lat, bbox.getWest()), L.latLng(bbox.getNorth(), lon)));
-
-        bboxs = [...bboxs, ...boxes];
-      }
-      bounds = bboxs;
-    }
-
-    return bounds;
   }
 
   /**

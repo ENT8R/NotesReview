@@ -5,6 +5,9 @@ import * as Request from '../request.js';
 import * as Handlebars from 'handlebars';
 import t from '../../templates/dynamic/mapillary.hbs?raw';
 const template = Handlebars.compile(t);
+Handlebars.registerHelper('localizer', key => {
+  return Localizer.message(key);
+});
 
 export default class Mapillary extends Modal {
   /**
@@ -40,7 +43,6 @@ export default class Mapillary extends Modal {
       images,
       link
     });
-    Localizer.localize(document.getElementById('mapillary'));
 
     content.classList.remove('loading', 'loading-lg');
   }

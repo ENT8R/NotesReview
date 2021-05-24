@@ -1,4 +1,5 @@
 import Leaflet from '../leaflet.js';
+import { STATUS } from '../query.js';
 
 export default class Map {
   constructor() {
@@ -21,7 +22,7 @@ export default class Map {
     */
   add(note, query) {
     let icon;
-    if (query.closed) {
+    if (query.data.status === STATUS.ALL) {
       icon = note.status === 'open' ? 'markers/green.svg' : 'markers/red.svg';
     } else {
       icon = `markers/${note.color}.svg`;

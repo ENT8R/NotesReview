@@ -32,6 +32,7 @@ export default class Modal {
     const modal = document.querySelector(`.modal[data-modal="${id}"]`);
     modal.classList.add('active');
     modal.getElementsByClassName('modal-body')[0].scrollTop = 0;
+    modal.dispatchEvent(new Event('modal-open'));
   }
 
   /**
@@ -45,5 +46,6 @@ export default class Modal {
   static close(modal) {
     modal.classList.remove('active');
     modal.querySelectorAll('.clear-on-modal-close').forEach(element => element.innerHTML = '');
+    modal.dispatchEvent(new Event('modal-close'));
   }
 }

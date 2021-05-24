@@ -1,5 +1,3 @@
-import { ENDPOINT } from './query.js';
-
 let controller = new AbortController();
 let running = false;
 
@@ -7,38 +5,6 @@ export const MEDIA_TYPE = {
   JSON: 'application/json',
   XML: 'text/xml'
 };
-
-/**
-  * Build a URL from all given parameters
-  *
-  * @function
-  * @param {Query} query
-  * @param {String} bounds
-  * @returns {String}
-  */
-export function build(query, bounds) {
-  const url = new URL(OPENSTREETMAP_SERVER);
-  url.pathname = query.endpoint === ENDPOINT.DEFAULT ? '/api/0.6/notes.json' : '/api/0.6/notes/search.json';
-
-  const data = {
-    q: query.query,
-    limit: query.limit,
-    display_name: query.user, // eslint-disable-line camelcase
-    closed: query.closed ? '-1' : '0',
-    from: query.from,
-    to: query.to,
-    sort: query.sort,
-    order: query.order
-  };
-
-  if (query.endpoint === ENDPOINT.DEFAULT) {
-    delete data.q;
-    data.bbox = bounds;
-  }
-
-  url.search = encodeQueryData(data, true);
-  return url.toString();
-}
 
 /**
   * Fetch an external ressource and return it using the specified media type
@@ -106,7 +72,7 @@ export function cancel() {
 export function encodeQueryData(data, strict) {
   const query = [];
   for (const d in data) {
-    if (data[d] === '' || (strict && data[d] === null)) {
+    if (data[d] === '' || (strict && (data[d] === null || typeof data[d] === 'undefined'))) {
       continue;
     }
     query.push(`${encodeURIComponent(d)}=${encodeURIComponent(data[d])}`);

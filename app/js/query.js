@@ -1,7 +1,14 @@
-import Leaflet from './leaflet.js';
+import * as Localizer from './localizer.js';
 import Note from './note.js';
 import * as Request from './request.js';
+import Toast from './toast.js';
 import Users from './users.js';
+
+export const STATUS = {
+  ALL: null,
+  OPEN: 'open',
+  CLOSED: 'closed'
+};
 
 export const ANONYMOUS = {
   INCLUDE: 'include',
@@ -9,44 +16,55 @@ export const ANONYMOUS = {
   ONLY: 'only'
 };
 
-export const ENDPOINT = {
-  DEFAULT: 'default',
-  SEARCH: 'search'
-};
-
 export default class Query {
   /**
     * Constructor for a new query
     *
     * @constructor
-    * @param {String} query
-    * @param {Number} limit
-    * @param {Boolean} closed
-    * @param {String} user
-    * @param {String} anonymous
-    * @param {String} from
-    * @param {String} to
-    * @param {String} sort
-    * @param {String} order
+    * @param {Object} data
+    * @param {String} data.query
+    * @param {String} data.bbox
+    * @param {Number} data.limit
+    * @param {String} data.status
+    * @param {String} data.author
+    * @param {String} data.anonymous
+    * @param {String} data.after
+    * @param {String} data.before
+    * @param {String} data.sort_by
+    * @param {String} data.order
     */
-  constructor(query, limit, closed, user, anonymous, from, to, sort, order) {
-    this.query = query || null;
-    this.limit = limit || null;
-    this.closed = closed || false;
-    this.user = user || null;
-    this.anonymous = anonymous || ANONYMOUS.INCLUDE;
-    this.from = from || null;
-    this.to = to || null;
-    this.sort = sort || null;
-    this.order = order || null;
+  constructor(data) {
+    this.data = data;
 
-    // If there is an end date but no start date, set it automatically because otherwise the API is not able to handle this
-    if (!this.from && this.to) {
-      this.from = new Date(0).toISOString().slice(0, 10);
+    // Check if the limit does not exceed the maximum allowed value
+    // and inform the user if a lower value was automatically selected
+    if (this.data.limit > 100) {
+      this.data.limit = 100;
+      document.getElementById('limit').value = 100;
+      new Toast(Localizer.message('description.autoLimit'), 'toast-warning').show();
     }
 
-    this.endpoint = ENDPOINT.SEARCH;
-    this.url = this.build();
+    // If the user searches for 'anonymous' note creators, change the query to only include anonymous notes
+    if (['anonymous', Localizer.message('note.anonymous')].includes(data.author)) {
+      data.author = null;
+      data.anonymous = ANONYMOUS.ONLY;
+      document.getElementById('hide-anonymous').checked = false;
+      document.getElementById('hide-anonymous').setAttribute('disabled', 'true');
+    } else {
+      document.getElementById('hide-anonymous').removeAttribute('disabled');
+    }
+  }
+
+  /**
+    * Build a URL from all given parameters
+    *
+    * @function
+    * @returns {String}
+    */
+  get url() {
+    const url = new URL(`${NOTESREVIEW_API_URL}/search`);
+    url.search = Request.encodeQueryData(this.data, true);
+    return url.toString();
   }
 
   /**
@@ -56,33 +74,18 @@ export default class Query {
     * @returns {Promise}
     */
   async search() {
-    let notes = new Set();
+    const notes = new Set();
     let users = new Set();
 
     const { url } = this;
-    let result;
-    if (typeof url === 'string') {
-      result = await Request.get(url);
-    } else if (Array.isArray(url)) {
-      result = {
-        type: 'FeatureCollection',
-        features: []
-      };
-
-      for (let i = 0; i < url.length; i++) {
-        const body = await Request.get(url[i]);
-        if (body && body.features) {
-          result.features = [...result.features, ...body.features];
-        }
-      }
-    }
+    const result = await Request.get(url);
 
     // Return as early as possible if there was no result
-    if (!result || result.features.length === 0) {
+    if (!result || result.length === 0) {
       return notes;
     }
 
-    result.features.forEach(feature => {
+    result.forEach(feature => {
       try {
         const note = new Note(feature);
         notes.add(note);
@@ -92,59 +95,8 @@ export default class Query {
       }
     });
 
-    if (this.endpoint === ENDPOINT.DEFAULT) {
-      notes = Array.from(notes);
-      notes.sort((a, b) => {
-        const first = this.sort === 'updated_at' ? a.updated : a.created;
-        const second = this.sort === 'updated_at' ? b.updated : b.created;
-        return this.order === 'newest' ? first < second : first > second;
-      });
-      notes = notes.slice(0, this.limit);
-    }
-
     // Load additional information of all users
     await Users.load(users);
-
     return notes;
-  }
-
-  /**
-    * Build a URL or a list of URLs
-    *
-    * @function
-    * @returns {String|Array}
-    */
-  build() {
-    let result;
-
-    const map = new Leaflet('map');
-    const size = map.boundsSize();
-
-    if (size > 0 && size < 0.25) {
-      this.endpoint = ENDPOINT.DEFAULT;
-      // Search only in a single bounding box
-      result = Request.build(this, map.bounds().toBBoxString());
-    } else if (size >= 0.25 && size <= 1) {
-      this.endpoint = ENDPOINT.DEFAULT;
-      result = [];
-      // Split the bounding box into four parts
-      const bounds = map.splitBounds(map.bounds(), 1);
-      bounds.forEach(bbox => {
-        result.push(Request.build(this, bbox.toBBoxString()));
-      });
-    } else if (size >= 1 && size <= 4) {
-      this.endpoint = ENDPOINT.DEFAULT;
-      result = [];
-      // Split the bounding box into sixteen parts
-      const bounds = map.splitBounds(map.bounds(), 2);
-      bounds.forEach(bbox => {
-        result.push(Request.build(this, bbox.toBBoxString()));
-      });
-    } else {
-      this.endpoint = ENDPOINT.SEARCH;
-      result = Request.build(this);
-    }
-
-    return result;
   }
 }

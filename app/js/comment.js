@@ -14,14 +14,15 @@ export default class Comment {
     this.anonymous = comment.user ? false : true;
     this.user = this.anonymous ? Localizer.message('note.anonymous') : comment.user;
     this.uid = this.anonymous ? null : comment.uid;
-
-    this.date = new Date(comment.date.replace(/-/g, '/'));
+    this.date = new Date(comment.date);
     this.color = Util.parseDate(this.date);
     this.action = comment.action;
 
-    const linkified = Linkify(comment.text);
-    this.html = linkified.html;
-    this.images = linkified.images;
+    if ('text' in comment) {
+      const linkified = Linkify(comment.text);
+      this.html = linkified.html;
+      this.images = linkified.images;
+    }
   }
 
   /**

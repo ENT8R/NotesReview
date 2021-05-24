@@ -62,7 +62,7 @@
         "hideAnonymous": "Nascondi note anonime",
         "worldwideQuery": "Richiesta globale abilitata.\nIngrandisci ancora per ottenere\nuna richiesta più rapida\nin un’area meno estesa.",
         "nothingFound": "Non è stato trovato niente!",
-        "autoLimit": "Impostato limite automatico a 10000 perché valori più grandi non sono ammessi",
+        "autoLimit": "Impostato limite automatico a 100 perché valori più grandi non sono ammessi",
         "deprecationWarning": "Il browser che stai usando non è compatibile con NotesReview. Prova a cambiare browser per poter usare NotesReview.",
         "sort": {
             "created": {

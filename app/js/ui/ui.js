@@ -1,6 +1,5 @@
 import MapView from './map.js';
 import ListView from './list.js';
-import * as Util from '../util.js';
 
 const Views = {
   map: new MapView(),
@@ -48,8 +47,6 @@ export default class UI {
   show(notes, query, reload) {
     this.query = query;
     this.notes = notes;
-
-    notes = notes.filter(note => Util.isNoteVisible(note, query));
 
     const amount = notes.length;
     const average = notes.reduce((accumulator, current) => accumulator + current.created.getTime(), 0) / amount;

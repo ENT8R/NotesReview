@@ -20,6 +20,7 @@ jobs:
 
       - name: Install and Build
         env:
+          NOTESREVIEW_API_URL: ${{ secrets.NOTESREVIEW_API_URL }}
           OPENSTREETMAP_SERVER: ${{ secrets.OPENSTREETMAP_SERVER }}
           OPENSTREETMAP_OAUTH_KEY: ${{ secrets.OPENSTREETMAP_OAUTH_KEY }}
           OPENSTREETMAP_OAUTH_SECRET: ${{ secrets.OPENSTREETMAP_OAUTH_SECRET }}

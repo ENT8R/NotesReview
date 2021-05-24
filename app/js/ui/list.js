@@ -32,7 +32,7 @@ export default class List {
     * Shows all notes
     *
     * @function
-    * @todo Use {@link https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment/replaceChildren} if this becomes better established
+    * @todo Use {@link https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment/replaceChildren} if this becomes more established
     * @returns {void}
     */
   apply() {
