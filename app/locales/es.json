@@ -5,18 +5,18 @@
             "description": "Todos los colores representan la edad de la nota",
             "darkgreen": "Verde Oscuro",
             "green": "Verde",
-            "lime": "Lima",
             "amber": "Ámbar",
             "orange": "Naranja",
             "red": "Rojo",
             "descriptions": {
                 "darkgreen": "Entre uno y dos días",
                 "green": "Entre uno y 31 días",
-                "lime": "Entre uno y seis meses",
                 "amber": "Entre seis meses y un año",
                 "orange": "Entre uno y dos años",
-                "red": "Dos o más años"
-            }
+                "red": "Dos o más años",
+                "lime": "Entre uno y seis meses"
+            },
+            "lime": "Lima"
         }
     },
     "action": {
@@ -38,7 +38,8 @@
         "commentClose": "Comentar y cerrar",
         "commentReopen": "Reactivar y comentar",
         "mapillary": "Mapillary",
-        "report": "Reportar nota"
+        "report": "Reportar nota",
+        "filter": "Filtro"
     },
     "header": {
         "share": "Compartir",
@@ -60,7 +61,6 @@
         "showMap": "Mostrar en un mapa",
         "showClosed": "Mostrar notas cerradas",
         "hideAnonymous": "Ocultar notas anónimas",
-        "worldwideQuery": "Consulta mundial habilitada.\nAcércate más para obtener una consulta más rápida de un área limitada.",
         "nothingFound": "¡Nada Encontrado!",
         "autoLimit": "Se ha establecido automáticamente el límite en 100, no se permiten valores mayores",
         "deprecationWarning": "El navegador que está utilizando actualmente no es compatible con NotesReview. Considere cambiar a otro navegador para poder usar NotesReview.",
@@ -74,7 +74,9 @@
                 "asc": "Actualizado menos recientemente"
             }
         },
-        "query": "Una palabra o frase mencionada en la nota"
+        "query": "Una palabra o frase mencionada en la nota",
+        "applyBoundingBox": "Buscar solo en la vista actual",
+        "onlyUncommented": "Mostrar solo notas sin comentarios"
     },
     "settings": {
         "choose": "Elegir una opción",
@@ -112,7 +114,8 @@
     "accessibility": {
         "openFaq": "Abrir preguntas frecuentes",
         "openSettings": "Abrir ajustes",
-        "shareQuery": "Compartir la consulta actual"
+        "shareQuery": "Compartir la consulta actual",
+        "filter": "Aplicar un filtro a la selección"
     },
     "mapillary": {
         "empty": {
