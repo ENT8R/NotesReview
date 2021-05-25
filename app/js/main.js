@@ -13,18 +13,16 @@ import Modal from './modals/modal.js';
 import Note from './note.js';
 import Permalink from './permalink.js';
 import Preferences from './preferences.js';
-import Query, { ANONYMOUS, STATUS } from './query.js';
+import Query from './query.js';
 import * as Request from './request.js';
 import * as Theme from './theme.js';
 import Toast from './toast.js';
 import Users from './users.js';
 import * as Util from './util.js';
 
-let map;
-let ui;
+let map, ui, query;
 
 const api = new API();
-const permalink = new Permalink(); // eslint-disable-line no-unused-vars
 
 /**
   * Initiate a new query and do some UI changes before and after it
@@ -35,21 +33,6 @@ const permalink = new Permalink(); // eslint-disable-line no-unused-vars
   */
 async function search() {
   document.getElementById('preloader').classList.remove('d-hide');
-
-  const query = new Query({
-    query: document.getElementById('query').value,
-    bbox: document.getElementById('apply-bbox').checked ? map.bounds().toBBoxString() : null,
-    limit: document.getElementById('limit').value,
-    status: document.getElementById('show-closed').checked ? STATUS.ALL : STATUS.OPEN,
-    author: document.getElementById('user').value,
-    anonymous: document.getElementById('hide-anonymous').checked ? ANONYMOUS.HIDE : ANONYMOUS.INCLUDE,
-    after: document.getElementById('from').value,
-    before: document.getElementById('to').value,
-    comments: document.getElementById('only-uncommented').checked ? 0 : null,
-    sort_by: document.getElementById('sort').value.split('-')[0], // eslint-disable-line camelcase
-    order: document.getElementById('sort').value.split('-')[1]
-  });
-
   const notes = await query.search();
   ui.show(Array.from(notes), query).then(details).finally(() => {
     document.getElementById('preloader').classList.add('d-hide');
@@ -222,49 +205,6 @@ function listener() {
 }
 
 /**
-  * Use the URL search parameters to e.g. start a new search with the given values
-  *
-  * @function
-  * @private
-  * @returns {void}
-  */
-function searchParameter() {
-  const parameter = new URL(window.location.href).searchParams;
-  parameter.forEach((value, key) => {
-    if (key === 'map') {
-      const position = value.split('/'); // eslint-disable-line no-case-declarations
-      map.setView([position[1], position[2]], position[0]);
-    } else if (key === 'query') {
-      document.getElementById('query').value = value;
-    } else if (key === 'limit') {
-      document.getElementById('limit').value = value;
-    } else if (key === 'closed') {
-      document.getElementById('show-closed').checked = value;
-    } else if (key === 'author') {
-      document.getElementById('user').value = value;
-    } else if (key === 'anonymous') {
-      document.getElementById('hide-anonymous').checked = value === ANONYMOUS.HIDE ? true : false;
-    } else if (key === 'after') {
-      document.getElementById('from').value = value;
-    } else if (key === 'before') {
-      document.getElementById('to').value = value;
-    } else if (key === 'sort') {
-      document.getElementById('sort').value =
-        `${value === 'updated_at' ? 'updated_at' : 'created_at'}-${parameter.get('order') === 'oldest' ? 'ascending' : 'descending'}`;
-    } else if (key === 'order') {
-      document.getElementById('sort').value =
-        `${parameter.get('sort') === 'updated_at' ? 'updated_at' : 'created_at'}-${value === 'oldest' ? 'ascending' : 'descending'}`;
-    }
-  });
-
-  const uri = window.location.toString();
-  if (uri.indexOf('?') > 0) {
-    window.history.replaceState({}, document.title, uri.substring(0, uri.indexOf('?')));
-  }
-  return parameter;
-}
-
-/**
   * Get the preferences and update the UI accordingly
   *
   * @function
@@ -328,7 +268,28 @@ function settings() {
     });
   }
 
-  map = new Leaflet('map');
+  const parameter = new URL(window.location.href).searchParams;
+  // Remove the query parameters to have a cleaner looking URL
+  const uri = window.location.toString();
+  if (uri.indexOf('?') > 0) {
+    window.history.replaceState({}, document.title, uri.substring(0, uri.indexOf('?')));
+  }
+
+  // Get the desired position from the search parameters or the local storage
+  const position =
+    (parameter.has('map') && /.+\/.+\/.+/.test(parameter.get('map')) ?
+      (p => {
+        return {
+          center: [p[1], p[2]],
+          zoom: p[0]};
+      })(parameter.get('map').split('/'))
+      : null)
+    ||
+    Preferences.get('map');
+
+  map = new Leaflet('map', position);
+  query = new Query(map, parameter);
+  const permalink = new Permalink(query); // eslint-disable-line no-unused-vars
 
   const authenticated = api.authenticated();
   document.body.dataset.authenticated = authenticated;
@@ -344,9 +305,7 @@ function settings() {
   listener();
   settings();
 
-  const parameter = searchParameter();
   const view = parameter.get('view') || Preferences.get('view');
-
   document.querySelector(`#toggle-view div[data-view="${view}"]`).classList.remove('d-hide');
   document.querySelector(`#${view}`).classList.remove('d-hide');
   document.body.dataset.view = view;

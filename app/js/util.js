@@ -109,3 +109,21 @@ export function chunk(array, size) {
   }
   return result;
 }
+
+/**
+  * Removes unnecessary default values from an object
+  *
+  * @function
+  * @param {Object} defaults
+  * @param {Object} data
+  * @returns {Object}
+  */
+export function clean(defaults, data) {
+  Object.entries(defaults).forEach(entry => {
+    const [ key, value ] = entry;
+    if (data[key] === value) {
+      delete data[key];
+    }
+  });
+  return data;
+}

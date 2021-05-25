@@ -24,7 +24,6 @@ export default class Modal {
     * Open a modal by its identifier
     *
     * @function
-    * @private
     * @param {String} id
     * @returns {void}
     */
@@ -39,7 +38,6 @@ export default class Modal {
     * Close a specified modal
     *
     * @function
-    * @private
     * @param {HTMLElement} modal
     * @returns {void}
     */

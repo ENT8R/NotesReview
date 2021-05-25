@@ -6,42 +6,42 @@
         <svg class="icon icon-small"><use xlink:href="#icon-help"></use></svg>
       </span>
     </label>
-    <input class="form-input update-link" id="query" type="text">
+    <input class="form-input" id="query" type="text">
   </div>
 
   <div class="column col-6 col-sm-3">
     <label class="form-label" for="limit" data-i18n="header.limit">Limit</label>
-    <input class="form-input update-link" id="limit" type="number" value="50" min="0" max="100">
+    <input class="form-input" id="limit" type="number" value="50" min="0" max="100">
   </div>
 
   <div class="column col-6 col-sm-9">
     <label class="form-label" for="user" data-i18n="header.user">User</label>
-    <input class="form-input update-link" id="user" type="text">
+    <input class="form-input" id="user" type="text">
   </div>
 
   <div class="column col-4 col-sm-12">
     <label class="form-label" for="from" data-i18n="header.from">From</label>
-    <input class="form-input update-link" id="from" type="date">
+    <input class="form-input" id="from" type="date">
   </div>
 
   <div class="column col-4 col-sm-12">
     <label class="form-label" for="to" data-i18n="header.to">To</label>
-    <input class="form-input update-link" id="to" type="date">
+    <input class="form-input" id="to" type="date">
   </div>
 
   <div class="column col-4 col-sm-12">
     <label class="form-label" for="sort" data-i18n="header.sort">Sort by</label>
-    <select class="form-select update-link" id="sort">
-      <option value="created_at-descending" data-i18n="description.sort.created.desc">Newest</option>
-      <option value="created_at-ascending" data-i18n="description.sort.created.asc">Oldest</option>
-      <option value="updated_at-descending" data-i18n="description.sort.updated.desc">Recently updated</option>
-      <option value="updated_at-ascending" data-i18n="description.sort.updated.asc">Least recently updated</option>
+    <select class="form-select" id="sort">
+      <option value="created_at:descending" data-i18n="description.sort.created.desc">Newest</option>
+      <option value="created_at:ascending" data-i18n="description.sort.created.asc">Oldest</option>
+      <option value="updated_at:descending" data-i18n="description.sort.updated.desc">Recently updated</option>
+      <option value="updated_at:ascending" data-i18n="description.sort.updated.asc">Least recently updated</option>
     </select>
   </div>
 
   <div class="column col-6 col-sm-12">
     <label class="form-checkbox">
-      <input class="update-link" id="show-closed" type="checkbox">
+      <input id="show-closed" type="checkbox">
       <i class="form-icon"></i>
       <span data-i18n="description.showClosed">Show closed notes</span>
     </label>
@@ -49,7 +49,7 @@
 
   <div class="column col-6 col-sm-12">
     <label class="form-checkbox">
-      <input class="update-link" id="hide-anonymous" type="checkbox">
+      <input id="hide-anonymous" type="checkbox">
       <i class="form-icon"></i>
       <span data-i18n="description.hideAnonymous">Hide anonymous notes</span>
     </label>
@@ -57,7 +57,7 @@
 
   <div class="column col-6 col-sm-12">
     <label class="form-checkbox">
-      <input class="update-link" id="apply-bbox" type="checkbox">
+      <input id="apply-bbox" type="checkbox">
       <i class="form-icon"></i>
       <span data-i18n="description.applyBoundingBox">Search only in current view</span>
     </label>
@@ -65,7 +65,7 @@
 
   <div class="column col-6 col-sm-12">
     <label class="form-checkbox">
-      <input class="update-link" id="only-uncommented" type="checkbox">
+      <input id="only-uncommented" type="checkbox">
       <i class="form-icon"></i>
       <span data-i18n="description.onlyUncommented">Show only uncommented notes</span>
     </label>

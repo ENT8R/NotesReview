@@ -1,16 +1,13 @@
 import * as Localizer from './localizer.js';
-import Preferences from './preferences.js';
 import * as Theme from './theme.js';
 
 const instances = {};
 let tileLayer;
 
 const OPTIONS = {
-  center: Preferences.get('map').center,
   zoom: {
     min: 2,
-    max: 18,
-    current: Preferences.get('map').zoom
+    max: 18
   }
 };
 
@@ -21,16 +18,17 @@ export default class Leaflet {
     *
     * @constructor
     * @param {String} id The id of the map container
+    * @param {Object} position The position the map should be centered in
     */
-  constructor(id) {
+  constructor(id, position) {
     if (instances[id]) {
       this.map = instances[id];
     } else {
       this.map = L.map(id, {
-        center: OPTIONS.center,
+        center: position.center,
         minZoom: OPTIONS.zoom.min,
         maxZoom: OPTIONS.zoom.max,
-        zoom: OPTIONS.zoom.current,
+        zoom: position.zoom,
         maxBounds: L.latLngBounds(
           L.latLng(-90, -180),
           L.latLng(90, 180)
