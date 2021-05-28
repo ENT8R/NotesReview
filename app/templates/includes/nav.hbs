@@ -40,19 +40,21 @@
   </div>
 
   <div class="column col-6 col-sm-12">
-    <label class="form-checkbox">
-      <input id="show-closed" type="checkbox">
-      <i class="form-icon"></i>
-      <span data-i18n="description.showClosed">Show closed notes</span>
-    </label>
+    <label class="form-label" for="status" data-i18n="header.status">Status</label>
+    <single-selection-button-group id="status" class="btn-group btn-group-block">
+      <button class="btn" data-i18n="description.status.all">All</button>
+      <button class="btn active" data-value="open" data-i18n="description.status.open">Open</button>
+      <button class="btn" data-value="closed" data-i18n="description.status.closed">Closed</button>
+    </single-selection-button-group>
   </div>
 
   <div class="column col-6 col-sm-12">
-    <label class="form-checkbox">
-      <input id="hide-anonymous" type="checkbox">
-      <i class="form-icon"></i>
-      <span data-i18n="description.hideAnonymous">Hide anonymous notes</span>
-    </label>
+    <label class="form-label" for="anonymous" data-i18n="header.anonymous">Anonymous notes</label>
+    <single-selection-button-group id="anonymous" class="btn-group btn-group-block">
+      <button class="btn active" data-value="include" data-i18n="description.anonymous.include">Include</button>
+      <button class="btn" data-value="hide" data-i18n="description.anonymous.hide">Hide</button>
+      <button class="btn" data-value="only" data-i18n="description.anonymous.only">Only</button>
+    </single-selection-button-group>
   </div>
 
   <div class="column col-6 col-sm-12">

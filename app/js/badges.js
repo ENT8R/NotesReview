@@ -14,11 +14,7 @@ import * as CountryCoder from '@ideditor/country-coder';
   * @returns {String}
   */
 export function age(color, date, navigation) {
-  let location = 'bottom';
-  if (navigation) {
-    location = 'right';
-  }
-
+  const location = navigation ? 'top' : 'bottom';
   return `
   <span class="label label-${color} my-1 c-default tooltip tooltip-${location}" data-tooltip="${date.toLocaleString()}">
     <time-ago datetime="${date}" title="">

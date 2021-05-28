@@ -161,4 +161,15 @@ export default class Leaflet {
       maxZoom: OPTIONS.maxZoom
     });
   }
+
+  /**
+    * Register a new listener on map movement
+    *
+    * @function
+    * @param {Function} listener
+    * @returns {void}
+    */
+  onMove(listener) {
+    this.map.on('move', listener);
+  }
 }

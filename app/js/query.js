@@ -37,8 +37,6 @@ const DEFAULTS = {
   sort_by: SORT.UPDATED_AT, // eslint-disable-line camelcase
   order: ORDER.DESCENDING,
   // Search parameter defaults
-  closed: false,
-  hideAnonymous: false,
   uncommented: false,
   sort: `${SORT.CREATED_AT}:${ORDER.DESCENDING}`
 };
@@ -68,16 +66,16 @@ export default class Query {
       permalink: 'limit',
       handler: this.limit
     }, {
-      id: 'show-closed',
-      permalink: 'closed',
-      handler: this.closed
+      id: 'status',
+      permalink: 'status',
+      handler: this.status
     }, {
       id: 'user',
       permalink: 'author',
       handler: this.author
     }, {
-      id: 'hide-anonymous',
-      permalink: 'hideAnonymous',
+      id: 'anonymous',
+      permalink: 'anonymous',
       handler: this.anonymous
     }, {
       id: 'from',
@@ -116,6 +114,12 @@ export default class Query {
       // Call the handler by triggering a new change event on the element
       element.dispatchEvent(new Event('change'));
     }, this);
+
+    // TODO: Find a better way to update the bounding box when moving the map
+    // (Maybe an invisible input?)
+    this.map.onMove(() => {
+      this.bbox(this.data.bbox);
+    });
   }
 
   /**
@@ -165,18 +169,6 @@ export default class Query {
   }
 
   /**
-    * Whether to include closed notes
-    *
-    * @function
-    * @param {Boolean} closed
-    * @returns {Query}
-    */
-  closed(closed) {
-    this.status(closed ? STATUS.ALL : STATUS.OPEN);
-    return this;
-  }
-
-  /**
     * Filter notes by their current status
     *
     * @function
@@ -199,27 +191,19 @@ export default class Query {
     * @returns {Query}
     */
   author(author) {
-    if (['anonymous', Localizer.message('note.anonymous')].includes(author)) {
-      this.data.anonymous = ANONYMOUS.ONLY;
-      document.getElementById('hide-anonymous').checked = false;
-      document.getElementById('hide-anonymous').setAttribute('disabled', 'true');
-    } else {
-      document.getElementById('hide-anonymous').removeAttribute('disabled');
-    }
-
     this.data.author = author;
     return this;
   }
 
   /**
-    * Whether anonymous notes should be hidden or excluded
+    * Whether anonymous notes should be included, hidden or displayed as only results
     *
     * @function
-    * @param {Boolean} anonymous
+    * @param {ANONYMOUS} anonymous
     * @returns {Query}
     */
   anonymous(anonymous) {
-    this.data.anonymous = anonymous ? ANONYMOUS.HIDE : ANONYMOUS.INCLUDE;
+    this.data.anonymous = anonymous;
     return this;
   }
 
@@ -307,21 +291,17 @@ export default class Query {
     const url = new URL(window.location);
     url.hash = '';
 
-    const data = Object.assign({}, this.data, {
+    const data = Object.assign({
       view: document.body.dataset.view,
       map: `${this.map.zoom()}/${this.map.center().lat}/${this.map.center().lng}`,
-
+    }, this.data, {
       // bbox: this.data.bbox !== null,
-      closed: this.data.status === STATUS.ALL,
-      hideAnonymous: this.data.anonymous === ANONYMOUS.HIDE,
       uncommented: this.data.comments === 0,
       sort: `${this.data.sort_by}:${this.data.order}`
     });
 
     // Remove unused properties that are already set by another value
     delete data.bbox;
-    delete data.status;
-    delete data.anonymous;
     delete data.sort_by;
     delete data.comments;
 

@@ -51,7 +51,9 @@
         "user": "Benutzer",
         "from": "Von",
         "to": "Bis",
-        "sort": "Sortieren nach"
+        "sort": "Sortieren nach",
+        "status": "Status",
+        "anonymous": "Anonyme Notizen"
     },
     "description": {
         "share": "Kopiere diesen Link um die aktuelle Abfrage zu teilen:",
@@ -59,8 +61,6 @@
         "shareView": "Aktuelle Kartenansicht mitgeben",
         "showList": "Als Liste zeigen",
         "showMap": "Auf Karte zeigen",
-        "showClosed": "Geschlossene Notizen zeigen",
-        "hideAnonymous": "Anonyme Notizen verstecken",
         "nothingFound": "Nichts gefunden!",
         "autoLimit": "Limit automatisch auf 100 gesetzt, da höhere Werte nicht erlaubt sind",
         "deprecationWarning": "Dein momentaner Browser funktioniert leider nicht zusammen mit NotesReview. Bitte denke darüber nach deinen Browser zu wechseln, um NotesReview verwenden zu können.",
@@ -76,7 +76,17 @@
         },
         "query": "Ein Wort oder ein Satz, der in der Notiz enthalten ist",
         "applyBoundingBox": "Nur in der aktuellen Ansicht suchen",
-        "onlyUncommented": "Nur unkommentierte Notizen anzeigen"
+        "onlyUncommented": "Nur unkommentierte Notizen anzeigen",
+        "status": {
+            "all": "Alle",
+            "open": "Offen",
+            "closed": "Geschlossen"
+        },
+        "anonymous": {
+            "include": "Anzeigen",
+            "hide": "Verstecken",
+            "only": "Ausschließlich"
+        }
     },
     "settings": {
         "choose": "Wähle eine Option",

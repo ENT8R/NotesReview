@@ -20,6 +20,10 @@ import Toast from './toast.js';
 import Users from './users.js';
 import * as Util from './util.js';
 
+// Custom elements
+import SingleSelectionButtonGroup from './elements/SingleSelectionButtonGroup.js';
+window.customElements.define('single-selection-button-group', SingleSelectionButtonGroup);
+
 let map, ui, query;
 
 const api = new API();
@@ -56,7 +60,8 @@ function details(result) {
   }
 
   document.getElementById('found-notes').textContent = Localizer.message('note.amount', result.amount);
-  document.getElementById('average-date').innerHTML = Localizer.message('note.average', Badges.age(Util.parseDate(result.average), result.average, true));
+  const badge = Badges.age(Util.parseDate(result.average), result.average, true);
+  document.getElementById('average-date').innerHTML = Localizer.message('note.average', badge);
 }
 
 /**

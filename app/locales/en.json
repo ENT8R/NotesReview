@@ -51,7 +51,9 @@
         "user": "User",
         "from": "From",
         "to": "To",
-        "sort": "Sort by"
+        "sort": "Sort by",
+        "status": "Status",
+        "anonymous": "Anonymous notes"
     },
     "description": {
         "share": "Copy this link to share the current query:",
@@ -59,8 +61,6 @@
         "shareView": "Share current view of the map",
         "showList": "Show in a list",
         "showMap": "Show on a map",
-        "showClosed": "Show closed notes",
-        "hideAnonymous": "Hide anonymous notes",
         "nothingFound": "Nothing found!",
         "autoLimit": "Automatically set limit to 100, because higher values are not allowed",
         "deprecationWarning": "The browser you are currently using does not support NotesReview. Please consider to switch to another browser to be able to use NotesReview.",
@@ -76,7 +76,17 @@
         },
         "query": "A word or phrase mentioned in the note",
         "applyBoundingBox": "Search only in current view",
-        "onlyUncommented": "Show only uncommented notes"
+        "onlyUncommented": "Show only uncommented notes",
+        "status": {
+          "all": "All",
+          "open": "Open",
+          "closed": "Closed"
+        },
+        "anonymous": {
+          "include": "Include",
+          "hide": "Hide",
+          "only": "Only"
+        }
     },
     "settings": {
         "choose": "Choose an option",
