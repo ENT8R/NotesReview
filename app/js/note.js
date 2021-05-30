@@ -39,6 +39,27 @@ export default class Note {
   }
 
   /**
+    * Parse a new note from the main OpenStreetMap API
+    *
+    * @function
+    * @param {Object} note
+    * @returns {Note}
+    */
+  static parse(note) {
+    return new Note({
+      _id: note.properties.id,
+      coordinates: note.geometry.coordinates,
+      status: note.properties.status,
+      comments: note.properties.comments.map(comment => {
+        /** The dashes in the date string need to be replaced with slashes
+        * See {@link https://stackoverflow.com/a/3257513} for the reason */
+        comment.date = comment.date.replace(/-/g, '/');
+        return comment;
+      })
+    });
+  }
+
+  /**
     * Return possible note actions which are then added to the note template
     * Possible actions are e.g. to open an editor or open the note on openstreetmap.org
     *

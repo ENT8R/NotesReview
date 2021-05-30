@@ -198,7 +198,7 @@ function listener() {
       const text = commentAction.parentElement.parentElement.querySelector('.note-comment').value.trim();
 
       api.comment(id, text, commentAction.dataset.action).then(note => {
-        ui.update(id, new Note(JSON.parse(note))).then(details);
+        ui.update(id, Note.parse(JSON.parse(note))).then(details);
         Comments.load(ui.get(id));
       }).catch(error => {
         console.log(error); // eslint-disable-line no-console
