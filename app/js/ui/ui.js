@@ -1,3 +1,4 @@
+import { STATUS } from '../query.js';
 import MapView from './map.js';
 import ListView from './list.js';
 
@@ -52,7 +53,9 @@ export default class UI {
     const average = notes.reduce((accumulator, current) => accumulator + current.created.getTime(), 0) / amount;
 
     notes.forEach(note => {
-      this._view.handler.add(note, query);
+      if (this.isNoteVisible(note, query)) {
+        this._view.handler.add(note, query);
+      }
     });
     this._view.handler.apply(reload);
 
@@ -60,6 +63,19 @@ export default class UI {
       amount,
       average: new Date(average)
     });
+  }
+
+  /**
+    * Check whether a note can be shown
+    *
+    * @function
+    * @param {Note} note Single note which should be checked.
+    * @param {Query} query The query which was used in order to find the note
+    * @returns {Boolean}
+    */
+  isNoteVisible(note, query) {
+    return (query.data.status === STATUS.OPEN ? note.status === STATUS.OPEN : true) &&
+           (query.data.status === STATUS.CLOSED ? note.status === STATUS.CLOSED : true);
   }
 
   /**
