@@ -4,3 +4,6 @@ import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only';
 import 'core-js/es/promise/finally';
 // chrome >= 51, edge >= 16, firefox >= 50, not ie <= 11, opera >= 38, safari >= 10.1
 import 'core-js/stable/dom-collections/for-each';
+
+// Needed because of https://github.com/handlebars-lang/handlebars.js/pull/1692
+window.global = window;

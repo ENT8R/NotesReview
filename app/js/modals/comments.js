@@ -1,12 +1,8 @@
-import * as Localizer from '../localizer.js';
 import Modal from './modal.js';
 
 import * as Handlebars from 'handlebars';
 import t from '../../templates/dynamic/comment.hbs?raw';
 const template = Handlebars.compile(t);
-Handlebars.registerHelper('localizer', key => {
-  return Localizer.message(key);
-});
 
 export default class Comments extends Modal {
   /**
@@ -33,10 +29,5 @@ export default class Comments extends Modal {
     const input = content.querySelector('.note-comment');
     input.value = '';
     input.dispatchEvent(new Event('input'));
-
-    // Show different actions depending on the status of the note
-    document.querySelector('.comment-action[data-action="comment"]').style.display = note.status === 'open' ? 'block' : 'none';
-    document.querySelector('.comment-action[data-action="close"]').style.display = note.status === 'open' ? 'block' : 'none';
-    document.querySelector('.comment-action[data-action="reopen"]').style.display = note.status === 'closed' ? 'block' : 'none';
   }
 }

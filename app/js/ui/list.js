@@ -18,12 +18,11 @@ export default class List {
   add(note) {
     const div = document.createElement('div');
     div.classList.add('column', 'col-4', 'col-md-6', 'col-sm-12', 'p-1');
-    div.innerHTML = template({
-      list: true,
-      id: note.id,
-      badges: note.badges,
-      comment: note.comments[0].html,
-      actions: note.actions
+    div.innerHTML = template(note, {
+      allowedProtoProperties: {
+        actions: true,
+        badges: true
+      }
     });
     this.fragment.appendChild(div);
   }

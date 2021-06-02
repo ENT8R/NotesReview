@@ -20,6 +20,14 @@ import Toast from './toast.js';
 import Users from './users.js';
 import * as Util from './util.js';
 
+import * as Handlebars from 'handlebars';
+import actions from '../templates/dynamic/actions.hbs?raw';
+
+Handlebars.registerPartial('actions', actions);
+Handlebars.registerHelper('localizer', key => {
+  return Localizer.message(key);
+});
+
 // Custom elements
 import SingleSelectionButtonGroup from './elements/SingleSelectionButtonGroup.js';
 window.customElements.define('single-selection-button-group', SingleSelectionButtonGroup);
@@ -108,9 +116,9 @@ function listener() {
       const text = event.target.value.trim();
       const actions = event.target.parentElement.querySelector('.note-comment-actions');
       if (text === '') {
-        actions.classList.add('d-hide');
+        actions.classList.add('d-invisible');
       } else {
-        actions.classList.remove('d-hide');
+        actions.classList.remove('d-invisible');
       }
     }
   });
@@ -292,7 +300,7 @@ function settings() {
     ||
     Preferences.get('map');
 
-  map = new Leaflet('map', position);
+  map = new Leaflet('map-container', position);
   query = new Query(map, parameter);
   const permalink = new Permalink(query); // eslint-disable-line no-unused-vars
 

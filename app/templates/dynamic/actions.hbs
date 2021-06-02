@@ -1,0 +1,14 @@
+{{#each .}}
+  {{#if link}}
+  <a class="btn btn-primary btn-sm my-1 {{class}}" href="{{link}}"
+    {{#remote}}target="remote"{{else}}target="_blank" rel="noopener"{{/remote}}>
+    <svg class="icon"><use xlink:href="#icon-{{icon}}"></use></svg>
+    {{text}}
+  </a>
+  {{else}}
+  <button class="btn btn-primary btn-sm my-1 {{class}}">
+    <svg class="icon"><use xlink:href="#icon-{{icon}}"></use></svg>
+    {{text}}
+  </button>
+  {{/if}}
+{{/each}}

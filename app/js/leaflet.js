@@ -172,4 +172,15 @@ export default class Leaflet {
   onMove(listener) {
     this.map.on('move', listener);
   }
+
+  /**
+    * Register a new listener for a click action
+    *
+    * @function
+    * @param {Function} listener
+    * @returns {void}
+    */
+  onClick(listener) {
+    this.map.on('click', listener);
+  }
 }

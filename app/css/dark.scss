@@ -8,16 +8,16 @@ $link-color: #81d4fa; // light-blue lighten-3
 $text-color: rgba(255, 255, 255, 0.8);
 
 body[data-theme="dark"] {
-  &,
-  .modal-container,
-  .modal-header,
-  header.navbar {
-    background-color: $main-color;
-    color: $text-color;
+  & {
+    --background-color: #{$main-color};
+    --box-shadow-color: #090909;
   }
 
-  header.navbar {
-    box-shadow: 0 10px 10px -10px #090909;
+  &,
+  .modal-container,
+  .modal-header {
+    background-color: $main-color;
+    color: $text-color;
   }
 
   .card,
@@ -44,6 +44,9 @@ body[data-theme="dark"] {
     &.btn-link:hover {
       color: $minor-color;
     }
+    &.active {
+      background-color: $main-color-surface !important;
+    }
   }
 
   ::selection {
@@ -68,7 +71,7 @@ body[data-theme="dark"] {
     }
   }
 
-  img:not(.leaflet-tile):not(.marker-icon) {
+  img:not(.leaflet-tile):not([src^='markers/']) {
     filter: brightness(.8) contrast(1.2);
   }
 }

@@ -6,7 +6,7 @@ import * as Util from './util.js';
 const OPENSTREETMAP_ELEMENT_REGEX = [
   /(?:https?:\/\/)?(?:www\.)?(?:osm|openstreetmap)\.org\/(node|way|relation)\/([0-9]+)/,
   /(node|way|relation)\/([0-9]+)/,
-  /(node|way|relation)(?:\\s)?#([0-9]+)/,
+  /(node|way|relation)(?:\s)?#([0-9]+)/,
   /(n|w|r)\/([0-9]+)/
 ];
 
@@ -111,33 +111,47 @@ export default class Note {
       delete actions.comment;
     }
 
-    let match;
-    OPENSTREETMAP_ELEMENT_REGEX.forEach(regex => {
-      if (!match) {
-        match = this.comments[0].html.match(regex);
-        if (match && match.length > 1) {
-          let [ , type, id ] = match; // eslint-disable-line prefer-const
+    if (this.linked) {
+      const { id, type } = this.linked;
+      actions.iD.link = `${OPENSTREETMAP_SERVER}/edit?editor=id&${type}=${id}`;
+      actions.josm.link += `&select=${type}${id}`;
+      actions.level0.link = `http://level0.osmz.ru/?url=${type}/${id}&center=${this.coordinates.join()}`;
+    }
 
-          switch (type) {
-          case 'n':
-            type = 'node';
-            break;
-          case 'w':
-            type = 'way';
-            break;
-          case 'r':
-            type = 'relation';
-            break;
-          }
+    return actions;
+  }
 
-          actions.iD.link = `${OPENSTREETMAP_SERVER}/edit?editor=id&${type}=${id}`;
-          actions.josm.link += `&select=${type}${id}`;
-          actions.level0.link = `http://level0.osmz.ru/?url=${type}/${id}&center=${this.coordinates.join()}`;
+  /**
+    * Find the first linked OpenStreetMap element in the first comment
+    *
+    * @function
+    * @returns {Object}
+    */
+  get linked() {
+    for (const regex of OPENSTREETMAP_ELEMENT_REGEX) {
+      const match = this.comments[0].html.match(regex);
+
+      if (match && match.length >= 3) {
+        let [ , type, id ] = match; // eslint-disable-line prefer-const
+
+        switch (type) {
+        case 'n':
+          type = 'node';
+          break;
+        case 'w':
+          type = 'way';
+          break;
+        case 'r':
+          type = 'relation';
+          break;
         }
-      }
-    });
 
-    return Object.values(actions);
+        return {
+          type, id
+        };
+      }
+    }
+    return null;
   }
 
   /**

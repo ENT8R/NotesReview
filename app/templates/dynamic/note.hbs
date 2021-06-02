@@ -3,28 +3,15 @@
     {{{badges.user}}}
     {{{badges.age}}}
     {{{badges.comments}}}
-    {{#list}}{{{badges.country}}}{{/list}}
+    {{{badges.country}}}
     {{{badges.report}}}
   </div>
 
   <div class="card-body text-break">
-    {{{comment}}}
+    {{{comments.0.html}}}
   </div>
 
   <div class="card-footer">
-    {{#each actions}}
-      {{#if link}}
-      <a class="btn btn-primary btn-sm my-1 {{class}}" href="{{link}}"
-        {{#remote}}target="remote"{{else}}target="_blank" rel="noopener"{{/remote}}>
-        <svg class="icon"><use xlink:href="#icon-{{icon}}"></use></svg>
-        {{text}}
-      </a>
-      {{else}}
-      <button class="btn btn-primary btn-sm my-1 {{class}}">
-        <svg class="icon"><use xlink:href="#icon-{{icon}}"></use></svg>
-        {{text}}
-      </button>
-      {{/if}}
-    {{/each}}
+    {{> actions actions}}
   </div>
 </div>

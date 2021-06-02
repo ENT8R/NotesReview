@@ -1,6 +1,12 @@
 @use 'dark';
 @use 'icons';
 
+:root {
+  --background-color: white;
+  --box-shadow-color: #546e7a;
+  --exponential-ease-out: cubic-bezier(.2, 1, .2, 1);
+}
+
 /*---------- Content ------------*/
 html, body {
   height: 100%;
@@ -14,7 +20,13 @@ body {
   &[data-tool-openstreetmap="false"] .link-osm,
   &[data-tool-mapillary="false"] .link-tool-mapillary,
 
-  &[data-authenticated="false"] .requires-authentication {
+  &[data-authenticated="false"] .requires-authentication,
+
+  [data-status="open"] .comment-action[data-action="reopen"],
+  [data-status="closed"] .comment-action[data-action="comment"],
+  [data-status="closed"] .comment-action[data-action="close"],
+
+  #note-container .comments-modal-trigger {
     display: none;
   }
 }
@@ -22,8 +34,8 @@ body {
 header.navbar {
   position: fixed;
   width: 100%;
-  background-color: white;
-  box-shadow: 0 10px 10px -10px #546e7a;
+  background-color: var(--background-color);
+  box-shadow: 0 10px 10px -10px var(--box-shadow-color);
   z-index: 2;
 }
 
@@ -39,8 +51,29 @@ main {
   max-height: 80vh;
 }
 
+.sidebar {
+  position: absolute;
+  top: 0;
+  max-height: 100%;
+  background-color: var(--background-color);
+  overflow-y: auto;
+  transition: transform 250ms var(--exponential-ease-out);
+  box-shadow: 10px 10px 10px -10px var(--box-shadow-color);
+  > * {
+    margin: 12px;
+  }
+}
+
+.note-actions {
+  position: sticky;
+  bottom: 0;
+  padding-bottom: 12px;
+  z-index: 1;
+  background-color: var(--background-color);
+}
+
 /*---------- Leaflet ------------*/
-#map {
+#map, #map-container {
   height: 100%;
   z-index: 0;
 }
@@ -92,6 +125,10 @@ input:disabled ~ span {
   opacity: .5;
 }
 
+textarea {
+  resize: vertical;
+}
+
 .tooltip::after {
   max-width: none;
 }
@@ -103,8 +140,15 @@ input:disabled ~ span {
   min-height: 140px;
 }
 
-img.marker-icon {
-  filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
+.marker-icon {
+  img {
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
+    transition: transform 500ms var(--exponential-ease-out);
+    transform-origin: bottom;
+  }
+  &:focus img {
+    transform: scale(1.2);
+  }
 }
 
 .overlay {
@@ -115,6 +159,10 @@ img.marker-icon {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
+}
+
+.out-of-view {
+  transform: translateX(-100%);
 }
 
 /*---------- Liberapay ----------*/

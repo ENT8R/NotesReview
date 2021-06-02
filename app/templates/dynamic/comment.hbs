@@ -1,24 +1,32 @@
-{{#each comments}}
-<div class="tile">
-  <div class="tile-content">
-    <div class="tile-title">
-      {{{badges.user}}}
-      {{{badges.age}}}
-      {{{badges.status}}}
+<div data-note-id="{{id}}" data-status="{{status}}">
+  <div class="note-comments">
+    {{#each comments}}
+    <div class="tile">
+      <div class="tile-content">
+        <div class="tile-title">
+          {{{badges.user}}}
+          {{{badges.age}}}
+          {{{badges.status}}}
+        </div>
+        <p class="tile-subtitle text-break">{{{html}}}</p>
+      </div>
     </div>
-    <p class="tile-subtitle text-break">{{{html}}}</p>
-  </div>
-</div>
-<div class="divider"></div>
-{{/each}}
+    <div class="divider"></div>
+    {{/each}}
 
-<div class="form-group">
-  <textarea class="form-input note-comment requires-authentication" rows="3"
-            placeholder="{{localizer 'comments.inputPlaceholder'}}"></textarea>
-  <!-- IMPORTANT: These elements must stay at this position, otherwise the automatic detection of the neighboring element will fail -->
-  <div class="btn-group btn-group-block my-2 d-hide requires-authentication note-comment-actions">
-    <button class="btn comment-action" data-action="comment">{{localizer 'action.comment'}}</button>
-    <button class="btn comment-action" data-action="close">{{localizer 'action.commentClose'}}</button>
-    <button class="btn comment-action" data-action="reopen">{{localizer 'action.commentReopen'}}</button>
+    <div class="form-group">
+      <textarea class="form-input note-comment requires-authentication" rows="3"
+                placeholder="{{localizer 'comments.inputPlaceholder'}}"></textarea>
+      <!-- IMPORTANT: These elements must stay at this position, otherwise the automatic detection of the neighboring element will fail -->
+      <div class="btn-group btn-group-block my-2 d-invisible requires-authentication note-comment-actions">
+        <button class="btn comment-action" data-action="comment">{{localizer 'action.comment'}}</button>
+        <button class="btn comment-action" data-action="close">{{localizer 'action.commentClose'}}</button>
+        <button class="btn comment-action" data-action="reopen">{{localizer 'action.commentReopen'}}</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-actions btn-group btn-group-block">
+    {{> actions actions}}
   </div>
 </div>
