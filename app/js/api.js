@@ -1,3 +1,5 @@
+import * as osmAuth from 'osm-auth';
+
 const auth = osmAuth({
   url: OPENSTREETMAP_SERVER,
   oauth_consumer_key: OPENSTREETMAP_OAUTH_KEY, // eslint-disable-line camelcase
