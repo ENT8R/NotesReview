@@ -1,4 +1,4 @@
-import * as osmAuth from 'osm-auth';
+import osmAuth from 'osm-auth';
 
 const auth = osmAuth({
   url: OPENSTREETMAP_SERVER,

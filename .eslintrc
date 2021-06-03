@@ -9,7 +9,6 @@
     },
     "globals": {
       "L": "readonly",
-      "osmAuth": "readonly",
       "__VERSION__": "readonly",
       "NOTESREVIEW_API_URL": "readonly",
       "OPENSTREETMAP_SERVER": "readonly",
