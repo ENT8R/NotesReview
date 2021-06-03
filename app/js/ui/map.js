@@ -15,15 +15,13 @@ export default class Map {
     this.active = null;
 
     this.cluster = L.markerClusterGroup({
-      maxClusterRadius: 40
+      maxClusterRadius: 40,
+      showCoverageOnHover: false
     });
     this.map.addLayer(this.cluster);
     this.markers = [];
 
-    this.halo = L.circleMarker([0, 0], {
-      weight: 2,
-      opacity: 0
-    });
+    this.halo = L.circleMarker([0, 0]);
     this.map.addLayer(this.halo);
 
     this.features = L.geoJSON();
@@ -78,11 +76,11 @@ export default class Map {
       }, 100);
 
       // Show halo with the correct style at the position of the note
-      this.halo.setLatLng(note.coordinates);
-      this.halo.setStyle({
+      this.halo = L.circleMarker(note.coordinates, {
         color: COLORS[note.color].fill,
-        opacity: 1
+        weight: 1
       });
+      this.map.addLayer(this.halo);
 
       // If an element is linked in the note text, show the geometry of it on the map
       const { linked } = note;
@@ -132,9 +130,7 @@ export default class Map {
     */
   clear() {
     this.active = null;
-    this.halo.setStyle({
-      opacity: 0
-    });
+    this.halo.remove();
     this.features.clearLayers();
     this.container.classList.add('out-of-view');
   }
