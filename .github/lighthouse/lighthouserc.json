@@ -1,9 +1,19 @@
 {
   "ci": {
     "collect": {
+      "url": [
+        "http://localhost:5000/NotesReview/"
+      ],
+      "startServerCommand": "npm run serve",
+      "startServerReadyPattern": "running|listen|ready",
+      "numberOfRuns": 3,
       "settings": {
-        "configPath": ".github/lighthouse/desktop-config.js"
+        "chromeFlags": "--no-sandbox",
+        "preset": "desktop"
       }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
     }
   }
 }

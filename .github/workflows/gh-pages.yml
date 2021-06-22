@@ -10,6 +10,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Setup node
+        uses: actions/setup-node@v2
+
       - name: Cache dependencies
         uses: actions/cache@v2
         with:
@@ -36,3 +39,15 @@ jobs:
           publish_dir: ./app/dist
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.8.x
+          lhci autorun --config=".github/lighthouse/lighthouserc.json"
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: lighthouse-results
+          path: .lighthouseci/*.html
