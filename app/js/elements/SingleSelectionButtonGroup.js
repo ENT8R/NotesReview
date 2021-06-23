@@ -4,7 +4,6 @@ export default class SingleSelectionButtonGroup extends HTMLElement {
     return true;
   }
 
-  /* eslint-disable no-useless-constructor */
   constructor() {
     super();
     // TODO: This is not yet supported across major browsers: chrome >= 77, no firefox, edge >= 79, no safari, opera >= 64, no ie

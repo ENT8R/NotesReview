@@ -95,8 +95,8 @@ function listener() {
       const uid = result.getElementsByTagName('user')[0].getAttribute('id');
       Preferences.set({ uid });
       Users.avatar(uid);
-    }).catch(error => {
-      console.log(error); // eslint-disable-line no-console
+    }).catch(() => {
+      new Toast(Localizer.message('error.login'), 'toast-error').show();
       document.body.dataset.authenticated = false;
     }).finally(() => {
       login.classList.remove('loading');
@@ -208,8 +208,8 @@ function listener() {
       api.comment(id, text, commentAction.dataset.action).then(note => {
         ui.update(id, Note.parse(JSON.parse(note))).then(details);
         Comments.load(ui.get(id));
-      }).catch(error => {
-        console.log(error); // eslint-disable-line no-console
+      }).catch(() => {
+        new Toast(Localizer.message('error.comment'), 'toast-error').show();
       }).finally(() => {
         commentAction.classList.remove('loading');
       });
@@ -263,6 +263,11 @@ function settings() {
     !window.fetch
   ) {
     document.body.classList.add('deprecated-browser');
+  }
+
+  if (import.meta.env.PROD) {
+    console.log = () => {};
+    console.error = () => {};
   }
 
   await import('@github/time-elements');
