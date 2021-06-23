@@ -56,6 +56,9 @@ export default () => {
     base: '/NotesReview/',
     root,
     define: globals,
+    build: {
+      sourcemap: true
+    },
     plugins: [
       handlebars({
         partialDirectory: [

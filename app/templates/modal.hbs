@@ -1,0 +1,9 @@
+<div class="modal" data-modal="{{id}}">
+  <span class="modal-overlay modal-close" title="Close" data-i18n data-i18n-title="action.close">
+    <span class="d-hide" data-i18n="action.close">Close</span>
+  </span>
+
+  <div class="modal-container">
+    {{> (lookup . 'id')}}
+  </div>
+</div>
