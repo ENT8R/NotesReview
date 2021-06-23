@@ -17,7 +17,7 @@
   "license": "GPL-3.0",
   "dependencies": {
     "@github/time-elements": "^3.1.2",
-    "@ideditor/country-coder": "^4.0.0",
+    "@ideditor/country-coder": "^5.0.2",
     "@webcomponents/custom-elements": "^1.4.3",
     "abortcontroller-polyfill": "^1.7.3",
     "anchorme": "^2.1.2",
@@ -29,13 +29,13 @@
     "spectre.css": "^0.5.9"
   },
   "devDependencies": {
-    "core-js": "^3.13.1",
+    "core-js": "^3.15.1",
     "dotenv": "^10.0.0",
-    "eslint": "^7.27.0",
+    "eslint": "^7.29.0",
     "handlebars": "^4.7.7",
-    "sass": "^1.34.1",
-    "vite": "^2.3.6",
+    "sass": "^1.35.1",
+    "vite": "^2.3.8",
     "vite-plugin-handlebars": "^1.5.1",
-    "vite-plugin-svg-icons": "^0.7.0"
+    "vite-plugin-svg-icons": "^0.7.1"
   }
 }
