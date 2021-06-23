@@ -51,7 +51,9 @@
         "user": "Usuario",
         "from": "Desde",
         "to": "A",
-        "sort": "Ordenar por"
+        "sort": "Ordenar por",
+        "status": "Estado",
+        "anonymous": "Notas anónimas"
     },
     "description": {
         "share": "Copia este enlace para compartir la consulta actual:",
@@ -59,8 +61,6 @@
         "shareView": "Compartir la vista actual del mapa",
         "showList": "Mostrar en una lista",
         "showMap": "Mostrar en un mapa",
-        "showClosed": "Mostrar notas cerradas",
-        "hideAnonymous": "Ocultar notas anónimas",
         "nothingFound": "¡Nada Encontrado!",
         "autoLimit": "Se ha establecido automáticamente el límite en 100, no se permiten valores mayores",
         "deprecationWarning": "El navegador que está utilizando actualmente no es compatible con NotesReview. Considere cambiar a otro navegador para poder usar NotesReview.",
@@ -76,7 +76,17 @@
         },
         "query": "Una palabra o frase mencionada en la nota",
         "applyBoundingBox": "Buscar solo en la vista actual",
-        "onlyUncommented": "Mostrar solo notas sin comentarios"
+        "onlyUncommented": "Mostrar solo notas sin comentarios",
+        "status": {
+            "all": "Todos",
+            "open": "Abierta",
+            "closed": "Cerrada"
+        },
+        "anonymous": {
+            "include": "Incluir",
+            "hide": "Esconder",
+            "only": "Solo"
+        }
     },
     "settings": {
         "choose": "Elegir una opción",

@@ -5,18 +5,18 @@
             "description": "Ogni colore rappresenta l’età della nota",
             "darkgreen": "Verde scuro",
             "green": "Verde",
-            "lime": "Lime",
             "amber": "Ambra",
             "orange": "Arancione",
             "red": "Rosso",
             "descriptions": {
                 "darkgreen": "Da un secondo a un giorno",
                 "green": "Da uno a 31 giorni",
-                "lime": "Da uno a sei mesi",
                 "amber": "Da sei mesi a un anno",
                 "orange": "Da uno a due anni",
-                "red": "Due o più anni"
-            }
+                "red": "Due o più anni",
+                "lime": "Da uno a sei mesi"
+            },
+            "lime": "Lime"
         }
     },
     "action": {
@@ -38,7 +38,8 @@
         "commentClose": "Commenta e chiudi",
         "commentReopen": "Riapri e commenta",
         "mapillary": "Mapillary",
-        "report": "Segnala nota"
+        "report": "Segnala nota",
+        "filter": "Filtra"
     },
     "header": {
         "share": "Condividi",
@@ -50,7 +51,9 @@
         "user": "Utente",
         "from": "Da",
         "to": "A",
-        "sort": "Ordina per"
+        "sort": "Ordina per",
+        "status": "Stato",
+        "anonymous": "Note di anonimi"
     },
     "description": {
         "share": "Copia il collegamento per condividere la richiesta corrente:",
@@ -58,9 +61,6 @@
         "shareView": "Condividi la vista corrente della mappa",
         "showList": "Mostra in una lista",
         "showMap": "Mostra in una mappa",
-        "showClosed": "Mostra note chiuse",
-        "hideAnonymous": "Nascondi note anonime",
-        "worldwideQuery": "Richiesta globale abilitata.\nIngrandisci ancora per ottenere\nuna richiesta più rapida\nin un’area meno estesa.",
         "nothingFound": "Non è stato trovato niente!",
         "autoLimit": "Impostato limite automatico a 100 perché valori più grandi non sono ammessi",
         "deprecationWarning": "Il browser che stai usando non è compatibile con NotesReview. Prova a cambiare browser per poter usare NotesReview.",
@@ -74,7 +74,19 @@
                 "asc": "Aggiornate meno di recente"
             }
         },
-        "query": "Una parola o una frase presente nella nota"
+        "query": "Una parola o una frase presente nella nota",
+        "applyBoundingBox": "Cerca nella vista corrente",
+        "onlyUncommented": "Mostra note senza commenti",
+        "status": {
+            "all": "Tutte",
+            "open": "Aperte",
+            "closed": "Chiuse"
+        },
+        "anonymous": {
+            "include": "Includi",
+            "hide": "Nascondi",
+            "only": "Solo"
+        }
     },
     "settings": {
         "choose": "Scegli un’opzione",
@@ -112,7 +124,8 @@
     "accessibility": {
         "openFaq": "Accedi alle domande più frequenti",
         "openSettings": "Apri impostazioni",
-        "shareQuery": "Condividi la richiesta corrente"
+        "shareQuery": "Condividi la richiesta corrente",
+        "filter": "Applica filtro alla selezione"
     },
     "mapillary": {
         "empty": {

@@ -207,6 +207,7 @@ export async function init() {
       locale = await import('relative-time-format/locale/en');
     }
 
+    // chrome >= 71, edge >= 79, firefox >= 65, not ie <= 11, opera >= 58, safari >= 14
     const { default: RelativeTimeFormat } = await import('relative-time-format');
     RelativeTimeFormat.addLocale(locale.default);
 

@@ -38,7 +38,8 @@
         "commentClose": "評論並關閉",
         "commentReopen": "重新開啟並評論",
         "mapillary": "Mapillary",
-        "report": "回報註解"
+        "report": "回報註解",
+        "filter": "過瀘器"
     },
     "header": {
         "share": "分享",
@@ -50,7 +51,9 @@
         "user": "使用者",
         "from": "從",
         "to": "到",
-        "sort": "排序"
+        "sort": "排序",
+        "status": "狀態",
+        "anonymous": "暱名的註解"
     },
     "description": {
         "share": "複製這連結來分享目前檢索：",
@@ -58,9 +61,6 @@
         "shareView": "分享目前的地圖檢視",
         "showList": "以列表顯示",
         "showMap": "顯示在地圖上面",
-        "showClosed": "顯示已關閉的註解",
-        "hideAnonymous": "隱藏暱名的註解",
-        "worldwideQuery": "已啟動全世界的檢索。\n請放大地圖限縮範圍\n讓檢索速度更快",
         "nothingFound": "什麼都找不到！",
         "autoLimit": "自動設定限制為 100，因為不能允許更高的數值",
         "deprecationWarning": "你目前使用的瀏覽器並不支援 NotesReview，請考慮換到其他瀏覽器才能使用 NotesReview。",
@@ -74,7 +74,19 @@
                 "asc": "最舊更新"
             }
         },
-        "query": "在註解中提及的文字或句子"
+        "query": "在註解中提及的文字或句子",
+        "applyBoundingBox": "只在目前檢視搜尋",
+        "onlyUncommented": "只顯示未回應的註解",
+        "status": {
+            "all": "所有",
+            "open": "開啟",
+            "closed": "已關閉"
+        },
+        "anonymous": {
+            "include": "包含",
+            "hide": "隱藏",
+            "only": "只有"
+        }
     },
     "settings": {
         "choose": "選擇選項",
@@ -112,7 +124,8 @@
     "accessibility": {
         "openFaq": "開啟常見問題",
         "openSettings": "開啟設定",
-        "shareQuery": "分享目前檢索"
+        "shareQuery": "分享目前檢索",
+        "filter": "替選取套用過濾器"
     },
     "mapillary": {
         "empty": {

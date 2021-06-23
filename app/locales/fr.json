@@ -5,18 +5,18 @@
             "description": "Elles représentent l'âge d'une note",
             "darkgreen": "Vert foncé",
             "green": "Vert",
-            "lime": "Lime",
             "amber": "Ambre",
             "orange": "Orange",
             "red": "Rouge",
             "descriptions": {
                 "darkgreen": "De 1 seconde à 1 jour",
                 "green": "De 1 à 31 jours",
-                "lime": "De 1 à 6 mois",
                 "amber": "De 6 mois à 1 an",
                 "orange": "De 1 à 2 ans",
-                "red": "Plus de 2 ans"
-            }
+                "red": "Plus de 2 ans",
+                "lime": "De 1 à 6 mois"
+            },
+            "lime": "Lime"
         }
     },
     "action": {
@@ -58,9 +58,6 @@
         "shareView": "Partagez aussi l'affichage de la carte",
         "showList": "Afficher la liste",
         "showMap": "Afficher la carte",
-        "showClosed": "Afficher les notes fermées",
-        "hideAnonymous": "Masquer les notes anonymes",
-        "worldwideQuery": "Recherche mondiale activée.\nZoomez pour limiter la zone \net accélérer la recherche.",
         "nothingFound": "Aucun résultat !",
         "autoLimit": "Limitation automatique à 100 notes, les valeurs plus grandes ne sont pas autorisées",
         "deprecationWarning": "Votre navigateur ne supporte pas NotesReview. Essayez d'en utiliser un autre pour utiliser NotesReview.",

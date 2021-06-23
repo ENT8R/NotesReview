@@ -5,18 +5,18 @@
             "description": "Cada cor representa a idade da nota",
             "darkgreen": "Verde escuro",
             "green": "Verde",
-            "lime": "Lima",
             "amber": "Âmbar",
             "orange": "Laranja",
             "red": "Vermelho",
             "descriptions": {
                 "darkgreen": "Entre um segundo e um dia",
                 "green": "Entre um e 31 dias",
-                "lime": "Entre um e seis meses",
                 "amber": "Entre seis meses e um ano",
                 "orange": "Entre um e dois anos",
-                "red": "Dois ou mais anos"
-            }
+                "red": "Dois ou mais anos",
+                "lime": "Entre um e seis meses"
+            },
+            "lime": "Lima"
         }
     },
     "action": {
@@ -38,7 +38,8 @@
         "commentClose": "Comentar e fechar",
         "commentReopen": "Reabrir e comentar",
         "mapillary": "Mapillary",
-        "report": "Reportar nota"
+        "report": "Reportar nota",
+        "filter": "Filtro"
     },
     "header": {
         "share": "Compartilhar",
@@ -50,7 +51,9 @@
         "user": "Usuário",
         "from": "De",
         "to": "Para",
-        "sort": "Ordenar por"
+        "sort": "Ordenar por",
+        "status": "Status",
+        "anonymous": "Notas anônimas"
     },
     "description": {
         "share": "Copiar este link para compartilhar a consulta atual:",
@@ -58,9 +61,6 @@
         "shareView": "Compartilhar a visão atual do mapa",
         "showList": "Mostrar em uma lista",
         "showMap": "Mostrar em um mapa",
-        "showClosed": "Mostrar notas fechadas",
-        "hideAnonymous": "Ocultar notas anônimas",
-        "worldwideQuery": "Consulta mundial ativada.\nAmplie ainda mais para obter uma consulta mais rápida\npara uma área limitada.",
         "nothingFound": "Nada encontrado!",
         "autoLimit": "Definir limite automaticamente para 100, porque valores mais altos não são permitidos",
         "deprecationWarning": "O navegador que você está usando atualmente não oferece suporte a NotesReview. Considere mudar para outro navegador para poder usar o NotesReview.",
@@ -74,7 +74,19 @@
                 "asc": "Menos atualizado recentemente"
             }
         },
-        "query": "Uma palavra ou frase mencionada na nota"
+        "query": "Uma palavra ou frase mencionada na nota",
+        "applyBoundingBox": "Pesquisar apenas na vista atual",
+        "onlyUncommented": "Mostrar apenas notas não comentadas",
+        "status": {
+            "all": "Tudo",
+            "open": "Abertas",
+            "closed": "Fechadas"
+        },
+        "anonymous": {
+            "include": "Incluir",
+            "hide": "Ocultar",
+            "only": "Apenas"
+        }
     },
     "settings": {
         "choose": "Escolher uma opção",
@@ -112,7 +124,8 @@
     "accessibility": {
         "openFaq": "Abra as perguntas frequentes",
         "openSettings": "Abrir configurações",
-        "shareQuery": "Compartilhar a consulta atual"
+        "shareQuery": "Compartilhar a consulta atual",
+        "filter": "Aplicar um filtro à seleção"
     },
     "mapillary": {
         "empty": {
