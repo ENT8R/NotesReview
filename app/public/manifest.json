@@ -1,0 +1,70 @@
+{
+  "name": "NotesReview",
+  "short_name": "NotesReview",
+  "description": "An interface for searching and resolving OpenStreetMap notes",
+  "lang": "en",
+  "theme_color": "#fff",
+  "background_color": "#fff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/NotesReview/",
+  "scope": "/NotesReview/",
+  "shortcuts": [
+    {
+      "name": "View map",
+      "short_name": "Map",
+      "description": "View notes on a map",
+      "url": "/NotesReview/?view=map",
+      "icons": [{ "src": "icons/map.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "View list",
+      "short_name": "List",
+      "description": "View notes in a list",
+      "url": "/NotesReview/?view=list",
+      "icons": [{ "src": "icons/list.png", "sizes": "192x192" }]
+    }
+  ],
+  "icons": [
+    {
+      "src": "icons/any/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/any/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/any/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/any/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/any/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/any/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/any/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/any/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
