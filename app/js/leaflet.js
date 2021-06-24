@@ -69,9 +69,9 @@ export default class Leaflet {
     }
 
     const theme = Theme.get() === Theme.DARK ? 'dark_all' : 'light_all';
-    const retina = L.Browser.retina ? '@2x.png' : '.png';
+    const retina = L.Browser.retina ? '@2x' : '';
 
-    tileLayer = L.tileLayer(`https://cartodb-basemaps-{s}.global.ssl.fastly.net/${theme}/{z}/{x}/{y}${retina}`, {
+    tileLayer = L.tileLayer(`https://{s}.basemaps.cartocdn.com/${theme}/{z}/{x}/{y}${retina}.png`, {
       maxZoom: OPTIONS.maxZoom,
       subdomains: 'abcd',
       attribution: Localizer.message('map.attribution')
