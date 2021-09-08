@@ -275,17 +275,6 @@ function settings() {
   await Localizer.init();
   Modal.init();
 
-  // Show a modal informing about the new backend
-  const noticeShown = Preferences.get('new-api-backend-notice-shown');
-  if (!noticeShown || Number.parseInt(noticeShown) < 2) {
-    Modal.open('notice');
-    document.querySelector('.modal[data-modal="notice"]').addEventListener('modal-close', () => {
-      Preferences.set({
-        'new-api-backend-notice-shown': (Number.parseInt(noticeShown) || 0) + 1
-      });
-    });
-  }
-
   const parameter = new URL(window.location.href).searchParams;
   // Remove the query parameters to have a cleaner looking URL
   const uri = window.location.toString();
