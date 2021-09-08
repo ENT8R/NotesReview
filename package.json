@@ -17,25 +17,25 @@
   "license": "GPL-3.0",
   "dependencies": {
     "@github/time-elements": "^3.1.2",
-    "@ideditor/country-coder": "^5.0.2",
-    "@webcomponents/custom-elements": "^1.4.3",
+    "@ideditor/country-coder": "^5.0.3",
+    "@webcomponents/custom-elements": "^1.5.0",
     "abortcontroller-polyfill": "^1.7.3",
     "anchorme": "^2.1.2",
     "leaflet": "^1.7.1",
     "leaflet-control-geocoder": "^2.3.0",
-    "leaflet.markercluster": "^1.5.0",
+    "leaflet.markercluster": "^1.5.1",
     "osm-auth": "^1.1.1",
     "relative-time-format": "^1.0.5",
     "spectre.css": "^0.5.9"
   },
   "devDependencies": {
-    "core-js": "^3.15.1",
+    "core-js": "^3.17.2",
     "dotenv": "^10.0.0",
-    "eslint": "^7.29.0",
+    "eslint": "^7.32.0",
     "handlebars": "^4.7.7",
-    "sass": "^1.35.1",
-    "vite": "^2.3.8",
-    "vite-plugin-handlebars": "^1.5.1",
-    "vite-plugin-svg-icons": "^0.7.1"
+    "sass": "^1.39.0",
+    "vite": "^2.5.5",
+    "vite-plugin-handlebars": "^1.6.0",
+    "vite-plugin-svg-icons": "^1.0.4"
   }
 }
