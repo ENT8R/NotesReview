@@ -30,6 +30,7 @@ const ORDER = {
 };
 
 const DEFAULTS = {
+  'apply-bbox': false,
   bbox: null,
   limit: 50,
   // status: STATUS.OPEN, // TODO: The default of the API is STATUS.ALL
@@ -58,9 +59,13 @@ export default class Query {
       permalink: 'query',
       handler: this.query
     }, {
-      id: 'apply-bbox',
+      id: 'bbox',
       permalink: 'bbox',
       handler: this.bbox
+    }, {
+      id: 'apply-bbox',
+      permalink: 'apply-bbox',
+      handler: this.applyBBox
     }, {
       id: 'limit',
       permalink: 'limit',
@@ -108,17 +113,19 @@ export default class Query {
       // If the corresponding search parameter for an input is available, try to set it
       if (parameter.has(input.permalink)) {
         const value = parameter.get(input.permalink);
-        element.type === 'checkbox' ? element.checked = value : element.value = value; // eslint-disable-line no-unused-expressions
+        element.type === 'checkbox' ? element.checked = (value === 'true') : element.value = value; // eslint-disable-line no-unused-expressions
       }
 
       // Call the handler by triggering a new change event on the element
       element.dispatchEvent(new Event('change'));
     }, this);
 
-    // TODO: Find a better way to update the bounding box when moving the map
-    // (Maybe an invisible input?)
+    // Update the input which stores the current bounding box when moving the map
+    // This triggers the assigned handler via the function implemented above
     this.map.onMove(() => {
-      this.bbox(this.data.bbox);
+      const bbox = document.getElementById('bbox');
+      bbox.value = this.map.bounds().toBBoxString();
+      bbox.dispatchEvent(new Event('change'));
     });
   }
 
@@ -135,14 +142,26 @@ export default class Query {
   }
 
   /**
-    * Whether the search should only return notes in the current bounding box
+    * Search only in the current bounding box
     *
     * @function
-    * @param {Boolean} bbox
+    * @param {String} bbox
     * @returns {Query}
     */
   bbox(bbox) {
-    this.data.bbox = bbox ? this.map.bounds().toBBoxString() : null;
+    this.data.bbox = bbox;
+    return this;
+  }
+
+  /**
+    * Whether the search should only return notes in the current bounding box
+    *
+    * @function
+    * @param {Boolean} enabled
+    * @returns {Query}
+    */
+  applyBBox(enabled) {
+    this.data['apply-bbox'] = enabled;
     return this;
   }
 
@@ -277,7 +296,12 @@ export default class Query {
     */
   get url() {
     const url = new URL(`${NOTESREVIEW_API_URL}/search`);
-    url.search = Request.encodeQueryData(Util.clean(DEFAULTS, Object.assign({}, this.data)), true);
+
+    const data = Object.assign({}, this.data);
+    // Don't use the bounding box if the user wants to do a global search
+    data['apply-bbox'] ? null : delete data.bbox; // eslint-disable-line no-unused-expressions
+
+    url.search = Request.encodeQueryData(Util.clean(DEFAULTS, data), true);
     return url.toString();
   }
 
@@ -295,15 +319,15 @@ export default class Query {
       view: document.body.dataset.view,
       map: `${this.map.zoom()}/${this.map.center().lat}/${this.map.center().lng}`,
     }, this.data, {
-      // bbox: this.data.bbox !== null,
       uncommented: this.data.comments === 0,
       sort: `${this.data.sort_by}:${this.data.order}`
     });
 
     // Remove unused properties that are already set by another value
-    delete data.bbox;
-    delete data.sort_by;
+    delete data.bbox; // The bounding box is already known because of the 'map' parameter
     delete data.comments;
+    delete data.sort_by;
+    delete data.order;
 
     if (!document.getElementById('show-map').checked) {
       delete data.map;
@@ -326,7 +350,7 @@ export default class Query {
     const result = await Request.get(this.url);
 
     // Return as early as possible if there was no result
-    if (!result || result.length === 0) {
+    if (!result || !result.length || result.length === 0) {
       return notes;
     }
 
