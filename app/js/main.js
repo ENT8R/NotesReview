@@ -80,7 +80,9 @@ function details(result) {
   * @returns {void}
   */
 function listener() {
-  document.getElementById('search').addEventListener('click', () => search());
+  document.querySelectorAll('.search-trigger').forEach(element => {
+    element.addEventListener('click', () => search());
+  });
   document.getElementById('cancel').addEventListener('click', () => Request.cancel());
 
   document.getElementById('login').addEventListener('click', () => {
@@ -162,8 +164,8 @@ function listener() {
         return Request.cancel();
       }
 
-      // Only start a new search if the event was triggered inside the filter modal
-      if (document.querySelector('.modal[data-modal="filter"]').contains(event.target)) {
+      // Only start a new search if the filter modal is currently open
+      if (document.querySelector('.modal[data-modal="filter"]').classList.contains('active')) {
         search();
       }
     }
