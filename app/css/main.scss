@@ -181,9 +181,7 @@ textarea {
 /*---------- Mapillary ----------*/
 .mapillary-image {
   max-width: 320px;
-  height: 100%;
   max-height: 240px;
-  min-height: 18vh;
 
   .mapillary-image-link {
     top: 6px;
@@ -191,8 +189,7 @@ textarea {
   }
 
   .mapillary-image-user {
-    z-index: 1;
-    bottom: -24px;
+    bottom: 0px;
     right: 0px;
     font-size: 0.5rem;
   }

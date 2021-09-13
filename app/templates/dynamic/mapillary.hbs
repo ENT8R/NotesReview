@@ -2,16 +2,16 @@
 {{#each images}}
 <div class="column col-4 col-md-6 my-1">
   <div class="mapillary-image p-relative">
-    <img src="https://images.mapillary.com/{{key}}/thumb-320.jpg" class="img-responsive" width="320" height="240">
-    <a class="mapillary-image-link p-absolute px-2" href="https://www.mapillary.com/app/?pKey={{key}}" target="_blank" rel="noopener">
+    <img src="{{src}}" class="img-responsive" width="{{width}}" height="{{height}}">
+    <a class="mapillary-image-link p-absolute px-2" href="https://www.mapillary.com/app/?pKey={{id}}&focus=photo" target="_blank" rel="noopener">
       <svg class="icon icon-large"><use xlink:href="#assets-mapillary"></use></svg>
     </a>
-    <p class="mapillary-image-user p-absolute px-2 bg-dark">
-      @{{user}}
+    <span class="mapillary-image-user p-absolute px-2 bg-dark">
+      <!-- TODO: The Mapillary API v4 offers no option to get the name of the user who uploaded the image @{{!user}}-->
       <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">
         <abbr title="Creative Commons Attribution-ShareAlike 4.0 International License">(CC BY-SA 4.0)</abbr>
       </a>
-    </p>
+    </span>
   </div>
 </div>
 {{/each}}

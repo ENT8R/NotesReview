@@ -3,7 +3,8 @@ let running = false;
 
 export const MEDIA_TYPE = {
   JSON: 'application/json',
-  XML: 'text/xml'
+  XML: 'text/xml',
+  PROTOBUF: 'application/x-protobuf'
 };
 
 /**
@@ -24,6 +25,8 @@ export function get(url, mediaType = MEDIA_TYPE.JSON) {
     switch (mediaType) {
     case MEDIA_TYPE.JSON:
       return response.json();
+    case MEDIA_TYPE.PROTOBUF:
+      return response.arrayBuffer();
     default:
       return response.text();
     }

@@ -5,7 +5,6 @@ const template = Handlebars.compile(t);
 export default class List {
   constructor() {
     this.fragment = new DocumentFragment();
-    this.children = [];
   }
 
   /**
