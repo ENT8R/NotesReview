@@ -38,7 +38,8 @@
         "commentClose": "Commenter et fermer",
         "commentReopen": "Réouvrir et commenter",
         "mapillary": "Mapillary",
-        "report": "Signaler une note"
+        "report": "Signaler une note",
+        "filter": "Filtrer"
     },
     "header": {
         "share": "Partager",
@@ -50,7 +51,9 @@
         "user": "Utilisateur",
         "from": "Du",
         "to": "Au",
-        "sort": "Tri"
+        "sort": "Tri",
+        "status": "L’état",
+        "anonymous": "Remarques anonymes"
     },
     "description": {
         "share": "Copiez ce lien pour partager la recherche courante :",
@@ -71,7 +74,19 @@
                 "asc": "Anciennes mise à jour"
             }
         },
-        "query": "Mot ou phrase contenu dans la note"
+        "query": "Mot ou phrase contenu dans la note",
+        "applyBoundingBox": "Rechercher seulement dans la vue actuelle",
+        "onlyUncommented": "Afficher seulement les remarques non commentées",
+        "status": {
+            "all": "Tous",
+            "open": "Ouvert",
+            "closed": "Fermé"
+        },
+        "anonymous": {
+            "include": "Inclure",
+            "hide": "Cacher",
+            "only": "Seulement"
+        }
     },
     "settings": {
         "choose": "Choisissez une option",

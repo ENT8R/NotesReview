@@ -142,5 +142,9 @@
         "contribution": "!HTML! È possibile supportare questo progetto <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">traducendolo</a> oppure <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">segnalando degli errori</a>.",
         "author": "!HTML! Realizzato con ❤️ da <a href=\"mailto:info.ent8r@gmail.com\">ENT8R</a>\n",
         "donate": "Dona"
+    },
+    "error": {
+        "login": "Accesso fallito, riprovare più tardi",
+        "comment": "Invio del commento fallito, riprovare più tardi"
     }
 }
