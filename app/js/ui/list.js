@@ -16,7 +16,7 @@ export default class List {
     */
   add(note) {
     const div = document.createElement('div');
-    div.classList.add('column', 'col-4', 'col-md-6', 'col-sm-12', 'p-1');
+    div.classList.add('column', 'col-3', 'col-xl-4', 'col-md-6', 'col-sm-12', 'p-1');
     div.innerHTML = template(note, {
       allowedProtoProperties: {
         actions: true,

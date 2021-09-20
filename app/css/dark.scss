@@ -3,6 +3,7 @@ $main-color-surface: #37474f; // blue-grey darken-3
 $main-color-surface-light: #455a64; // blue-grey darken-2
 $main-color-surface-light-variant: #546e7a; // blue-grey darken-1
 $minor-color: #78909c; // blue-grey lighten-1
+$minor-color-surface: #90a4ae; // blue-grey lighten-2
 
 $link-color: #81d4fa; // light-blue lighten-3
 $text-color: rgba(255, 255, 255, 0.8);
@@ -35,17 +36,21 @@ body[data-theme="dark"] {
   }
 
   .btn {
-    background-color: $main-color-surface-light !important;
+    background-color: $main-color-surface-light;
     color: $text-color;
-    border-color: $minor-color !important;
+    border-color: $minor-color;
     &.btn-primary {
-      background-color: $main-color-surface-light-variant !important;
+      background-color: $main-color-surface-light-variant;
+      &:focus,
+      &:hover {
+        border-color: $minor-color-surface;
+      }
     }
     &.btn-link:hover {
-      color: $minor-color;
+      color: $text-color;
     }
     &.active {
-      background-color: $main-color-surface !important;
+      background-color: $main-color-surface;
     }
   }
 
@@ -62,7 +67,7 @@ body[data-theme="dark"] {
   }
 
   .divider {
-    border-top-color: $main-color-surface;
+    border-top-color: $main-color-surface-light;
   }
 
   .modal {

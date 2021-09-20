@@ -54,22 +54,36 @@ main {
 .sidebar {
   position: absolute;
   top: 0;
+  padding: 12px 12px 0px;
   max-height: 100%;
   background-color: var(--background-color);
   overflow-y: auto;
   transition: transform 250ms var(--exponential-ease-out);
   box-shadow: 10px 10px 10px -10px var(--box-shadow-color);
-  > * {
-    margin: 12px;
+}
+
+#note-container {
+  .note-actions {
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    padding-top: 20%;
+    padding-bottom: 12px;
+    background-image: linear-gradient(to bottom, transparent, var(--background-color) 50%);
   }
 }
 
+.note-badges {
+  font-size: 90%;
+}
+
 .note-actions {
-  position: sticky;
-  bottom: 0;
-  padding-bottom: 12px;
-  z-index: 1;
-  background-color: var(--background-color);
+  display: flex;
+  flex-wrap: wrap;
+  > * {
+    flex: 1;
+    margin: 2px;
+  }
 }
 
 /*---------- Leaflet ------------*/

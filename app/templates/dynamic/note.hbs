@@ -1,17 +1,23 @@
 <div class="card" data-note-id="{{id}}">
-  <div class="card-header">
-    {{{badges.user}}}
-    {{{badges.age}}}
-    {{{badges.comments}}}
-    {{{badges.country}}}
-    {{{badges.report}}}
+  <div class="card-header note-badges">
+    <div class="columns col-gapless">
+      <div class="column">
+        {{{badges.user}}}
+        {{{badges.age}}}
+        {{{badges.comments}}}
+        {{{badges.country}}}
+      </div>
+      <div class="column col-auto">
+        {{{badges.report}}}
+      </div>
+    </div>
   </div>
 
   <div class="card-body text-break">
     {{{comments.0.html}}}
   </div>
 
-  <div class="card-footer">
+  <div class="card-footer note-actions">
     {{> actions actions}}
   </div>
 </div>
