@@ -86,7 +86,8 @@
           "include": "Include",
           "hide": "Hide",
           "only": "Only"
-        }
+        },
+        "statistics": "Found %s notes"
     },
     "settings": {
         "choose": "Choose an option",
@@ -105,15 +106,14 @@
     },
     "note": {
         "anonymous": "anonymous",
-        "amount": "%s notes are currently shown",
-        "average": "Average age: %s",
         "comment": "1 comment",
         "comments": "%s comments",
         "action": {
             "opened": "Created note",
             "closed": "Closed note",
             "reopened": "Reopened note"
-        }
+        },
+        "unknown": "Unknown User"
     },
     "map": {
         "attribution": "&copy; <a href=\"https://osm.org/copyright\">OpenStreetMap</a> contributors, &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"

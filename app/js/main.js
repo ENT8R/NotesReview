@@ -4,7 +4,6 @@ import 'vite-plugin-svg-icons/register';
 import './polyfills.js';
 
 import API from './api.js';
-import * as Badges from './badges.js';
 import Comments from './modals/comments.js';
 import Leaflet from './leaflet.js';
 import * as Localizer from './localizer.js';
@@ -18,7 +17,6 @@ import * as Request from './request.js';
 import * as Theme from './theme.js';
 import Toast from './toast.js';
 import Users from './users.js';
-import * as Util from './util.js';
 
 import * as Handlebars from 'handlebars';
 import actions from '../templates/dynamic/actions.hbs?raw';
@@ -62,14 +60,9 @@ async function search() {
 function details(result) {
   if (result.amount === 0) {
     new Toast(Localizer.message('description.nothingFound'), 'toast-error').show();
-    document.getElementById('details').classList.add('d-hide');
   } else {
-    document.getElementById('details').classList.remove('d-hide');
+    new Toast(Localizer.message('description.statistics', result.amount), 'toast-success').show();
   }
-
-  document.getElementById('found-notes').textContent = Localizer.message('note.amount', result.amount);
-  const badge = Badges.age(Util.parseDate(result.average), result.average, true);
-  document.getElementById('average-date').innerHTML = Localizer.message('note.average', badge);
 }
 
 /**

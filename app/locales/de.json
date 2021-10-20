@@ -86,7 +86,8 @@
             "include": "Anzeigen",
             "hide": "Verstecken",
             "only": "Ausschließlich"
-        }
+        },
+        "statistics": "%s Notizen gefunden"
     },
     "settings": {
         "choose": "Wähle eine Option",
@@ -105,15 +106,14 @@
     },
     "note": {
         "anonymous": "anonym",
-        "amount": "Derzeit werden %s Notizen angezeigt",
-        "average": "Durchschnittsalter: %s",
         "comment": "1 Kommentar",
         "comments": "%s Kommentare",
         "action": {
             "opened": "Notiz erstellt",
             "closed": "Notiz geschlosssen",
             "reopened": "Notiz erneut geöffnet"
-        }
+        },
+        "unknown": "unbekannter Nutzer"
     },
     "map": {
         "attribution": "&copy; <a href=\"https://osm.org/copyright\">OpenStreetMap</a> Mitwirkende, &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
