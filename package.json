@@ -25,20 +25,20 @@
     "anchorme": "^2.1.2",
     "leaflet": "^1.7.1",
     "leaflet-control-geocoder": "^2.3.0",
-    "leaflet.markercluster": "^1.5.1",
+    "leaflet.markercluster": "^1.5.3",
     "osm-auth": "^1.1.1",
     "pbf": "^3.2.1",
-    "relative-time-format": "^1.0.5",
+    "relative-time-format": "^1.0.6",
     "spectre.css": "^0.5.9"
   },
   "devDependencies": {
-    "core-js": "^3.18.0",
+    "core-js": "^3.18.3",
     "dotenv": "^10.0.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.1",
     "handlebars": "^4.7.7",
-    "sass": "^1.41.1",
-    "vite": "^2.5.10",
+    "sass": "^1.43.2",
+    "vite": "^2.6.10",
     "vite-plugin-handlebars": "^1.6.0",
-    "vite-plugin-svg-icons": "^1.0.4"
+    "vite-plugin-svg-icons": "^1.0.5"
   }
 }
