@@ -72,6 +72,10 @@ export function user(uid, anonymous) {
     return `<span class="label label-error my-1">${Localizer.message('note.anonymous')}</span>`;
   } else {
     const user = Users.get(uid);
+    if (!user) {
+      return `<span class="label label-secondary">${Localizer.message('note.unknown')}</span>`;
+    }
+
     const image = user.image ? `<img src="${user.image}">` : '';
     const initials = Util.initials(user.name);
     return `<figure class="avatar" data-initial="${initials}">${image}</figure>
