@@ -7,13 +7,13 @@ export default class Modal {
     * @returns {void}
     */
   static init() {
-    document.getElementsByClassName('modal-trigger').forEach(element => {
+    Array.from(document.getElementsByClassName('modal-trigger')).forEach(element => {
       element.addEventListener('click', () => {
         Modal.open(element.dataset.modal);
       });
     });
 
-    document.getElementsByClassName('modal-close').forEach(element => {
+    Array.from(document.getElementsByClassName('modal-close')).forEach(element => {
       element.addEventListener('click', event => {
         Modal.close(event.target.closest('.modal'));
       });

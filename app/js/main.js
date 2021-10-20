@@ -125,7 +125,7 @@ function listener() {
     }
   });
 
-  document.getElementsByClassName('setting').forEach(element => {
+  Array.from(document.getElementsByClassName('setting')).forEach(element => {
     element.addEventListener('change', () => {
       Preferences.set({
         theme: document.getElementById('theme-selection').value,

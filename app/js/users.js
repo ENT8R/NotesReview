@@ -20,7 +20,7 @@ export default class Users {
       const url = `${OPENSTREETMAP_SERVER}/api/0.6/users?users=${ids[i].join(',')}`;
       const request = Request.get(url, Request.MEDIA_TYPE.XML).then(xml => {
         if (xml && xml.documentElement) {
-          xml.documentElement.children.forEach(user => {
+          Array.from(xml.documentElement.children).forEach(user => {
             Users.all.add({
               id: Number.parseInt(user.getAttribute('id')),
               name: user.getAttribute('display_name'),

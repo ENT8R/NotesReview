@@ -16,7 +16,7 @@ export default class Permalink {
     });
 
     // Update the permalink if a parameter changed
-    document.getElementsByClassName('update-permalink').forEach(element => {
+    Array.from(document.getElementsByClassName('update-permalink')).forEach(element => {
       element.addEventListener('change', () => {
         document.getElementById('permalink').value = query.permalink();
       });

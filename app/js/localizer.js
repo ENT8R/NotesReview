@@ -96,10 +96,10 @@ function replaceWith(element, attribute, translatedMessage) {
   *
   * @function
   * @param {String} tag
-  * @param {String} string
+  * @param {Array} strings
   * @returns {String}
   */
-export function message(tag, string) {
+export function message(tag, ...strings) {
   let value = STRINGS.main === null ? null : getProperty(tag, STRINGS.main);
   if (!value || (typeof value !== 'string')) {
     value = getProperty(tag, STRINGS.fallback);
@@ -110,8 +110,11 @@ export function message(tag, string) {
     );
   }
 
-  if (typeof string !== 'undefined' && typeof value === 'string') {
-    return value.replace('%s', string);
+  if (typeof strings !== 'undefined' && Array.isArray(strings)) {
+    strings.forEach(string => {
+      value = value.replace('%s', string);
+    });
+    return value;
   }
 
   if (typeof value === 'string') {
