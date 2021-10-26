@@ -104,11 +104,14 @@ export default class Query {
       const element = document.getElementById(input.id);
 
       // Listen to changes of the query inputs
-      // TODO: Maybe change the event type to input?
-      element.addEventListener('change', () => {
+      const update = () => {
         const value = element.type === 'checkbox' ? element.checked : element.value;
         input.handler.call(this, value);
-      });
+      };
+      // This event is triggered continuously during any input action
+      element.addEventListener('input', update);
+      // This event is triggered at the end of the action
+      element.addEventListener('change', update);
 
       // If the corresponding search parameter for an input is available, try to set it
       if (parameter.has(input.permalink)) {
@@ -246,7 +249,13 @@ export default class Query {
     * @returns {Query}
     */
   before(before) {
-    this.data.before = before;
+    // Increment the actual date by a single day, to simulate a closed interval [from, to]
+    // because when setting two equal dates this would result in a half-closed interval [from, to)
+    // as the specific time is not known, which leads to no results being shown
+    // See also https://github.com/ENT8R/NotesReview/issues/81#issuecomment-948052553
+    before = new Date(before);
+    before.setUTCDate(before.getUTCDate() + 1);
+    this.data.before = before.toISOString().split('T')[0];
     return this;
   }
 

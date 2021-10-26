@@ -87,7 +87,9 @@
             "hide": "Verstecken",
             "only": "Ausschließlich"
         },
-        "statistics": "%s Notizen gefunden"
+        "statistics": "%s Notizen gefunden",
+        "from": "Ein Datum (UTC) als untere Grenze",
+        "to": "Ein Datum (UTC) als obere Grenze"
     },
     "settings": {
         "choose": "Wähle eine Option",
