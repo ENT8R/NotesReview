@@ -89,7 +89,7 @@
         },
         "statistics": "Found %s notes",
         "from": "A date (UTC) as lower limit",
-        "to": "A date (UTC) as an upper limit"
+        "to": "A date (UTC) as upper limit"
     },
     "settings": {
         "choose": "Choose an option",
