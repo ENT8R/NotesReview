@@ -1,0 +1,29 @@
+.marker {
+  width: 25px;
+  height: 40px;
+
+  &.green-dark {
+    --fill-color: var(--green-dark-primary);
+    --stroke-color: var(--green-dark-secondary);
+  }
+  &.green {
+    --fill-color: var(--green-primary);
+    --stroke-color: var(--green-secondary);
+  }
+  &.lime {
+    --fill-color: var(--lime-primary);
+    --stroke-color: var(--lime-secondary);
+  }
+  &.amber {
+    --fill-color: var(--amber-primary);
+    --stroke-color: var(--amber-secondary);
+  }
+  &.orange {
+    --fill-color: var(--orange-primary);
+    --stroke-color: var(--orange-secondary)
+  }
+  &.red {
+    --fill-color: var(--red-primary);
+    --stroke-color: var(--red-secondary);
+  }
+}

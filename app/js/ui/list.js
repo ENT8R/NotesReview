@@ -30,7 +30,8 @@ export default class List {
     * Shows all notes
     *
     * @function
-    * @todo Use {@link https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment/replaceChildren} if this becomes more established
+    * @todo Use {@link https://developer.mozilla.org/en-US/docs/Web/API/Element/replaceChildren} if this becomes more established
+    *       chrome >= 86, edge >= 86, firefox >= 78, not ie <= 11, opera >= 72, safari >= 14
     * @returns {void}
     */
   apply() {
@@ -38,6 +39,7 @@ export default class List {
     while (container.lastChild) {
       container.removeChild(container.lastChild);
     }
-    document.getElementById('list').appendChild(this.fragment);
+    container.appendChild(this.fragment);
+
   }
 }

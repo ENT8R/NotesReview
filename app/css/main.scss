@@ -1,9 +1,12 @@
-@use 'dark';
+@use 'colors';
 @use 'icons';
+@use 'markers';
+@use 'dark';
 
 :root {
   --background-color: white;
   --box-shadow-color: #546e7a;
+
   --exponential-ease-out: cubic-bezier(.2, 1, .2, 1);
 }
 
@@ -155,12 +158,12 @@ textarea {
 }
 
 .marker-icon {
-  img {
+  svg {
     filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
     transition: transform 500ms var(--exponential-ease-out);
     transform-origin: bottom;
   }
-  &:focus img {
+  &:focus svg {
     transform: scale(1.2);
   }
 }
@@ -223,26 +226,26 @@ textarea {
 
 /*---------- Labels ------------*/
 .label-green-dark {
-  background: #2e7d32;
+  background: var(--green-dark-primary);
   color: #fff;
 }
 .label-green {
-  background: #689f38;
+  background: var(--green-primary);
   color: #fff;
 }
 .label-lime {
-  background: #afb42b;
+  background: var(--lime-primary);
   color: #fff;
 }
 .label-amber {
-  background: #ffa000;
+  background: var(--amber-primary);
   color: #fff;
 }
 .label-orange {
-  background: #f57c00;
+  background: var(--orange-primary);
   color: #fff;
 }
 .label-red {
-  background: #e53935;
+  background: var(--red-primary);
   color: #fff;
 }

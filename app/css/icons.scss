@@ -1,3 +1,7 @@
+.country-flag {
+  vertical-align: middle;
+}
+
 /* Class selector is used twice in order to increase specificity
 and override additional layout used by Spectre.css
 see https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity */
@@ -13,8 +17,4 @@ see https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity */
     width: 28px;
     height: 28px;
   }
-}
-
-.country-flag {
-  vertical-align: middle;
 }

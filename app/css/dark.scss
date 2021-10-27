@@ -76,7 +76,7 @@ body[data-theme="dark"] {
     }
   }
 
-  img:not(.leaflet-tile):not([src^='markers/']) {
+  img:not(.leaflet-tile) {
     filter: brightness(.8) contrast(1.2);
   }
 }

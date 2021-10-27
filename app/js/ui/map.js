@@ -1,5 +1,3 @@
-import COLORS from '../../../assets/markers/colors.json';
-
 import Leaflet from '../leaflet.js';
 import { STATUS } from '../query.js';
 
@@ -39,16 +37,14 @@ export default class Map {
     * @returns {Promise}
     */
   add(note, query) {
-    let icon;
+    let color = note.color;
     if (query.data.status === STATUS.ALL) {
-      icon = note.status === STATUS.OPEN ? 'markers/green.svg' : 'markers/red.svg';
-    } else {
-      icon = `markers/${note.color}.svg`;
+      color = note.status === STATUS.OPEN ? 'green' : 'red';
     }
 
     const marker = L.marker(note.coordinates, {
       icon: new L.divIcon({
-        html: `<img alt="" src="${icon}">`,
+        html: `<svg class="marker ${color}"><use xlink:href="#marker-template"></use></svg>`,
         iconSize: [25, 40],// [width, height]
         iconAnchor: [25 / 2, 40], // [width / 2, height]
         popupAnchor: [0, -30],
@@ -77,7 +73,7 @@ export default class Map {
 
       // Show halo with the correct style at the position of the note
       this.halo = L.circleMarker(note.coordinates, {
-        color: COLORS[note.color].fill,
+        color: window.getComputedStyle(document.documentElement).getPropertyValue(`--${color}-primary`),
         weight: 1
       });
       this.map.addLayer(this.halo);
