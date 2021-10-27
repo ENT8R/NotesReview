@@ -49,6 +49,9 @@ body[data-theme="dark"] {
     &.btn-link:hover {
       color: $text-color;
     }
+    &.btn-clear:not(:focus) {
+      background-color: transparent;
+    }
     &.active {
       background-color: $main-color-surface;
     }
