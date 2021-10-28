@@ -39,7 +39,8 @@
         "commentReopen": "Reopen and comment",
         "mapillary": "Mapillary",
         "report": "Report note",
-        "filter": "Filter"
+        "filter": "Filter",
+        "refresh": "Refresh"
     },
     "header": {
         "share": "Share",

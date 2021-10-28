@@ -29,8 +29,14 @@
 
   <section class="navbar-section">
     <button class="btn btn-primary m-1 flex-grow search-trigger">
-      <svg class="icon"><use xlink:href="#icon-search"></use></svg>
-      <span class="hide-xs" data-i18n="action.search">Search</span>
+      <div class="requires-changed-query">
+        <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+        <span class="hide-xs" data-i18n="action.search">Search</span>
+      </div>
+      <div class="requires-same-query">
+        <svg class="icon"><use xlink:href="#icon-refresh"></use></svg>
+        <span class="hide-xs" data-i18n="action.refresh">Refresh</span>
+      </div>
     </button>
     <button class="btn btn-primary modal-trigger m-1 flex-grow" data-modal="filter" aria-label="Apply a filter to the selection" data-i18n data-i18n-aria-label="accessibility.filter">
       <svg class="icon"><use xlink:href="#icon-filter"></use></svg>

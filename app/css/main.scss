@@ -25,6 +25,9 @@ body {
 
   &[data-authenticated="false"] .requires-authentication,
 
+  &[data-query-changed="true"] .requires-same-query,
+  &[data-query-changed="false"] .requires-changed-query,
+
   [data-status="open"] .comment-action[data-action="reopen"],
   [data-status="closed"] .comment-action[data-action="comment"],
   [data-status="closed"] .comment-action[data-action="close"],

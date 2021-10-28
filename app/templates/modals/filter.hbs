@@ -4,8 +4,14 @@
 
 <div class="modal-footer">
   <button class="btn btn-primary search-trigger">
-    <svg class="icon"><use xlink:href="#icon-search"></use></svg>
-    <span data-i18n="action.search">Search</span>
+    <div class="requires-changed-query">
+      <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+      <span class="hide-xs" data-i18n="action.search">Search</span>
+    </div>
+    <div class="requires-same-query">
+      <svg class="icon"><use xlink:href="#icon-refresh"></use></svg>
+      <span class="hide-xs" data-i18n="action.refresh">Refresh</span>
+    </div>
   </button>
   <a class="btn btn-link modal-close" data-i18n="action.close">Close</a>
 </div>

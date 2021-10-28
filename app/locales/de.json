@@ -39,7 +39,8 @@
         "commentReopen": "Erneut öffnen und kommentieren",
         "mapillary": "Mapillary",
         "report": "Notiz melden",
-        "filter": "Filter"
+        "filter": "Filter",
+        "refresh": "Aktualisieren"
     },
     "header": {
         "share": "Teilen",

@@ -53,6 +53,7 @@ export default class Query {
   constructor(map, parameter) {
     this.map = map;
     this.data = {};
+    this.history = [];
 
     this.input = [{
       id: 'query',
@@ -107,6 +108,14 @@ export default class Query {
       const update = () => {
         const value = element.type === 'checkbox' ? element.checked : element.value;
         input.handler.call(this, value);
+
+        if (this.history.length > 0) {
+          // A changed URL means that the query changed in relation to the previous query
+          // The current implementation adds another value to the data attributes
+          // In the future it might be necessary to create a new event for it
+          const previous = this.history[this.history.length - 1];
+          document.body.dataset.queryChanged = previous.url !== this.url;
+        }
       };
       // This event is triggered continuously during any input action
       element.addEventListener('input', update);
@@ -362,6 +371,12 @@ export default class Query {
     let users = new Set();
 
     const result = await Request.get(this.url);
+
+    this.history.push({
+      time: new Date(),
+      data: this.data,
+      url: this.url
+    });
 
     // Return as early as possible if there was no result
     if (!result || !result.length || result.length === 0) {
