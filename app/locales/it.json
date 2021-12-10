@@ -39,7 +39,8 @@
         "commentReopen": "Riapri e commenta",
         "mapillary": "Mapillary",
         "report": "Segnala nota",
-        "filter": "Filtra"
+        "filter": "Filtra",
+        "refresh": "Aggiorna"
     },
     "header": {
         "share": "Condividi",
@@ -87,7 +88,9 @@
             "hide": "Nascondi",
             "only": "Solo"
         },
-        "statistics": "Trovate %s note"
+        "statistics": "Trovate %s note",
+        "from": "Una data (UTC) come limite inferiore",
+        "to": "Una data (UTC) come limite superiore"
     },
     "settings": {
         "choose": "Scegli un’opzione",
