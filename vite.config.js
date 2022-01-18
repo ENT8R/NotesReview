@@ -1,5 +1,4 @@
 /* eslint-env node */
-import fs from 'fs';
 import { resolve } from 'path';
 
 import dotenv from 'dotenv';
@@ -23,7 +22,7 @@ export default () => {
     OPENSTREETMAP_SERVER: JSON.stringify(process.env.OPENSTREETMAP_SERVER),
     OPENSTREETMAP_OAUTH_KEY: JSON.stringify(process.env.OPENSTREETMAP_OAUTH_KEY),
     OPENSTREETMAP_OAUTH_SECRET: JSON.stringify(process.env.OPENSTREETMAP_OAUTH_SECRET),
-    MAPILLARY_CLIENT_ID: JSON.stringify(process.env.MAPILLARY_CLIENT_ID),
+    MAPILLARY_CLIENT_ID: JSON.stringify(process.env.MAPILLARY_CLIENT_ID)
   };
 
   return {
@@ -41,7 +40,8 @@ export default () => {
           resolve(root, 'templates/modals')
         ],
         context: {
-          structuredData: JSON.stringify(structuredData)
+          structuredData: JSON.stringify(structuredData),
+          version
         }
       }),
       svg({

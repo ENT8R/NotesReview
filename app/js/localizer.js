@@ -12,6 +12,10 @@ const STRINGS = {
   fallback: null
 };
 
+const REPLACEMENTS = [
+  ['{{version}}', __VERSION__]
+];
+
 /**
   * Replace the content of a HTMLElement with the localized string
   *
@@ -110,19 +114,17 @@ export function message(tag, ...strings) {
     );
   }
 
-  if (typeof strings !== 'undefined' && Array.isArray(strings)) {
-    strings.forEach(string => {
-      value = value.replace('%s', string);
-    });
-    return value;
-  }
+  // Replace placeholders with variables
+  strings.forEach(string => {
+    value = value.replace('%s', string);
+  });
 
-  if (typeof value === 'string') {
-    // Replace values which can not be included in the hardcoded string
-    return value.replace('{{version}}', __VERSION__).trim();
-  } else {
-    return value;
-  }
+  // Replace values which can not be included in the hardcoded string
+  REPLACEMENTS.forEach(([keyword, replacement]) => {
+    value = value.replace(keyword, replacement).trim();
+  });
+
+  return value;
 }
 
 /**
