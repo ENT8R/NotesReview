@@ -105,8 +105,6 @@
     },
     "note": {
         "anonymous": "Anonyme",
-        "amount": "%s notes affichées",
-        "average": "Âge moyen : %s",
         "comment": "1 commentaire",
         "comments": "%s commentaires",
         "action": {
@@ -124,7 +122,8 @@
     "accessibility": {
         "openFaq": "Ouvrez la foire aux questions",
         "openSettings": "Ouvrez les réglages",
-        "shareQuery": "Partagez la recherche courante"
+        "shareQuery": "Partagez la recherche courante",
+        "filter": "Appliquer un filtre sur la sélection"
     },
     "mapillary": {
         "empty": {
@@ -141,5 +140,9 @@
         "contribution": "!HTML! Vous pouvez aider ce projet en le <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">traduisant</a> ou en <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">décrivant un problème</a>.",
         "author": "!HTML! Fait avec ❤️ par <a href=\"mailto:info.ent8r@gmail.com\">ENT8R</a>",
         "donate": "Faire un don"
+    },
+    "error": {
+        "login": "La connexion a échoué, réessayez plus tard s'il vous plaît",
+        "comment": "Le commentaire a échoué, réessayez plus tard s'il vous plaît"
     }
 }

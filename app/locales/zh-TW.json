@@ -105,8 +105,6 @@
     },
     "note": {
         "anonymous": "暱名",
-        "amount": "已經顯示 %s 註解",
-        "average": "平均年紀：%s",
         "comment": "1 回覆",
         "comments": "%s 回覆",
         "action": {

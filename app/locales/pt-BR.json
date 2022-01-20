@@ -39,7 +39,8 @@
         "commentReopen": "Reabrir e comentar",
         "mapillary": "Mapillary",
         "report": "Reportar nota",
-        "filter": "Filtro"
+        "filter": "Filtro",
+        "refresh": "Recarregar"
     },
     "header": {
         "share": "Compartilhar",
@@ -86,7 +87,10 @@
             "include": "Incluir",
             "hide": "Ocultar",
             "only": "Apenas"
-        }
+        },
+        "statistics": "%s Notas encontradas",
+        "from": "Uma data (UTC) como limite inferior",
+        "to": "Uma data (UTC) como limite superior"
     },
     "settings": {
         "choose": "Escolher uma opção",
@@ -105,15 +109,14 @@
     },
     "note": {
         "anonymous": "anônimo",
-        "amount": "%s notas são mostradas no momento",
-        "average": "Idade média: %s",
         "comment": "1 comentário",
         "comments": "%s comentários",
         "action": {
             "opened": "Nota criada",
             "closed": "Nota fechada",
             "reopened": "Nota reaberta"
-        }
+        },
+        "unknown": "Usuário desconhecido"
     },
     "map": {
         "attribution": "&copy; contribuidores do <a href=\"https://osm.org/copyright\">OpenStreetMap</a>, &copy; <a href=\"https://carto.com/attributions\">CARTO</a>\nattribution"
