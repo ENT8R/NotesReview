@@ -32,12 +32,12 @@
     "spectre.css": "^0.5.9"
   },
   "devDependencies": {
-    "dotenv": "^10.0.0",
-    "eslint": "^8.0.1",
+    "dotenv": "^14.2.0",
+    "eslint": "^8.7.0",
     "handlebars": "^4.7.7",
-    "sass": "^1.43.2",
-    "vite": "^2.6.10",
+    "sass": "^1.49.0",
+    "vite": "^2.7.13",
     "vite-plugin-handlebars": "^1.6.0",
-    "vite-plugin-svg-icons": "^1.0.5"
+    "vite-plugin-svg-icons": "^1.1.0"
   }
 }
