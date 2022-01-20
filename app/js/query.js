@@ -106,16 +106,9 @@ export default class Query {
 
       // Listen to changes of the query inputs
       const update = () => {
-        const value = element.type === 'checkbox' ? element.checked : element.value;
+        let value = element.type === 'checkbox' ? element.checked : element.value;
+        value = value === '' ? null : value;
         input.handler.call(this, value);
-
-        if (this.history.length > 0) {
-          // A changed URL means that the query changed in relation to the previous query
-          // The current implementation adds another value to the data attributes
-          // In the future it might be necessary to create a new event for it
-          const previous = this.history[this.history.length - 1];
-          document.body.dataset.queryChanged = previous.url !== this.url;
-        }
       };
       // This event is triggered continuously during any input action
       element.addEventListener('input', update);
@@ -258,18 +251,16 @@ export default class Query {
     * @returns {Query}
     */
   before(before) {
-    if (!before) {
-      this.data.before = null;
-      return this;
+    if (before !== null) {
+      // Increment the actual date by a single day, to simulate a closed interval [from, to]
+      // because when setting two equal dates this would result in a half-closed interval [from, to)
+      // as the specific time is not known, which leads to no results being shown
+      // See also https://github.com/ENT8R/NotesReview/issues/81#issuecomment-948052553
+      before = new Date(before);
+      before.setUTCDate(before.getUTCDate() + 1);
+      [ before ] = before.toISOString().split('T');
     }
-
-    // Increment the actual date by a single day, to simulate a closed interval [from, to]
-    // because when setting two equal dates this would result in a half-closed interval [from, to)
-    // as the specific time is not known, which leads to no results being shown
-    // See also https://github.com/ENT8R/NotesReview/issues/81#issuecomment-948052553
-    before = new Date(before);
-    before.setUTCDate(before.getUTCDate() + 1);
-    [ this.data.before ] = before.toISOString().split('T');
+    this.data.before = before;
     return this;
   }
 
@@ -370,13 +361,22 @@ export default class Query {
     const notes = new Set();
     let users = new Set();
 
-    const result = await Request.get(this.url);
+    const { url } = this;
+    const result = await Request.get(url);
 
     this.history.push({
       time: new Date(),
       data: this.data,
-      url: this.url
+      url
     });
+
+    if (this.history.length > 0) {
+      // A changed URL means that the query changed in relation to the previous query
+      // The current implementation adds another value to the data attributes
+      // In the future it might be necessary to create a new event for it
+      const previous = this.history[this.history.length - 1];
+      document.body.dataset.queryChanged = previous.url !== url;
+    }
 
     // Return as early as possible if there was no result
     if (!result || !result.length || result.length === 0) {
