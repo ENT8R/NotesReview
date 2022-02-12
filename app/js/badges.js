@@ -45,7 +45,10 @@ export function comments(amount) {
   * @returns {String}
   */
 export function country(coordinates) {
-  const feature = CountryCoder.feature([...coordinates].reverse());
+  const feature = CountryCoder.feature([...coordinates].reverse(), {
+    level: 'territory',
+    withProp: 'emojiFlag'
+  });
   // Return no badge if the note is not inside a known country or there is no emoji associated with it
   if (!feature || !('properties' in feature) || !('emojiFlag' in feature.properties)) {
     return;
