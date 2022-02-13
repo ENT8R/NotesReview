@@ -315,7 +315,7 @@ export default class Query {
     // Don't use the bounding box if the user wants to do a global search
     data['apply-bbox'] ? null : delete data.bbox; // eslint-disable-line no-unused-expressions
 
-    url.search = Request.encodeQueryData(Util.clean(DEFAULTS, data), true);
+    url.search = Request.encodeQueryData(Util.clean(DEFAULTS, data));
     return url.toString();
   }
 

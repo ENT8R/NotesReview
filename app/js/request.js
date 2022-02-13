@@ -69,13 +69,12 @@ export function cancel() {
   *
   * @function
   * @param {Object} data
-  * @param {Boolean} strict
   * @returns {String}
   */
-export function encodeQueryData(data, strict) {
+export function encodeQueryData(data) {
   const query = [];
   for (const d in data) {
-    if (data[d] === '' || (strict && (data[d] === null || typeof data[d] === 'undefined'))) {
+    if (data[d] === '' || data[d] === null || typeof data[d] === 'undefined') {
       continue;
     }
     query.push(`${encodeURIComponent(d)}=${encodeURIComponent(data[d])}`);
