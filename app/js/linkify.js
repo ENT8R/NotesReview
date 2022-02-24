@@ -8,7 +8,7 @@ const IMAGE_HOSTING_REGEX = {
   commons: /(?:https?:\/\/)?commons\.wikimedia\.org\.?\/wiki\/File:([\w\-\_\.]+?\.(?:jpe?g|png|svg|webp))/i,
   openstreetmap: /(?:https?:\/\/)?wiki\.openstreetmap\.org\.?\/wiki\/File:([\w\-\_\.]+?\.(?:jpe?g|png|svg|webp))/i,
   mapillary: /(?:https?:\/\/)?(?:www\.)?mapillary\.com\.?\/map\/im\/(\w+)/i,
-  all: /(?:https?:\/\/)?(?:www\.)?[\w\%\/@\-\_\;\.\&\+\=]+\.(?:jpe?g|png|webp)/i
+  all: /(?:https?:\/\/)?(?:www\.)?(?:[\w\-]+\.)*(?:[\w\-]+)\.(?:[a-z]{2,})\.?\/(?:[\w\/]+)\.(gif|tiff?|jpe?g|[pm]ng|svg|webp)/i
 };
 
 const IMAGE_HOSTING_ADDITIONAL_FORMATTING = {
