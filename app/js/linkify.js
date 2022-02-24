@@ -1,13 +1,13 @@
 import anchorme from 'anchorme';
 
 const IMAGE_HOSTING_REGEX = {
-  imgur: /(?:https?:\/\/)?(?:i\.)?imgur\.com\/\w+\.(?:jpe?g|png|webp)/i,
-  framapic: /(?:https?:\/\/)?(?:www\.)?framapic\.org\/(?:random\?i=)?\w+\/\w+(?:\.(?:jpe?g|png|webp))?/i,
-  westnordost: /(?:https?:\/\/)?(?:www\.)?westnordost\.de\/p\/[0-9]+\.(?:jpe?g|webp)/i,
-  wikimedia: /(?:https?:\/\/)?upload\.wikimedia\.org\/wikipedia\/([^\/]+)\/(?:thumb\/)?(([0-9a-fA-F])\/\3[0-9a-fA-F])\/([\w\-\_\.]+?\.(?:jpe?g|png|svg|webp))(?:\/[0-9]{3,}px-\4(?:\.(?:jpe?g|png|webp))?)?/i,
-  commons: /(?:https?:\/\/)?commons\.wikimedia\.org\/wiki\/File:([\w\-\_\.]+?\.(?:jpe?g|png|svg|webp))/i,
-  openstreetmap: /(?:https?:\/\/)?wiki\.openstreetmap\.org\/wiki\/File:([\w\-\_\.]+?\.(?:jpe?g|png|svg|webp))/i,
-  mapillary: /(?:https?:\/\/)?(?:www\.)?mapillary\.com\/map\/im\/(\w+)/i,
+  imgur: /(?:https?:\/\/)?(?:i\.)?imgur\.com\.?\/\w+\.(?:jpe?g|png|webp)/i,
+  framapic: /(?:https?:\/\/)?(?:www\.)?framapic\.org\.?\/(?:random\?i=)?\w+\/\w+(?:\.(?:jpe?g|png|webp))?/i,
+  westnordost: /(?:https?:\/\/)?(?:www\.)?westnordost\.de\.?\/p\/[0-9]+\.(?:jpe?g|webp)/i,
+  wikimedia: /(?:https?:\/\/)?upload\.wikimedia\.org\.?\/wikipedia\/([^\/]+)\/(?:thumb\/)?(([0-9a-fA-F])\/\3[0-9a-fA-F])\/([\w\-\_\.]+?\.(?:jpe?g|png|svg|webp))(?:\/[0-9]{3,}px-\4(?:\.(?:jpe?g|png|webp))?)?/i,
+  commons: /(?:https?:\/\/)?commons\.wikimedia\.org\.?\/wiki\/File:([\w\-\_\.]+?\.(?:jpe?g|png|svg|webp))/i,
+  openstreetmap: /(?:https?:\/\/)?wiki\.openstreetmap\.org\.?\/wiki\/File:([\w\-\_\.]+?\.(?:jpe?g|png|svg|webp))/i,
+  mapillary: /(?:https?:\/\/)?(?:www\.)?mapillary\.com\.?\/map\/im\/(\w+)/i,
   all: /(?:https?:\/\/)?(?:www\.)?[\w\%\/@\-\_\;\.\&\+\=]+\.(?:jpe?g|png|webp)/i
 };
 
