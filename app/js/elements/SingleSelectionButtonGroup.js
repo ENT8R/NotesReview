@@ -1,14 +1,14 @@
 export default class SingleSelectionButtonGroup extends HTMLElement {
   // Identify the element as a form-associated custom element
-  static get formAssociated() {
-    return true;
-  }
+  static formAssociated = true;
 
   constructor() {
     super();
     // TODO: This is not yet supported across major browsers: chrome >= 77, firefox >= 93, edge >= 79, no safari, opera >= 64, no ie
     // See https://web.dev/more-capable-form-controls/#restoring-form-state and https://caniuse.com/mdn-api_htmlelement_attachinternals
     this._internals = 'attachInternals' in this ? this.attachInternals() : null;
+
+    this.activeButton = this.querySelector('button.active');
   }
 
   connectedCallback() {
@@ -17,7 +17,7 @@ export default class SingleSelectionButtonGroup extends HTMLElement {
         this.value = button.dataset.value || null;
       });
     });
-    this.value = this.querySelector('button.active').dataset.value || null;
+    this.value = this.activeButton.dataset.value || null;
   }
 
   formStateRestoreCallback(state) {
@@ -29,13 +29,20 @@ export default class SingleSelectionButtonGroup extends HTMLElement {
   }
 
   set value(v) {
-    // Reset the currently active button
-    this.querySelector('button.active').classList.remove('active');
-
     // Find the next button to select
     const selector = v === null ? 'button:not([data-value])' : `button[data-value="${v}"]`;
-    const button = this.querySelector(selector);
-    button.classList.add('active');
+    const nextButton = this.querySelector(selector);
+    // If the button does not exist, the value can not be selected
+    if (nextButton == null) {
+      return;
+    }
+
+    // Reset the currently active button
+    this.activeButton.classList.remove('active');
+
+    // Set the next button to an active state
+    this.activeButton = nextButton;
+    this.activeButton.classList.add('active');
 
     // Set the new value and fire events
     this._v = v;
