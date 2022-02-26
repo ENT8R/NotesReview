@@ -8,7 +8,7 @@ import * as Util from './util.js';
 const MAX_LIMIT = 100;
 
 export const STATUS = {
-  ALL: null,
+  ALL: 'all',
   OPEN: 'open',
   CLOSED: 'closed'
 };
@@ -30,16 +30,26 @@ const ORDER = {
 };
 
 const DEFAULTS = {
-  'apply-bbox': false,
-  bbox: null,
-  limit: 50,
-  // status: STATUS.OPEN, // TODO: The default of the API is STATUS.ALL
-  anonymous: ANONYMOUS.INCLUDE,
-  sort_by: SORT.UPDATED_AT, // eslint-disable-line camelcase
-  order: ORDER.DESCENDING,
-  // Search parameter defaults
-  uncommented: false,
-  sort: `${SORT.CREATED_AT}:${ORDER.DESCENDING}`
+  PERMALINK: {
+    'apply-bbox': false,
+    bbox: null,
+    limit: 50,
+    status: STATUS.OPEN,
+    anonymous: ANONYMOUS.INCLUDE,
+    // Specific permalink values which are not send to the API
+    sort: `${SORT.CREATED_AT}:${ORDER.DESCENDING}`,
+    uncommented: false
+  },
+  API: {
+    'apply-bbox': false,
+    bbox: null,
+    limit: 50,
+    status: STATUS.ALL,
+    anonymous: ANONYMOUS.INCLUDE,
+    // Specific API values which are not used for the permalink
+    sort_by: SORT.UPDATED_AT, // eslint-disable-line camelcase
+    order: ORDER.DESCENDING
+  }
 };
 
 export default class Query {
@@ -109,6 +119,7 @@ export default class Query {
         let value = element.type === 'checkbox' ? element.checked : element.value;
         value = value === '' ? null : value;
         input.handler.call(this, value);
+        this.onChange();
       };
       // This event is triggered continuously during any input action
       element.addEventListener('input', update);
@@ -315,7 +326,7 @@ export default class Query {
     // Don't use the bounding box if the user wants to do a global search
     data['apply-bbox'] ? null : delete data.bbox; // eslint-disable-line no-unused-expressions
 
-    url.search = Request.encodeQueryData(Util.clean(DEFAULTS, data));
+    url.search = Request.encodeQueryData(Util.clean(data, DEFAULTS.API));
     return url.toString();
   }
 
@@ -347,8 +358,24 @@ export default class Query {
       delete data.map;
     }
 
-    url.search = Request.encodeQueryData(Util.clean(DEFAULTS, data));
+    url.search = Request.encodeQueryData(Util.clean(data, DEFAULTS.PERMALINK));
     return url.toString();
+  }
+
+  /**
+    * Handler for common logic in case of changed input values
+    *
+    * @function
+    * @returns {void}
+    */
+  onChange() {
+    if (this.history.length > 0) {
+      // A changed URL means that the query changed in relation to the previous query
+      // The current implementation adds another value to the data attributes
+      // In the future it might be necessary to create a new event for it
+      const previous = this.history[this.history.length - 1];
+      document.body.dataset.queryChanged = previous.url !== this.url;
+    }
   }
 
   /**
@@ -370,13 +397,8 @@ export default class Query {
       url
     });
 
-    if (this.history.length > 0) {
-      // A changed URL means that the query changed in relation to the previous query
-      // The current implementation adds another value to the data attributes
-      // In the future it might be necessary to create a new event for it
-      const previous = this.history[this.history.length - 1];
-      document.body.dataset.queryChanged = previous.url !== url;
-    }
+    // Set the information that the query changed to false, because the request was just done moments ago
+    document.body.dataset.queryChanged = false;
 
     // Return as early as possible if there was no result
     if (!result || !result.length || result.length === 0) {
