@@ -4,7 +4,7 @@ import { resolve } from 'path';
 import dotenv from 'dotenv';
 
 import handlebars from 'vite-plugin-handlebars';
-import svg from 'vite-plugin-svg-icons';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 
 import { version } from './package.json';
 import structuredData from './app/templates/includes/structuredData.json';
@@ -44,7 +44,7 @@ export default () => {
           version
         }
       }),
-      svg({
+      createSvgIconsPlugin({
         iconDirs: [resolve(root, 'svg')],
         symbolId: '[dir]-[name]'
       })

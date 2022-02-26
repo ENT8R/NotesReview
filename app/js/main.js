@@ -1,5 +1,5 @@
 import '../css/main.scss';
-import 'vite-plugin-svg-icons/register';
+import 'virtual:svg-icons-register';
 /* -------------------------------------------------------------------------- */
 import './polyfills.js';
 

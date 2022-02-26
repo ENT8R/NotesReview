@@ -184,9 +184,6 @@ export async function init() {
   // Replace html lang attribute after translation
   document.querySelector('html').setAttribute('lang', LANGUAGE);
 
-  /* Polyfill for Intl.RelativeTimeFormat
-   * chrome >= 71, not edge all, firefox >= 65, not ie <= 11, opera >= 58, not safari all
-   */
   if (!('Intl' in window) || !('RelativeTimeFormat' in window.Intl)) {
     let locale;
     switch (LANGUAGE.split('-')[0]) {
@@ -215,6 +212,7 @@ export async function init() {
     // chrome >= 71, edge >= 79, firefox >= 65, not ie <= 11, opera >= 58, safari >= 14
     const { default: RelativeTimeFormat } = await import('relative-time-format');
     RelativeTimeFormat.addLocale(locale.default);
+    RelativeTimeFormat.setDefaultLocale(locale.default.locale);
 
     if (!('Intl' in window)) {
       window.Intl = {};
