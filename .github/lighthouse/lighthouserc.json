@@ -2,10 +2,10 @@
   "ci": {
     "collect": {
       "url": [
-        "http://localhost:5000/NotesReview/"
+        "http://localhost:4173/NotesReview/"
       ],
       "startServerCommand": "npm run serve",
-      "startServerReadyPattern": "running|listen|ready",
+      "startServerReadyPattern": "running|listen|ready|local",
       "numberOfRuns": 3,
       "settings": {
         "chromeFlags": "--no-sandbox",
