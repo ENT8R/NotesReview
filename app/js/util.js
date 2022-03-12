@@ -128,3 +128,14 @@ export function clean(data, defaults) {
   });
   return result;
 }
+
+/**
+  * Escapes a given string
+  *
+  * @function
+  * @param {String} string
+  * @returns {String}
+  */
+export function escape(string) {
+  return string.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}

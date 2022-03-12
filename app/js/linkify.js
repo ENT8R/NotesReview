@@ -1,5 +1,7 @@
 import anchorme from 'anchorme';
 
+import * as Util from './util.js';
+
 const IMAGE_HOSTING_REGEX = {
   imgur: /(http(s)?:\/\/)?(i\.)?imgur\.com\/\w+\.(jpg|png)/i,
   framapic: /(http(s)?:\/\/)?(www\.)?framapic\.org\/(random\?i=)?\w+\/\w+(\.(jpg|jpeg|png))?/i,
@@ -26,8 +28,6 @@ const IMAGE_HOSTING_ADDITIONAL_FORMATTING = {
   * @returns {String}
   */
 export default function replace(input) {
-  input = escape(input); // Sanitize the input
-
   const images = [];
   const specialTransform = Object.entries(IMAGE_HOSTING_REGEX).map(([ provider, regex ]) => {
     return {
@@ -38,8 +38,8 @@ export default function replace(input) {
         if (formatting) {
           url = url.replace(regex, formatting);
         }
-        const image = `<img class="img-responsive img-preview p-1" src="${escape(url)}" alt="${escape(url)}">`;
-        return `<a href="${escape(url)}" target="_blank" rel="noopener noreferrer">${image}</a>`;
+        const image = `<img class="img-responsive img-preview p-1" src="${Util.escape(url)}" alt="${Util.escape(url)}">`;
+        return `<a href="${Util.escape(url)}" target="_blank" rel="noopener noreferrer">${image}</a>`;
       }
     };
   });
@@ -60,16 +60,4 @@ export default function replace(input) {
     images,
     html: result
   };
-}
-
-/**
-  * Escapes a given string
-  *
-  * @function
-  * @private
-  * @param {String} string
-  * @returns {String}
-  */
-function escape(string) {
-  return string.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }

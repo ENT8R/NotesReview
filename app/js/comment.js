@@ -19,9 +19,12 @@ export default class Comment {
     this.action = comment.action;
 
     if ('text' in comment) {
-      const linkified = Linkify(comment.text);
-      this.html = linkified.html;
-      this.images = linkified.images;
+      // Escape HTML tags in the comment before proceeding
+      comment.text = Util.escape(comment.text);
+
+      const { html, images } = Linkify(comment.text);
+      this.html = html;
+      this.images = images;
     }
   }
 
