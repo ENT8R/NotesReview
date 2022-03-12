@@ -19,21 +19,31 @@ export default class Leaflet {
     * @constructor
     * @param {String} id The id of the map container
     * @param {Object} position The position the map should be centered in
+    * @param {Array} bounds The boundary of the preferred view
     */
-  constructor(id, position) {
+  constructor(id, position, bounds) {
     if (instances[id]) {
       this.map = instances[id];
     } else {
       this.map = L.map(id, {
-        center: position.center,
         minZoom: OPTIONS.zoom.min,
         maxZoom: OPTIONS.zoom.max,
-        zoom: position.zoom,
         maxBounds: L.latLngBounds(
           L.latLng(-90, -180),
           L.latLng(90, 180)
         )
       });
+
+      if (position !== null && bounds === null) {
+        this.setView(position.center, position.zoom);
+      } else if (bounds !== null) {
+        this.map.fitBounds(L.latLngBounds(
+          L.latLng(bounds[1], bounds[0]),
+          L.latLng(bounds[3], bounds[2])
+        ));
+      } else {
+        throw new Error(`${id} can not be instantiated without a position or bounds to center the map`);
+      }
 
       instances[id] = this.map;
 
@@ -155,7 +165,7 @@ export default class Leaflet {
     * @param {Number} duration
     * @returns {void}
     */
-  flyToBounds(bounds, duration) {
+  flyToBounds(bounds, duration=1) {
     this.map.flyToBounds(bounds, {
       duration,
       maxZoom: OPTIONS.maxZoom

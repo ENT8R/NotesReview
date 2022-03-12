@@ -147,7 +147,7 @@ export default class Map {
 
     // TODO: Leave this choice to the user by implementing a button which offers to zoom to contain all features
     if (!reload && this.markers.length > 0) {
-      this.map.flyToBounds(this.cluster.getBounds(), 1);
+      this.map.flyToBounds(this.cluster.getBounds());
     }
 
     this.markers = [];

@@ -277,7 +277,12 @@ function settings() {
     window.history.replaceState({}, document.title, uri.substring(0, uri.indexOf('?')));
   }
 
-  // Get the desired position from the search parameters or the local storage
+  const view = parameter.get('view') || Preferences.get('view');
+  document.querySelector(`#toggle-view div[data-view="${view}"]`).classList.remove('d-hide');
+  document.querySelector(`#${view}`).classList.remove('d-hide');
+  document.body.dataset.view = view;
+
+  // Get the desired centered position from the search parameters or the local storage
   const position =
     (parameter.has('map') && /.+\/.+\/.+/.test(parameter.get('map')) ?
       (p => {
@@ -289,7 +294,13 @@ function settings() {
     ||
     Preferences.get('map');
 
-  map = new Leaflet('map-container', position);
+  // Get the desired bounds from the search parameters (will override the position retrieved above)
+  const bounds =
+    (parameter.has('bbox') && /.+,.+,.+,.+/.test(parameter.get('bbox')) ?
+      parameter.get('bbox').split(',')
+      : null);
+
+  map = new Leaflet('map-container', position, bounds);
   query = new Query(map, parameter);
   const permalink = new Permalink(query); // eslint-disable-line no-unused-vars
 
@@ -304,16 +315,10 @@ function settings() {
     document.getElementById('logout').classList.add('d-hide');
   }
 
-  listener();
-  settings();
-
-  const view = parameter.get('view') || Preferences.get('view');
-  document.querySelector(`#toggle-view div[data-view="${view}"]`).classList.remove('d-hide');
-  document.querySelector(`#${view}`).classList.remove('d-hide');
-  document.body.dataset.view = view;
-
   const { default: UI } = await import('./ui/ui.js');
   ui = new UI(view);
 
+  listener();
+  settings();
   search();
 })();

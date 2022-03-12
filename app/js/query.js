@@ -140,7 +140,11 @@ export default class Query {
     // This triggers the assigned handler via the function implemented above
     this.map.onMove(() => {
       const bbox = document.getElementById('bbox');
-      bbox.value = this.map.bounds().toBBoxString();
+      const bounds = this.map.bounds();
+      bbox.value = [
+        bounds.getWest().toFixed(4), bounds.getSouth().toFixed(4),
+        bounds.getEast().toFixed(4), bounds.getNorth().toFixed(4)
+      ].join(',');
       bbox.dispatchEvent(new Event('change'));
     });
   }
@@ -323,7 +327,8 @@ export default class Query {
     const url = new URL(`${NOTESREVIEW_API_URL}/search`);
 
     const data = Object.assign({}, this.data);
-    // Don't use the bounding box if the user wants to do a global search
+
+    // Do not use the bounding box if the user wants to do a global search
     data['apply-bbox'] ? null : delete data.bbox; // eslint-disable-line no-unused-expressions
 
     url.search = Request.encodeQueryData(Util.clean(data, DEFAULTS.API));
@@ -348,8 +353,10 @@ export default class Query {
       sort: `${this.data.sort_by}:${this.data.order}`
     });
 
+    // Do not use the bounding box if the user wants to do a global search
+    data['apply-bbox'] ? null : delete data.bbox; // eslint-disable-line no-unused-expressions
+
     // Remove unused properties that are already set by another value
-    delete data.bbox; // The bounding box is already known because of the 'map' parameter
     delete data.comments;
     delete data.sort_by;
     delete data.order;
