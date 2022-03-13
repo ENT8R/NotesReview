@@ -65,6 +65,7 @@ export default class Leaflet {
     */
   resize() {
     this.map.invalidateSize();
+    this.map.fire('move');
   }
 
   /**
@@ -181,7 +182,6 @@ export default class Leaflet {
     */
   onMove(listener) {
     this.map.on('move', listener);
-    this.map.fire('move');
   }
 
   /**

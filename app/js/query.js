@@ -29,10 +29,11 @@ const ORDER = {
   ASCENDING: 'ascending'
 };
 
+// Default values which can be removed from the query string if needed.
+// Values which are null by default are not included, because they are removed in a different step.
 const DEFAULTS = {
   UI: {
     'apply-bbox': false,
-    bbox: null,
     limit: 50,
     status: STATUS.OPEN,
     anonymous: ANONYMOUS.INCLUDE,
@@ -42,7 +43,6 @@ const DEFAULTS = {
   },
   API: {
     'apply-bbox': false,
-    bbox: null,
     limit: 50,
     status: STATUS.ALL,
     anonymous: ANONYMOUS.INCLUDE,
@@ -102,6 +102,7 @@ export default class Query {
       handler: this.sort
     }];
 
+    // Add event listeners to every input field
     this.input.forEach(input => {
       const element = document.getElementById(input.id);
 
@@ -116,17 +117,9 @@ export default class Query {
       element.addEventListener('input', update);
       // This event is triggered at the end of the action
       element.addEventListener('change', update);
-
-      // If the corresponding default value for an input field is available, try to set it
-      const key = 'permalink' in input ? input.permalink : input.id;
-      if (values.hasOwnProperty(key)) {
-        const value = values[key];
-        element.type === 'checkbox' ? element.checked = (value === true || value === 'true') : element.value = value; // eslint-disable-line no-unused-expressions
-      }
-
-      // Call the handler by triggering a new change event on the element
-      element.dispatchEvent(new Event('change'));
     }, this);
+
+    this.values = values;
 
     // Update the input which stores the current bounding box when moving the map
     // This triggers the assigned handler via the function implemented above
@@ -139,6 +132,37 @@ export default class Query {
       ].join(',');
       bbox.dispatchEvent(new Event('change'));
     });
+  }
+
+  /**
+    * Set the values of the input fields
+    *
+    * @function
+    * @param {Object} values
+    * @returns {void}
+    */
+  set values(values) {
+    this.input.forEach(input => {
+      const element = document.getElementById(input.id);
+
+      // If the corresponding value for an input field is available, try to set it
+      const key = 'permalink' in input ? input.permalink : input.id;
+      const value = values.hasOwnProperty(key) ? values[key] : (DEFAULTS.UI[key] || null);
+      element.type === 'checkbox' ? element.checked = (value === true || value === 'true') : element.value = value; // eslint-disable-line no-unused-expressions
+
+      // Call the handler by triggering a new change event on the element
+      element.dispatchEvent(new Event('change'));
+    }, this);
+  }
+
+  /**
+    * Reset the query to default values
+    *
+    * @function
+    * @returns {void}
+    */
+  reset() {
+    this.values = DEFAULTS.UI;
   }
 
   /**
@@ -324,6 +348,10 @@ export default class Query {
 
     // Do not use the bounding box if the user wants to do a global search
     data['apply-bbox'] ? null : delete data.bbox; // eslint-disable-line no-unused-expressions
+
+    // Remove unused properties that are already set by another value
+    delete data.uncommented;
+    delete data.sort;
 
     url.search = Request.encodeQueryData(Util.clean(data, DEFAULTS.API));
     return url.toString();

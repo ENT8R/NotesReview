@@ -40,7 +40,8 @@
         "mapillary": "Mapillary",
         "report": "Report note",
         "filter": "Filter",
-        "refresh": "Refresh"
+        "refresh": "Refresh",
+        "reset": "Reset"
     },
     "header": {
         "share": "Share",

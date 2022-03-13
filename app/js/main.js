@@ -78,6 +78,10 @@ function listener() {
   });
   document.getElementById('cancel').addEventListener('click', () => Request.cancel());
 
+  document.querySelectorAll('.reset-trigger').forEach(element => {
+    element.addEventListener('click', () => query.reset());
+  });
+
   document.getElementById('login').addEventListener('click', () => {
     const login = document.getElementById('login');
     login.classList.add('loading');
