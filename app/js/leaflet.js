@@ -181,6 +181,7 @@ export default class Leaflet {
     */
   onMove(listener) {
     this.map.on('move', listener);
+    this.map.fire('move');
   }
 
   /**
