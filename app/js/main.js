@@ -168,14 +168,15 @@ function listener() {
     // Remove the iframe in order to prevent a restoring of the content when reloading the page
     document.getElementById('remote').remove();
 
-    // Save the state of the view
+    // Save the current state of the map and query which will be restored when visiting the page again
     const center = map.center();
     Preferences.set({
       view: ui.view,
       map: {
         center: [center.lat, center.lng],
         zoom: map.zoom()
-      }
+      },
+      query: query.data
     });
   });
 
@@ -270,7 +271,7 @@ function settings() {
   await Localizer.init();
   Modal.init();
 
-  const parameter = new URL(window.location.href).searchParams;
+  let parameter = new URL(window.location.href).searchParams;
   // Remove the query parameters to have a cleaner looking URL
   const uri = window.location.toString();
   if (uri.indexOf('?') > 0) {
@@ -299,6 +300,16 @@ function settings() {
     (parameter.has('bbox') && /.+,.+,.+,.+/.test(parameter.get('bbox')) ?
       parameter.get('bbox').split(',')
       : null);
+
+  // Convert the URL search parameters to an object for further usage
+  parameter = [...parameter.entries()].reduce(
+    (object, [key, value]) => Object.assign(object, {[key]: value}),
+    {}
+  );
+
+  // If there are no parameters available, use the query saved in the preferences,
+  // which is the last used query before the page was closed the last time
+  parameter = Object.keys(parameter).length > 0 ? parameter : Preferences.get('query');
 
   map = new Leaflet('map-container', position, bounds);
   query = new Query(map, parameter);

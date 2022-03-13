@@ -102,7 +102,7 @@ export default class Note {
       },
       comment: {
         class: 'comments-modal-trigger requires-authentication',
-        icon: 'pencil',
+        icon: 'chat',
         text: Localizer.message('action.comment')
       }
     };

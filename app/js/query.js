@@ -30,13 +30,13 @@ const ORDER = {
 };
 
 const DEFAULTS = {
-  PERMALINK: {
+  UI: {
     'apply-bbox': false,
     bbox: null,
     limit: 50,
     status: STATUS.OPEN,
     anonymous: ANONYMOUS.INCLUDE,
-    // Specific permalink values which are not send to the API
+    // Specific frontend values which are not send to the API but transformed to another value before
     sort: `${SORT.CREATED_AT}:${ORDER.DESCENDING}`,
     uncommented: false
   },
@@ -58,32 +58,27 @@ export default class Query {
     *
     * @constructor
     * @param {Leaflet} map Current Leaflet map instance
-    * @param {URLSearchParams} parameter Search parameters of the URL to initialize the query with
+    * @param {Object} values Default values to initialize the query with
     */
-  constructor(map, parameter) {
+  constructor(map, values) {
     this.map = map;
     this.data = {};
     this.history = [];
 
     this.input = [{
       id: 'query',
-      permalink: 'query',
       handler: this.query
     }, {
       id: 'bbox',
-      permalink: 'bbox',
       handler: this.bbox
     }, {
       id: 'apply-bbox',
-      permalink: 'apply-bbox',
       handler: this.applyBBox
     }, {
       id: 'limit',
-      permalink: 'limit',
       handler: this.limit
     }, {
       id: 'status',
-      permalink: 'status',
       handler: this.status
     }, {
       id: 'user',
@@ -91,15 +86,12 @@ export default class Query {
       handler: this.author
     }, {
       id: 'anonymous',
-      permalink: 'anonymous',
       handler: this.anonymous
     }, {
       id: 'from',
-      permalink: 'from',
       handler: this.after
     }, {
       id: 'to',
-      permalink: 'to',
       handler: this.before
     }, {
       id: 'only-uncommented',
@@ -107,7 +99,6 @@ export default class Query {
       handler: this.uncommented
     }, {
       id: 'sort',
-      permalink: 'sort',
       handler: this.sort
     }];
 
@@ -126,10 +117,11 @@ export default class Query {
       // This event is triggered at the end of the action
       element.addEventListener('change', update);
 
-      // If the corresponding search parameter for an input is available, try to set it
-      if (parameter.has(input.permalink)) {
-        const value = parameter.get(input.permalink);
-        element.type === 'checkbox' ? element.checked = (value === 'true') : element.value = value; // eslint-disable-line no-unused-expressions
+      // If the corresponding default value for an input field is available, try to set it
+      const key = 'permalink' in input ? input.permalink : input.id;
+      if (values.hasOwnProperty(key)) {
+        const value = values[key];
+        element.type === 'checkbox' ? element.checked = (value === true || value === 'true') : element.value = value; // eslint-disable-line no-unused-expressions
       }
 
       // Call the handler by triggering a new change event on the element
@@ -299,6 +291,7 @@ export default class Query {
     * @returns {Query}
     */
   uncommented(uncommented) {
+    this.data.uncommented = uncommented;
     this.comments(uncommented ? 0 : null);
     return this;
   }
@@ -314,6 +307,7 @@ export default class Query {
     const [ sort_by, order ] = sort.split(':'); // eslint-disable-line camelcase
     this.data.sort_by = sort_by; // eslint-disable-line camelcase
     this.data.order = order;
+    this.data.sort = sort;
     return this;
   }
 
@@ -348,10 +342,7 @@ export default class Query {
     const data = Object.assign({
       view: document.body.dataset.view,
       map: `${this.map.zoom()}/${this.map.center().lat}/${this.map.center().lng}`,
-    }, this.data, {
-      uncommented: this.data.comments === 0,
-      sort: `${this.data.sort_by}:${this.data.order}`
-    });
+    }, this.data);
 
     // Do not use the bounding box if the user wants to do a global search
     data['apply-bbox'] ? null : delete data.bbox; // eslint-disable-line no-unused-expressions
@@ -365,7 +356,7 @@ export default class Query {
       delete data.map;
     }
 
-    url.search = Request.encodeQueryData(Util.clean(data, DEFAULTS.PERMALINK));
+    url.search = Request.encodeQueryData(Util.clean(data, DEFAULTS.UI));
     return url.toString();
   }
 

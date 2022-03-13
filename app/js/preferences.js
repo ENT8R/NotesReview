@@ -6,6 +6,7 @@ const DEFAULTS = {
     center: [0, 0],
     zoom: 2
   },
+  query: {},
   theme: 'system',
   tools: {
     openstreetmap: true,
