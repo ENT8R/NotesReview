@@ -40,7 +40,8 @@
         "mapillary": "Mapillary",
         "report": "Segnala nota",
         "filter": "Filtra",
-        "refresh": "Aggiorna"
+        "refresh": "Aggiorna",
+        "reset": "Reimposta"
     },
     "header": {
         "share": "Condividi",

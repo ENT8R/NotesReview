@@ -1,0 +1,144 @@
+{
+    "help": {
+        "colors": {
+            "title": "それぞれの色の意味",
+            "description": "地図メモの色は、新しさ・古さによって変わります",
+            "darkgreen": "ダークグリーン",
+            "green": "グリーン",
+            "amber": "アンバー",
+            "orange": "オレンジ",
+            "red": "レッド",
+            "descriptions": {
+                "darkgreen": "1秒〜1日前",
+                "green": "31日以内",
+                "amber": "半年以上1年未満",
+                "orange": "1〜2年前",
+                "red": "2年以上前",
+                "lime": "1〜6ヶ月"
+            },
+            "lime": "ライム"
+        }
+    },
+    "action": {
+        "cancel": "キャンセル",
+        "close": "クローズ",
+        "copyLinkSuccess": "リンクコピー完了",
+        "save": "セーブ",
+        "search": "検索",
+        "openstreetmap": "OpenStreetMap",
+        "edit": {
+            "id": "iD",
+            "josm": "JOSM",
+            "level0": "Level0"
+        },
+        "login": "ログイン",
+        "logout": "ログアウト",
+        "comment": "コメント",
+        "commentClose": "コメントしてクローズ",
+        "commentReopen": "再オープンしてコメント",
+        "mapillary": "Mapillary",
+        "report": "地図メモを報告",
+        "filter": "フィルタ",
+        "refresh": "再読み込み",
+        "reset": "リセット"
+    },
+    "header": {
+        "share": "共有",
+        "faq": "FAQ",
+        "about": "概要",
+        "settings": "設定",
+        "query": "クエリ",
+        "limit": "表示上限",
+        "user": "ユーザ",
+        "from": "From",
+        "to": "To",
+        "sort": "並び替え順",
+        "status": "ステータス",
+        "anonymous": "匿名ユーザからの地図メモ"
+    },
+    "description": {
+        "share": "クエリ共有リンクをコピー:",
+        "startQuery": "リンクを開いた時点でクエリを実行",
+        "shareView": "マップ表示地点も共有",
+        "showList": "リスト表示",
+        "showMap": "マップ表示",
+        "nothingFound": "検索結果がありません！",
+        "autoLimit": "検索結果が多すぎるため、100件までを表示します",
+        "deprecationWarning": "お使いのブラウザがNotesReviewに対応していません。NoteReviewを利用する場合、他のブラウザを利用してみてください。",
+        "sort": {
+            "created": {
+                "desc": "新しい順",
+                "asc": "古い順"
+            },
+            "updated": {
+                "desc": "更新が新しい順",
+                "asc": "更新が古い順"
+            }
+        },
+        "query": "地図メモ内の単語やフレーズ",
+        "applyBoundingBox": "表示している項目から検索",
+        "onlyUncommented": "コメントの無い地図メモだけを表示",
+        "status": {
+            "all": "すべて",
+            "open": "オープン",
+            "closed": "クローズド"
+        },
+        "anonymous": {
+            "include": "含める",
+            "hide": "非表示"
+        },
+        "statistics": "%s 個の地図メモがありました",
+        "from": "日付 (UTC) を下限に設定",
+        "to": "日付 (UTC) を上限に設定"
+    },
+    "settings": {
+        "choose": "オプション選択",
+        "theme": {
+            "title": "テーマ選択",
+            "light": "ライト",
+            "dark": "ダーク",
+            "system": "システム設定を適用"
+        },
+        "tools": {
+            "title": "ツール",
+            "description": "よく使うツールを選択",
+            "editors": "エディタ",
+            "other": "その他"
+        }
+    },
+    "note": {
+        "anonymous": "無記名",
+        "comment": "1 コメント",
+        "comments": "%s コメント",
+        "action": {
+            "closed": "終了した地図メモ",
+            "reopened": "再オープンした地図メモ"
+        }
+    },
+    "map": {
+        "attribution": "&copy; <a href=\"https://osm.org/copyright\">OpenStreetMap</a> contributors, &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
+    },
+    "comments": {
+        "inputPlaceholder": "他ユーザ向けにコメントを残す"
+    },
+    "accessibility": {
+        "openFaq": "FAQを表示",
+        "openSettings": "設定を表示",
+        "shareQuery": "現在のクエリを共有",
+        "filter": "選択した項目にフィルタを適用"
+    },
+    "mapillary": {
+        "empty": {
+            "add": "この場所に写真を追加",
+            "title": "表示する写真がありません",
+            "subtitle": "Mapillaryにストリートビューを追加することで他のマッパーへの参考情報にすることができます。"
+        }
+    },
+    "user": {
+        "created": "%s 開始ユーザ"
+    },
+    "error": {
+        "login": "ログインに失敗しました。もう一度試してみてください。",
+        "comment": "コメント追加に失敗しました。もう一度試してみてください。"
+    }
+}
