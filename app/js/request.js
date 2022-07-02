@@ -1,6 +1,3 @@
-let controller = new AbortController();
-let running = false;
-
 export const MEDIA_TYPE = {
   JSON: 'application/json',
   XML: 'text/xml',
@@ -13,12 +10,10 @@ export const MEDIA_TYPE = {
   * @function
   * @param {String} url
   * @param {MEDIA_TYPE} mediaType
+  * @param {AbortController} controller
   * @returns {Promise}
   */
-export function get(url, mediaType = MEDIA_TYPE.JSON) {
-  running = true;
-  controller = new AbortController();
-
+export function get(url, mediaType = MEDIA_TYPE.JSON, controller = new AbortController()) {
   return fetch(url, {
     signal: controller.signal
   }).then(response => {
@@ -37,31 +32,13 @@ export function get(url, mediaType = MEDIA_TYPE.JSON) {
     default:
       return text;
     }
-  }).catch(e =>
-    console.log(`Error while fetching file at ${url}: ${e}`) // eslint-disable-line no-console
-  ).finally(() =>
-    running = false
-  );
-}
-
-/**
-  * Whether a request is currently running
-  *
-  * @function
-  * @returns {Boolean}
-  */
-export function isRunning() {
-  return running;
-}
-
-/**
-  * Cancel an ongoing request
-  *
-  * @function
-  * @returns {void}
-  */
-export function cancel() {
-  controller.abort();
+  }).catch(error => {
+    if (error.name === 'AbortError') {
+      console.log(`Aborted request while fetching file at ${url}: ${error}`);
+    } else {
+      console.log(`Error while fetching file at ${url}: ${error}`); // eslint-disable-line no-console
+    }
+  });
 }
 
 /**

@@ -13,7 +13,6 @@ import Note from './note.js';
 import Permalink from './permalink.js';
 import Preferences from './preferences.js';
 import Query from './query.js';
-import * as Request from './request.js';
 import * as Theme from './theme.js';
 import Toast from './toast.js';
 import Users from './users.js';
@@ -76,7 +75,7 @@ function listener() {
   document.querySelectorAll('.search-trigger').forEach(element => {
     element.addEventListener('click', () => search());
   });
-  document.getElementById('cancel').addEventListener('click', () => Request.cancel());
+  document.getElementById('cancel').addEventListener('click', () => query.cancel());
 
   document.querySelectorAll('.reset-trigger').forEach(element => {
     element.addEventListener('click', () => query.reset());
@@ -156,10 +155,12 @@ function listener() {
 
   document.addEventListener('keydown', event => {
     if (event.which === 13) {
-      // Stop an ongoing request if it is already running
-      if (Request.isRunning()) {
-        return Request.cancel();
-      }
+      // Remove the focus from the currently active element, so when pressing return,
+      // no new search will be initiated when the search trigger button is currently in focus
+      document.activeElement.blur();
+
+      // Cancel an ongoing request if the return button is clicked
+      query.cancel();
 
       // Only start a new search if the filter modal is currently open
       if (document.querySelector('.modal[data-modal="filter"]').classList.contains('active')) {

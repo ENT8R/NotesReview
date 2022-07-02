@@ -13,13 +13,16 @@ export default class Users {
     if (!Users.all) {
       Users.all = new Set();
     }
+    if (!Users.ids) {
+      Users.ids = new Set();
+    }
 
     const requests = [];
-    ids = Util.chunk(Array.from(ids), 500);
+    ids = Util.chunk(Array.from(ids).filter(x => !Users.ids.has(x)), 500);
     for (let i = 0; i < ids.length; i++) {
       const url = `${OPENSTREETMAP_SERVER}/api/0.6/users?users=${ids[i].join(',')}`;
       const request = Request.get(url, Request.MEDIA_TYPE.XML).then(xml => {
-        if (xml && xml.documentElement) {
+        if (xml && xml.documentElement && xml.querySelector('parsererror') == null) {
           Array.from(xml.documentElement.children).forEach(user => {
             Users.all.add({
               id: Number.parseInt(user.getAttribute('id')),
@@ -29,6 +32,7 @@ export default class Users {
               image: user.querySelector('img[href]') ? user.getElementsByTagName('img')[0].getAttribute('href') : null,
               changesets: user.getElementsByTagName('changesets')[0].getAttribute('count')
             });
+            Users.ids.add(Number.parseInt(user.getAttribute('id')));
           });
         }
       });
@@ -45,7 +49,7 @@ export default class Users {
     * @returns {Object}
     */
   static get(id) {
-    if (!id) {
+    if (!id || !Users.ids.has(id)) {
       return;
     }
     return Array.from(Users.all).find(user => user.id === id);

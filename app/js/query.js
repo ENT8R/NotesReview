@@ -64,6 +64,7 @@ export default class Query {
     this.map = map;
     this.data = {};
     this.history = [];
+    this.controller = null;
 
     this.input = [{
       id: 'query',
@@ -147,7 +148,7 @@ export default class Query {
 
       // If the corresponding value for an input field is available, try to set it
       const key = 'permalink' in input ? input.permalink : input.id;
-      const value = values.hasOwnProperty(key) ? values[key] : (DEFAULTS.UI[key] || null);
+      const value = Object.prototype.hasOwnProperty.call(values, key) ? values[key] : (DEFAULTS.UI[key] || null);
       element.type === 'checkbox' ? element.checked = (value === true || value === 'true') : element.value = value; // eslint-disable-line no-unused-expressions
 
       // Call the handler by triggering a new change event on the element
@@ -415,7 +416,9 @@ export default class Query {
     let users = new Set();
 
     const { url } = this;
-    const result = await Request.get(url);
+    this.controller = new AbortController();
+    const result = await Request.get(url, Request.MEDIA_TYPE.JSON, this.controller);
+    this.controller = null;
 
     this.history.push({
       time: new Date(),
@@ -444,5 +447,19 @@ export default class Query {
     // Load additional information of all users
     await Users.load(users);
     return notes;
+  }
+
+  /**
+    * Cancel an ongoing query
+    *
+    * @function
+    * @returns {boolean}
+    */
+  cancel() {
+    if (this.controller != null) {
+      this.controller.abort();
+      return true;
+    }
+    return false;
   }
 }
