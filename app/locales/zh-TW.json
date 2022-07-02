@@ -39,7 +39,9 @@
         "commentReopen": "重新開啟並評論",
         "mapillary": "Mapillary",
         "report": "回報註解",
-        "filter": "過瀘器"
+        "filter": "過瀘器",
+        "refresh": "重新整理",
+        "reset": "重設"
     },
     "header": {
         "share": "分享",
@@ -86,7 +88,10 @@
             "include": "包含",
             "hide": "隱藏",
             "only": "只有"
-        }
+        },
+        "statistics": "找到 %s 的註解",
+        "from": "日期 (UTC) 為最低值",
+        "to": "日期 (UTC) 為最高值"
     },
     "settings": {
         "choose": "選擇選項",
@@ -111,7 +116,8 @@
             "opened": "創建註解",
             "closed": "關閉註解",
             "reopened": "重新開啟註解"
-        }
+        },
+        "unknown": "不知名的使用者"
     },
     "map": {
         "attribution": "&copy; <a href=\"https://osm.org/copyright\">開放街圖</a>貢獻者, &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
@@ -140,5 +146,9 @@
         "contribution": "!HTML! 你可以透過 <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">翻譯</a>或是<a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">回報臭蟲</a>來支援此計劃。",
         "author": "!HTML! 由<a href=\"mailto:info.ent8r@gmail.com\">ENT8R</a> 用 ❤️ 製作",
         "donate": "捐款"
+    },
+    "error": {
+        "login": "無法登入，請再試一次",
+        "comment": "無法評論，請再試一次"
     }
 }
