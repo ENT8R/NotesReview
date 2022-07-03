@@ -37,7 +37,7 @@ export default class Map {
     * @returns {Promise}
     */
   add(note, query) {
-    let color = note.color;
+    let { color } = note;
     if (query.data.status === STATUS.ALL) {
       color = note.status === STATUS.OPEN ? 'green' : 'red';
     }
