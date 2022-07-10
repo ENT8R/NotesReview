@@ -135,20 +135,14 @@ export default class Map {
     * Display all notes on the map and zoom the map to show them all
     *
     * @function
-    * @param {Boolean} reload Indicates that this function has been called by a reload function
     * @returns {void}
     */
-  apply(reload) {
+  apply() {
     this.map.resize();
 
     this.clear();
     this.cluster.clearLayers();
     this.cluster.addLayers(this.markers);
-
-    // TODO: Leave this choice to the user by implementing a button which offers to zoom to contain all features
-    if (!reload && this.markers.length > 0) {
-      this.map.flyToBounds(this.cluster.getBounds());
-    }
 
     this.markers = [];
   }

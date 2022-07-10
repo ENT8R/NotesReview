@@ -42,10 +42,9 @@ export default class UI {
     * @function
     * @param {Array} notes
     * @param {Query} query
-    * @param {Boolean} reload
     * @returns {Promise}
     */
-  show(notes, query, reload) {
+  show(notes, query) {
     this.query = query;
     this.notes = notes;
 
@@ -57,7 +56,7 @@ export default class UI {
         this._view.handler.add(note, query);
       }
     });
-    this._view.handler.apply(reload);
+    this._view.handler.apply();
 
     return Promise.resolve({
       amount,
@@ -113,6 +112,6 @@ export default class UI {
     * @returns {Promise}
     */
   reload() {
-    return this.show(this.notes, this.query, true);
+    return this.show(this.notes, this.query);
   }
 }
