@@ -11,67 +11,26 @@ permissions:
   id-token: write
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install and Build
-        env:
-          NOTESREVIEW_API_URL: ${{ secrets.NOTESREVIEW_API_URL }}
-          OPENSTREETMAP_SERVER: ${{ secrets.OPENSTREETMAP_SERVER }}
-          OPENSTREETMAP_OAUTH_KEY: ${{ secrets.OPENSTREETMAP_OAUTH_KEY }}
-          OPENSTREETMAP_OAUTH_SECRET: ${{ secrets.OPENSTREETMAP_OAUTH_SECRET }}
-          MAPILLARY_CLIENT_ID: ${{ secrets.MAPILLARY_CLIENT_ID }}
-        run: |
-          npm ci
-          npm run build
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: './app/dist'
-
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
-
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build
+        uses: ./.github/actions/build
+        with:
+          notesreview-api-url: ${{ secrets.NOTESREVIEW_API_URL }}
+          openstreetmap-server: ${{ secrets.OPENSTREETMAP_SERVER }}
+          openstreetmap-oauth-key: ${{ secrets.OPENSTREETMAP_OAUTH_KEY }}
+          openstreetmap-oauth-secret: ${{ secrets.OPENSTREETMAP_OAUTH_SECRET }}
+          mapillary-client-id: ${{ secrets.MAPILLARY_CLIENT_ID }}
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: './app/dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-
-  lighthouse:
-    runs-on: ubuntu-latest
-    needs: deploy
-
-    steps:
-      - name: Lighthouse CI
-        run: |
-          npm install -g @lhci/cli@0.9.x
-          lhci autorun --config=".github/lighthouse/lighthouserc.json"
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: lighthouse-results
-          path: .lighthouseci/*.html

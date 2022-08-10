@@ -1,0 +1,41 @@
+name: Build
+
+inputs:
+  notesreview-api-url:
+    description: 'The URL of the NotesReview API'
+  openstreetmap-server:
+    description: 'The URL of the OpenStreetMap server'
+  openstreetmap-oauth-key:
+    description: 'The OpenStreetMap OAuth key'
+  openstreetmap-oauth-secret:
+    description: 'The OpenStreetMap OAuth secret'
+  mapillary-client-id:
+    description: 'The Mapillary client id'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Install and Build
+      env:
+        NOTESREVIEW_API_URL: ${{ inputs.notesreview-api-url }}
+        OPENSTREETMAP_SERVER: ${{ inputs.openstreetmap-server }}
+        OPENSTREETMAP_OAUTH_KEY: ${{ inputs.openstreetmap-oauth-key }}
+        OPENSTREETMAP_OAUTH_SECRET: ${{ inputs.openstreetmap-oauth-secret }}
+        MAPILLARY_CLIENT_ID: ${{ inputs.mapillary-client-id }}
+      run: |
+        npm ci
+        npm run build
+      shell: bash
