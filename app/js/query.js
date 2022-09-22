@@ -450,6 +450,16 @@ export default class Query {
   }
 
   /**
+    * Checks whether a search request is currently ongoing
+    *
+    * @function
+    * @returns {boolean}
+    */
+  isSearching() {
+    return this.controller != null;
+  }
+
+  /**
     * Cancel an ongoing query
     *
     * @function

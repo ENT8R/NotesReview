@@ -155,15 +155,11 @@ function listener() {
 
   document.addEventListener('keydown', event => {
     if (event.which === 13) {
-      // Remove the focus from the currently active element, so when pressing return,
-      // no new search will be initiated when the search trigger button is currently in focus
-      document.activeElement.blur();
-
-      // Cancel an ongoing request if the return button is clicked
-      query.cancel();
-
-      // Only start a new search if the filter modal is currently open
-      if (document.querySelector('.modal[data-modal="filter"]').classList.contains('active')) {
+      if (query.isSearching()) {
+        // Cancel an ongoing search request (if there is any) if the return button is clicked
+        query.cancel();
+      } else if (document.querySelector('.modal[data-modal="filter"]').classList.contains('active')) {
+        // Only start a new search if the filter modal is currently open and no search is currently ongoing
         search();
       }
     }
