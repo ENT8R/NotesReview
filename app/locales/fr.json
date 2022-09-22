@@ -39,7 +39,8 @@
         "commentReopen": "Réouvrir et commenter",
         "mapillary": "Mapillary",
         "report": "Signaler une note",
-        "filter": "Filtrer"
+        "filter": "Filtrer",
+        "refresh": "Rafraîchir"
     },
     "header": {
         "share": "Partager",
@@ -62,7 +63,7 @@
         "showList": "Afficher la liste",
         "showMap": "Afficher la carte",
         "nothingFound": "Aucun résultat !",
-        "autoLimit": "Limitation automatique à 100 notes, les valeurs plus grandes ne sont pas autorisées",
+        "autoLimit": "Limitation automatique à 100 remarques, les valeurs plus grandes ne sont pas autorisées",
         "deprecationWarning": "Votre navigateur ne supporte pas NotesReview. Essayez d'en utiliser un autre pour utiliser NotesReview.",
         "sort": {
             "created": {
@@ -86,7 +87,8 @@
             "include": "Inclure",
             "hide": "Cacher",
             "only": "Seulement"
-        }
+        },
+        "statistics": "Trouvé %s remarques"
     },
     "settings": {
         "choose": "Choisissez une option",
@@ -111,7 +113,8 @@
             "opened": "Note crée",
             "closed": "Note fermée",
             "reopened": "Note réouverte"
-        }
+        },
+        "unknown": "Utilisateur inconnu"
     },
     "map": {
         "attribution": "&copy; contributeurs <a href=\"https://osm.org/copyright\">OpenStreetMap</a>, &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"

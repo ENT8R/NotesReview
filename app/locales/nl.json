@@ -1,0 +1,154 @@
+{
+    "help": {
+        "colors": {
+            "title": "Wat is de betekenis van de kleuren?",
+            "description": "Elke kleur staat voor de leeftijd van de opmerking",
+            "darkgreen": "Donkergroen",
+            "green": "Groen",
+            "amber": "Amber",
+            "orange": "Oranje",
+            "red": "Rood",
+            "descriptions": {
+                "darkgreen": "Tussen een seconde en een dag",
+                "green": "Tussen een en 31 dagen",
+                "amber": "Tussen zes maanden en een jaar",
+                "orange": "Tussen een en twee jaar",
+                "red": "Twee of meer jaar",
+                "lime": "Tussen een en zes maanden"
+            },
+            "lime": "Limoengroen"
+        }
+    },
+    "action": {
+        "cancel": "Annuleren",
+        "close": "Sluiten",
+        "copyLinkSuccess": "Link succesvol gekopieerd",
+        "save": "Opslaan",
+        "search": "Zoeken",
+        "more": "Meer",
+        "openstreetmap": "OpenStreetMap",
+        "edit": {
+            "id": "iD",
+            "josm": "JOSM",
+            "level0": "Level0"
+        },
+        "login": "Inloggen",
+        "logout": "Uitloggen",
+        "comment": "Reageren",
+        "commentClose": "Reageren en sluiten",
+        "commentReopen": "Opnieuw openen en reageren",
+        "mapillary": "Mapillary",
+        "report": "Opmerking rapporteren",
+        "filter": "Filteren",
+        "refresh": "Verversen",
+        "reset": "Herstel standaardwaarden"
+    },
+    "header": {
+        "share": "Delen",
+        "faq": "FAQ",
+        "about": "Over",
+        "settings": "Instellingen",
+        "query": "Zoekvraag",
+        "limit": "Limiet",
+        "user": "Gebruiker",
+        "from": "Van",
+        "to": "Tot",
+        "sort": "Sorteren op",
+        "status": "Status",
+        "anonymous": "Anonieme opmerkingen"
+    },
+    "description": {
+        "share": "Kopieer deze link om de huidige zoekvraag te delen:",
+        "startQuery": "Start de zoekvraag direct na het openen van de link",
+        "shareView": "Deel de huidige weergave van de kaart",
+        "showList": "In een lijst weergeven",
+        "showMap": "Op een kaart weergeven",
+        "nothingFound": "Niets gevonden!",
+        "autoLimit": "Limiet automatisch op 100 gezet, omdat hogere waarden niet toegestaan zijn",
+        "deprecationWarning": "De browser die u momenteel gebruikt ondersteund NotesReview niet. Overweeg om naar een andere browser over te schakelen om NotesReview te kunnen zien.",
+        "sort": {
+            "created": {
+                "desc": "Nieuwste",
+                "asc": "Oudste"
+            },
+            "updated": {
+                "desc": "Recent bijgewerkt",
+                "asc": "Minst recent bijgewerkt"
+            }
+        },
+        "query": "Een woord of zin dat vermeld staat in de opmerking",
+        "applyBoundingBox": "Alleen in de huidige weergave zoeken",
+        "onlyUncommented": "Alleen opmerkingen zonder reactie weergeven",
+        "status": {
+            "all": "Alle",
+            "open": "Open",
+            "closed": "Gesloten"
+        },
+        "anonymous": {
+            "include": "Opnemen",
+            "hide": "Verbergen",
+            "only": "Alleen"
+        },
+        "statistics": "%s opmerkingen gevonden",
+        "from": "Een datum (UTC) als ondergrens",
+        "to": "Een datum (UTC) als bovengrens"
+    },
+    "settings": {
+        "choose": "Kies een optie",
+        "theme": {
+            "title": "Thema selecteren",
+            "light": "Licht",
+            "dark": "Donker",
+            "system": "Gebruik systeem-instelling"
+        },
+        "tools": {
+            "title": "Gereedschappen",
+            "description": "Uw favoriete gereedschappen selecteren",
+            "editors": "Bewerkingsprogramma's",
+            "other": "Andere"
+        }
+    },
+    "note": {
+        "anonymous": "anoniem",
+        "comment": "1 reactie",
+        "comments": "%s reacties",
+        "action": {
+            "opened": "Opmerking aangemaakt",
+            "closed": "Opmerking gesloten",
+            "reopened": "Opmerking opnieuw geopend"
+        },
+        "unknown": "Onbekende gebruiker"
+    },
+    "map": {
+        "attribution": "&copy; <a href=\"https://osm.org/copyright\">OpenStreetMap</a>-bijdragers, &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
+    },
+    "comments": {
+        "inputPlaceholder": "Schrijf een reactie voor alle andere gebruikers"
+    },
+    "accessibility": {
+        "openFaq": "Veel gestelde vragen openen",
+        "openSettings": "Instellingen openen",
+        "shareQuery": "De huidige zoekvraag delen",
+        "filter": "Een filter op de selectie toepassen"
+    },
+    "mapillary": {
+        "empty": {
+            "add": "Foto's van deze plaats toevoegen",
+            "title": "Er zijn nog geen foto's van deze plaats",
+            "subtitle": "U kunt andere mappers helpen door beelden op straatniveau te uploaden naar Mapillary."
+        }
+    },
+    "user": {
+        "created": "Gebruiker sinds %s"
+    },
+    "about": {
+        "description": "!HTML! NotesReview is een open source project. U gebruikt momenteel versie {{version}}. De broncode is beschikbaar op <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\" rel=\"noopener\">Github</a>.",
+        "contribution": "!HTML! U kunt het project ondersteunen door het te <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">vertalen</a> of door <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">fouten te melden</a>.",
+        "author": "!HTML! Met ❤️ gemaakt door <a href=\"mailto:info.ent8r@gmail.com\">ENT8R</a>",
+        "donate": "Doneren"
+    },
+    "error": {
+        "login": "Inloggen mislukt, probeer het later opnieuw",
+        "comment": "Reageren mislukt, probeer het later opnieuw"
+    }
+}
