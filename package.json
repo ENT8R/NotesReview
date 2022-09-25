@@ -23,7 +23,7 @@
     "@webcomponents/custom-elements": "^1.5.0",
     "abortcontroller-polyfill": "^1.7.3",
     "anchorme": "^2.1.2",
-    "leaflet": "^1.9.0",
+    "leaflet": "^1.9.1",
     "leaflet-control-geocoder": "^2.4.0",
     "leaflet.markercluster": "^1.5.3",
     "osm-auth": "^1.1.2",
@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.2",
-    "eslint": "^8.23.1",
+    "eslint": "^8.24.0",
     "fast-glob": "^3.2.12",
     "handlebars": "^4.7.7",
     "sass": "^1.55.0",
