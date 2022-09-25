@@ -1,11 +1,12 @@
-import osmAuth from 'osm-auth';
+import { osmAuth } from 'osm-auth';
 
 const auth = osmAuth({
   url: OPENSTREETMAP_SERVER,
-  oauth_consumer_key: OPENSTREETMAP_OAUTH_KEY, // eslint-disable-line camelcase
-  oauth_secret: OPENSTREETMAP_OAUTH_SECRET, // eslint-disable-line camelcase
-  auto: true,
-  landing: 'landing.html'
+  client_id: OPENSTREETMAP_OAUTH_CLIENT_ID, // eslint-disable-line camelcase
+  client_secret: OPENSTREETMAP_OAUTH_CLIENT_SECRET, // eslint-disable-line camelcase
+  redirect_uri: `${window.location.origin}${window.location.pathname}landing.html`, // eslint-disable-line camelcase
+  scope: 'read_prefs write_notes',
+  auto: true
 });
 
 export default class API {
