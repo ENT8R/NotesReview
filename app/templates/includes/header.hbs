@@ -1,13 +1,18 @@
 <header class="navbar px-1">
   <section class="navbar-section">
-    <a id="login" class="btn m-1">
-      <svg class="icon"><use xlink:href="#icon-account"></use></svg>
-      <span class="hide-md" data-i18n="action.login">Login</span>
-    </a>
-    <a id="logout" class="btn m-1 d-hide">
-      <figure id="user-avatar" class="avatar avatar-sm mx-1 mb-1"></figure>
-      <span class="hide-md" data-i18n="action.logout">Login</span>
-    </a>
+    <div class="requires-no-authentication">
+      <a id="login" class="btn m-1">
+        <svg class="icon"><use xlink:href="#icon-account"></use></svg>
+        <span class="hide-md" data-i18n="action.login">Login</span>
+      </a>
+    </div>
+
+    <div class="requires-authentication">
+      <a id="logout" class="btn m-1">
+        <figure id="user-avatar" class="avatar avatar-sm mx-1 mb-1"></figure>
+        <span class="hide-md" data-i18n="action.logout">Logout</span>
+      </a>
+    </div>
 
     <a id="toggle-view" class="btn m-1">
       <div data-view="map" class="d-hide">

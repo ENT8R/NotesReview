@@ -86,8 +86,6 @@ function listener() {
     login.classList.add('loading');
 
     api.login().then(result => {
-      login.classList.add('d-hide');
-      document.getElementById('logout').classList.remove('d-hide');
       document.body.dataset.authenticated = true;
 
       const uid = result.getElementsByTagName('user')[0].getAttribute('id');
@@ -103,8 +101,7 @@ function listener() {
 
   document.getElementById('logout').addEventListener('click', () => {
     api.logout();
-    document.getElementById('logout').classList.add('d-hide');
-    document.getElementById('login').classList.remove('d-hide');
+    Preferences.remove('uid');
     document.body.dataset.authenticated = false;
   });
 
@@ -319,12 +316,7 @@ function settings() {
   const authenticated = api.authenticated();
   document.body.dataset.authenticated = authenticated;
   if (authenticated) {
-    document.getElementById('login').classList.add('d-hide');
-    document.getElementById('logout').classList.remove('d-hide');
     Users.avatar(Preferences.get('uid'));
-  } else {
-    document.getElementById('login').classList.remove('d-hide');
-    document.getElementById('logout').classList.add('d-hide');
   }
 
   const { default: UI } = await import('./ui/ui.js');
