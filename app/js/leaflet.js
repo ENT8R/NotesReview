@@ -47,10 +47,17 @@ export default class Leaflet {
 
       instances[id] = this.map;
 
-      L.Control.geocoder({
+      const geocoder = L.Control.geocoder({
         placeholder: Localizer.message('action.search'),
-        errorMessage: Localizer.message('description.nothingFound')
+        errorMessage: Localizer.message('description.nothingFound'),
+        defaultMarkGeocode: false
+      }).on('markgeocode', event => {
+        const { bbox } = event.geocode;
+        this.map.fitBounds(bbox);
       }).addTo(this.map);
+      // There is no other option to add a specific class to the input,
+      // so the input needs to be found in a first step before applying the correct class
+      geocoder.getContainer().getElementsByTagName('input')[0].classList.add('form-input');
 
       this.tiles();
       document.addEventListener('color-scheme-changed', () => this.tiles());

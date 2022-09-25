@@ -30,7 +30,11 @@ body[data-theme="dark"] {
   .leaflet-popup-content-wrapper,
   .leaflet-bar a,
   .leaflet-container,
-  .leaflet-control-attribution {
+  .leaflet-control-attribution,
+  .leaflet-control-geocoder,
+  .leaflet-control-geocoder-icon,
+  .leaflet-control-geocoder-address-context,
+  .leaflet-control-geocoder-alternatives li:hover {
     background-color: $main-color-surface !important;
     color: $text-color;
   }
@@ -81,5 +85,9 @@ body[data-theme="dark"] {
 
   img:not(.leaflet-tile) {
     filter: brightness(.8) contrast(1.2);
+  }
+
+  .leaflet-control-geocoder-icon {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23fff" d="M12.2 13l3.4 6.6c.6 1.1 2.5-.4 2-1.2l-4-6.2z"/><circle cx="10.8" cy="8.9" r="3.9" fill="none" stroke="%23fff" stroke-width="1.5"/></svg>');
   }
 }
