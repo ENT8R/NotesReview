@@ -93,6 +93,13 @@ main {
   }
 }
 
+#bottom-container {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 /*---------- Leaflet ------------*/
 #map, #map-container {
   height: 100%;

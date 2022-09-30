@@ -41,7 +41,8 @@
         "report": "Notiz melden",
         "filter": "Filter",
         "refresh": "Aktualisieren",
-        "reset": "Zurücksetzen"
+        "reset": "Zurücksetzen",
+        "center": "Karte auf Ergebnisse zentrieren"
     },
     "header": {
         "share": "Teilen",

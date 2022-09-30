@@ -120,17 +120,6 @@ export default class Leaflet {
   }
 
   /**
-    * Get the bounding box size in square degrees of the currently visible map area
-    *
-    * @function
-    * @returns {void}
-    */
-  boundsSize() {
-    const bounds = this.bounds();
-    return (bounds.getNorth() - bounds.getSouth()) * (bounds.getEast() - bounds.getWest());
-  }
-
-  /**
     * Get the center of the currently visible map area
     *
     * @function

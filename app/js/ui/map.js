@@ -1,5 +1,6 @@
 import Leaflet from '../leaflet.js';
 import { STATUS } from '../query.js';
+import * as Util from '../util.js';
 
 import * as Handlebars from 'handlebars';
 import t from '../../templates/dynamic/comment.hbs?raw';
@@ -9,6 +10,7 @@ export default class Map {
   constructor() {
     this.map = new Leaflet('map-container');
     this.container = document.getElementById('note-container');
+    this.center = document.getElementById('center-map-to-results');
 
     this.active = null;
 
@@ -26,6 +28,28 @@ export default class Map {
     this.map.addLayer(this.features);
 
     this.map.onClick(() => this.clear());
+
+    this.center.addEventListener('click', () => {
+      const bounds = this.cluster.getBounds();
+      if (bounds.isValid()) {
+        this.map.flyToBounds(bounds);
+      }
+    });
+
+    this.map.onMove(() => {
+      const mapBounds = this.map.bounds();
+      const clusterBounds = this.cluster.getBounds();
+      if (!mapBounds.isValid() || !clusterBounds.isValid()) {
+        return;
+      }
+
+      // Only show the button to center the map in case the screen covers less than 10% of the bounding box of all markers
+      if (Util.overlap(mapBounds, clusterBounds) < 0.1) {
+        this.center.classList.remove('d-hide');
+      } else {
+        this.center.classList.add('d-hide');
+      }
+    });
   }
 
   /**

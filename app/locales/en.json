@@ -41,7 +41,8 @@
         "report": "Report note",
         "filter": "Filter",
         "refresh": "Refresh",
-        "reset": "Reset"
+        "reset": "Reset",
+        "center": "Center map to results"
     },
     "header": {
         "share": "Share",
