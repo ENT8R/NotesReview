@@ -110,8 +110,8 @@ export function buffer(coordinates, radius) {
   * @returns {Number}
   */
 export function overlap(rect1, rect2) {
-  const area1 = this.area(rect1);
-  const area2 = this.area(rect2);
+  const area1 = area(rect1);
+  const area2 = area(rect2);
 
   if (rect1.contains(rect2)) {
     return area2 / area1;
@@ -128,7 +128,7 @@ export function overlap(rect1, rect2) {
     L.latLng(Math.min(rect1.getNorth(), rect2.getNorth()), Math.max(rect1.getWest(), rect2.getWest())),
     L.latLng(Math.max(rect1.getSouth(), rect2.getSouth()), Math.min(rect1.getEast(), rect2.getEast()))
   );
-  const intersection = this.area(bounds);
+  const intersection = area(bounds);
   const union = area1 + area2 - intersection;
 
   return intersection / union;
