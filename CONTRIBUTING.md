@@ -13,7 +13,7 @@ To setup, change and run the application locally, simply follow these commands:
 # 1. Install all necessary dependencies using npm
 npm install
 # 2. Start the application by running the following command
-# and visiting http://localhost:3000 in your browser
+# and visiting http://localhost:5173 in your browser
 npm run dev
 # 3. Now it's your turn — change, fix or improve something!
 ```
