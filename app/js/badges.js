@@ -17,9 +17,9 @@ export function age(color, date, navigation) {
   const location = navigation ? 'top' : 'bottom';
   return `
   <span class="label label-${color} my-1 c-default tooltip tooltip-${location}" data-tooltip="${date.toLocaleString()}">
-    <time-ago datetime="${date}" title="">
+    <relative-time tense="past" datetime="${date}" title="">
       ${date.toLocaleDateString()}
-    </time-ago>
+    </relative-time>
   </span>`;
 }
 

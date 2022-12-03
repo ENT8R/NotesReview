@@ -264,7 +264,7 @@ function settings() {
     console.error = () => {};
   }
 
-  await import('@github/time-elements');
+  await import('@github/relative-time-element');
 
   await Localizer.init();
   Modal.init();
