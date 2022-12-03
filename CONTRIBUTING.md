@@ -8,7 +8,14 @@ NotesReview is a web application and is therefore mainly written in Javascript. 
 
 You may want to take a look at the [`package.json`](https://github.com/ENT8R/NotesReview/blob/main/package.json) file in order to get an overview on which modules are being used and what commands to run.
 
-To setup, change and run the application locally, simply follow these commands:
+Before running the application, make sure the file `app/.env` with the following required environment variables exists:
+```shell
+NOTESREVIEW_API_URL=https://notesreview.kongruent.xyz/api
+OPENSTREETMAP_SERVER=https://www.openstreetmap.org
+```
+There are a few more environment variables that are used for additional features, but they are not mandatory to run the application, so in most cases the configuration above should be sufficient.
+
+To setup, change and run the application locally, simply follow these steps:
 ```shell
 # 1. Install all necessary dependencies using npm
 npm install
