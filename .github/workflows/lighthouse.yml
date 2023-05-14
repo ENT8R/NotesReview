@@ -19,7 +19,7 @@ jobs:
           notesreview-api-url: ${{ secrets.NOTESREVIEW_API_URL }}
       - name: Lighthouse CI
         run: |
-          npm install -g @lhci/cli@0.9.x
+          npm install -g @lhci/cli@0.12.x
           lhci autorun --config=".github/lighthouse/lighthouserc.json"
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

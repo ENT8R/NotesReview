@@ -18,7 +18,7 @@ runs:
     - name: Setup node
       uses: actions/setup-node@v3
       with:
-        node-version: '16'
+        node-version: 'lts/*'
 
     - name: Cache dependencies
       uses: actions/cache@v3
