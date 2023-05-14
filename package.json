@@ -22,7 +22,7 @@
     "@rapideditor/country-coder": "^5.2.0",
     "@webcomponents/custom-elements": "^1.6.0",
     "abortcontroller-polyfill": "^1.7.5",
-    "anchorme": "^3.0.4",
+    "anchorme": "^2.1.2",
     "leaflet": "^1.9.3",
     "leaflet-control-geocoder": "^2.4.0",
     "leaflet.markercluster": "^1.5.3",
