@@ -1,14 +1,12 @@
-FROM node:19
+FROM node
 
 COPY . /app
 WORKDIR /app
 
-RUN mv .env.docker app/.env && \
-    apt-get -y update && \
-    apt-get -y upgrade && \
-    npm install
-
+RUN npm install
 EXPOSE 5173
 
-CMD ["npm", "run", "dev", "--", "--host"]
+ENV NOTESREVIEW_API_URL=https://notesreview.kongruent.xyz/api
+ENV OPENSTREETMAP_SERVER=https://www.openstreetmap.org
 
+CMD ["npm", "run", "dev", "--", "--host"]
