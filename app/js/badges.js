@@ -2,7 +2,7 @@ import * as Localizer from './localizer.js';
 import Users from './users.js';
 import * as Util from './util.js';
 
-import * as CountryCoder from '@ideditor/country-coder';
+import * as CountryCoder from '@rapideditor/country-coder';
 
 /**
   * Generate a badge for the date a note was created on (the age of it)

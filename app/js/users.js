@@ -2,6 +2,12 @@ import * as Request from './request.js';
 import * as Util from './util.js';
 
 export default class Users {
+  // TODO: This could be a private static property of this class
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields#browser_compatibility
+  // chrome >= 74, edge >= 79, firefox >= 90 (!), not ie <= 11, opera >= 62, safari >= 14.1
+  static all = new Set();
+  static ids = new Set();
+
   /**
     * Parses the XML document and returns all important information
     *
@@ -10,13 +16,6 @@ export default class Users {
     * @returns {Promise}
     */
   static load(ids) {
-    if (!Users.all) {
-      Users.all = new Set();
-    }
-    if (!Users.ids) {
-      Users.ids = new Set();
-    }
-
     const requests = [];
     ids = Util.chunk(Array.from(ids).filter(x => !Users.ids.has(x)), 500);
     for (let i = 0; i < ids.length; i++) {
