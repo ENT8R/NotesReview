@@ -23,7 +23,7 @@
     "@webcomponents/custom-elements": "^1.6.0",
     "abortcontroller-polyfill": "^1.7.5",
     "anchorme": "^2.1.2",
-    "leaflet": "^1.9.3",
+    "leaflet": "^1.9.4",
     "leaflet-control-geocoder": "^2.4.0",
     "leaflet.markercluster": "^1.5.3",
     "osm-auth": "^1.1.2",
@@ -32,12 +32,12 @@
     "spectre.css": "^0.5.9"
   },
   "devDependencies": {
-    "dotenv": "^16.0.3",
-    "eslint": "^8.40.0",
+    "dotenv": "^16.1.4",
+    "eslint": "^8.42.0",
     "fast-glob": "^3.2.12",
     "handlebars": "^4.7.7",
-    "sass": "^1.62.1",
-    "vite": "^4.3.5",
+    "sass": "^1.63.4",
+    "vite": "^4.3.9",
     "vite-plugin-handlebars": "^1.6.0",
     "vite-plugin-svg-icons": "^2.0.1"
   }
