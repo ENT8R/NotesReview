@@ -41,7 +41,8 @@
         "report": "回報註解",
         "filter": "過瀘器",
         "refresh": "重新整理",
-        "reset": "重設"
+        "reset": "重設",
+        "center": "置中地圖到結果"
     },
     "header": {
         "share": "分享",

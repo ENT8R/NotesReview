@@ -41,7 +41,8 @@
         "report": "Reportar nota",
         "filter": "Filtro",
         "refresh": "Recarregar",
-        "reset": "Redefinir"
+        "reset": "Redefinir",
+        "center": "Centralizar o mapa para resultados"
     },
     "header": {
         "share": "Compartilhar",

@@ -81,14 +81,14 @@
         "applyBoundingBox": "Search only in current view",
         "onlyUncommented": "Show only uncommented notes",
         "status": {
-          "all": "All",
-          "open": "Open",
-          "closed": "Closed"
+            "all": "All",
+            "open": "Open",
+            "closed": "Closed"
         },
         "anonymous": {
-          "include": "Include",
-          "hide": "Hide",
-          "only": "Only"
+            "include": "Include",
+            "hide": "Hide",
+            "only": "Only"
         },
         "statistics": "Found %s notes",
         "from": "A date (UTC) as lower limit",
@@ -149,7 +149,7 @@
         "donate": "Donate"
     },
     "error": {
-      "login": "Login failed, please try again later",
-      "comment": "Commenting failed, please try again later"
+        "login": "Login failed, please try again later",
+        "comment": "Commenting failed, please try again later"
     }
 }

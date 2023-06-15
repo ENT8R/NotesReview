@@ -41,7 +41,8 @@
         "report": "Segnala nota",
         "filter": "Filtra",
         "refresh": "Aggiorna",
-        "reset": "Reimposta"
+        "reset": "Reimposta",
+        "center": "Centra la mappa sui risultati"
     },
     "header": {
         "share": "Condividi",

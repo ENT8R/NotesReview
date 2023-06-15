@@ -41,7 +41,8 @@
         "report": "Reportar nota",
         "filter": "Filtro",
         "refresh": "Actualizar",
-        "reset": "Reset"
+        "reset": "Reset",
+        "center": "Centrar mapa en resultados"
     },
     "header": {
         "share": "Compartir",
@@ -63,7 +64,7 @@
         "shareView": "Compartir la vista actual del mapa",
         "showList": "Mostrar en una lista",
         "showMap": "Mostrar en un mapa",
-        "nothingFound": "¡Nada Encontrado!",
+        "nothingFound": "¡Nada encontrado!",
         "autoLimit": "Se ha establecido automáticamente el límite en 100, no se permiten valores mayores",
         "deprecationWarning": "El navegador que está utilizando actualmente no es compatible con NotesReview. Considere cambiar a otro navegador para poder usar NotesReview.",
         "sort": {
@@ -87,7 +88,7 @@
         "anonymous": {
             "include": "Incluir",
             "hide": "Esconder",
-            "only": "Solo"
+            "only": "Sólo"
         },
         "statistics": "Encontradas %s notas",
         "from": "Fecha (UTC) como límite inferior",

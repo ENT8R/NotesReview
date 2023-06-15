@@ -41,7 +41,8 @@
         "report": "Opmerking rapporteren",
         "filter": "Filteren",
         "refresh": "Verversen",
-        "reset": "Herstel standaardwaarden"
+        "reset": "Herstel standaardwaarden",
+        "center": "Kaart op resultaten centreren"
     },
     "header": {
         "share": "Delen",
