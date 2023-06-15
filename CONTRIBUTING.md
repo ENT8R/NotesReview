@@ -26,6 +26,13 @@ npm run dev
 ```
 That's it already! Now you can submit your change as a [pull request on Github](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests).
 
+### Docker
+If you want to run the application in a docker container, you can use the following commands instead:
+```shell
+docker build --pull -t notesreview .
+docker run -t -i -p 3000:5173 notesreview
+```
+
 ## Translating
 If you want to translate the website into your language or fix a wrong term, you can do so by visiting the project at POEditor.
 
