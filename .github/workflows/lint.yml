@@ -15,4 +15,5 @@ jobs:
         uses: ./.github/actions/node-and-npm-cache
       - name: Lint
         run: |
+          npm ci
           npm run lint
