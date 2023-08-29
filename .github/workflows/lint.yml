@@ -1,0 +1,18 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Node.js and setup npm cache
+        uses: ./.github/actions/node-and-npm-cache
+      - name: Lint
+        run: |
+          npm run lint

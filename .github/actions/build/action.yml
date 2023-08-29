@@ -15,19 +15,8 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Setup node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 'lts/*'
-
-    - name: Cache dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-
+    - name: Install Node.js and setup npm cache
+      uses: ./.github/actions/node-and-npm-cache
     - name: Install and Build
       env:
         NOTESREVIEW_API_URL: ${{ inputs.notesreview-api-url }}
