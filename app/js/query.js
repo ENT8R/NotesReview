@@ -90,9 +90,11 @@ export default class Query {
       handler: this.anonymous
     }, {
       id: 'from',
+      permalink: 'after',
       handler: this.after
     }, {
       id: 'to',
+      permalink: 'before',
       handler: this.before
     }, {
       id: 'only-uncommented',
@@ -283,15 +285,6 @@ export default class Query {
     * @returns {Query}
     */
   before(before) {
-    if (before !== null) {
-      // Increment the actual date by a single day, to simulate a closed interval [from, to]
-      // because when setting two equal dates this would result in a half-closed interval [from, to)
-      // as the specific time is not known, which leads to no results being shown
-      // See also https://github.com/ENT8R/NotesReview/issues/81#issuecomment-948052553
-      before = new Date(before);
-      before.setUTCDate(before.getUTCDate() + 1);
-      [ before ] = before.toISOString().split('T');
-    }
     this.data.before = before;
     return this;
   }
@@ -345,10 +338,22 @@ export default class Query {
   get url() {
     const url = new URL(`${NOTESREVIEW_API_URL}/search`);
 
+    // Create a copy of the current values in order to make specific changes
+    // that are necessary for the construction of the URL
     const data = Object.assign({}, this.data);
 
     // Do not use the bounding box if the user wants to do a global search
     data['apply-bbox'] ? null : delete data.bbox; // eslint-disable-line no-unused-expressions
+
+    if (data.before !== null) {
+      // Increment the actual date by a single day, to simulate a closed interval [from, to]
+      // because when setting two equal dates this would result in a half-closed interval [from, to)
+      // as the specific time is not known, which leads to no results being shown
+      // See also https://github.com/ENT8R/NotesReview/issues/81#issuecomment-948052553
+      data.before = new Date(data.before);
+      data.before.setUTCDate(data.before.getUTCDate() + 1);
+      [ data.before ] = data.before.toISOString().split('T');
+    }
 
     // Remove unused properties that are already set by another value
     delete data.uncommented;
