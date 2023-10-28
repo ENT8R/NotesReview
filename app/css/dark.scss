@@ -83,6 +83,10 @@ body[data-theme="dark"] {
     }
   }
 
+  .badge:not([data-badge])::after, .badge[data-badge]::after {
+    background-color: $minor-color;
+  }
+
   img:not(.leaflet-tile) {
     filter: brightness(.8) contrast(1.2);
   }

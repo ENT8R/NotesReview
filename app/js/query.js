@@ -408,6 +408,22 @@ export default class Query {
       const previous = this.history[this.history.length - 1];
       document.body.dataset.queryChanged = previous.url !== this.url;
     }
+
+    // Find all values that are not default values or null and can be changed by the user directly via the user interface
+    const nonDefaults = Object.entries(Util.clean(this.data, DEFAULTS.UI))
+                              .reduce((a, [key, value]) =>
+                                        ((value == null || key == 'bbox' || key == 'comments' || key == 'sort_by' || key == 'order')
+                                          ? a : (a[key] = value, a)), {});
+    const amountOfNonDefaults = Object.keys(nonDefaults).length;
+
+    // Show a small badge with the amount of applied filters (that are not default)
+    const filterBadge = document.getElementById('filter-badge');
+    if (amountOfNonDefaults > 0) {
+      filterBadge.classList.add('badge', 'badge-small');
+      filterBadge.dataset.badge = amountOfNonDefaults;
+    } else {
+      filterBadge.classList.remove('badge', 'badge-small');
+    }
   }
 
   /**
