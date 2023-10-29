@@ -128,6 +128,10 @@ export default class Note {
     * @returns {Object}
     */
   get linked() {
+    if (!('html' in this.comments[0])) {
+      return null;
+    }
+
     for (const regex of OPENSTREETMAP_ELEMENT_REGEX) {
       const match = this.comments[0].html.match(regex);
 
