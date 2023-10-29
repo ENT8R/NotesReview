@@ -19,6 +19,18 @@ const ANONYMOUS = {
   ONLY: 'only'
 };
 
+const COMMENTED = {
+  INCLUDE: 'include',
+  HIDE: 'hide',
+  ONLY: 'only'
+};
+
+const AREA = {
+  GLOBAL: 'global',
+  VIEW: 'view',
+  CUSTOM: 'custom'
+}
+
 const SORT = {
   CREATED_AT: 'created_at',
   UPDATED_AT: 'updated_at'
@@ -33,24 +45,28 @@ const ORDER = {
 // Values which are null by default are not included, because they are removed in a different step.
 const DEFAULTS = {
   UI: {
-    'apply-bbox': false,
     limit: 50,
     status: STATUS.OPEN,
     anonymous: ANONYMOUS.INCLUDE,
+    commented: COMMENTED.INCLUDE,
     // Specific frontend values which are not send to the API but transformed to another value before
     sort: `${SORT.CREATED_AT}:${ORDER.DESCENDING}`,
-    uncommented: false
+    area: AREA.GLOBAL
   },
   API: {
-    'apply-bbox': false,
     limit: 50,
     status: STATUS.ALL,
     anonymous: ANONYMOUS.INCLUDE,
+    commented: COMMENTED.INCLUDE,
     // Specific API values which are not used for the permalink
     sort_by: SORT.UPDATED_AT, // eslint-disable-line camelcase
     order: ORDER.DESCENDING
   }
 };
+
+const NOT_MODIFIABLE_BY_USER = [
+  'bbox', 'polygon', 'sort_by', 'order'
+];
 
 export default class Query {
   /**
@@ -73,8 +89,11 @@ export default class Query {
       id: 'bbox',
       handler: this.bbox
     }, {
-      id: 'apply-bbox',
-      handler: this.applyBBox
+      id: 'polygon',
+      handler: this.polygon
+    }, {
+      id: 'area',
+      handler: this.area
     }, {
       id: 'limit',
       handler: this.limit
@@ -97,9 +116,8 @@ export default class Query {
       permalink: 'before',
       handler: this.before
     }, {
-      id: 'only-uncommented',
-      permalink: 'uncommented',
-      handler: this.uncommented
+      id: 'commented',
+      handler: this.commented
     }, {
       id: 'sort',
       handler: this.sort
@@ -193,9 +211,36 @@ export default class Query {
   }
 
   /**
+    * Search only in the given polygon
+    *
+    * @function
+    * @param {String} polygon
+    * @returns {Query}
+    */
+  polygon(polygon) {
+    this.data.polygon = polygon;
+    return this;
+  }
+
+  /**
+    * Whether the search should return notes globally, in the current view or a custom area
+    *
+    * @function
+    * @param {AREA} area
+    * @returns {Query}
+    */
+  area(area) {
+    this.data.area = area;
+    return this;
+  }
+
+
+
+  /**
     * Whether the search should only return notes in the current bounding box
     *
     * @function
+    * @deprecated
     * @param {Boolean} enabled
     * @returns {Query}
     */
@@ -293,6 +338,7 @@ export default class Query {
     * Filter notes by the amount of comments
     *
     * @function
+    * @deprecated
     * @param {Number} comments
     * @returns {Query}
     */
@@ -305,12 +351,25 @@ export default class Query {
     * Whether to include only uncommented notes
     *
     * @function
+    * @deprecated
     * @param {Boolean} uncommented
     * @returns {Query}
     */
   uncommented(uncommented) {
     this.data.uncommented = uncommented;
     this.comments(uncommented ? 0 : null);
+    return this;
+  }
+
+  /**
+    * Whether commented notes should be included, hidden or displayed as only results
+    *
+    * @function
+    * @param {COMMENTED} commented
+    * @returns {Query}
+    */
+  commented(commented) {
+    this.data.commented = commented;
     return this;
   }
 
@@ -342,8 +401,13 @@ export default class Query {
     // that are necessary for the construction of the URL
     const data = Object.assign({}, this.data);
 
-    // Do not use the bounding box if the user wants to do a global search
-    data['apply-bbox'] ? null : delete data.bbox; // eslint-disable-line no-unused-expressions
+    // Do not use the bounding box/polygon if the user does not want to do the respective search
+    if (data.area !== AREA.VIEW) {
+      delete data.bbox;
+    }
+    if (data.area !== AREA.CUSTOM) {
+      delete data.polygon;
+    }
 
     if (data.before !== null) {
       // Increment the actual date by a single day, to simulate a closed interval [from, to]
@@ -356,8 +420,8 @@ export default class Query {
     }
 
     // Remove unused properties that are already set by another value
-    delete data.uncommented;
     delete data.sort;
+    delete data.area;
 
     url.search = Request.encodeQueryData(Util.clean(data, DEFAULTS.API));
     return url.toString();
@@ -378,11 +442,15 @@ export default class Query {
       map: `${this.map.zoom()}/${this.map.center().lat}/${this.map.center().lng}`,
     }, this.data);
 
-    // Do not use the bounding box if the user wants to do a global search
-    data['apply-bbox'] ? null : delete data.bbox; // eslint-disable-line no-unused-expressions
+    // Do not use the bounding box/polygon if the user does not want to do the respective search
+    if (data.area !== AREA.VIEW) {
+      delete data.bbox;
+    }
+    if (data.area !== AREA.CUSTOM) {
+      delete data.polygon;
+    }
 
     // Remove unused properties that are already set by another value
-    delete data.comments;
     delete data.sort_by;
     delete data.order;
 
@@ -412,7 +480,7 @@ export default class Query {
     // Find all values that are not default values or null and can be changed by the user directly via the user interface
     const nonDefaults = Object.entries(Util.clean(this.data, DEFAULTS.UI))
                               .reduce((a, [key, value]) =>
-                                        ((value == null || key == 'bbox' || key == 'comments' || key == 'sort_by' || key == 'order')
+                                        ((value == null || NOT_MODIFIABLE_BY_USER.includes(key))
                                           ? a : (a[key] = value, a)), {});
     const amountOfNonDefaults = Object.keys(nonDefaults).length;
 

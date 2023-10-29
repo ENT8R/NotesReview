@@ -73,19 +73,27 @@
     <input class="form-input" id="bbox" type="text" readonly>
   </div>
 
-  <div class="column col-6 col-sm-12">
-    <label class="form-checkbox">
-      <input id="apply-bbox" type="checkbox">
-      <i class="form-icon"></i>
-      <span data-i18n="description.applyBoundingBox">Search only in current view</span>
-    </label>
+  <!-- Dummy input (should not be visible or modifiable by the user) -->
+  <div class="column col-12 d-hide">
+    <label class="form-label" for="polygon">Polygon</label>
+    <input class="form-input" id="polygon" type="text" readonly>
   </div>
 
   <div class="column col-6 col-sm-12">
-    <label class="form-checkbox">
-      <input id="only-uncommented" type="checkbox">
-      <i class="form-icon"></i>
-      <span data-i18n="description.onlyUncommented">Show only uncommented notes</span>
-    </label>
+    <label class="form-label" for="area" data-i18n="header.area">Search area</label>
+    <single-selection-button-group id="area" class="btn-group btn-group-block">
+      <button class="btn active" data-value="global" data-i18n="description.area.global">Global</button>
+      <button class="btn" data-value="view" data-i18n="description.area.view">Current view</button>
+      <!--<button class="btn" data-value="custom" data-i18n="description.area.custom">Custom area</button>-->
+    </single-selection-button-group>
+  </div>
+
+  <div class="column col-6 col-sm-12">
+    <label class="form-label" for="commented" data-i18n="header.commented">Commented notes</label>
+    <single-selection-button-group id="commented" class="btn-group btn-group-block">
+      <button class="btn active" data-value="include" data-i18n="description.commented.include">Include</button>
+      <button class="btn" data-value="hide" data-i18n="description.commented.hide">Hide</button>
+      <button class="btn" data-value="only" data-i18n="description.commented.only">Only</button>
+    </single-selection-button-group>
   </div>
 </div>

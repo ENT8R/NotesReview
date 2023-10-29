@@ -56,7 +56,9 @@
         "to": "Bis",
         "sort": "Sortieren nach",
         "status": "Status",
-        "anonymous": "Anonyme Notizen"
+        "anonymous": "Anonyme Notizen",
+        "area": "Suchgebiet",
+        "commented": "Kommentierte Notizen"
     },
     "description": {
         "share": "Kopiere diesen Link um die aktuelle Abfrage zu teilen:",
@@ -78,8 +80,6 @@
             }
         },
         "query": "Ein Wort oder ein Satz, der in der Notiz enthalten ist",
-        "applyBoundingBox": "Nur in der aktuellen Ansicht suchen",
-        "onlyUncommented": "Nur unkommentierte Notizen anzeigen",
         "status": {
             "all": "Alle",
             "open": "Offen",
@@ -92,7 +92,17 @@
         },
         "statistics": "%s Notizen gefunden",
         "from": "Ein Datum (UTC) als untere Grenze",
-        "to": "Ein Datum (UTC) als obere Grenze"
+        "to": "Ein Datum (UTC) als obere Grenze",
+        "area": {
+            "global": "Weltweit",
+            "view": "Aktuelle Ansicht",
+            "custom": "Bestimmter Bereich"
+        },
+        "commented": {
+            "include": "Anzeigen",
+            "hide": "Verstecken",
+            "only": "Ausschließlich"
+        }
     },
     "settings": {
         "choose": "Wähle eine Option",

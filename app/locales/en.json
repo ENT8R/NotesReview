@@ -56,7 +56,9 @@
         "to": "To",
         "sort": "Sort by",
         "status": "Status",
-        "anonymous": "Anonymous notes"
+        "anonymous": "Anonymous notes",
+        "area": "Search area",
+        "commented": "Commented notes"
     },
     "description": {
         "share": "Copy this link to share the current query:",
@@ -78,8 +80,6 @@
             }
         },
         "query": "A word or phrase mentioned in the note",
-        "applyBoundingBox": "Search only in current view",
-        "onlyUncommented": "Show only uncommented notes",
         "status": {
             "all": "All",
             "open": "Open",
@@ -92,7 +92,17 @@
         },
         "statistics": "Found %s notes",
         "from": "A date (UTC) as lower limit",
-        "to": "A date (UTC) as upper limit"
+        "to": "A date (UTC) as upper limit",
+        "area": {
+            "global": "Global",
+            "view": "Current view",
+            "custom": "Custom area"
+        },
+        "commented": {
+            "include": "Include",
+            "hide": "Hide",
+            "only": "Only"
+        }
     },
     "settings": {
         "choose": "Choose an option",
