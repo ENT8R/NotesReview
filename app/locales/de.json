@@ -58,7 +58,8 @@
         "status": "Status",
         "anonymous": "Anonyme Notizen",
         "area": "Suchgebiet",
-        "commented": "Kommentierte Notizen"
+        "commented": "Kommentierte Notizen",
+        "author": "Verfasser"
     },
     "description": {
         "share": "Kopiere diesen Link um die aktuelle Abfrage zu teilen:",
@@ -102,7 +103,9 @@
             "include": "Anzeigen",
             "hide": "Verstecken",
             "only": "Ausschließlich"
-        }
+        },
+        "author": "Der Verfasser ist der Benutzer, der die Notiz erstellt hat",
+        "user": "Ein Benutzer ist jeder Nutzer, der einen Kommentar hinterlassen hat\n(einschließlich des Autors)"
     },
     "settings": {
         "choose": "Wähle eine Option",

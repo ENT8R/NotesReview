@@ -56,7 +56,10 @@
         "to": "A",
         "sort": "Ordina per",
         "status": "Stato",
-        "anonymous": "Note di anonimi"
+        "anonymous": "Note di anonimi",
+        "area": "Cerca area",
+        "commented": "Note con commenti",
+        "author": "Autore"
     },
     "description": {
         "share": "Copia il collegamento per condividere la richiesta corrente:",
@@ -78,8 +81,6 @@
             }
         },
         "query": "Una parola o una frase presente nella nota",
-        "applyBoundingBox": "Cerca nella vista corrente",
-        "onlyUncommented": "Mostra note senza commenti",
         "status": {
             "all": "Tutte",
             "open": "Aperte",
@@ -92,7 +93,19 @@
         },
         "statistics": "Trovate %s note",
         "from": "Una data (UTC) come limite inferiore",
-        "to": "Una data (UTC) come limite superiore"
+        "to": "Una data (UTC) come limite superiore",
+        "area": {
+            "global": "Globale",
+            "view": "Vista corrente",
+            "custom": "Area personalizzata"
+        },
+        "commented": {
+            "include": "Includi",
+            "hide": "Nascondi",
+            "only": "Solo"
+        },
+        "author": "L'autore è l'utente che ha creato la nota",
+        "user": "Un utente è qualsiasi utente che abbia commentato la nota\n(incluso l'autore)"
     },
     "settings": {
         "choose": "Scegli un’opzione",
