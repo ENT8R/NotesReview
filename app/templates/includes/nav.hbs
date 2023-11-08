@@ -9,14 +9,29 @@
     <input class="form-input" id="query" type="text">
   </div>
 
-  <div class="column col-6 col-sm-3">
-    <label class="form-label" for="limit" data-i18n="header.limit">Limit</label>
-    <input class="form-input" id="limit" type="number" value="50" min="0" max="100">
+  <div class="column col-4 col-sm-12">
+    <label class="form-label" for="author">
+      <span data-i18n="header.author">Author</span>
+      <span class="tooltip tooltip-right" data-tooltip="The author is the user who created the note" data-i18n data-i18n-data-tooltip="description.author">
+        <svg class="icon icon-small"><use xlink:href="#icon-help"></use></svg>
+      </span>
+    </label>
+    <input class="form-input" id="author" type="text">
   </div>
 
-  <div class="column col-6 col-sm-9">
-    <label class="form-label" for="user" data-i18n="header.user">User</label>
+  <div class="column col-4 col-sm-12">
+    <label class="form-label" for="user">
+      <span data-i18n="header.user">User</span>
+      <span class="tooltip tooltip-right" data-tooltip="A user is any user who left a comment on the note\n(including the author)" data-i18n data-i18n-data-tooltip="description.user">
+        <svg class="icon icon-small"><use xlink:href="#icon-help"></use></svg>
+      </span>
+    </label>
     <input class="form-input" id="user" type="text">
+  </div>
+
+  <div class="column col-4 col-sm-6">
+    <label class="form-label" for="limit" data-i18n="header.limit">Limit</label>
+    <input class="form-input" id="limit" type="number" value="50" min="0" max="100">
   </div>
 
   <div class="column col-4 col-sm-12">

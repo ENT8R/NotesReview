@@ -58,7 +58,8 @@
         "status": "Status",
         "anonymous": "Anonymous notes",
         "area": "Search area",
-        "commented": "Commented notes"
+        "commented": "Commented notes",
+        "author": "Author"
     },
     "description": {
         "share": "Copy this link to share the current query:",
@@ -102,7 +103,9 @@
             "include": "Include",
             "hide": "Hide",
             "only": "Only"
-        }
+        },
+        "author": "The author is the user who created the note",
+        "user": "A user is any user who left a comment on the note\n(including the author)"
     },
     "settings": {
         "choose": "Choose an option",

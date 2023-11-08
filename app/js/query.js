@@ -101,9 +101,11 @@ export default class Query {
       id: 'status',
       handler: this.status
     }, {
-      id: 'user',
-      permalink: 'author',
+      id: 'author',
       handler: this.author
+    }, {
+      id: 'user',
+      handler: this.user
     }, {
       id: 'anonymous',
       handler: this.anonymous
@@ -284,10 +286,7 @@ export default class Query {
   }
 
   /**
-    * Only search in a specific area
-    *
-    * If the user searches for 'anonymous' note creators,
-    * change the query to only include anonymous notes
+    * Only show notes created by the given author
     *
     * @function
     * @param {String} author
@@ -295,6 +294,18 @@ export default class Query {
     */
   author(author) {
     this.data.author = author;
+    return this;
+  }
+
+  /**
+    * Only show notes with a comment of the given user
+    *
+    * @function
+    * @param {String} user
+    * @returns {Query}
+    */
+  user(user) {
+    this.data.user = user;
     return this;
   }
 
