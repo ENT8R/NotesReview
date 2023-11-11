@@ -17,6 +17,14 @@
                 "orange": "Between one and two years",
                 "red": "Two or more years"
             }
+        },
+        "multipleUsers": {
+            "title": "Is it possible to search for multiple users?",
+            "description": "!HTML! Yes, by using a comma to separate each user.<br>\nWhen searching for the author of a note, it will try to find notes that were opened by any of the given users.<br>\nWhen searching for the users of a note, it will try to find notes that all of the given users commented on."
+        },
+        "excludingUsers": {
+            "title": "Is it possible to exclude certain users?",
+            "description": "!HTML! Yes, by writing either <kbd>NOT</kbd> or <kbd>-</kbd> in front of the user to exclude.<br>\nIt is also possible to exclude multiple users by separating each user with a comma."
         }
     },
     "action": {
