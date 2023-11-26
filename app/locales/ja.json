@@ -63,7 +63,7 @@
         "showList": "リスト表示",
         "showMap": "マップ表示",
         "nothingFound": "検索結果がありません！",
-        "autoLimit": "検索結果が多すぎるため、100件までを表示します",
+        "autoLimit": "検索結果が多すぎるため、250件までを表示します",
         "deprecationWarning": "お使いのブラウザがNotesReviewに対応していません。NoteReviewを利用する場合、他のブラウザを利用してみてください。",
         "sort": {
             "created": {
@@ -76,8 +76,6 @@
             }
         },
         "query": "地図メモ内の単語やフレーズ",
-        "applyBoundingBox": "表示している項目から検索",
-        "onlyUncommented": "コメントの無い地図メモだけを表示",
         "status": {
             "all": "すべて",
             "open": "オープン",

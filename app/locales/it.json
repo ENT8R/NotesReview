@@ -68,7 +68,7 @@
         "showList": "Mostra in una lista",
         "showMap": "Mostra in una mappa",
         "nothingFound": "Non è stato trovato niente!",
-        "autoLimit": "Impostato limite automatico a 100 perché valori più grandi non sono ammessi",
+        "autoLimit": "Impostato limite automatico a 250 perché valori più grandi non sono ammessi",
         "deprecationWarning": "Il browser che stai usando non è compatibile con NotesReview. Prova a cambiare browser per poter usare NotesReview.",
         "sort": {
             "created": {

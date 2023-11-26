@@ -17,6 +17,14 @@
                 "lime": "Zwischen einem und sechs Monaten"
             },
             "lime": "Limettengrün"
+        },
+        "multipleUsers": {
+            "title": "Ist es möglich nach mehreren Nutzern zu suchen?",
+            "description": "!HTML! Ja, indem ein Komma zur Trennung der Namen verwendet wird.<br>\nBei der Suche nach Verfassern einer Notiz wird nach Notizen gesucht, die von irgendeinem der genannten Nutzer geöffnet wurde.<br>\nBei der Suche nach Benutzern einer Notiz wird nach Notizen gesucht, die von allen genannten Nutzern kommentiert wurden."
+        },
+        "excludingUsers": {
+            "title": "Ist es möglich Nutzer von der Suche auszuschließen?",
+            "description": "!HTML! Ja, indem entweder <kbd>NOT</kbd> oder <kbd>-</kbd> vor den Nutzer gestellt wird, der ausgeschlossen werden soll.<br>\nEs ist ebenfalls möglich, mehrere Nutzer auszuschließen, indem diese mit einem Komma getrennt werden."
         }
     },
     "action": {
@@ -68,7 +76,7 @@
         "showList": "Als Liste zeigen",
         "showMap": "Auf Karte zeigen",
         "nothingFound": "Nichts gefunden!",
-        "autoLimit": "Limit automatisch auf 100 gesetzt, da höhere Werte nicht erlaubt sind",
+        "autoLimit": "Limit automatisch auf 250 gesetzt, da höhere Werte nicht erlaubt sind",
         "deprecationWarning": "Dein momentaner Browser funktioniert leider nicht zusammen mit NotesReview. Bitte denke darüber nach deinen Browser zu wechseln, um NotesReview verwenden zu können.",
         "sort": {
             "created": {
@@ -105,7 +113,8 @@
             "only": "Ausschließlich"
         },
         "author": "Der Verfasser ist der Benutzer, der die Notiz erstellt hat",
-        "user": "Ein Benutzer ist jeder Nutzer, der einen Kommentar hinterlassen hat\n(einschließlich des Autors)"
+        "user": "Ein Benutzer ist jeder Nutzer, der einen Kommentar hinterlassen hat\n(einschließlich des Verfassers)",
+        "customArea": "Wähle Länder durch Klicken aus, oder zeichne eine eigene Form mit Hilfe der Symbolleiste auf der linken Seite"
     },
     "settings": {
         "choose": "Wähle eine Option",

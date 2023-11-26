@@ -63,7 +63,7 @@
         "showList": "Afficher la liste",
         "showMap": "Afficher la carte",
         "nothingFound": "Aucun résultat !",
-        "autoLimit": "Limitation automatique à 100 remarques, les valeurs plus grandes ne sont pas autorisées",
+        "autoLimit": "Limitation automatique à 250 remarques, les valeurs plus grandes ne sont pas autorisées",
         "deprecationWarning": "Votre navigateur ne supporte pas NotesReview. Essayez d'en utiliser un autre pour utiliser NotesReview.",
         "sort": {
             "created": {
@@ -76,8 +76,6 @@
             }
         },
         "query": "Mot ou phrase contenu dans la note",
-        "applyBoundingBox": "Rechercher seulement dans la vue actuelle",
-        "onlyUncommented": "Afficher seulement les remarques non commentées",
         "status": {
             "all": "Tous",
             "open": "Ouvert",

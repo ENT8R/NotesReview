@@ -65,7 +65,7 @@
         "showList": "In een lijst weergeven",
         "showMap": "Op een kaart weergeven",
         "nothingFound": "Niets gevonden!",
-        "autoLimit": "Limiet automatisch op 100 gezet, omdat hogere waarden niet toegestaan zijn",
+        "autoLimit": "Limiet automatisch op 250 gezet, omdat hogere waarden niet toegestaan zijn",
         "deprecationWarning": "De browser die u momenteel gebruikt ondersteund NotesReview niet. Overweeg om naar een andere browser over te schakelen om NotesReview te kunnen zien.",
         "sort": {
             "created": {
@@ -78,8 +78,6 @@
             }
         },
         "query": "Een woord of zin dat vermeld staat in de opmerking",
-        "applyBoundingBox": "Alleen in de huidige weergave zoeken",
-        "onlyUncommented": "Alleen opmerkingen zonder reactie weergeven",
         "status": {
             "all": "Alle",
             "open": "Open",
