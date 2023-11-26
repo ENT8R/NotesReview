@@ -5,7 +5,7 @@ import Toast from './toast.js';
 import Users from './users.js';
 import * as Util from './util.js';
 
-const MAX_LIMIT = 100;
+const MAX_LIMIT = 250;
 
 export const STATUS = {
   ALL: 'all',
