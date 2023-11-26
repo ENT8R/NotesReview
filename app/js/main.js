@@ -130,7 +130,8 @@ function listener() {
         },
         tools: {
           openstreetmap: document.getElementById('tool-openstreetmap').checked,
-          mapillary: document.getElementById('tool-mapillary').checked
+          mapillary: document.getElementById('tool-mapillary').checked,
+          deepl: document.getElementById('tool-deepl').checked
         }
       });
       settings();
@@ -228,12 +229,14 @@ function settings() {
   document.getElementById('editor-level0').checked = editors.level0;
   document.getElementById('tool-openstreetmap').checked = tools.openstreetmap;
   document.getElementById('tool-mapillary').checked = tools.mapillary;
+  document.getElementById('tool-deepl').checked = tools.deepl;
 
   document.body.dataset.editorId = editors.id;
   document.body.dataset.editorJosm = editors.josm;
   document.body.dataset.editorLevel0 = editors.level0;
   document.body.dataset.toolOpenstreetmap = tools.openstreetmap;
   document.body.dataset.toolMapillary = tools.mapillary;
+  document.body.dataset.toolDeepl = tools.deepl;
 
   const theme = Preferences.get('theme');
   document.getElementById('theme-selection').value = theme;

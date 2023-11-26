@@ -22,6 +22,7 @@ body {
 
   &[data-tool-openstreetmap="false"] .link-osm,
   &[data-tool-mapillary="false"] .link-tool-mapillary,
+  &[data-tool-deepl="false"] .link-tool-deepl,
 
   &[data-authenticated="true"] .requires-no-authentication,
   &[data-authenticated="false"] .requires-authentication,

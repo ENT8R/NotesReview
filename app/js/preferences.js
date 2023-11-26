@@ -10,7 +10,8 @@ const DEFAULTS = {
   theme: 'system',
   tools: {
     openstreetmap: true,
-    mapillary: false
+    mapillary: false,
+    deepl: false
   },
   editors: {
     id: true,

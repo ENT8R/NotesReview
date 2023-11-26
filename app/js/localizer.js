@@ -4,7 +4,7 @@
 const I18N_ATTRIBUTE = 'data-i18n';
 const I18N_DATASET = 'i18n';
 
-const LANGUAGE = navigator.language || navigator.userLanguage;
+export const LANGUAGE = navigator.language || navigator.userLanguage;
 const FALLBACK_LANGUAGE = 'en';
 
 const STRINGS = {

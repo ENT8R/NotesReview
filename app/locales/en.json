@@ -50,7 +50,8 @@
         "filter": "Filter",
         "refresh": "Refresh",
         "reset": "Reset",
-        "center": "Center map to results"
+        "center": "Center map to results",
+        "deepl": "Deepl"
     },
     "header": {
         "share": "Share",

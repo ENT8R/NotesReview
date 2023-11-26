@@ -17,8 +17,13 @@ export default class Comment {
     this.date = new Date(comment.date);
     this.color = Util.parseDate(this.date);
     this.action = comment.action;
+    this.text = null;
+    this.html = null;
+    this.images = [];
 
     if ('text' in comment) {
+      this.text = comment.text;
+
       // Escape HTML tags in the comment before proceeding
       comment.text = Util.escape(comment.text);
 
