@@ -176,6 +176,143 @@ export function size(rect) {
   return (rect.getNorth() - rect.getSouth()) * (rect.getEast() - rect.getWest());
 }
 
+export class Line {
+  /**
+    * Constructor for a new line
+    *
+    * @constructor
+    * @param {Array} p1 The start of the line
+    * @param {Array} p2 The end of the line
+    */
+  constructor(p1, p2) {
+    this.p1 = p1;
+    this.p2 = p2;
+  }
+
+  /**
+    * Calculate the slope of the line
+    *
+    * @function
+    * @returns {Number}
+    */
+  get slope() {
+    return (this.p2[1] - this.p1[1]) / (this.p2[0] - this.p1[0]);
+  }
+
+  /**
+    * Calculate the y-intercept of the line
+    *
+    * @function
+    * @returns {Number}
+    */
+  get yIntercept() {
+    return this.p1[1] - (this.p1[0] * this.slope);
+  }
+
+  /**
+    * Determine whether the line is vertical
+    *
+    * @function
+    * @returns {Boolean}
+    */
+  get isVertical() {
+    return !Number.isFinite(this.slope);
+  }
+
+  /**
+    * Determine whether the line is horizontal
+    *
+    * @function
+    * @returns {Boolean}
+    */
+  get isHorizontal() {
+    return this.p1[1] == this.p2[1];
+  }
+
+  /**
+    * Calculate the perpendicular distance between the line and a given point
+    *
+    * @function
+    * @param {Array} point
+    * @returns {Number}
+    */
+  perpendicularDistance(point) {
+    if (this.isVertical) {
+      return Math.abs(this.p1[0] - point[0]);
+    } else if (this.isHorizontal) {
+      return Math.abs(this.p1[1] - point[1]);
+    } else {
+      return Math.abs((this.slope * point[0]) - point[1] + this.yIntercept) / Math.sqrt((Math.pow(this.slope, 2)) + 1);
+    }
+  }
+}
+
+/**
+  * Ramer-Douglas-Peucker algorithm for simplifying curves
+  * {@link https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm}
+  * {@link https://karthaus.nl/rdp/}
+  * {@link https://github.com/seabre/simplify-geometry}
+  *
+  * @function
+  * @param {Array} points
+  * @param {Number} epsilon
+  * @returns {Array}
+  */
+export function rdp(points, epsilon) {
+  // Find the point with the maximum distance
+  let dmax = 0;
+  let index = 0;
+  for (let i = 1; i < points.length - 1; i++) {
+    let d = new Line(points[0], points[points.length - 1]).perpendicularDistance(points[i]);
+    if (d > dmax) {
+      index = i;
+      dmax = d;
+    }
+  }
+
+  // If max distance is greater than epsilon, recursively simplify
+  if (dmax > epsilon) {
+    const recResults1 = rdp(points.slice(0, index), epsilon);
+    const recResults2 = rdp(points.slice(index, points.length), epsilon);
+
+    return [...recResults1, ...recResults2];
+  } else if (points.length > 1) {
+    return [
+      points[0], points[points.length - 1]
+    ];
+  } else {
+    return [
+      points[0]
+    ];
+  }
+}
+
+/**
+  * Simplifies a GeoJSON polygon or multipolygon with a given tolerance
+  *
+  * @function
+  * @param {Object} feature
+  * @returns {String}
+  */
+export function simplify(feature, tolerance=0.01) {
+  const geometry = feature.geometry;
+  const type = geometry.type;
+  if (type === 'LineString') {
+    geometry.coordinates = rdp(geometry.coordinates, tolerance)
+  } else if (type === 'Polygon' || type === 'MultiLineString') {
+    for (let i = 0; i < geometry.coordinates.length; i++) {
+      geometry.coordinates[i] = rdp(geometry.coordinates[i], tolerance)
+    }
+  } else if (type === 'MultiPolygon') {
+    for (let i = 0; i < geometry.coordinates.length; i++) {
+      for (let j = 0; j < geometry.coordinates[i].length; j++) {
+        geometry.coordinates[i][j] = rdp(geometry.coordinates[i][j], tolerance)
+      }
+    }
+  }
+  return feature;
+}
+
 /**
   * Wait for a specific time and return a promise after that
   *
