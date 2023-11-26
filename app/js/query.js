@@ -443,7 +443,7 @@ export default class Query {
     * @function
     * @returns {String}
     */
-  permalink() {
+  get permalink() {
     const url = new URL(window.location);
     url.hash = '';
 
@@ -480,11 +480,11 @@ export default class Query {
     */
   onChange() {
     if (this.history.length > 0) {
-      // A changed URL means that the query changed in relation to the previous query
+      // A changed permalink means that the query changed in relation to the previous query
       // The current implementation adds another value to the data attributes
       // In the future it might be necessary to create a new event for it
       const previous = this.history[this.history.length - 1];
-      document.body.dataset.queryChanged = previous.url !== this.url;
+      document.body.dataset.queryChanged = previous.permalink !== this.permalink;
     }
 
     // Find all values that are not default values or null and can be changed by the user directly via the user interface
@@ -524,7 +524,7 @@ export default class Query {
     this.history.push({
       time: new Date(),
       data: this.data,
-      url
+      permalink: this.permalink
     });
 
     // Set the information that the query changed to false, because the request was just done moments ago

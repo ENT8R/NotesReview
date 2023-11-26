@@ -12,13 +12,13 @@ export default class Permalink {
   constructor(query) {
     // Update the permalink if the share modal is opened
     document.querySelector('.modal[data-modal="share"]').addEventListener('modal-open', () => {
-      document.getElementById('permalink').value = query.permalink();
+      document.getElementById('permalink').value = query.permalink;
     });
 
     // Update the permalink if a parameter changed
     Array.from(document.getElementsByClassName('update-permalink')).forEach(element => {
       element.addEventListener('change', () => {
-        document.getElementById('permalink').value = query.permalink();
+        document.getElementById('permalink').value = query.permalink;
       });
     });
 
