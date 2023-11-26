@@ -1,7 +1,8 @@
-import * as Localizer from './localizer.js';
-import Toast from './toast.js';
+import * as Localizer from '../localizer.js';
+import Modal from './modal.js';
+import Toast from '../toast.js';
 
-export default class Permalink {
+export default class Share extends Modal {
   /**
     * Initializes the permalink handler
     *
@@ -10,6 +11,8 @@ export default class Permalink {
     * @returns {void}
     */
   constructor(query) {
+    super();
+
     // Update the permalink if the share modal is opened
     document.querySelector('.modal[data-modal="share"]').addEventListener('modal-open', () => {
       document.getElementById('permalink').value = query.permalink;

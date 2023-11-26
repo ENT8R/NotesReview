@@ -11,9 +11,9 @@ import * as Localizer from './localizer.js';
 import Mapillary from './modals/mapillary.js';
 import Modal from './modals/modal.js';
 import Note from './note.js';
-import Permalink from './permalink.js';
 import Preferences from './preferences.js';
 import Query from './query.js';
+import Share from './modals/share.js';
 import * as Theme from './theme.js';
 import Toast from './toast.js';
 import Users from './users.js';
@@ -313,7 +313,7 @@ function settings() {
   map = new Leaflet('map-container', position, bounds);
   query = new Query(map, parameter);
 
-  const permalink = new Permalink(query); // eslint-disable-line no-unused-vars
+  const share = new Share(query); // eslint-disable-line no-unused-vars
   const areaSelector = new AreaSelector(document.getElementById('countries'), document.getElementById('polygon')); // eslint-disable-line no-unused-vars
 
   const authenticated = api.authenticated();
