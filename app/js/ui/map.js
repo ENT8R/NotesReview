@@ -14,6 +14,8 @@ export default class Map {
 
     this.active = null;
 
+    this.map.addGeocoding();
+
     this.cluster = L.markerClusterGroup({
       maxClusterRadius: 40,
       showCoverageOnHover: false

@@ -47,21 +47,100 @@ export default class Leaflet {
 
       instances[id] = this.map;
 
-      const geocoder = L.Control.geocoder({
-        placeholder: Localizer.message('action.search'),
-        errorMessage: Localizer.message('description.nothingFound'),
-        defaultMarkGeocode: false
-      }).on('markgeocode', event => {
-        const { bbox } = event.geocode;
-        this.map.fitBounds(bbox);
-      }).addTo(this.map);
-      // There is no other option to add a specific class to the input,
-      // so the input needs to be found in a first step before applying the correct class
-      geocoder.getContainer().getElementsByTagName('input')[0].classList.add('form-input');
-
       this.tiles();
       document.addEventListener('color-scheme-changed', () => this.tiles());
     }
+  }
+
+  /**
+    * Add a geocoding control to the map
+    *
+    * @function
+    * @returns {Control}
+    */
+  addGeocoding() {
+    const geocoder = L.Control.geocoder({
+      placeholder: Localizer.message('action.search'),
+      errorMessage: Localizer.message('description.nothingFound'),
+      defaultMarkGeocode: false
+    }).on('markgeocode', event => {
+      const { bbox } = event.geocode;
+      this.map.fitBounds(bbox);
+    }).addTo(this.map);
+    // There is no other option to add a specific class to the input,
+    // so the input needs to be found in a first step before applying the correct class
+    geocoder.getContainer().getElementsByTagName('input')[0].classList.add('form-input');
+    return geocoder;
+  }
+
+  /**
+    * Add a drawing and editing control to the map
+    *
+    * @function
+    * @param {FeatureGroup} layer
+    * @param {Function} onChangeStart
+    * @param {Function} onChangeStop
+    * @returns {Object}
+    */
+  addDraw(drawnItems, onChangeStart, onChangeStop) {
+    const drawControl = new L.Control.Draw({
+      draw: {
+        polyline: false,
+        marker: false,
+        circle: false,
+        circlemarker: false
+      },
+      edit: false
+    });
+    this.map.addControl(drawControl);
+
+    const editControl = new L.Control.Draw({
+      draw: false,
+      edit: {
+        allowIntersection: false,
+        featureGroup: drawnItems
+      }
+    });
+
+    this.map.on(L.Draw.Event.CREATED, event => {
+      drawnItems.addLayer(event.layer);
+      this.map.removeControl(drawControl);
+      this.map.addControl(editControl);
+    });
+
+    this.map.on(L.Draw.Event.DELETED, () => {
+      this.map.removeControl(editControl);
+      this.map.addControl(drawControl);
+    });
+
+    this.map.on(L.Draw.Event.DRAWSTART, () => {
+      onChangeStart(L.Draw.Event.DRAWSTART);
+    });
+
+    this.map.on(L.Draw.Event.DRAWSTOP, () => {
+      onChangeStop(L.Draw.Event.DRAWSTOP);
+    });
+
+    this.map.on(L.Draw.Event.EDITSTART, () => {
+      onChangeStart(L.Draw.Event.EDITSTART);
+    });
+
+    this.map.on(L.Draw.Event.EDITSTOP, () => {
+      onChangeStop(L.Draw.Event.EDITSTOP);
+    });
+
+    this.map.on(L.Draw.Event.DELETESTART, () => {
+      onChangeStart(L.Draw.Event.DELETESTART);
+    });
+
+    this.map.on(L.Draw.Event.DELETESTOP, () => {
+      onChangeStop(L.Draw.Event.DELETESTOP);
+    });
+
+    return {
+      draw: drawControl,
+      edit: editControl
+    };
   }
 
   /**
@@ -107,6 +186,40 @@ export default class Leaflet {
     */
   addLayer(layer) {
     this.map.addLayer(layer);
+  }
+
+  /**
+    * Add another control to the map
+    *
+    * @function
+    * @param {Control} control
+    * @returns {void}
+    */
+  addControl(control) {
+    this.map.addControl(control);
+  }
+
+  /**
+    * Remove a control from the map
+    *
+    * @function
+    * @param {Control} control
+    * @returns {void}
+    */
+  removeControl(control) {
+    this.map.removeControl(control);
+  }
+
+  /**
+    * Fire an event with a specific name
+    *
+    * @function
+    * @param {String} name
+    * @param {Object} data
+    * @returns {void}
+    */
+  fire(name, data) {
+    this.map.fire(name, data);
   }
 
   /**
@@ -160,11 +273,13 @@ export default class Leaflet {
     * @function
     * @param {LatLngBounds} bounds
     * @param {Number} duration
+    * @param {Array} padding
     * @returns {void}
     */
-  flyToBounds(bounds, duration=1) {
+  flyToBounds(bounds, duration=1, padding=[0, 0]) {
     this.map.flyToBounds(bounds, {
       duration,
+      padding,
       maxZoom: OPTIONS.maxZoom
     });
   }
