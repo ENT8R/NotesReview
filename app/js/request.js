@@ -5,18 +5,55 @@ export const MEDIA_TYPE = {
 };
 
 /**
-  * Fetch an external ressource and return it using the specified media type
+  * Issue a GET request to an external ressource and return it using the specified media type
   *
   * @function
+  * @private
   * @param {String} url
   * @param {MEDIA_TYPE} mediaType
   * @param {AbortController} controller
   * @returns {Promise}
   */
 export function get(url, mediaType = MEDIA_TYPE.JSON, controller = new AbortController()) {
-  return fetch(url, {
+  return request(url, mediaType, controller);
+}
+
+/**
+  * Issue a POST request to an external ressource and return it using the specified media type
+  *
+  * @function
+  * @private
+  * @param {String} url
+  * @param {MEDIA_TYPE} mediaType
+  * @param {AbortController} controller
+  * @param {Object} data
+  * @returns {Promise}
+  */
+export function post(url, mediaType = MEDIA_TYPE.JSON, controller = new AbortController(), data = {}) {
+  return request(url, mediaType, controller, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+  });
+}
+
+/**
+  * Request an external ressource and return it using the specified media type
+  *
+  * @function
+  * @private
+  * @param {String} url
+  * @param {MEDIA_TYPE} mediaType
+  * @param {Object} options
+  * @param {AbortController} controller
+  * @returns {Promise}
+  */
+function request(url, mediaType = MEDIA_TYPE.JSON, controller = new AbortController(), options = {}) {
+  return fetch(url, Object.assign({
     signal: controller.signal
-  }).then(response => {
+  }, options)).then(response => {
     switch (mediaType) {
     case MEDIA_TYPE.JSON:
       return response.json();

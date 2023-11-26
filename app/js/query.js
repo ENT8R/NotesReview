@@ -400,14 +400,14 @@ export default class Query {
   }
 
   /**
-    * Build a URL from all given parameters
+    * Remove parameters from the data object that are not necessary
+    * for the request to the API either because they are not needed or
+    * already defined implicitly through a different value
     *
     * @function
-    * @returns {String}
+    * @returns {Object}
     */
-  get url() {
-    const url = new URL(`${NOTESREVIEW_API_URL}/search`);
-
+  clean() {
     // Create a copy of the current values in order to make specific changes
     // that are necessary for the construction of the URL
     const data = Object.assign({}, this.data);
@@ -434,8 +434,7 @@ export default class Query {
     delete data.sort;
     delete data.area;
 
-    url.search = Request.encodeQueryData(Util.clean(data, DEFAULTS.API));
-    return url.toString();
+    return Util.clean(data, DEFAULTS.API);
   }
 
   /**
@@ -515,9 +514,11 @@ export default class Query {
     const notes = new Set();
     let users = new Set();
 
-    const { url } = this;
+    const url = new URL(`${NOTESREVIEW_API_URL}/search`);
+    const data = this.clean();
+
     this.controller = new AbortController();
-    const result = await Request.get(url, Request.MEDIA_TYPE.JSON, this.controller);
+    const result = await Request.post(url, Request.MEDIA_TYPE.JSON, this.controller, data);
     this.controller = null;
 
     this.history.push({
