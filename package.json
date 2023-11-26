@@ -2,6 +2,7 @@
   "name": "notesreview",
   "version": "3.0.0",
   "description": "An interface for searching and resolving OpenStreetMap notes",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -35,11 +36,11 @@
   },
   "devDependencies": {
     "dotenv": "^16.3.1",
-    "eslint": "^8.53.0",
+    "eslint": "^8.54.0",
     "fast-glob": "^3.3.2",
     "handlebars": "^4.7.8",
     "sass": "^1.69.5",
-    "vite": "^4.5.0",
+    "vite": "^5.0.2",
     "vite-plugin-handlebars": "^1.6.0",
     "vite-plugin-svg-icons": "^2.0.1"
   }
