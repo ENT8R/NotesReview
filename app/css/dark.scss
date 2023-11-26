@@ -34,7 +34,8 @@ body[data-theme="dark"] {
   .leaflet-control-geocoder,
   .leaflet-control-geocoder-icon,
   .leaflet-control-geocoder-address-context,
-  .leaflet-control-geocoder-alternatives li:hover {
+  .leaflet-control-geocoder-alternatives li:hover,
+  .leaflet-draw-actions a {
     background-color: $main-color-surface !important;
     color: $text-color;
   }
@@ -93,5 +94,9 @@ body[data-theme="dark"] {
 
   .leaflet-control-geocoder-icon {
     background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23fff" d="M12.2 13l3.4 6.6c.6 1.1 2.5-.4 2-1.2l-4-6.2z"/><circle cx="10.8" cy="8.9" r="3.9" fill="none" stroke="%23fff" stroke-width="1.5"/></svg>');
+  }
+
+  .leaflet-draw-toolbar.leaflet-bar a {
+    background-color: $text-color !important;
   }
 }

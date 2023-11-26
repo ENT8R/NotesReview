@@ -4,6 +4,7 @@ import 'virtual:svg-icons-register';
 import './polyfills.js';
 
 import API from './api.js';
+import AreaSelector from './modals/area-selector.js';
 import Comments from './modals/comments.js';
 import Leaflet from './leaflet.js';
 import * as Localizer from './localizer.js';
@@ -311,7 +312,9 @@ function settings() {
 
   map = new Leaflet('map-container', position, bounds);
   query = new Query(map, parameter);
+
   const permalink = new Permalink(query); // eslint-disable-line no-unused-vars
+  const areaSelector = new AreaSelector(document.getElementById('countries'), document.getElementById('polygon')); // eslint-disable-line no-unused-vars
 
   const authenticated = api.authenticated();
   document.body.dataset.authenticated = authenticated;

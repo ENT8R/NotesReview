@@ -100,14 +100,21 @@ main {
   transform: translateX(-50%);
 }
 
+#modal-area-selector-content {
+  height: 50vh;
+}
+
 /*---------- Leaflet ------------*/
 #map, #map-container {
   height: 100%;
   z-index: 0;
 }
 
-.leaflet-control-attribution a {
-  color: #302ecd;
+.leaflet-control-attribution {
+  font-size: 12px;
+  a {
+    color: #302ecd;
+  }
 }
 
 .leaflet-touch .leaflet-control-layers,
@@ -161,6 +168,10 @@ body.deprecated-browser #deprecation-warning {
 
 .flex-grow {
   flex-grow: 1;
+}
+
+.text-center {
+  text-align: center;
 }
 
 input:disabled ~ span {

@@ -113,7 +113,8 @@
             "only": "Only"
         },
         "author": "The author is the user who created the note",
-        "user": "A user is any user who left a comment on the note\n(including the author)"
+        "user": "A user is any user who left a comment on the note\n(including the author)",
+        "customArea": "Select countries by clicking on them or draw a custom shape using the toolbar on the left"
     },
     "settings": {
         "choose": "Choose an option",

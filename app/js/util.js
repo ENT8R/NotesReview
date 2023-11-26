@@ -345,6 +345,18 @@ export function chunk(array, size) {
 }
 
 /**
+  * Toggle the presence of a value in an array
+  *
+  * @function
+  * @param {Array} array
+  * @param {String} value
+  * @returns {Array}
+  */
+export function toggle(array, value) {
+  return array.includes(value) ? array.filter(v => v !== value) : [...array, value];
+}
+
+/**
   * Removes unnecessary default values from an object while preserving the state of the object when calling the function
   *
   * @function

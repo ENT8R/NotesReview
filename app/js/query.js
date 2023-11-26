@@ -65,7 +65,7 @@ const DEFAULTS = {
 };
 
 const NOT_MODIFIABLE_BY_USER = [
-  'bbox', 'polygon', 'sort_by', 'order'
+  'bbox', 'countries', 'polygon', 'sort_by', 'order'
 ];
 
 export default class Query {
@@ -88,6 +88,9 @@ export default class Query {
     }, {
       id: 'bbox',
       handler: this.bbox
+    }, {
+      id: 'countries',
+      handler: this.countries
     }, {
       id: 'polygon',
       handler: this.polygon
@@ -209,6 +212,18 @@ export default class Query {
     */
   bbox(bbox) {
     this.data.bbox = bbox;
+    return this;
+  }
+
+   /**
+    * Search only in the specified countries
+    *
+    * @function
+    * @param {Array} countries
+    * @returns {Query}
+    */
+   countries(countries) {
+    this.data.countries = countries;
     return this;
   }
 
@@ -433,6 +448,7 @@ export default class Query {
     // Remove unused properties that are already set by another value
     delete data.sort;
     delete data.area;
+    delete data.countries;
 
     return Util.clean(data, DEFAULTS.API);
   }
@@ -463,6 +479,11 @@ export default class Query {
     // Remove unused properties that are already set by another value
     delete data.sort_by;
     delete data.order;
+
+    // Shapes of countries does not need to be included if the list of selected countries is already known
+    if (data.countries !== '') {
+      delete data.polygon;
+    }
 
     if (!document.getElementById('show-map').checked) {
       delete data.map;
