@@ -100,7 +100,7 @@ export default class Note {
         icon: 'mapillary',
         text: Localizer.message('action.mapillary')
       },
-      mapillary: {
+      deepl: {
         class: 'link-tool-deepl',
         link: `https://www.deepl.com/translator#auto/${Localizer.LANGUAGE}/${encodeURIComponent(this.comments[0].text).replace(/%2F/g, '\\%2F')}`,
         icon: 'external',
