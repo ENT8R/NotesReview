@@ -36,12 +36,12 @@
   },
   "devDependencies": {
     "dotenv": "^16.3.1",
-    "eslint": "^8.54.0",
+    "eslint": "^8.56.0",
     "fast-glob": "^3.3.2",
     "handlebars": "^4.7.8",
-    "sass": "^1.69.5",
-    "vite": "^5.0.2",
-    "vite-plugin-handlebars": "^1.6.0",
+    "sass": "^1.69.7",
+    "vite": "^5.0.11",
+    "vite-plugin-handlebars": "^2.0.0",
     "vite-plugin-svg-icons": "^2.0.1"
   }
 }
