@@ -48,8 +48,8 @@ export default class AreaSelector extends Modal {
       const geojsonLayer = new L.GeoJSON(JSON.parse(this.polygonInput.value));
       geojsonLayer.eachLayer(layer => {
         this.map.fire(L.Draw.Event.CREATED, {
-          layer: layer
-        })
+          layer
+        });
       });
     }
 

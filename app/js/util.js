@@ -226,7 +226,7 @@ export class Line {
     * @returns {Boolean}
     */
   get isHorizontal() {
-    return this.p1[1] == this.p2[1];
+    return this.p1[1] === this.p2[1];
   }
 
   /**
@@ -263,7 +263,7 @@ export function rdp(points, epsilon) {
   let dmax = 0;
   let index = 0;
   for (let i = 1; i < points.length - 1; i++) {
-    let d = new Line(points[0], points[points.length - 1]).perpendicularDistance(points[i]);
+    const d = new Line(points[0], points[points.length - 1]).perpendicularDistance(points[i]);
     if (d > dmax) {
       index = i;
       dmax = d;
@@ -292,21 +292,22 @@ export function rdp(points, epsilon) {
   *
   * @function
   * @param {Object} feature
+  * @param {Number} tolerance
   * @returns {String}
   */
 export function simplify(feature, tolerance=0.01) {
-  const geometry = feature.geometry;
-  const type = geometry.type;
+  const { geometry } = feature;
+  const { type } = geometry;
   if (type === 'LineString') {
-    geometry.coordinates = rdp(geometry.coordinates, tolerance)
+    geometry.coordinates = rdp(geometry.coordinates, tolerance);
   } else if (type === 'Polygon' || type === 'MultiLineString') {
     for (let i = 0; i < geometry.coordinates.length; i++) {
-      geometry.coordinates[i] = rdp(geometry.coordinates[i], tolerance)
+      geometry.coordinates[i] = rdp(geometry.coordinates[i], tolerance);
     }
   } else if (type === 'MultiPolygon') {
     for (let i = 0; i < geometry.coordinates.length; i++) {
       for (let j = 0; j < geometry.coordinates[i].length; j++) {
-        geometry.coordinates[i][j] = rdp(geometry.coordinates[i][j], tolerance)
+        geometry.coordinates[i][j] = rdp(geometry.coordinates[i][j], tolerance);
       }
     }
   }

@@ -77,7 +77,7 @@ export default class Leaflet {
     * Add a drawing and editing control to the map
     *
     * @function
-    * @param {FeatureGroup} layer
+    * @param {FeatureGroup} drawnItems
     * @param {Function} onChangeStart
     * @param {Function} onChangeStop
     * @returns {Object}

@@ -29,7 +29,7 @@ const AREA = {
   GLOBAL: 'global',
   VIEW: 'view',
   CUSTOM: 'custom'
-}
+};
 
 const SORT = {
   CREATED_AT: 'created_at',
@@ -215,14 +215,14 @@ export default class Query {
     return this;
   }
 
-   /**
+  /**
     * Search only in the specified countries
     *
     * @function
     * @param {Array} countries
     * @returns {Query}
     */
-   countries(countries) {
+  countries(countries) {
     this.data.countries = countries;
     return this;
   }
@@ -510,9 +510,9 @@ export default class Query {
 
     // Find all values that are not default values or null and can be changed by the user directly via the user interface
     const nonDefaults = Object.entries(Util.clean(this.data, DEFAULTS.UI))
-                              .reduce((a, [key, value]) =>
-                                        ((value == null || NOT_MODIFIABLE_BY_USER.includes(key))
-                                          ? a : (a[key] = value, a)), {});
+      .reduce((a, [key, value]) =>
+        ((value == null || NOT_MODIFIABLE_BY_USER.includes(key))
+          ? a : (a[key] = value, a)), {});
     const amountOfNonDefaults = Object.keys(nonDefaults).length;
 
     // Show a small badge with the amount of applied filters (that are not default)

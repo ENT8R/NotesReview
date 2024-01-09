@@ -46,8 +46,8 @@ export function post(url, mediaType = MEDIA_TYPE.JSON, controller = new AbortCon
   * @private
   * @param {String} url
   * @param {MEDIA_TYPE} mediaType
-  * @param {Object} options
   * @param {AbortController} controller
+  * @param {Object} options
   * @returns {Promise}
   */
 function request(url, mediaType = MEDIA_TYPE.JSON, controller = new AbortController(), options = {}) {
