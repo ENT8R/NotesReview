@@ -50,7 +50,8 @@
         "filter": "Filter",
         "refresh": "Aktualisieren",
         "reset": "Zurücksetzen",
-        "center": "Karte auf Ergebnisse zentrieren"
+        "center": "Karte auf Ergebnisse zentrieren",
+        "deepl": "Deepl"
     },
     "header": {
         "share": "Teilen",

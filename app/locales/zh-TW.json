@@ -17,6 +17,14 @@
                 "lime": "在一個月與六個月之間"
             },
             "lime": "萊姆綠"
+        },
+        "multipleUsers": {
+            "title": "有辦法搜尋多個使用者嗎？",
+            "description": "!HTML! 是，採用逗號來分隔使用者。<br>\n當搜尋作者的註解時，會嘗試從給定的使用者名稱來搜尋註解。<br>\n當搜尋使用者的註解時，會嘗試從給定的使用者名稱來搜尋曾回應的註解。"
+        },
+        "excludingUsers": {
+            "title": "有辦法排除特定使用者嗎？",
+            "description": "!HTML! 是，不論是在使用者前撰寫 <kbd>NOT</kbd> 或是 <kbd>-</kbd> 都能排除使用者。<br>\n而且也有可能用逗號分隔使用者來排除多個使用者。"
         }
     },
     "action": {
@@ -42,7 +50,8 @@
         "filter": "過瀘器",
         "refresh": "重新整理",
         "reset": "重設",
-        "center": "置中地圖到結果"
+        "center": "置中地圖到結果",
+        "deepl": "Deepl"
     },
     "header": {
         "share": "分享",
@@ -56,7 +65,10 @@
         "to": "到",
         "sort": "排序",
         "status": "狀態",
-        "anonymous": "暱名的註解"
+        "anonymous": "暱名的註解",
+        "area": "搜尋區域",
+        "commented": "有留言的註解",
+        "author": "作者"
     },
     "description": {
         "share": "複製這連結來分享目前檢索：",
@@ -90,7 +102,20 @@
         },
         "statistics": "找到 %s 的註解",
         "from": "日期 (UTC) 為最低值",
-        "to": "日期 (UTC) 為最高值"
+        "to": "日期 (UTC) 為最高值",
+        "area": {
+            "global": "全球",
+            "view": "目前檢視",
+            "custom": "客製區域"
+        },
+        "commented": {
+            "include": "包括",
+            "hide": "隱藏",
+            "only": "只有"
+        },
+        "author": "作者是新增加註解的使用者",
+        "user": "使用者是任何留言在註解的使用者\n(包括作者)",
+        "customArea": "點按國家，或是用左側工具欄繪製客製化形狀來選取國家"
     },
     "settings": {
         "choose": "選擇選項",
