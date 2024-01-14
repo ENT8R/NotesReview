@@ -202,6 +202,9 @@ export async function init() {
     case 'nl':
       locale = await import('relative-time-format/locale/nl');
       break;
+    case 'pl':
+      locale = await import('relative-time-format/locale/pl');
+      break;
     case 'pt':
       locale = await import('relative-time-format/locale/pt');
       break;

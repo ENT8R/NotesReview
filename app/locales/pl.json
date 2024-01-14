@@ -1,0 +1,178 @@
+{
+    "help": {
+        "colors": {
+            "title": "Jakie jest znaczenie kolorów?",
+            "description": "Każdy color oznacza wiek uwagi",
+            "darkgreen": "Ciemnozielony",
+            "green": "Zielony",
+            "amber": "Bursztynowy",
+            "orange": "Pomarańczowy",
+            "red": "Czerwony",
+            "descriptions": {
+                "darkgreen": "Pomiędzy sekundą i dobą",
+                "green": "Pomiędzy jednym i 31 dniami",
+                "amber": "Pomiędzy 6 miesięcy i rok",
+                "orange": "Pomiędzy rok i dwa lata",
+                "red": "Dwa lub więcej lat",
+                "lime": "Pomiędzy jednym i sześcioma miesiącami"
+            },
+            "lime": "Limonkowy"
+        },
+        "multipleUsers": {
+            "title": "Czy jest możliwe szukanie wielu użytkowników naraz?",
+            "description": "!HTML! Tak, użyj przecinka do oddzielenia użytkowników.<br>\nPodczas szukania autora uwagi, zostaną znalezione uwagi stworzone przez dowolnego z użytkowników wpisanych.<br>\nSzukając użytkowników uwagi, zostaną znalezione wszystkie uwagi, gdzie wszyscy użytkownicy wpisani komentowali."
+        },
+        "excludingUsers": {
+            "title": "Czy jest możliwe pominięcie niektórych użytkowników?",
+            "description": "!HTML! Tak, za pomocą napisania <kbd>NOT</kbd> lub <kbd>-</kbd> przed nazwą użytkownika.<br>\nJest także możliwe wyfiltrowanie wielu użytkowników za pomocą odzielenia ich przecinkami."
+        }
+    },
+    "action": {
+        "cancel": "Anuluj",
+        "close": "Zamknij",
+        "copyLinkSuccess": "Udało się skopiować link",
+        "save": "Zapisz",
+        "search": "Szukaj",
+        "more": "Więcej",
+        "openstreetmap": "OpenStreetMap",
+        "edit": {
+            "id": "iD",
+            "josm": "JOSM",
+            "level0": "Level0"
+        },
+        "login": "Logowanie",
+        "logout": "Wylogowanie",
+        "comment": "Komentuj",
+        "commentClose": "Komentuj i zamknij uwagę",
+        "commentReopen": "Otwórz ponownie i komentuj",
+        "mapillary": "Mapillary",
+        "report": "Zgłoś uwagę",
+        "filter": "Filtruj",
+        "refresh": "Odśwież",
+        "reset": "Resetuj",
+        "center": "Wyśrodkuj mapę do wyników",
+        "deepl": "Deepl"
+    },
+    "header": {
+        "share": "Udostępnij",
+        "faq": "Najcześciej zadawane pytania (FAQ)",
+        "about": "O projekcie",
+        "settings": "Ustawienia",
+        "query": "Zapytanie",
+        "limit": "Limit",
+        "user": "Użytkownik",
+        "from": "Od",
+        "to": "Do",
+        "sort": "Sortuj po",
+        "status": "Status",
+        "anonymous": "Anonimowe uwagi",
+        "area": "Szukaj w obszarze",
+        "commented": "Komentowane uwagi",
+        "author": "Autor"
+    },
+    "description": {
+        "share": "Skopiuj ten link, aby udostępnij aktualne zapytanie:",
+        "startQuery": "Zacznij zapytanie po otwarciu linku",
+        "shareView": "Udostępnij aktualny widok mapy",
+        "showList": "Pokaż na liście",
+        "showMap": "Pokaż na mapie",
+        "nothingFound": "Nic nie znaleziono!",
+        "autoLimit": "Automatycznie ustawiono limit 250, bo większe wartości nie są dozwolone",
+        "deprecationWarning": "Przeglądarka, którą obecnie używasz nie wspiera NotesReview. Proszę rozważ zmianę przeglądarki, aby móc używać NotesReview.",
+        "sort": {
+            "created": {
+                "desc": "Najnowsze",
+                "asc": "Najstarsze"
+            },
+            "updated": {
+                "desc": "Niedawno aktualizowane",
+                "asc": "Najdawniej aktualizowane"
+            }
+        },
+        "query": "Wyraz lub fraza zawarta w uwadze",
+        "status": {
+            "all": "Wszystkie",
+            "open": "Otwarte",
+            "closed": "Zamknięte"
+        },
+        "anonymous": {
+            "include": "Uwzględnij",
+            "hide": "Schowaj",
+            "only": "Tylko"
+        },
+        "statistics": "Znaleziono %s uwag",
+        "from": "Data (UTC) jako dolne ograniczenie",
+        "to": "Data (UTC) jako górne ograniczenie",
+        "area": {
+            "global": "Globalnie",
+            "view": "W aktualnym widoku",
+            "custom": "W wybranym obszarze"
+        },
+        "commented": {
+            "include": "Uwzględnij",
+            "hide": "Schowaj",
+            "only": "Tylko"
+        },
+        "author": "Autor to użytkownik, który stworzył uwagę",
+        "user": "Użytkownik to dowolna osoba, która komentowała uwagę\n(także autor)",
+        "customArea": "Wybierz kraje klikając na nich lub narysuj kształt za pomocą paska narzędzi po lewej"
+    },
+    "settings": {
+        "choose": "Wybierz opcję",
+        "theme": {
+            "title": "Wybierz motyw",
+            "light": "Jasny",
+            "dark": "Ciemny",
+            "system": "Użyj ustawień systemu"
+        },
+        "tools": {
+            "title": "Narzędzia",
+            "description": "Wybierz swoje ulubione narzędzie(a)",
+            "editors": "Edytory",
+            "other": "Inne"
+        }
+    },
+    "note": {
+        "anonymous": "anonimowa",
+        "comment": "1 komentarz",
+        "comments": "%s komentarzy",
+        "action": {
+            "opened": "Utworzono uwagę",
+            "closed": "Zamknięto uwagę",
+            "reopened": "Otwarto uwagę ponownie"
+        },
+        "unknown": "Nieznany użytkownik"
+    },
+    "map": {
+        "attribution": "&copy; autorzy <a href=\"https://osm.org/copyright\">OpenStreetMap</a>, &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
+    },
+    "comments": {
+        "inputPlaceholder": "Napisz komentarz dla wszystkich użytkowników"
+    },
+    "accessibility": {
+        "openFaq": "Otwórz najczęściej zadawane pytania",
+        "openSettings": "Otwórz ustawienia",
+        "shareQuery": "Udostępnij aktualne zapytanie",
+        "filter": "Zaaplikuj filtr do zaznaczenia"
+    },
+    "mapillary": {
+        "empty": {
+            "add": "Dodaj zdjęcia tego miejsca",
+            "title": "Nie ma jeszcze zdjęć tego miejsca",
+            "subtitle": "Możesz pomóc innych mapującym dzięki udostępnieniu zdjęć z poziomu ulicy do Mapillary."
+        }
+    },
+    "user": {
+        "created": "Użytkownik od %s"
+    },
+    "about": {
+        "description": "!HTML! NotesReview to projekt otwartoźródłowy. Aktualnie korzystasz z wersji {{version}}. Kod źródłowy dostępny jest na <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\" rel=\"noopener\">Githubie</a>.",
+        "contribution": "!HTML! Możesz pomóc w rozwoju projektu <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">tłumacząc</a> lub <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">zgłaszając błędy</a>.",
+        "author": "!HTML! Stworzone z ❤️ przez <a href=\"mailto:info.ent8r@gmail.com\">ENT8R</a>",
+        "donate": "Darowizna"
+    },
+    "error": {
+        "login": "Logowanie się nie powiodło, spróbuj ponownie później",
+        "comment": "Wysyłanie komentarza się nie powiodło, spróbuj ponownie później"
+    }
+}

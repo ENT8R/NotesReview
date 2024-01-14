@@ -17,6 +17,14 @@
                 "lime": "Da uno a sei mesi"
             },
             "lime": "Lime"
+        },
+        "multipleUsers": {
+            "title": "E possibile cercare più di un utente?",
+            "description": "!HTML! Sì, usa una virgola per separare ogni utente.<br>\nQuando cerchi l'autore di una nota, il programma cercherà di trovare le note aperte dagli utenti indicati.<br>\nQuando cerchi gli utenti di una nota, il programma cercherà le note che gli utenti indicati hanno commentato."
+        },
+        "excludingUsers": {
+            "title": "È possibile escludere determinati utenti?",
+            "description": "!HTML! Sì, scrivendo <kbd>NOT</kbd> o <kbd>-</kbd> prima dell'utente da escludere.<br>\nÈ anche possibile escludere più di un utente separando ciascun utente con una virgola."
         }
     },
     "action": {
@@ -42,7 +50,8 @@
         "filter": "Filtra",
         "refresh": "Aggiorna",
         "reset": "Reimposta",
-        "center": "Centra la mappa sui risultati"
+        "center": "Centra la mappa sui risultati",
+        "deepl": "Deepl"
     },
     "header": {
         "share": "Condividi",
@@ -105,7 +114,8 @@
             "only": "Solo"
         },
         "author": "L'autore è l'utente che ha creato la nota",
-        "user": "Un utente è qualsiasi utente che abbia commentato la nota\n(incluso l'autore)"
+        "user": "Un utente è qualsiasi utente che abbia commentato la nota\n(incluso l'autore)",
+        "customArea": "Seleziona gli Stati cliccando su di essi o disegna una forma utilizzando la barra strumenti sulla sinistra"
     },
     "settings": {
         "choose": "Scegli un’opzione",
