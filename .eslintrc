@@ -12,8 +12,8 @@
       "__VERSION__": "readonly",
       "NOTESREVIEW_API_URL": "readonly",
       "OPENSTREETMAP_SERVER": "readonly",
-      "OPENSTREETMAP_OAUTH_KEY": "readonly",
-      "OPENSTREETMAP_OAUTH_SECRET": "readonly",
+      "OPENSTREETMAP_OAUTH_CLIENT_ID": "readonly",
+      "OPENSTREETMAP_OAUTH_CLIENT_SECRET": "readonly",
       "MAPILLARY_CLIENT_ID": "readonly"
     },
     "extends": ["eslint:recommended"],

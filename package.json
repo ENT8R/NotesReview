@@ -29,7 +29,7 @@
     "leaflet-control-geocoder": "^2.4.0",
     "leaflet-draw": "^1.0.4",
     "leaflet.markercluster": "^1.5.3",
-    "osm-auth": "^1.1.2",
+    "osm-auth": "^2.0.0",
     "pbf": "^3.2.1",
     "relative-time-format": "^1.1.6",
     "spectre.css": "^0.5.9"
