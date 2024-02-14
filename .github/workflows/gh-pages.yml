@@ -24,8 +24,8 @@ jobs:
         with:
           notesreview-api-url: ${{ secrets.NOTESREVIEW_API_URL }}
           openstreetmap-server: ${{ secrets.OPENSTREETMAP_SERVER }}
-          openstreetmap-oauth-key: ${{ secrets.OPENSTREETMAP_OAUTH_KEY }}
-          openstreetmap-oauth-secret: ${{ secrets.OPENSTREETMAP_OAUTH_SECRET }}
+          openstreetmap-oauth-client-id: ${{ secrets.OPENSTREETMAP_OAUTH_CLIENT_ID }}
+          openstreetmap-oauth-client-secret: ${{ secrets.OPENSTREETMAP_OAUTH_CLIENT_SECRET }}
           mapillary-client-id: ${{ secrets.MAPILLARY_CLIENT_ID }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1

@@ -5,10 +5,10 @@ inputs:
     description: 'The URL of the NotesReview API'
   openstreetmap-server:
     description: 'The URL of the OpenStreetMap server'
-  openstreetmap-oauth-key:
-    description: 'The OpenStreetMap OAuth key'
-  openstreetmap-oauth-secret:
-    description: 'The OpenStreetMap OAuth secret'
+  openstreetmap-oauth-client-id:
+    description: 'The OpenStreetMap OAuth client id'
+  openstreetmap-oauth-client-secret:
+    description: 'The OpenStreetMap OAuth client secret'
   mapillary-client-id:
     description: 'The Mapillary client id'
 
@@ -21,8 +21,8 @@ runs:
       env:
         NOTESREVIEW_API_URL: ${{ inputs.notesreview-api-url }}
         OPENSTREETMAP_SERVER: ${{ inputs.openstreetmap-server }}
-        OPENSTREETMAP_OAUTH_KEY: ${{ inputs.openstreetmap-oauth-key }}
-        OPENSTREETMAP_OAUTH_SECRET: ${{ inputs.openstreetmap-oauth-secret }}
+        OPENSTREETMAP_OAUTH_CLIENT_ID: ${{ inputs.openstreetmap-oauth-client-id }}
+        OPENSTREETMAP_OAUTH_CLIENT_SECRET: ${{ inputs.openstreetmap-oauth-client-secret }}
         MAPILLARY_CLIENT_ID: ${{ inputs.mapillary-client-id }}
       run: |
         npm ci
