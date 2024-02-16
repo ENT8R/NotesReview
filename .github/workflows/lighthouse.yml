@@ -12,20 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Build
         uses: ./.github/actions/build
         with:
           notesreview-api-url: ${{ secrets.NOTESREVIEW_API_URL }}
       - name: Lighthouse CI
         run: |
-          npm install -g @lhci/cli@0.12.x
+          npm install -g @lhci/cli@0.13.x
           lhci autorun --config=".github/lighthouse/lighthouserc.json"
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: lighthouse-results
           path: .lighthouseci/*.html
