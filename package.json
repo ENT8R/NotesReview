@@ -23,7 +23,6 @@
     "@rapideditor/country-coder": "^5.2.2",
     "@rapideditor/location-conflation": "^1.3.0",
     "@webcomponents/custom-elements": "^1.6.0",
-    "abortcontroller-polyfill": "^1.7.5",
     "anchorme": "^2.1.2",
     "leaflet": "^1.9.4",
     "leaflet-control-geocoder": "^2.4.0",
