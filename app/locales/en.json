@@ -51,7 +51,8 @@
         "refresh": "Refresh",
         "reset": "Reset",
         "center": "Center map to results",
-        "deepl": "Deepl"
+        "deepl": "Deepl",
+        "download": "Download data (.json)"
     },
     "header": {
         "share": "Share",

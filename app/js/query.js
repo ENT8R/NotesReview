@@ -94,6 +94,7 @@ export default class Query {
     this.data = {};
     this.history = [];
     this.controller = null;
+    this.result = null;
 
     this.input = [{
       id: 'query',
@@ -588,6 +589,8 @@ export default class Query {
       data: this.data,
       url: this.url
     });
+
+    this.result = result;
 
     // Set the information that the query changed to false, because the request was just done moments ago
     document.body.dataset.queryChanged = false;
