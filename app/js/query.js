@@ -506,11 +506,17 @@ export default class Query {
     delete data.order;
 
     // Shapes of countries does not need to be included if the list of selected countries is already known
-    if (data.countries !== '') {
+    if (data.countries !== null) {
       delete data.polygon;
     }
 
-    if (!document.getElementById('show-map').checked) {
+    // Remove the selected shape if the user does not want to add it
+    if (!document.getElementById('share-polygon').checked) {
+      delete data.polygon;
+    }
+
+    // Remove the current position of the map if the user does not want to add it
+    if (!document.getElementById('share-map').checked) {
       delete data.map;
     }
 
