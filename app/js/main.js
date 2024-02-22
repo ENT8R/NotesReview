@@ -41,10 +41,15 @@ const api = new API();
   * @private
   * @returns {void}
   */
-async function search() {
+function search() {
   document.getElementById('preloader').classList.remove('d-hide');
-  const notes = await query.search();
-  ui.show(Array.from(notes), query).then(details).finally(() => {
+  query.search().then(notes => {
+    ui.show(Array.from(notes), query).then(details);
+  }).catch(error => {
+    if (error.name === 'TimeoutError') {
+      new Toast(Localizer.message('error.queryTimeout'), 'toast-error').show(Toast.DURATION_LONG);
+    }
+  }).finally(() => {
     document.getElementById('preloader').classList.add('d-hide');
   });
 }

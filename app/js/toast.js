@@ -1,6 +1,10 @@
 import { wait } from './util.js';
 
 export default class Toast {
+  static DURATION_SHORT = 2000;
+  static DURATION_DEFAULT = 4000;
+  static DURATION_LONG = 8000;
+
   /**
     * Initialize a small toast notification with the given message
     *
@@ -34,7 +38,7 @@ export default class Toast {
     */
   async show(duration) {
     this.container.appendChild(this.toast);
-    await wait(duration || 4000);
+    await wait(duration || Toast.DURATION_DEFAULT);
     if (this.container.contains(this.toast)) {
       this.container.removeChild(this.toast);
     }
