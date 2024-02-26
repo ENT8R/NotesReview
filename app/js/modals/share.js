@@ -1,5 +1,6 @@
 import * as Localizer from '../localizer.js';
 import Modal from './modal.js';
+import { AREA } from '../query.js';
 import Toast from '../toast.js';
 
 export default class Share extends Modal {
@@ -21,6 +22,11 @@ export default class Share extends Modal {
         type: 'application/json',
       }));
       document.getElementById('download').download = `NotesReview-${query.history[query.history.length - 1].time.toISOString()}.json`;
+
+      // Only show the checkbox for adding the polygon shape if it would have an effect
+      // (i.e. a custom area is used, no countries are selected but something was drawn on the map)
+      document.getElementById('share-polygon-checkbox').style.display =
+        (query.data.area === AREA.CUSTOM && query.data.countries === null && query.data.polygon !== null) ? 'block' : 'none';
     });
 
     // Update links if a parameter changed

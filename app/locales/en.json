@@ -117,7 +117,7 @@
         "author": "The author is the user who created the note",
         "user": "A user is any user who left a comment on the note\n(including the author)",
         "customArea": "Select countries by clicking on them or draw a custom shape using the toolbar on the left",
-        "sharePolygon": "Share shape for custom area selection (may be unreadable)"
+        "sharePolygon": "Share shape for custom area selection"
     },
     "settings": {
         "choose": "Choose an option",

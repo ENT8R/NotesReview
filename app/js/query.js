@@ -25,7 +25,7 @@ const COMMENTED = {
   ONLY: 'only'
 };
 
-const AREA = {
+export const AREA = {
   GLOBAL: 'global',
   VIEW: 'view',
   CUSTOM: 'custom'
