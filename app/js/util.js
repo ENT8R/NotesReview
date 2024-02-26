@@ -252,6 +252,7 @@ export class Line {
   * {@link https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm}
   * {@link https://karthaus.nl/rdp/}
   * {@link https://github.com/seabre/simplify-geometry}
+  * {@link https://dyn4j.org/2021/06/2021-06-10-simple-polygon-simplification/}
   *
   * @function
   * @param {Array} points
@@ -289,25 +290,29 @@ export function rdp(points, epsilon) {
 
 /**
   * Simplifies a GeoJSON polygon or multipolygon with a given tolerance
+  * and prevents polygons from disappearing if too much has been simplified
   *
   * @function
   * @param {Object} feature
   * @param {Number} tolerance
+  * @param {Boolean} keepShapes
   * @returns {String}
   */
-export function simplify(feature, tolerance=0.01) {
+export function simplify(feature, tolerance=0.01, keepShapes=true) {
   const { geometry } = feature;
   const { type } = geometry;
   if (type === 'LineString') {
     geometry.coordinates = rdp(geometry.coordinates, tolerance);
   } else if (type === 'Polygon' || type === 'MultiLineString') {
     for (let i = 0; i < geometry.coordinates.length; i++) {
-      geometry.coordinates[i] = rdp(geometry.coordinates[i], tolerance);
+      const simplification = rdp(geometry.coordinates[i], tolerance);
+      geometry.coordinates[i] = keepShapes && simplification.length < 3 ? geometry.coordinates[i] : simplification;
     }
   } else if (type === 'MultiPolygon') {
     for (let i = 0; i < geometry.coordinates.length; i++) {
       for (let j = 0; j < geometry.coordinates[i].length; j++) {
-        geometry.coordinates[i][j] = rdp(geometry.coordinates[i][j], tolerance);
+        const simplification = rdp(geometry.coordinates[i][j], tolerance);
+        geometry.coordinates[i][j] = keepShapes && simplification.length < 3 ? geometry.coordinates[i][j] : simplification;
       }
     }
   }
