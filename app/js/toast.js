@@ -1,4 +1,4 @@
-import { wait } from './util.js';
+import { wait, waitForFocus } from './util.js';
 
 export default class Toast {
   static DURATION_SHORT = 2000;
@@ -38,6 +38,7 @@ export default class Toast {
     */
   async show(duration) {
     this.container.appendChild(this.toast);
+    await waitForFocus();
     await wait(duration || Toast.DURATION_DEFAULT);
     if (this.container.contains(this.toast)) {
       this.container.removeChild(this.toast);

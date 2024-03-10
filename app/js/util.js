@@ -335,6 +335,28 @@ export function wait(time) {
 }
 
 /**
+  * Wait for the window to be shown and return if that is the case
+  *
+  * @function
+  * @returns {Promise}
+  */
+export function waitForFocus() {
+  return new Promise(resolve => {
+    if (document.visibilityState === 'visible') {
+      return resolve();
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        resolve();
+      }
+    }, {
+      once : true
+    });
+  });
+}
+
+/**
   * Splits an array into parts of equal size
   *
   * @function
