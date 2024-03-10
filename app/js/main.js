@@ -171,18 +171,23 @@ function listener() {
 
   window.addEventListener('beforeunload', () => {
     // Remove the iframe in order to prevent a restoring of the content when reloading the page
+    // which effectively leads to JOSM loading the content again
     document.getElementById('remote').remove();
+  });
 
-    // Save the current state of the map and query which will be restored when visiting the page again
-    const center = map.center();
-    Preferences.set({
-      view: ui.view,
-      map: {
-        center: [center.lat, center.lng],
-        zoom: map.zoom()
-      },
-      query: query.data
-    });
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      // Save the current state of the map and query which will be restored when visiting the page again
+      const center = map.center();
+      Preferences.set({
+        view: ui.view,
+        map: {
+          center: [center.lat, center.lng],
+          zoom: map.zoom()
+        },
+        query: query.data
+      });
+    }
   });
 
   // Dynamic listeners
