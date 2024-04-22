@@ -1,3 +1,4 @@
+import * as Localizer from './localizer.js';
 import { wait, waitForFocus } from './util.js';
 
 export default class Toast {
@@ -21,6 +22,7 @@ export default class Toast {
     // Add a close button
     this.close = document.createElement('button');
     this.close.classList.add('btn', 'btn-clear', 'float-right');
+    this.close.setAttribute('aria-label', Localizer.message('accessibility.closeNotification'));
     this.close.addEventListener('click', () => {
       this.container.removeChild(this.toast);
     });

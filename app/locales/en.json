@@ -155,7 +155,8 @@
         "openFaq": "Open frequently asked questions",
         "openSettings": "Open settings",
         "shareQuery": "Share the current query",
-        "filter": "Apply a filter to the selection"
+        "filter": "Apply a filter to the selection",
+        "closeNotification": "Close notification"
     },
     "mapillary": {
         "empty": {
