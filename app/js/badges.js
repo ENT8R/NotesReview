@@ -58,7 +58,7 @@ export function country(coordinates) {
   for (const codePoint of feature.properties.emojiFlag) {
     emoji.push(codePoint.codePointAt(0).toString(16));
   }
-  const url = `https://twemoji.maxcdn.com/v/latest/svg/${emoji.join('-')}.svg`;
+  const url = `https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/${emoji.join('-')}.svg`;
   return `<span><img class="country-flag" src="${url}" height="24" width="24"></span>`;
 }
 
