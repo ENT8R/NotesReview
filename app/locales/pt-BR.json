@@ -17,6 +17,14 @@
                 "lime": "Entre um e seis meses"
             },
             "lime": "Lima"
+        },
+        "multipleUsers": {
+            "title": "É possível buscar múltiplos usuários?",
+            "description": "!HTML! Sim, usando uma vírgula para separar cada usuário.<br>\nAo pesquisar o autor de uma nota, ele tentará encontrar as notas que foram abertas por qualquer um dos usuários indicados.<br>\nAo pesquisar os usuários de uma nota, ele tentará encontrar as notas que todos os usuários comentaram."
+        },
+        "excludingUsers": {
+            "title": "É possível excluir certos usuários?",
+            "description": "!HTML! Sim, escrevendo <kbd>NOT</kbd> ou <kbd>-</kbd> na frente do usuário a ser excluído.<br>\nTambém é possível excluir vários usuários separando cada usuário com uma vírgula."
         }
     },
     "action": {
@@ -42,21 +50,26 @@
         "filter": "Filtro",
         "refresh": "Recarregar",
         "reset": "Redefinir",
-        "center": "Centralizar o mapa para resultados"
+        "center": "Centralizar o mapa nos resultados",
+        "deepl": "DeepL",
+        "download": "Baixar dados (.json)"
     },
     "header": {
         "share": "Compartilhar",
-        "faq": "FAQ",
+        "faq": "Perguntas frequentes",
         "about": "Sobre",
         "settings": "Configurações",
-        "query": "Inquerir",
+        "query": "Consulta",
         "limit": "Limite",
         "user": "Usuário",
         "from": "De",
         "to": "Para",
         "sort": "Ordenar por",
-        "status": "Status",
-        "anonymous": "Notas anônimas"
+        "status": "Estado",
+        "anonymous": "Notas anônimas",
+        "area": "Área de busca",
+        "commented": "Notas comentadas",
+        "author": "Autor"
     },
     "description": {
         "share": "Copiar este link para compartilhar a consulta atual:",
@@ -70,7 +83,7 @@
         "sort": {
             "created": {
                 "desc": "Mais recente",
-                "asc": "Mais velho"
+                "asc": "Mais antigo"
             },
             "updated": {
                 "desc": "Atualizado recentemente",
@@ -79,7 +92,7 @@
         },
         "query": "Uma palavra ou frase mencionada na nota",
         "status": {
-            "all": "Tudo",
+            "all": "Todas",
             "open": "Abertas",
             "closed": "Fechadas"
         },
@@ -88,9 +101,23 @@
             "hide": "Ocultar",
             "only": "Apenas"
         },
-        "statistics": "%s Notas encontradas",
+        "statistics": "%s notas encontradas",
         "from": "Uma data (UTC) como limite inferior",
-        "to": "Uma data (UTC) como limite superior"
+        "to": "Uma data (UTC) como limite superior",
+        "area": {
+            "global": "Global",
+            "view": "Vista atual",
+            "custom": "Área personalizada"
+        },
+        "commented": {
+            "include": "Incluir",
+            "hide": "Ocultar",
+            "only": "Apenas"
+        },
+        "author": "O autor é o usuário que criou a nota",
+        "user": "Um usuário é qualquer usuário que deixou um comentário na nota\n(incluindo o autor)",
+        "customArea": "Selecione os países clicando neles ou desenhe uma forma personalizada usando a barra de ferramentas à esquerda",
+        "sharePolygon": "Compartilhar forma para seleção de área personalizada"
     },
     "settings": {
         "choose": "Escolher uma opção",
@@ -142,12 +169,13 @@
     },
     "about": {
         "description": "!HTML! NotesReview é um projeto de código aberto. Você está usando a versão {{version}}. O código-fonte está disponível em <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\" rel=\"noopener\">Github</a>.",
-        "contribution": "!HTML! Você pode apoiar o projeto <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">traduzir</a> isso ou <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">reportar problemas</a>.",
+        "contribution": "!HTML! Você pode apoiar o projeto <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">traduzindo</a> isso ou <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">reportando problemas</a>.",
         "author": "!HTML! Feito com ❤️ por <a href=\"mailto:info.ent8r@gmail.com\">ENT8R</a>",
         "donate": "Doar"
     },
     "error": {
         "login": "O login falhou, por favor tente novamente mais tarde",
-        "comment": "O comentário falhou, tente novamente mais tarde"
+        "comment": "O comentário falhou, tente novamente mais tarde",
+        "queryTimeout": "Tempo esgotado, a consulta é muito complexa"
     }
 }

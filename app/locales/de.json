@@ -51,7 +51,8 @@
         "refresh": "Aktualisieren",
         "reset": "Zurücksetzen",
         "center": "Karte auf Ergebnisse zentrieren",
-        "deepl": "Deepl"
+        "deepl": "Deepl",
+        "download": "Daten herunterladen (.json)"
     },
     "header": {
         "share": "Teilen",
@@ -115,7 +116,8 @@
         },
         "author": "Der Verfasser ist der Benutzer, der die Notiz erstellt hat",
         "user": "Ein Benutzer ist jeder Nutzer, der einen Kommentar hinterlassen hat\n(einschließlich des Verfassers)",
-        "customArea": "Wähle Länder durch Klicken aus, oder zeichne eine eigene Form mit Hilfe der Symbolleiste auf der linken Seite"
+        "customArea": "Wähle Länder durch Klicken aus, oder zeichne eine eigene Form mit Hilfe der Symbolleiste auf der linken Seite",
+        "sharePolygon": "Benutzerdefinierte Bereichsauswahl mitgeben"
     },
     "settings": {
         "choose": "Wähle eine Option",
@@ -173,6 +175,7 @@
     },
     "error": {
         "login": "Anmeldung fehlgeschlagen, bitte versuche es später erneut",
-        "comment": "Kommentieren fehlgeschlagen, bitte versuche es später erneut"
+        "comment": "Kommentieren fehlgeschlagen, bitte versuche es später erneut",
+        "queryTimeout": "Zeitüberschreitung, Abfrage ist zu komplex"
     }
 }

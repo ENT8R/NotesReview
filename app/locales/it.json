@@ -51,7 +51,8 @@
         "refresh": "Aggiorna",
         "reset": "Reimposta",
         "center": "Centra la mappa sui risultati",
-        "deepl": "Deepl"
+        "deepl": "Deepl",
+        "download": "Scarica dati (.json)"
     },
     "header": {
         "share": "Condividi",
@@ -115,7 +116,8 @@
         },
         "author": "L'autore è l'utente che ha creato la nota",
         "user": "Un utente è qualsiasi utente che abbia commentato la nota\n(incluso l'autore)",
-        "customArea": "Seleziona gli Stati cliccando su di essi o disegna una forma utilizzando la barra strumenti sulla sinistra"
+        "customArea": "Seleziona gli Stati cliccando su di essi o disegna una forma utilizzando la barra strumenti sulla sinistra",
+        "sharePolygon": "Condividi forma dell'area attualmente selezionata"
     },
     "settings": {
         "choose": "Scegli un’opzione",
@@ -173,6 +175,7 @@
     },
     "error": {
         "login": "Accesso fallito, riprovare più tardi",
-        "comment": "Invio del commento fallito, riprovare più tardi"
+        "comment": "Invio del commento fallito, riprovare più tardi",
+        "queryTimeout": "Timeout, query troppo complessa"
     }
 }
