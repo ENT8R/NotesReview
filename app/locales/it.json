@@ -38,7 +38,8 @@
         "edit": {
             "id": "iD",
             "josm": "JOSM",
-            "level0": "Level0"
+            "level0": "Level0",
+            "rapid": "Rapid"
         },
         "login": "Accedi",
         "logout": "Esci",
@@ -155,7 +156,8 @@
         "openFaq": "Accedi alle domande più frequenti",
         "openSettings": "Apri impostazioni",
         "shareQuery": "Condividi la richiesta corrente",
-        "filter": "Applica filtro alla selezione"
+        "filter": "Applica filtro alla selezione",
+        "closeNotification": "Chiudi notifica"
     },
     "mapillary": {
         "empty": {

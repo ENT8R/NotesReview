@@ -38,7 +38,8 @@
         "edit": {
             "id": "iD",
             "josm": "JOSM",
-            "level0": "Level0"
+            "level0": "Level0",
+            "rapid": "Rapid"
         },
         "login": "登入",
         "logout": "登出",
@@ -51,7 +52,8 @@
         "refresh": "重新整理",
         "reset": "重設",
         "center": "置中地圖到結果",
-        "deepl": "Deepl"
+        "deepl": "Deepl",
+        "download": "下載資料 (.json)"
     },
     "header": {
         "share": "分享",
@@ -115,7 +117,8 @@
         },
         "author": "作者是新增加註解的使用者",
         "user": "使用者是任何留言在註解的使用者\n(包括作者)",
-        "customArea": "點按國家，或是用左側工具欄繪製客製化形狀來選取國家"
+        "customArea": "點按國家，或是用左側工具欄繪製客製化形狀來選取國家",
+        "sharePolygon": "分享客製化區域的選擇"
     },
     "settings": {
         "choose": "選擇選項",
@@ -153,7 +156,8 @@
         "openFaq": "開啟常見問題",
         "openSettings": "開啟設定",
         "shareQuery": "分享目前檢索",
-        "filter": "替選取套用過濾器"
+        "filter": "替選取套用過濾器",
+        "closeNotification": "關閉通知"
     },
     "mapillary": {
         "empty": {
@@ -173,6 +177,7 @@
     },
     "error": {
         "login": "無法登入，請再試一次",
-        "comment": "無法評論，請再試一次"
+        "comment": "無法評論，請再試一次",
+        "queryTimeout": "時間已到，檢索方式太複雜了"
     }
 }
