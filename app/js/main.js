@@ -130,6 +130,7 @@ function listener() {
         theme: document.getElementById('theme-selection').value,
         editors: {
           id: document.getElementById('editor-id').checked,
+          rapid: document.getElementById('editor-rapid').checked,
           josm: document.getElementById('editor-josm').checked,
           level0: document.getElementById('editor-level0').checked
         },
@@ -235,6 +236,7 @@ function settings() {
   const tools = Preferences.get('tools');
 
   document.getElementById('editor-id').checked = editors.id;
+  document.getElementById('editor-rapid').checked = editors.rapid;
   document.getElementById('editor-josm').checked = editors.josm;
   document.getElementById('editor-level0').checked = editors.level0;
   document.getElementById('tool-openstreetmap').checked = tools.openstreetmap;
@@ -242,6 +244,7 @@ function settings() {
   document.getElementById('tool-deepl').checked = tools.deepl;
 
   document.body.dataset.editorId = editors.id;
+  document.body.dataset.editorRapid = editors.rapid;
   document.body.dataset.editorJosm = editors.josm;
   document.body.dataset.editorLevel0 = editors.level0;
   document.body.dataset.toolOpenstreetmap = tools.openstreetmap;

@@ -38,7 +38,8 @@
         "edit": {
             "id": "iD",
             "josm": "JOSM",
-            "level0": "Level0"
+            "level0": "Level0",
+            "rapid": "Rapid"
         },
         "login": "Login",
         "logout": "Logout",

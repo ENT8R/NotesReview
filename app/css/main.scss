@@ -17,6 +17,7 @@ html, body {
 
 body {
   &[data-editor-id="false"] .link-editor-id,
+  &[data-editor-rapid="false"] .link-editor-rapid,
   &[data-editor-josm="false"] .link-editor-josm,
   &[data-editor-level0="false"] .link-editor-level0,
 

@@ -82,6 +82,12 @@ export default class Note {
         icon: 'external',
         text: Localizer.message('action.edit.id')
       },
+      rapid: {
+        class: 'link-editor-rapid',
+        link: `https://rapideditor.org/edit#map=19/${this.coordinates.join('/')}`,
+        icon: 'external',
+        text: Localizer.message('action.edit.rapid')
+      },
       josm: {
         class: 'link-editor-josm',
         link: `http://127.0.0.1:8111/load_and_zoom?left=${bbox.left}&bottom=${bbox.bottom}&right=${bbox.right}&top=${bbox.top}`,
@@ -120,6 +126,7 @@ export default class Note {
     if (this.linked) {
       const { id, type } = this.linked;
       actions.iD.link = `${OPENSTREETMAP_SERVER}/edit?editor=id&${type}=${id}`;
+      actions.rapid.link = `https://rapideditor.org/edit#id=${type.charAt(0)}${id}`;
       actions.josm.link += `&select=${type}${id}`;
       actions.level0.link = `http://level0.osmz.ru/?url=${type}/${id}&center=${this.coordinates.join()}`;
     }

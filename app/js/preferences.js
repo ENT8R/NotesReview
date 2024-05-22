@@ -15,6 +15,7 @@ const DEFAULTS = {
   },
   editors: {
     id: true,
+    rapid: false,
     josm: false,
     level0: true
   }
