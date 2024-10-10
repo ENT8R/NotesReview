@@ -2,7 +2,7 @@ import * as Localizer from '../localizer.js';
 import Modal from './modal.js';
 import * as Request from '../request.js';
 
-import tilebelt from '@mapbox/tilebelt';
+import * as tilebelt from '@mapbox/tilebelt';
 import { VectorTile } from '@mapbox/vector-tile';
 import Protobuf from 'pbf';
 
