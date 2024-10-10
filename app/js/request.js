@@ -71,7 +71,7 @@ function request(url, mediaType = MEDIA_TYPE.JSON, controller = new AbortControl
     }
   }).catch(error => {
     if (error.name === 'AbortError') {
-      console.log(`Aborted request while fetching file at ${url}: ${error}`);
+      console.log(`Aborted request while fetching file at ${url}: ${error}`); // eslint-disable-line no-console
     } else {
       console.log(`Error while fetching file at ${url}: ${error}`); // eslint-disable-line no-console
     }

@@ -277,8 +277,8 @@ function settings() {
   }
 
   if (import.meta.env.PROD) {
-    console.log = () => {};
-    console.error = () => {};
+    console.log = () => {}; // eslint-disable-line no-console
+    console.error = () => {}; // eslint-disable-line no-console
   }
 
   await import('@github/relative-time-element');
