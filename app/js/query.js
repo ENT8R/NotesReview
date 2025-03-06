@@ -278,21 +278,6 @@ export default class Query {
     return this;
   }
 
-
-
-  /**
-    * Whether the search should only return notes in the current bounding box
-    *
-    * @function
-    * @deprecated
-    * @param {Boolean} enabled
-    * @returns {Query}
-    */
-  applyBBox(enabled) {
-    this.data['apply-bbox'] = enabled;
-    return this;
-  }
-
   /**
     * Limit the amount of results
     *
