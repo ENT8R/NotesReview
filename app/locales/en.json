@@ -178,6 +178,7 @@
     "error": {
         "login": "Login failed, please try again later",
         "comment": "Commenting failed, please try again later",
-        "queryTimeout": "Timeout, query is too complex"
+        "queryTimeout": "Timeout, query is too complex",
+        "queryAbort": "Query cancelled, showing previous results"
     }
 }

@@ -68,6 +68,19 @@ const NOT_MODIFIABLE_BY_USER = [
   'bbox', 'countries', 'polygon', 'sort_by', 'order'
 ];
 
+export class AbortError extends Error {
+  /**
+   * Error class for aborted requests
+   *
+   * @constructor
+   * @param {...*} params
+   */
+  constructor(...params) {
+    super(...params);
+    this.name = 'AbortError';
+  }
+}
+
 export class TimeoutError extends Error {
   /**
    * Error class for timeout errors
@@ -572,7 +585,13 @@ export default class Query {
 
     this.controller = new AbortController();
     const result = await Request.post(url, Request.MEDIA_TYPE.JSON, this.controller, data);
+    const requestCancelled = this.controller.signal.aborted;
     this.controller = null;
+
+    // Throw an error if the request was cancelled by the user instead of returning an empty set of notes
+    if (requestCancelled) {
+      throw new AbortError();
+    }
 
     // Return as early as possible if there were no results
     if (!result || !result.length || result.length === 0) {

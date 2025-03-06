@@ -46,7 +46,9 @@ function search() {
   query.search().then(notes => {
     ui.show(Array.from(notes), query).then(details);
   }).catch(error => {
-    if (error.name === 'TimeoutError') {
+    if (error.name === 'AbortError') {
+      new Toast(Localizer.message('error.queryAbort'), 'toast-warning').show(Toast.DURATION_LONG);
+    } else if (error.name === 'TimeoutError') {
       new Toast(Localizer.message('error.queryTimeout'), 'toast-error').show(Toast.DURATION_LONG);
     }
   }).finally(() => {
