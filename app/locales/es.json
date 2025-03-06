@@ -17,6 +17,14 @@
                 "lime": "Entre uno y seis meses"
             },
             "lime": "Lima"
+        },
+        "multipleUsers": {
+            "title": "¿Es posible buscar múltiples usuarios?",
+            "description": "!HTML! Sí, utilizando una coma para separar cada usuario.<br> \nAl buscar el autor de una nota, intentará encontrar notas que hayan sido abiertas por cualquiera de los usuarios indicados.<br> \nAl buscar los usuarios de una nota, intentará encontrar notas en las que hayan realizado comentarios todos los usuarios indicados."
+        },
+        "excludingUsers": {
+            "title": "¿Es posible excluir a ciertos usuarios?",
+            "description": "!HTML! Sí, escribiendo <kbd>NOT</kbd> o <kbd>-</kbd> delante del usuario que se va a excluir.<br> \nTambién es posible excluir a varios usuarios separándolos con una coma."
         }
     },
     "action": {
@@ -30,7 +38,8 @@
         "edit": {
             "id": "iD",
             "josm": "JOSM",
-            "level0": "Level0"
+            "level0": "Level0",
+            "rapid": "Rapid"
         },
         "login": "Iniciar Sesión",
         "logout": "Cerrar Sesión",
@@ -42,7 +51,9 @@
         "filter": "Filtro",
         "refresh": "Actualizar",
         "reset": "Reset",
-        "center": "Centrar mapa en resultados"
+        "center": "Centrar mapa en resultados",
+        "deepl": "Deepl",
+        "download": "Descargar datos (.json)"
     },
     "header": {
         "share": "Compartir",
@@ -56,7 +67,10 @@
         "to": "A",
         "sort": "Ordenar por",
         "status": "Estado",
-        "anonymous": "Notas anónimas"
+        "anonymous": "Notas anónimas",
+        "area": "Área de búsqueda",
+        "commented": "Notas comentadas",
+        "author": "Autor"
     },
     "description": {
         "share": "Copia este enlace para compartir la consulta actual:",
@@ -90,7 +104,21 @@
         },
         "statistics": "Encontradas %s notas",
         "from": "Fecha (UTC) como límite inferior",
-        "to": "Fecha (UTC) como límite superior"
+        "to": "Fecha (UTC) como límite superior",
+        "area": {
+            "global": "Global",
+            "view": "Vista actual",
+            "custom": "Área personalizada"
+        },
+        "commented": {
+            "include": "Incluir",
+            "hide": "Esconder",
+            "only": "Sólo"
+        },
+        "author": "El autor es el usuario que creó la nota",
+        "user": "Un usuario es cualquier usuario que haya dejado un comentario en la nota\n(incluido el autor)",
+        "customArea": "Seleccione países haciendo clic en ellos o dibuje una forma personalizada usando la barra de herramientas de la izquierda",
+        "sharePolygon": "Compartir forma de selección de área personalizada"
     },
     "settings": {
         "choose": "Elegir una opción",
@@ -128,7 +156,8 @@
         "openFaq": "Abrir preguntas frecuentes",
         "openSettings": "Abrir ajustes",
         "shareQuery": "Compartir la consulta actual",
-        "filter": "Aplicar un filtro a la selección"
+        "filter": "Aplicar un filtro a la selección",
+        "closeNotification": "Cerrar Notificación"
     },
     "mapillary": {
         "empty": {
@@ -148,6 +177,7 @@
     },
     "error": {
         "login": "Error a iniciar sesión, vuelva a intentarlo más tarde",
-        "comment": "Error al comentar, vuelve a intentarlo más tarde."
+        "comment": "Error al comentar, vuelve a intentarlo más tarde.",
+        "queryTimeout": "Tiempo de espera agotado, la consulta es demasiado compleja"
     }
 }

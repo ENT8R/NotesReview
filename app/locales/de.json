@@ -178,6 +178,7 @@
     "error": {
         "login": "Anmeldung fehlgeschlagen, bitte versuche es später erneut",
         "comment": "Kommentieren fehlgeschlagen, bitte versuche es später erneut",
-        "queryTimeout": "Zeitüberschreitung, Abfrage ist zu komplex"
+        "queryTimeout": "Zeitüberschreitung, Abfrage ist zu komplex",
+        "queryAbort": "Suche wurde abgebrochen, vorherige Ergebnisse werden angezeigt"
     }
 }
