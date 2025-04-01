@@ -30,7 +30,15 @@ export default () => {
     root,
     define: globals,
     build: {
-      sourcemap: true
+      sourcemap: true,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            countryCoder: ['@rapideditor/country-coder', '@rapideditor/location-conflation'],
+            leaflet: ['leaflet', 'leaflet-control-geocoder', 'leaflet-draw', 'leaflet.markercluster'],
+          }
+        }
+      }
     },
     plugins: [
       handlebars({

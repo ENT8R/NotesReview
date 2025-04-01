@@ -1,3 +1,16 @@
+/* -------------------------------------------------------------------------- */
+import 'leaflet/dist/leaflet.css';
+import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
+import 'leaflet-draw/dist/leaflet.draw.css';
+import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+/* -------------------------------------------------------------------------- */
+import 'leaflet';
+import 'leaflet-control-geocoder';
+import 'leaflet-draw';
+import 'leaflet.markercluster';
+/* -------------------------------------------------------------------------- */
+
 import * as Localizer from './localizer.js';
 import * as Theme from './theme.js';
 
