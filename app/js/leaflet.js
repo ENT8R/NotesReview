@@ -101,7 +101,14 @@ export default class Leaflet {
         polyline: false,
         marker: false,
         circle: false,
-        circlemarker: false
+        circlemarker: false,
+
+        polygon: true,
+        rectangle: {
+          // TODO: Leaflet.draw v1.0.4 has a bug in the calculation of the area, disabling the area display makes it at least possible to draw a rectangle
+          // See https://github.com/Leaflet/Leaflet.draw/issues/1026 and https://github.com/ENT8R/NotesReview/issues/146
+          showArea: false
+        }
       },
       edit: false
     });
