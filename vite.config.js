@@ -13,7 +13,8 @@ structuredData.softwareVersion = version;
 export default () => {
   const root = resolve(__dirname, 'app');
   dotenv.config({
-    path: resolve(root, '.env')
+    path: resolve(root, '.env'),
+    quiet: true
   });
 
   const globals = {

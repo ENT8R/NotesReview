@@ -2,8 +2,8 @@
 # https://vitejs.dev/guide/build.html#browser-compatibility
 
 defaults
-chrome >= 87
-firefox >= 78
-edge >= 88
-safari >= 14
+chrome >= 107
+firefox >= 104
+edge >= 107
+safari >= 16
 not ie <= 11

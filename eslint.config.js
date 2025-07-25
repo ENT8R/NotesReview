@@ -2,12 +2,12 @@ import globals from 'globals';
 import js from '@eslint/js';
 import jsdoc from 'eslint-plugin-jsdoc';
 
-import stylisticJs from '@stylistic/eslint-plugin-js';
+import stylistic from '@stylistic/eslint-plugin';
 
 export default [
   js.configs.recommended, {
     plugins: {
-      '@stylistic/js': stylisticJs,
+      '@stylistic/js': stylistic,
       jsdoc: jsdoc
     },
     settings: {
@@ -38,10 +38,12 @@ export default [
       '@stylistic/js/semi-spacing': 'warn',
       '@stylistic/js/quotes': ['warn', 'single', {
         avoidEscape: true,
-        allowTemplateLiterals: false,
+        allowTemplateLiterals: 'never',
       }],
       '@stylistic/js/brace-style': 'error',
-      '@stylistic/js/indent': ['error', 2],
+      // TODO: SwitchCase should already be 0 by default (no indentation), but at least with v5.2.2 of @stylistic/eslint-plugin it complains by default if omitted,
+      // This should be tested if this is still the case with future versions and maybe remove the option if possible again (as according to documentation, this is already the default)
+      '@stylistic/js/indent': ['error', 2, { 'SwitchCase': 0 }],
 
       'no-eval': 'error',
       'no-implied-eval': 'error',
