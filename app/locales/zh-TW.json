@@ -178,6 +178,7 @@
     "error": {
         "login": "無法登入，請再試一次",
         "comment": "無法評論，請再試一次",
-        "queryTimeout": "時間已到，檢索方式太複雜了"
+        "queryTimeout": "時間已到，檢索方式太複雜了",
+        "queryAbort": "取消檢索，顯示先前的結果"
     }
 }

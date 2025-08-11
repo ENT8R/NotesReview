@@ -178,6 +178,7 @@
     "error": {
         "login": "Accesso fallito, riprovare più tardi",
         "comment": "Invio del commento fallito, riprovare più tardi",
-        "queryTimeout": "Timeout, query troppo complessa"
+        "queryTimeout": "Timeout, query troppo complessa",
+        "queryAbort": "Richiesta cancellata, mostro risultati precedenti"
     }
 }
