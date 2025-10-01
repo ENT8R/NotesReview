@@ -78,13 +78,13 @@ export default class Note {
       },
       iD: {
         class: 'link-editor-id',
-        link: `${OPENSTREETMAP_SERVER}/edit?editor=id#map=19/${this.coordinates.join('/')}`,
+        link: `${OPENSTREETMAP_SERVER}/edit?editor=id&note=${this.id}#map=19/${this.coordinates.join('/')}`,
         icon: 'external',
         text: Localizer.message('action.edit.id')
       },
       rapid: {
         class: 'link-editor-rapid',
-        link: `https://rapideditor.org/edit#map=19/${this.coordinates.join('/')}`,
+        link: `https://rapideditor.org/edit#map=19/${this.coordinates.join('/')}&note=${this.id}`,
         icon: 'external',
         text: Localizer.message('action.edit.rapid')
       },
