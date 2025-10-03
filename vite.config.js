@@ -50,7 +50,8 @@ export default () => {
         ],
         context: {
           structuredData: JSON.stringify(structuredData),
-          version
+          version,
+          api: process.env.NOTESREVIEW_API_URL
         }
       }),
       createSvgIconsPlugin({

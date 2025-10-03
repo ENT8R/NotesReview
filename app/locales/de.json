@@ -25,6 +25,10 @@
         "excludingUsers": {
             "title": "Ist es möglich Nutzer von der Suche auszuschließen?",
             "description": "!HTML! Ja, indem entweder <kbd>NOT</kbd> oder <kbd>-</kbd> vor den Nutzer gestellt wird, der ausgeschlossen werden soll.<br>\nEs ist ebenfalls möglich, mehrere Nutzer auszuschließen, indem diese mit einem Komma getrennt werden."
+        },
+        "outdatedNotes": {
+            "title": "Warum scheinen einige Notizen veraltet zu sein?",
+            "description": "!HTML! Die Notizen werden alle 5 Minuten mit der OpenStreetMap-API synchronisiert. Es kann trotzdem vorkommen, dass Notizen oder Kommentare, die von den Moderatoren ausgeblendet wurden, weiterhin in den Ergebnissen erscheinen.<br>\nDas liegt vor allem daran, dass die verwendete OpenStreetMap-API keine direkte Möglichkeit bietet, zu erfahren, welche Notizen und Kommentare von den Moderatoren ausgeblendet wurden. Aus diesem Grund wird der gesamte tägliche Notes-Dump in unregelmäßigen Abständen analysiert, um diese Anomalien zu finden und zu beheben.<br>\nWenn du wissen möchtest, wann die letzte manuelle Synchronisation mit dem Notes-Dump durchgeführt wurde, schaue auf der <a href=\"{{api}}/status\" target=\"_blank\" rel=\"noopener\">Statusseite</a> nach dem Wert von <code>last_import</code> (für Kommentare) oder <code>last_sync</code> (für Notizen)."
         }
     },
     "action": {

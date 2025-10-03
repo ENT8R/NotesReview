@@ -61,6 +61,20 @@
 
   <div class="divider"></div>
 
+  <h4 data-i18n="help.outdatedNotes.title">Why do some notes appear to be outdated?</h4>
+  <p data-i18n="help.outdatedNotes.description">
+    All notes are synchronized every 5 minutes with the OpenStreetMap API.
+    It can happen that notes or comments which have been hidden by the moderators still appear in the results.<br>
+
+    This is mainly due to the fact that the underlying API of OpenStreetMap does not directly offer the possibility to know which notes and comments have been hidden by moderators.
+    As a result, the complete daily notes dump is analyzed from time to time in irregular intervals in order to find and fix these anomalies.<br>
+
+    If you want to know the last time the manual synchronization was performed, take a look at the
+    <a href="{{api}}/status" target="_blank" rel="noopener">status page</a> with regard to the value of <code>last_import</code> (for comments) or <code>last_sync</code> (for notes).
+  </p>
+
+  <div class="divider"></div>
+
   <h2 class="text-center" data-i18n="header.about">About</h2>
   <p data-i18n="about.description">
     NotesReview is an open source project. You are currently using version {{version}}.
@@ -71,16 +85,16 @@
     it or by <a href="https://github.com/ENT8R/NotesReview/issues" target="_blank" rel="noopener">reporting bugs</a>.
   </p>
   <p class="text-center" data-i18n="about.author">
-    Made with ❤️ by <a href="mailto:info.ent8r@gmail.com">ENT8R</a>
+    Made with ❤️ by <a href="https://github.com/ENT8R" target="_blank" rel="noopener">ENT8R</a>
   </p>
-  <div class="text-center">
+  <!--<div class="text-center">
     <a href="https://liberapay.com/ENT8R/donate" target="_blank" rel="noopener">
       <div class="liberapay-logo">
         <svg class="icon"><use xlink:href="#assets-liberapay"></use></svg>
         <b data-i18n="about.donate">Donate</b>
       </div>
     </a>
-  </div>
+  </div>-->
 </div>
 
 <div class="modal-footer">

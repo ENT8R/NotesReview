@@ -13,7 +13,8 @@ const STRINGS = {
 };
 
 const REPLACEMENTS = [
-  ['{{version}}', __VERSION__]
+  ['{{version}}', __VERSION__],
+  ['{{api}}', NOTESREVIEW_API_URL]
 ];
 
 /**

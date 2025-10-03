@@ -25,6 +25,10 @@
         "excludingUsers": {
             "title": "Is it possible to exclude certain users?",
             "description": "!HTML! Yes, by writing either <kbd>NOT</kbd> or <kbd>-</kbd> in front of the user to exclude.<br>\nIt is also possible to exclude multiple users by separating each user with a comma."
+        },
+        "outdatedNotes": {
+            "title": "Why do some notes appear to be outdated?",
+            "description": "!HTML! All notes are synchronized every 5 minutes with the OpenStreetMap API. It can happen that notes or comments which have been hidden by the moderators still appear in the results.<br>\nThis is mainly due to the fact that the underlying API of OpenStreetMap does not directly offer the possibility to know which notes and comments have been hidden by moderators. As a result, the complete notes dump is analyzed from time to time in irregular intervals in order to find and fix these anomalies.<br>\nIf you want to know the last time the manual synchronization was performed, take a look at the <a href=\"{{api}}/status\" target=\"_blank\" rel=\"noopener\">status page</a> with regard to the value of <code>last_import</code> (for comments) or <code>last_sync</code> (for notes)."
         }
     },
     "action": {
