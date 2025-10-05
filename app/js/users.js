@@ -1,4 +1,4 @@
-import * as Request from './request.js';
+import Request, { MEDIA_TYPE } from './request.js';
 import * as Util from './util.js';
 
 export default class Users {
@@ -20,7 +20,7 @@ export default class Users {
     ids = Util.chunk(Array.from(ids).filter(x => !Users.ids.has(x)), 500);
     for (let i = 0; i < ids.length; i++) {
       const url = `${OPENSTREETMAP_SERVER}/api/0.6/users?users=${ids[i].join(',')}`;
-      const request = Request.get(url, Request.MEDIA_TYPE.XML).then(xml => {
+      const request = Request(url, MEDIA_TYPE.XML).then(xml => {
         if (xml && xml.documentElement && xml.querySelector('parsererror') == null) {
           Array.from(xml.documentElement.children).forEach(user => {
             Users.all.add({

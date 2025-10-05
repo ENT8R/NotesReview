@@ -1,6 +1,6 @@
 import * as Localizer from './localizer.js';
 import Note from './note.js';
-import * as Request from './request.js';
+import Request, { MEDIA_TYPE } from './request.js';
 import Toast from './toast.js';
 import Users from './users.js';
 import * as Util from './util.js';
@@ -473,7 +473,7 @@ export default class Query {
      */
   get url() {
     const url = new URL(`${NOTESREVIEW_API_URL}/search`);
-    url.search = Request.encodeQueryData(this.clean());
+    url.search = Util.encodeQueryData(this.clean());
     return url.toString();
   }
 
@@ -519,7 +519,7 @@ export default class Query {
       delete data.map;
     }
 
-    url.search = Request.encodeQueryData(Util.clean(data, DEFAULTS.UI));
+    url.search = Util.encodeQueryData(Util.clean(data, DEFAULTS.UI));
     return url.toString();
   }
 
@@ -569,7 +569,13 @@ export default class Query {
     const data = this.clean();
 
     this.controller = new AbortController();
-    const result = await Request.post(url, Request.MEDIA_TYPE.JSON, this.controller, data);
+    const result = await Request(url, MEDIA_TYPE.JSON, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }, this.controller);
     const requestCancelled = this.controller.signal.aborted;
     this.controller = null;
 

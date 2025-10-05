@@ -413,3 +413,21 @@ export function clean(data, defaults) {
 export function escape(string) {
   return string.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
+
+/**
+  * Stringify an object as a query string
+  *
+  * @function
+  * @param {Object} data
+  * @returns {String}
+  */
+export function encodeQueryData(data) {
+  const query = [];
+  for (const d in data) {
+    if (data[d] === '' || data[d] === null || typeof data[d] === 'undefined') {
+      continue;
+    }
+    query.push(`${encodeURIComponent(d)}=${encodeURIComponent(data[d])}`);
+  }
+  return query.join('&');
+}

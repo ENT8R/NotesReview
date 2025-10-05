@@ -1,6 +1,6 @@
 import * as Localizer from '../localizer.js';
 import Modal from './modal.js';
-import * as Request from '../request.js';
+import Request, { MEDIA_TYPE } from '../request.js';
 
 import * as tilebelt from '@mapbox/tilebelt';
 import { VectorTile } from '@mapbox/vector-tile';
@@ -36,10 +36,10 @@ export default class Mapillary extends Modal {
     const LIMIT = 20;
     const tile = tilebelt.pointToTile(note.coordinates[1], note.coordinates[0], ZOOM);
 
-    const data = await Request.get(
+    const data = await Request(
       // The documentation of this endpoint can be found here: https://www.mapillary.com/developer/api-documentation/#coverage-tiles
       `https://tiles.mapillary.com/maps/vtp/mly1_public/2/${tile[2]}/${tile[0]}/${tile[1]}?access_token=${MAPILLARY_CLIENT_ID}`,
-      Request.MEDIA_TYPE.PROTOBUF
+      MEDIA_TYPE.PROTOBUF
     );
 
     let images = [];
@@ -65,7 +65,7 @@ export default class Mapillary extends Modal {
     images = images.slice(0, LIMIT);
     images = await Promise.all(images.map(async image => {
       const url = `https://graph.mapillary.com/${image.id}?access_token=${MAPILLARY_CLIENT_ID}&fields=thumb_1024_url,width,height`;
-      const data = await Request.get(url);
+      const data = await Request(url);
       return Object.assign(image, {
         src: data.thumb_1024_url,
         width: data.width,
