@@ -3,6 +3,7 @@ import { resolve } from 'path';
 
 import dotenv from 'dotenv';
 
+import basicSsl from '@vitejs/plugin-basic-ssl';
 import handlebars from 'vite-plugin-handlebars';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 
@@ -42,6 +43,7 @@ export default () => {
       }
     },
     plugins: [
+      basicSsl(),
       handlebars({
         partialDirectory: [
           resolve(root, 'templates'),

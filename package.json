@@ -22,6 +22,7 @@
     "@mapbox/vector-tile": "^2.0.4",
     "@rapideditor/country-coder": "^5.5.1",
     "@rapideditor/location-conflation": "^1.6.0",
+    "@vitejs/plugin-basic-ssl": "^2.1.0",
     "anchorme": "^2.1.2",
     "leaflet": "^1.9.4",
     "leaflet-control-geocoder": "^3.3.1",
