@@ -1,7 +1,7 @@
-import Preferences from './preferences.js';
-import Request, { MEDIA_TYPE } from './request.js';
+import Preferences from '../preferences.js';
+import Request, { MEDIA_TYPE } from '../request.js';
 
-export default class API {
+export default class OsmApi {
   /**
     * Get the details of the user that is currently logged in
     *
