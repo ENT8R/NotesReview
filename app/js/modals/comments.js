@@ -19,6 +19,9 @@ export default class Comments extends Modal {
     const content = document.getElementById('modal-comments-content');
     content.innerHTML = template(note, {
       allowedProtoProperties: {
+        // Explicitly disable the access to the actions property,
+        // because the actions should not be shown (again) in the comments modal
+        actions: false,
         badges: true
       }
     });
