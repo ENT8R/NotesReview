@@ -2,10 +2,9 @@
 <html><head></head>
   <body>
     <script>
-      if (new URLSearchParams(location.search).has("code")) {
-        new BroadcastChannel("osm-api-auth-complete").postMessage(location.href);
-        window.close();
-      }
+      const currentUrl = window.location.href;
+      const newPath = window.location.pathname.replace('/landing.html', `/?oauth_redirect_url=${encodeURIComponent(currentUrl)}`);
+      window.location.replace(`${window.location.origin}${newPath}`);
     </script>
   </body>
 </html>

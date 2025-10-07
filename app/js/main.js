@@ -8,6 +8,7 @@ import 'virtual:svg-icons-register';
 import './polyfills.js';
 
 import API from './api.js';
+import Auth from './auth.js';
 import AreaSelector from './modals/area-selector.js';
 import Comments from './modals/comments.js';
 import Leaflet from './leaflet.js';
@@ -37,6 +38,7 @@ window.customElements.define('single-selection-button-group', SingleSelectionBut
 let map, ui, query;
 
 const api = new API();
+const auth = new Auth();
 
 /**
   * Initiate a new query and do some UI changes before and after it
@@ -93,26 +95,10 @@ function listener() {
     element.addEventListener('click', () => query.reset());
   });
 
-  document.getElementById('login').addEventListener('click', () => {
-    const login = document.getElementById('login');
-    login.classList.add('loading');
-
-    api.login().then(result => {
-      document.body.dataset.authenticated = true;
-
-      const uid = result.getElementsByTagName('user')[0].getAttribute('id');
-      Preferences.set({ uid });
-      Users.avatar(uid);
-    }).catch(() => {
-      new Toast(Localizer.message('error.login'), 'toast-error').show();
-      document.body.dataset.authenticated = false;
-    }).finally(() => {
-      login.classList.remove('loading');
-    });
-  });
+  document.getElementById('login').addEventListener('click', () => auth.login());
 
   document.getElementById('logout').addEventListener('click', () => {
-    api.logout();
+    auth.logout();
     Preferences.remove('uid');
     document.body.dataset.authenticated = false;
   });
@@ -219,7 +205,7 @@ function listener() {
       const text = commentAction.parentElement.parentElement.querySelector('.note-comment').value.trim();
 
       api.comment(id, text, commentAction.dataset.action).then(note => {
-        ui.update(id, Note.parse(JSON.parse(note))).then(details);
+        ui.update(id, Note.parse(note)).then(details);
         Comments.load(ui.get(id));
       }).catch(() => {
         new Toast(Localizer.message('error.comment'), 'toast-error').show();
@@ -322,6 +308,24 @@ function settings() {
       parameter.get('bbox').split(',')
       : null);
 
+  // Check whether parameters contains the OAuth2 redirect response and complete the login process
+  if (parameter.has('oauth_redirect_url')) {
+    const redirectUrl = decodeURIComponent(parameter.get('oauth_redirect_url'));
+    parameter.delete('oauth_redirect_url');
+    auth.resume(redirectUrl).then(() => api.userDetails()).then(result => {
+      document.body.dataset.authenticated = true;
+
+      const uid = result.user.id;
+      Preferences.set({
+        uid
+      });
+      Users.avatar(uid);
+    }).catch(() => {
+      new Toast(Localizer.message('error.login'), 'toast-error').show();
+      document.body.dataset.authenticated = false;
+    });
+  }
+
   // Convert the URL search parameters to an object for further usage
   parameter = [...parameter.entries()].reduce(
     (object, [key, value]) => Object.assign(object, {[key]: value}),
@@ -338,11 +342,13 @@ function settings() {
   const share = new Share(query); // eslint-disable-line no-unused-vars
   const areaSelector = new AreaSelector(document.getElementById('countries'), document.getElementById('polygon')); // eslint-disable-line no-unused-vars
 
-  const authenticated = api.authenticated();
-  document.body.dataset.authenticated = authenticated;
-  if (authenticated) {
-    Users.avatar(Preferences.get('uid'));
-  }
+  // Check whether the user is already authenticated and update the UI accordingly
+  auth.isAuthenticated().then(authenticated => {
+    document.body.dataset.authenticated = authenticated;
+    if (authenticated) {
+      Users.avatar(Preferences.get('uid'));
+    }
+  });
 
   const { default: UI } = await import('./ui/ui.js');
   ui = new UI(view);

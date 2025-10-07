@@ -1,4 +1,5 @@
 export const MEDIA_TYPE = {
+  TEXT: 'text/plain',
   JSON: 'application/json',
   XML: 'text/xml',
   PROTOBUF: 'application/x-protobuf'
@@ -35,10 +36,12 @@ export default function request(url, mediaType = MEDIA_TYPE.JSON, options = {}, 
       return text;
     }
   }).catch(error => {
+    // Catch aborted requests and ignore them, rethrow all other errors
     if (error.name === 'AbortError') {
       console.log(`Aborted request while fetching file at ${url}: ${error}`); // eslint-disable-line no-console
     } else {
       console.log(`Error while fetching file at ${url}: ${error}`); // eslint-disable-line no-console
+      throw error;
     }
   });
 }
