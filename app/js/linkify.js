@@ -1,4 +1,4 @@
-import anchorme from 'anchorme';
+import linkify from 'linkify-string';
 
 import * as Util from './util.js';
 
@@ -21,7 +21,7 @@ const IMAGE_HOSTING_ADDITIONAL_FORMATTING = {
 };
 
 /**
-  * Linkify a given string
+  * Linkify a given string (i.e. convert URLs to clickable links and images to image previews)
   *
   * @function
   * @param {String} input
@@ -38,23 +38,34 @@ export default function replace(input) {
         if (formatting) {
           url = url.replace(regex, formatting);
         }
-        const image = `<img class="img-responsive img-preview p-1" src="${Util.escape(url)}" alt="${Util.escape(url)}">`;
-        return `<a href="${Util.escape(url)}" target="_blank" rel="noopener noreferrer">${image}</a>`;
+        url = Util.escape(url);
+        return {
+          url,
+          image: `<img class="img-responsive img-preview p-1" src="${url}" alt="${url}">`
+        };
       }
     };
   });
 
-  const result = anchorme({
-    input,
-    options: {
-      attributes: {
-        target: '_blank',
-        rel: 'noopener noreferrer'
-      },
-      specialTransform
+  const result = linkify(input, {
+    nl2br: true,
+    rel: 'noopener noreferrer',
+    target: '_blank',
+    render: ({ tagName, attributes, content }) => {
+      // Check if any of the regexes match the link and transform accordingly
+      for (const { test, transform } of specialTransform) {
+        if (test.test(attributes.href)) {
+          const result = transform(content);
+          attributes.href = result.url;
+          content = result.image;
+          break;
+        }
+      }
+      // Convert attributes object to string
+      attributes = Object.entries(attributes).map(([k, v]) => `${k}="${v}"`).join(' ');
+      return `<${tagName} ${attributes}>${content}</${tagName}>`;
     }
-  }).replace(/\r?\n/g, '<br>') // 1. Replace all newlines with the corresponding HTML element
-    .replace(/(\/a>)(<br>)(<a)/g, '$1$3'); // 2. Remove all line breaks between multiple images
+  }).replace(/(\/a>)(<br>\n?)(<a)/g, '$1$3'); // Remove all line breaks between consecutive links/images
 
   return {
     images,
