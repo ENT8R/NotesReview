@@ -30,7 +30,6 @@
     "leaflet.markercluster": "^1.5.3",
     "linkify-string": "^4.3.2",
     "linkifyjs": "^4.3.2",
-    "osm-auth": "^3.0.0",
     "pbf": "^4.0.1",
     "relative-time-format": "^1.1.11",
     "spectre.css": "^0.5.9"
