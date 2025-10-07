@@ -64,12 +64,14 @@ export default class Mapillary extends Modal {
     images.sort((a, b) => a.distance - b.distance);
     images = images.slice(0, LIMIT);
     images = await Promise.all(images.map(async image => {
-      const url = `https://graph.mapillary.com/${image.id}?access_token=${MAPILLARY_CLIENT_ID}&fields=thumb_1024_url,width,height`;
+      const url = `https://graph.mapillary.com/${image.id}?access_token=${MAPILLARY_CLIENT_ID}&fields=thumb_1024_url,width,height,creator,captured_at`;
       const data = await Request(url);
       return Object.assign(image, {
         src: data.thumb_1024_url,
         width: data.width,
-        height: data.height
+        height: data.height,
+        user: data.creator.username,
+        capturedAt: new Date(data.captured_at).toLocaleDateString()
       });
     }));
 
