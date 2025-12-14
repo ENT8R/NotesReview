@@ -4,8 +4,8 @@
   "name": "NotesReview",
   "author": "ENT8R",
   "description": "An interface for searching and resolving OpenStreetMap notes",
-  "logo": "https://ent8r.github.io/NotesReview/icons/icon.png",
-  "url": "https://ent8r.github.io/NotesReview/",
+  "logo": "https://notesreview.org/icons/icon.png",
+  "url": "https://notesreview.org/",
   "applicationCategory": "Utility",
   "applicationSubCategory": "OpenStreetMap Utility",
   "browserRequirements": "Requires JavaScript. Requires HTML5.",
@@ -21,7 +21,7 @@
   "screenshot": "https://cdn.jsdelivr.net/gh/ENT8R/NotesReview/assets/screenshots/light/map.png",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://ent8r.github.io/NotesReview/?query={search_term_string}",
+    "target": "https://notesreview.org/?query={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }

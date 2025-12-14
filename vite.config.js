@@ -28,7 +28,7 @@ export default () => {
   };
 
   return {
-    base: '/NotesReview/',
+    base: '/',
     root,
     define: globals,
     build: {

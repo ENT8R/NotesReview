@@ -2,7 +2,7 @@
   "ci": {
     "collect": {
       "url": [
-        "https://localhost:4173/NotesReview/"
+        "https://localhost:4173/"
       ],
       "startServerCommand": "npm run serve",
       "startServerReadyPattern": "running|listen|ready|local",

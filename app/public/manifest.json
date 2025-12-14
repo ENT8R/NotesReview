@@ -7,21 +7,21 @@
   "background_color": "#fff",
   "display": "standalone",
   "orientation": "portrait",
-  "start_url": "/NotesReview/",
-  "scope": "/NotesReview/",
+  "start_url": "/",
+  "scope": "/",
   "shortcuts": [
     {
       "name": "View map",
       "short_name": "Map",
       "description": "View notes on a map",
-      "url": "/NotesReview/?view=map",
+      "url": "/?view=map",
       "icons": [{ "src": "icons/map.png", "sizes": "192x192" }]
     },
     {
       "name": "View list",
       "short_name": "List",
       "description": "View notes in a list",
-      "url": "/NotesReview/?view=list",
+      "url": "/?view=list",
       "icons": [{ "src": "icons/list.png", "sizes": "192x192" }]
     }
   ],
