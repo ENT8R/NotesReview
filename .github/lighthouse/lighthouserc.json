@@ -2,13 +2,13 @@
   "ci": {
     "collect": {
       "url": [
-        "http://localhost:4173/NotesReview/"
+        "https://localhost:4173/NotesReview/"
       ],
       "startServerCommand": "npm run serve",
       "startServerReadyPattern": "running|listen|ready|local",
       "numberOfRuns": 3,
       "settings": {
-        "chromeFlags": "--no-sandbox",
+        "chromeFlags": "--no-sandbox --ignore-certificate-errors",
         "preset": "desktop"
       }
     },

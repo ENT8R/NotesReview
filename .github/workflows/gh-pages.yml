@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Build
         uses: ./.github/actions/build
         with:
@@ -28,7 +28,7 @@ jobs:
           openstreetmap-oauth-client-secret: ${{ secrets.OPENSTREETMAP_OAUTH_CLIENT_SECRET }}
           mapillary-client-id: ${{ secrets.MAPILLARY_CLIENT_ID }}
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: './app/dist'
       - name: Deploy to GitHub Pages
