@@ -10,7 +10,7 @@ You may want to take a look at the [`package.json`](https://github.com/ENT8R/Not
 
 Before running the application, make sure the file `app/.env` with the following required environment variables exists:
 ```shell
-NOTESREVIEW_API_URL=https://notesreview.kongruent.xyz/api
+NOTESREVIEW_API_URL=https://api.notesreview.org
 OPENSTREETMAP_SERVER=https://www.openstreetmap.org
 ```
 There are a few more environment variables that are used for additional features, but they are not mandatory to run the application, so in most cases the configuration above should be sufficient.
