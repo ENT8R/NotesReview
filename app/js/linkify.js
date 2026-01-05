@@ -3,18 +3,18 @@ import linkify from 'linkify-string';
 import * as Util from './util.js';
 
 const IMAGE_HOSTING_REGEX = {
-  imgur: /(http(s)?:\/\/)?(i\.)?imgur\.com\/\w+\.(jpg|png)/i,
-  framapic: /(http(s)?:\/\/)?(www\.)?framapic\.org\/(random\?i=)?\w+\/\w+(\.(jpg|jpeg|png))?/i,
-  westnordost: /https:\/\/westnordost\.de\/p\/[0-9]+\.jpg/i,
-  wikimedia: /http(?:s)?:\/\/upload\.wikimedia\.org\/wikipedia\/(.+?)\/(?:thumb\/)?(\w\/\w\w)\/(.+?\.(?:jpg|jpeg|png))(?:\/.+?\.(?:jpg|jpeg|png))?/i,
-  commons: /http(?:s)?:\/\/commons\.wikimedia\.org\/wiki\/File:(.+?\.(?:jpg|jpeg|png|svg))/i,
-  openstreetmap: /http(?:s)?:\/\/wiki\.openstreetmap\.org\/wiki\/File:(.+?\.(?:jpg|jpeg|png|svg))/i,
-  mapillary: /http(?:s)?:\/\/(?:www\.)?mapillary\.com\/map\/im\/(\w+)/i,
-  all: /(http(s)?:\/\/)?(www\.)?.+\.(jpg|jpeg|png)/i
+  imgur: /(?:https?:\/\/)?(?:i\.)?imgur\.com\.?\/\w+\.(?:jpe?g|png|webp)/i,
+  framapic: /(?:https?:\/\/)?(?:www\.)?framapic\.org\.?\/(?:random\?i=)?\w+\/\w+(?:\.(?:jpe?g|png|webp))?/i,
+  westnordost: /(?:https?:\/\/)?(?:www\.)?westnordost\.de\.?\/p\/[0-9]+\.(?:jpe?g|webp)/i,
+  wikimedia: /(?:https?:\/\/)?upload\.wikimedia\.org\.?\/wikipedia\/([^\/]+)\/(?:thumb\/)?(([0-9a-fA-F])\/\3[0-9a-fA-F])\/([\w\-\%\.]+?\.(?:jpe?g|png|svg|webp))(?:\/[0-9]{3,}px-\4(?:\.(?:jpe?g|png|webp))?)?/i,
+  commons: /(?:https?:\/\/)?commons\.(?:m\.)?wikimedia\.org\.?\/wiki\/File:([\w\-\%\.]+?\.(?:jpe?g|png|svg|webp))/i,
+  openstreetmap: /(?:https?:\/\/)?wiki\.openstreetmap\.org\.?\/wiki\/File:([\w\-\%\.]+?\.(?:jpe?g|png|svg|webp))/i,
+  mapillary: /(?:https?:\/\/)?(?:www\.)?mapillary\.com\.?\/map\/im\/(\w+)/i,
+  all: /(?:https?:\/\/)?(?:www\.)?(?:[\w\-]+\.)*(?:[\w\-]+)\.(?:[a-z]{2,})\.?\/(?:[\w\/\%]+)\.(gif|tiff?|jpe?g|[pm]ng|svg|webp)/i
 };
 
 const IMAGE_HOSTING_ADDITIONAL_FORMATTING = {
-  wikimedia: 'https://upload.wikimedia.org/wikipedia/$1/thumb/$2/$3/300px-$3',
+  wikimedia: 'https://upload.wikimedia.org/wikipedia/$1/thumb/$2/$4/300px-$4',
   commons: 'https://commons.wikimedia.org/wiki/Special:FilePath/$1?width=300',
   openstreetmap: 'https://wiki.openstreetmap.org/wiki/Special:FilePath/$1?width=300',
   mapillary: 'https://images.mapillary.com/$1/thumb-320.jpg'
