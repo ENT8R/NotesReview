@@ -24,9 +24,6 @@ export default class Comment {
     if ('text' in comment) {
       this.text = comment.text;
 
-      // Escape HTML tags in the comment before proceeding
-      comment.text = Util.escape(comment.text);
-
       const { html, images } = Linkify(comment.text);
       this.html = html;
       this.images = images;
