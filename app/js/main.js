@@ -37,7 +37,6 @@ window.customElements.define('single-selection-button-group', SingleSelectionBut
 
 let map, ui, query;
 
-const osmApi = new OsmApi();
 const auth = new Auth();
 
 /**
@@ -204,7 +203,7 @@ function listener() {
       const id = Number.parseInt(commentAction.closest('[data-note-id]').dataset.noteId);
       const text = commentAction.parentElement.parentElement.querySelector('.note-comment').value.trim();
 
-      osmApi.comment(id, text, commentAction.dataset.action).then(note => {
+      OsmApi.comment(id, text, commentAction.dataset.action).then(note => {
         ui.update(id, Note.parse(note)).then(details);
         Comments.load(ui.get(id));
       }).catch(() => {
@@ -312,7 +311,7 @@ function settings() {
   if (parameter.has('oauth_redirect_url')) {
     const redirectUrl = decodeURIComponent(parameter.get('oauth_redirect_url'));
     parameter.delete('oauth_redirect_url');
-    auth.resume(redirectUrl).then(() => osmApi.userDetails()).then(result => {
+    auth.resume(redirectUrl).then(() => OsmApi.userDetails()).then(result => {
       document.body.dataset.authenticated = true;
 
       const uid = result.user.id;

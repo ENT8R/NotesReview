@@ -8,7 +8,7 @@ export default class OsmApi {
     * @function
     * @returns {Promise}
     */
-  userDetails() {
+  static userDetails() {
     return Request(`${OPENSTREETMAP_SERVER}/api/0.6/user/details.json`, MEDIA_TYPE.JSON, {
       method: 'GET',
       headers: {
@@ -26,7 +26,7 @@ export default class OsmApi {
     * @param {String} action
     * @returns {Promise}
     */
-  comment(id, text, action) {
+  static comment(id, text, action) {
     if (!text) {
       return Promise.reject(new Error('No text was given'));
     }
