@@ -1,17 +1,19 @@
-/* eslint-env node */
+/* global process */
 import { resolve } from 'path';
 
 import dotenv from 'dotenv';
 
+import { defineConfig } from 'vite';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import handlebars from 'vite-plugin-handlebars';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 
-import { version } from './package.json';
-import structuredData from './app/templates/includes/structuredData.json';
-structuredData.softwareVersion = version;
+import pkg from './package.json' with { type: 'json' };
+import structuredData from './app/templates/includes/structuredData.json' with { type: 'json' };
+structuredData.softwareVersion = pkg.version;
 
 export default () => {
+  const __dirname = import.meta.dirname;
   const root = resolve(__dirname, 'app');
   dotenv.config({
     path: resolve(root, '.env'),
@@ -19,7 +21,7 @@ export default () => {
   });
 
   const globals = {
-    __VERSION__: JSON.stringify(version),
+    __VERSION__: JSON.stringify(pkg.version),
     NOTESREVIEW_API_URL: JSON.stringify(process.env.NOTESREVIEW_API_URL),
     OPENSTREETMAP_SERVER: JSON.stringify(process.env.OPENSTREETMAP_SERVER),
     OPENSTREETMAP_OAUTH_CLIENT_ID: JSON.stringify(process.env.OPENSTREETMAP_OAUTH_CLIENT_ID),
@@ -27,17 +29,25 @@ export default () => {
     MAPILLARY_CLIENT_ID: JSON.stringify(process.env.MAPILLARY_CLIENT_ID)
   };
 
-  return {
+  return defineConfig({
     base: '/',
     root,
     define: globals,
     build: {
       sourcemap: true,
-      rollupOptions: {
+      rolldownOptions: {
         output: {
-          manualChunks: {
-            countryCoder: ['@rapideditor/country-coder', '@rapideditor/location-conflation'],
-            leaflet: ['leaflet', 'leaflet-control-geocoder', 'leaflet-draw', 'leaflet.markercluster'],
+          codeSplitting: {
+            groups: [{
+              test: /node_modules\/@rapideditor\/country-coder/,
+              name: 'country-coder',
+            }, {
+              test: /node_modules\/@rapideditor\/location-conflation/,
+              name: 'location-conflation',
+            }, {
+              test: /node_modules\/leaflet/,
+              name: 'leaflet',
+            }],
           }
         }
       }
@@ -52,7 +62,7 @@ export default () => {
         ],
         context: {
           structuredData: JSON.stringify(structuredData),
-          version,
+          version: pkg.version,
           api: process.env.NOTESREVIEW_API_URL
         }
       }),
@@ -61,5 +71,5 @@ export default () => {
         symbolId: '[dir]-[name]'
       })
     ]
-  };
+  });
 };

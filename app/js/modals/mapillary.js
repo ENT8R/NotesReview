@@ -6,7 +6,7 @@ import * as tilebelt from '@mapbox/tilebelt';
 import { VectorTile } from '@mapbox/vector-tile';
 import Protobuf from 'pbf';
 
-import * as Handlebars from 'handlebars';
+import Handlebars from 'handlebars';
 import t from '../../templates/dynamic/mapillary.hbs?raw';
 const template = Handlebars.compile(t);
 Handlebars.registerHelper('localizer', key => {

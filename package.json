@@ -4,9 +4,9 @@
   "description": "An interface for searching and resolving OpenStreetMap notes",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview",
+    "dev": "vite --configLoader native",
+    "build": "vite build --configLoader native",
+    "serve": "vite preview --configLoader native",
     "lint": "eslint app/js/**/*.js",
     "test": "npm run lint"
   },
@@ -23,7 +23,6 @@
     "@mapbox/vector-tile": "^2.0.4",
     "@rapideditor/country-coder": "^5.6.1",
     "@rapideditor/location-conflation": "^2.0.1",
-    "@vitejs/plugin-basic-ssl": "^2.1.4",
     "leaflet": "^1.9.4",
     "leaflet-control-geocoder": "^3.3.1",
     "leaflet-draw": "^1.0.4",
@@ -36,6 +35,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.9.0",
+    "@vitejs/plugin-basic-ssl": "^2.1.4",
     "dotenv": "^17.3.1",
     "eslint": "^10.0.2",
     "eslint-plugin-jsdoc": "^62.7.1",
@@ -43,7 +43,7 @@
     "globals": "^17.3.0",
     "handlebars": "^4.7.8",
     "sass": "^1.97.3",
-    "vite": "^7.3.1",
+    "vite": "^8.0.0",
     "vite-plugin-handlebars": "^2.0.0",
     "vite-plugin-svg-icons": "^2.0.1"
   }

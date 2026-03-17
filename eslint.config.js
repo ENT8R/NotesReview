@@ -13,7 +13,7 @@ export default [
     settings: {
       jsdoc: {
         tagNamePreference: {
-            returns: 'return'
+          returns: 'return'
         }
       }
     },
@@ -28,7 +28,7 @@ export default [
         OPENSTREETMAP_OAUTH_CLIENT_SECRET: 'readonly',
         MAPILLARY_CLIENT_ID: 'readonly',
       },
-      ecmaVersion: 2023,
+      ecmaVersion: 2025,
       sourceType: 'module',
     },
 

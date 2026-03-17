@@ -4,9 +4,7 @@ export default class SingleSelectionButtonGroup extends HTMLElement {
 
   constructor() {
     super();
-    // TODO: This is not yet supported across major browsers: chrome >= 77, firefox >= 93, edge >= 79, safari >= 16.4, opera >= 64, no ie
-    // See https://web.dev/more-capable-form-controls/#restoring-form-state and https://caniuse.com/mdn-api_htmlelement_attachinternals
-    this._internals = 'attachInternals' in this ? this.attachInternals() : null;
+    this._internals = this.attachInternals();
 
     this.activeButton = this.querySelector('button.active');
   }

@@ -23,7 +23,7 @@ import * as Theme from './theme.js';
 import Toast from './toast.js';
 import Users from './users.js';
 
-import * as Handlebars from 'handlebars';
+import Handlebars from 'handlebars';
 import actions from '../templates/dynamic/actions.hbs?raw';
 
 Handlebars.registerPartial('actions', actions);
