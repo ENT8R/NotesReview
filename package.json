@@ -31,7 +31,6 @@
     "linkify-string": "^4.3.2",
     "linkifyjs": "^4.3.2",
     "pbf": "^4.0.1",
-    "relative-time-format": "^1.1.12",
     "spectre.css": "^0.5.9"
   },
   "devDependencies": {

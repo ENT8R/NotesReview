@@ -154,10 +154,7 @@ export function area(rect) {
     [rect.getWest(), rect.getNorth()]
   ];
 
-  // TODO: In future versions Array.at() may be used to access elements at "negative" indices:
-  // See https://caniuse.com/mdn-javascript_builtins_array_at and https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/at#browser_compatibility
-  // chrome >= 92, edge >= 92, firefox >= 90, not ie <= 11 opera >= 78, safari >= 15.4
-  let sum = (deg2rad(vertices[1][0]) - deg2rad(vertices[vertices.length - 1][0])) * Math.sin(deg2rad(vertices[0][1]));
+  let sum = (deg2rad(vertices[1][0]) - deg2rad(vertices.at(-1)[0])) * Math.sin(deg2rad(vertices[0][1]));
   for (let i = 1; i < vertices.length; i++) {
     sum += (deg2rad(vertices[(i + 1) % vertices.length][0]) - deg2rad(vertices[i - 1][0])) * Math.sin(deg2rad(vertices[i][1]));
   }

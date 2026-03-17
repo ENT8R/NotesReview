@@ -185,50 +185,5 @@ export async function init() {
   // Replace html lang attribute after translation
   document.querySelector('html').setAttribute('lang', LANGUAGE);
 
-  if (!('Intl' in window) || !('RelativeTimeFormat' in window.Intl)) {
-    let locale;
-    switch (LANGUAGE.split('-')[0]) {
-    case 'de':
-      locale = await import('relative-time-format/locale/de');
-      break;
-    case 'es':
-      locale = await import('relative-time-format/locale/es');
-      break;
-    case 'fr':
-      locale = await import('relative-time-format/locale/fr');
-      break;
-    case 'it':
-      locale = await import('relative-time-format/locale/it');
-      break;
-    case 'nl':
-      locale = await import('relative-time-format/locale/nl');
-      break;
-    case 'pl':
-      locale = await import('relative-time-format/locale/pl');
-      break;
-    case 'pt':
-      locale = await import('relative-time-format/locale/pt');
-      break;
-    case 'uk':
-      locale = await import('relative-time-format/locale/uk');
-      break;
-    case 'zh':
-      locale = await import('relative-time-format/locale/zh');
-      break;
-    default:
-      locale = await import('relative-time-format/locale/en');
-    }
-
-    // chrome >= 71, edge >= 79, firefox >= 65, not ie <= 11, opera >= 58, safari >= 14
-    const { default: RelativeTimeFormat } = await import('relative-time-format');
-    RelativeTimeFormat.addLocale(locale.default);
-    RelativeTimeFormat.setDefaultLocale(locale.default.locale);
-
-    if (!('Intl' in window)) {
-      window.Intl = {};
-    }
-    window.Intl.RelativeTimeFormat = RelativeTimeFormat;
-  }
-
   return Promise.resolve();
 }

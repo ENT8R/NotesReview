@@ -30,16 +30,10 @@ export default class List {
     * Shows all notes
     *
     * @function
-    * @todo Use {@link https://developer.mozilla.org/en-US/docs/Web/API/Element/replaceChildren} if this becomes more established
-    *       chrome >= 86, edge >= 86, firefox >= 78, not ie <= 11, opera >= 72, safari >= 14
     * @returns {void}
     */
   apply() {
     const container = document.getElementById('list');
-    while (container.lastChild) {
-      container.removeChild(container.lastChild);
-    }
-    container.appendChild(this.fragment);
-
+    container.replaceChildren(this.fragment);
   }
 }
