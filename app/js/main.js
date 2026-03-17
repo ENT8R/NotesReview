@@ -318,6 +318,8 @@ function settings() {
       Preferences.set({
         uid
       });
+
+      Users.add(result.user);
       Users.avatar(uid);
     }).catch(() => {
       new Toast(Localizer.message('error.login'), 'toast-error').show();

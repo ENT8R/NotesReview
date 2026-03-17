@@ -18,6 +18,19 @@ export default class OsmApi {
   }
 
   /**
+    * Get the details of multiple users by their ids
+    *
+    * @function
+    * @param {Array} ids
+    * @returns {Promise}
+    */
+  static users(ids) {
+    return Request(`${OPENSTREETMAP_SERVER}/api/0.6/users.json?users=${ids.join(',')}`, MEDIA_TYPE.JSON, {
+      method: 'GET'
+    });
+  }
+
+  /**
     * Post a new comment to a note
     *
     * @function

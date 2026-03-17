@@ -1,15 +1,12 @@
-import Request, { MEDIA_TYPE } from './request.js';
+import OsmApi from './api/openstreetmap.js';
 import * as Util from './util.js';
 
 export default class Users {
-  // TODO: This could be a private static property of this class
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields#browser_compatibility
-  // chrome >= 74, edge >= 79, firefox >= 90 (!), not ie <= 11, opera >= 62, safari >= 14.1
-  static all = new Set();
-  static ids = new Set();
+  static #all = new Set();
+  static #ids = new Set();
 
   /**
-    * Parses the XML document and returns all important information
+    * Load the details of multiple users by their ids and add them to the internal cache
     *
     * @constructor
     * @param {Set} ids
@@ -17,27 +14,33 @@ export default class Users {
     */
   static load(ids) {
     const requests = [];
-    ids = Util.chunk(Array.from(ids).filter(x => !Users.ids.has(x)), 500);
+    ids = Util.chunk(Array.from(ids).filter(x => !Users.#ids.has(x)), 500);
     for (let i = 0; i < ids.length; i++) {
-      const url = `${OPENSTREETMAP_SERVER}/api/0.6/users?users=${ids[i].join(',')}`;
-      const request = Request(url, MEDIA_TYPE.XML).then(xml => {
-        if (xml && xml.documentElement && xml.querySelector('parsererror') == null) {
-          Array.from(xml.documentElement.children).forEach(user => {
-            Users.all.add({
-              id: Number.parseInt(user.getAttribute('id')),
-              name: user.getAttribute('display_name'),
-              created: new Date(user.getAttribute('account_created')),
-              description: user.getElementsByTagName('description')[0].innerText,
-              image: user.querySelector('img[href]') ? user.getElementsByTagName('img')[0].getAttribute('href') : null,
-              changesets: user.getElementsByTagName('changesets')[0].getAttribute('count')
-            });
-            Users.ids.add(Number.parseInt(user.getAttribute('id')));
-          });
-        }
+      const request = OsmApi.users(ids[i]).then(result => {
+        result.users.map(user => user.user).forEach(user => Users.add(user));
       });
       requests.push(request);
     }
     return Promise.all(requests);
+  }
+
+  /**
+    * Add a user to the internal cache sets
+    *
+    * @function
+    * @param {Object} user
+    * @returns {void}
+    */
+  static add(user) {
+    Users.#all.add({
+      id: Number.parseInt(user.id),
+      name: user.display_name,
+      created: new Date(user.account_created),
+      description: user.description,
+      image: ('img' in user && 'href' in user.img) ? user.img.href : null,
+      changesets: user.changesets.count
+    });
+    Users.#ids.add(Number.parseInt(user.id));
   }
 
   /**
@@ -48,10 +51,10 @@ export default class Users {
     * @returns {Object}
     */
   static get(id) {
-    if (!id || !Users.ids.has(id)) {
+    if (!id || !Users.#ids.has(id)) {
       return;
     }
-    return Array.from(Users.all).find(user => user.id === id);
+    return Array.from(Users.#all).find(user => user.id === id);
   }
 
   /**
@@ -63,11 +66,16 @@ export default class Users {
     */
   static async avatar(uid) {
     const avatar = document.getElementById('user-avatar');
+    // Hide the avatar if no user is logged in
     if (!uid) {
       avatar.style.display = 'none';
       return;
     }
-    await Users.load(new Set([uid]));
+    // Load the user if it is not already in the cache
+    if (!Users.#ids.has(uid)) {
+      await Users.load(new Set([uid]));
+    }
+    // Show the avatar if the user and its details are in the cache
     const user = Users.get(Number.parseInt(uid));
     if (user) {
       avatar.style.display = 'inline-block';
