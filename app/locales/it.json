@@ -19,12 +19,16 @@
             "lime": "Lime"
         },
         "multipleUsers": {
-            "title": "E possibile cercare più di un utente?",
+            "title": "È possibile cercare più di un utente?",
             "description": "!HTML! Sì, usa una virgola per separare ogni utente.<br>\nQuando cerchi l'autore di una nota, il programma cercherà di trovare le note aperte dagli utenti indicati.<br>\nQuando cerchi gli utenti di una nota, il programma cercherà le note che gli utenti indicati hanno commentato."
         },
         "excludingUsers": {
             "title": "È possibile escludere determinati utenti?",
             "description": "!HTML! Sì, scrivendo <kbd>NOT</kbd> o <kbd>-</kbd> prima dell'utente da escludere.<br>\nÈ anche possibile escludere più di un utente separando ciascun utente con una virgola."
+        },
+        "outdatedNotes": {
+            "title": "Perché alcune note sembrano essere vecchie?",
+            "description": "!HTML! Tutte le note sono sincronizzate ogni 5 minuti dalle API OpenStreetMap. Può succedere che le note e i commenti nascosti dai moderatori possano comparire nei risultati.<br>\nQuesto principalmente perché le API di OpenStreetMap non offrono la possibilità di sapere quali note e commenti sono stati nascosti dai moderatori. Perciò, viene analzizato interamente il dump delle note a intervalli irregolari per trovare queste anomalie.<br>\nSe vuoi sapere quando è stata fatta l'ultima sincronizzazione manuale, controlla <a href=\"{{api}}/status\" target=\"_blank\" rel=\"noopener\">status page</a> prestando attenzione ai valori di <code>last_import</code> (per i commenti) o <code>last_sync</code> (per le note)."
         }
     },
     "action": {

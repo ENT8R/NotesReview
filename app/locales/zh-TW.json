@@ -25,6 +25,10 @@
         "excludingUsers": {
             "title": "有辦法排除特定使用者嗎？",
             "description": "!HTML! 是，不論是在使用者前撰寫 <kbd>NOT</kbd> 或是 <kbd>-</kbd> 都能排除使用者。<br>\n而且也有可能用逗號分隔使用者來排除多個使用者。"
+        },
+        "outdatedNotes": {
+            "title": "為什麼有些註解過時了？",
+            "description": "!HTML! 所有註解會每5分鐘透過開放街圖API同步，所以也許註解被管理員隱藏，導致仍出現在結果當中。<br>\n會有上述狀況出現主要是開放街圖沒有直接提供註解以及留言是否被管理員隱藏的結果。因此，整個註解下載包會不定期分析來找出不正常之處，並且嘗試修正。<br>\n如果你想知道上次手動同步是什麼時間，請檢視<a href=\"{{api}}/status\" target=\"_blank\" rel=\"noopener\">狀態頁面</a>的<code>上次匯入</code> (留言) 或是<code>上次同步</code> (註解) 的值。"
         }
     },
     "action": {

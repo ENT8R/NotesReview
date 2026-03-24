@@ -25,6 +25,10 @@
         "excludingUsers": {
             "title": "É possível excluir certos usuários?",
             "description": "!HTML! Sim, escrevendo <kbd>NOT</kbd> ou <kbd>-</kbd> na frente do usuário a ser excluído.<br>\nTambém é possível excluir vários usuários separando cada usuário com uma vírgula."
+        },
+        "outdatedNotes": {
+            "title": "Por que algumas notas parecem estar desatualizadas?",
+            "description": "!HTML! Todas as notas são sincronizadas a cada 5 minutos com a API do OpenStreetMap. Pode acontecer que notas ou comentários que foram ocultados pelos moderadores ainda apareçam nos resultados.<br>\nIsso se deve principalmente ao fato de que a API do OpenStreetMap não oferece diretamente a possibilidade de saber quais notas e comentários foram ocultados pelos moderadores. Como resultado, o conjunto completo de notas é analisado de tempos em tempos em intervalos irregulares para encontrar e corrigir essas anomalias.<br>\nSe você quiser saber a última vez que a sincronização manual foi realizada, consulte a <a href=\"{{api}}/status\" target=\"_blank\" rel=\"noopener\">página de status</a> em relação ao valor de <code>last_import</code> (para comentários) ou <code>last_sync</code> (para notas)."
         }
     },
     "action": {
@@ -38,7 +42,8 @@
         "edit": {
             "id": "iD",
             "josm": "JOSM",
-            "level0": "Level0"
+            "level0": "Level0",
+            "rapid": "Rapid"
         },
         "login": "Entrar",
         "logout": "Sair",
@@ -155,7 +160,8 @@
         "openFaq": "Abra as perguntas frequentes",
         "openSettings": "Abrir configurações",
         "shareQuery": "Compartilhar a consulta atual",
-        "filter": "Aplicar um filtro à seleção"
+        "filter": "Aplicar um filtro à seleção",
+        "closeNotification": "Fechar notificação"
     },
     "mapillary": {
         "empty": {
@@ -176,6 +182,7 @@
     "error": {
         "login": "O login falhou, por favor tente novamente mais tarde",
         "comment": "O comentário falhou, tente novamente mais tarde",
-        "queryTimeout": "Tempo esgotado, a consulta é muito complexa"
+        "queryTimeout": "Tempo esgotado, a consulta é muito complexa",
+        "queryAbort": "Consulta cancelada, exibindo resultados anteriores"
     }
 }
