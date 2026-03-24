@@ -34,10 +34,13 @@ body[data-theme="dark"] {
   .leaflet-control-geocoder,
   .leaflet-control-geocoder-icon,
   .leaflet-control-geocoder-address-context,
-  .leaflet-control-geocoder-alternatives li:hover,
-  .leaflet-draw-actions a {
+  .leaflet-control-geocoder-alternatives li:hover {
     background-color: $main-color-surface !important;
     color: $text-color;
+  }
+
+  .leaflet-buttons-control-button .control-icon {
+    filter: invert(100%);
   }
 
   .btn {

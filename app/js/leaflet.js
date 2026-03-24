@@ -1,14 +1,14 @@
 /* -------------------------------------------------------------------------- */
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
-import 'leaflet-draw/dist/leaflet.draw.css';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 /* -------------------------------------------------------------------------- */
 import 'leaflet';
 import 'leaflet-control-geocoder';
-import 'leaflet-draw';
 import 'leaflet.markercluster';
+import '@geoman-io/leaflet-geoman-free';
 /* -------------------------------------------------------------------------- */
 
 import * as Localizer from './localizer.js';
@@ -23,6 +23,9 @@ const OPTIONS = {
     max: 18
   }
 };
+
+// Set Leaflet-Geoman to opt-in mode, so it does not initialize itself
+L.PM.setOptIn(true);
 
 // Class with simplifies the interaction with the Leaflet map library
 export default class Leaflet {
@@ -87,80 +90,118 @@ export default class Leaflet {
   }
 
   /**
-    * Add a drawing and editing control to the map
+    * Add a (mutually exclusive) drawing and editing control to the map
     *
     * @function
     * @param {FeatureGroup} drawnItems
     * @param {Function} onChangeStart
     * @param {Function} onChangeStop
-    * @returns {Object}
+    * @returns {void}
     */
   addDraw(drawnItems, onChangeStart, onChangeStop) {
-    const drawControl = new L.Control.Draw({
-      draw: {
-        polyline: false,
-        marker: false,
-        circle: false,
-        circlemarker: false,
+    // Initiliaze the map for usage with Geoman
+    this.map.options.pmIgnore = false;
+    L.PM.reInitLayer(this.map);
 
-        polygon: true,
-        rectangle: {
-          // TODO: Leaflet.draw v1.0.4 has a bug in the calculation of the area, disabling the area display makes it at least possible to draw a rectangle
-          // See https://github.com/Leaflet/Leaflet.draw/issues/1026 and https://github.com/ENT8R/NotesReview/issues/146
-          showArea: false
-        }
-      },
-      edit: false
+    this.map.pm.addControls({
+      position: 'topleft',
+      drawMarker: false,
+      drawCircleMarker: false,
+      drawPolyline: false,
+      drawRectangle: true,
+      drawPolygon: true,
+      drawCircle: true,
+      drawText: false,
+      editMode: true,
+      dragMode: true,
+      cutPolygon: true,
+      removalMode: true,
+      rotateMode: false,
     });
-    this.map.addControl(drawControl);
 
-    const editControl = new L.Control.Draw({
-      draw: false,
-      edit: {
-        allowIntersection: false,
-        featureGroup: drawnItems
+    this.map.pm.setGlobalOptions({
+      allowSelfIntersection: false,
+      layerGroup: drawnItems,
+    });
+
+    this.map.pm.setLang(Localizer.LANGUAGE);
+
+    // Hide the edit controls by default and show it only after a shape is drawn
+    document.querySelector('.leaflet-pm-toolbar.leaflet-pm-edit').classList.add('d-hide');
+
+    // Called when a shape is drawn/finished
+    this.map.on('pm:create', event => {
+      if (event.shape === 'Circle') {
+        // Convert circles to polygons, because circles are internally stored as
+        // simple points with a radius, but a polygon is required for all requests
+        drawnItems.removeLayer(event.layer);
+        event.layer = L.PM.Utils.circleToPolygon(event.layer);
+        drawnItems.addLayer(event.layer);
       }
+
+      event.layer.options.pmIgnore = false;
+      event.layer.options.bubblingMouseEvents = false;
+      L.PM.reInitLayer(event.layer);
+
+      document.querySelector('.leaflet-pm-toolbar.leaflet-pm-draw').classList.add('d-hide');
+      document.querySelector('.leaflet-pm-toolbar.leaflet-pm-edit').classList.remove('d-hide');
+      onChangeStop('pm:create');
     });
 
-    this.map.on(L.Draw.Event.CREATED, event => {
+    // Called when a layer is removed via Removal Mode
+    this.map.on('pm:remove', () => {
+      document.querySelector('.leaflet-pm-toolbar.leaflet-pm-draw').classList.remove('d-hide');
+      document.querySelector('.leaflet-pm-toolbar.leaflet-pm-edit').classList.add('d-hide');
+      onChangeStop('pm:remove');
+    });
+
+    // Called when Draw Mode is enabled
+    this.map.on('pm:drawstart', () => {
+      onChangeStart('pm:drawstart');
+    });
+
+    // Called when Draw Mode is disabled
+    this.map.on('pm:drawend', () => {
+      onChangeStop('pm:drawend');
+    });
+
+    // Called when Removal Mode is toggled
+    this.map.on('pm:globalremovalmodetoggled', event => {
+      event.enabled ? onChangeStart('pm:globalremovalmodetoggled') : onChangeStop('pm:globalremovalmodetoggled'); // eslint-disable-line no-unused-expressions
+    });
+
+    // Called when Edit Mode on a layer is enabled
+    drawnItems.on('pm:enable', () => {
+      onChangeStart('pm:enable');
+    });
+
+    // Called when Edit Mode on a layer is disabled
+    drawnItems.on('pm:disable', () => {
+      onChangeStop('pm:disable');
+    });
+
+    // Called when a layer is edited
+    drawnItems.on('pm:edit', () => {
+      onChangeStop('pm:edit');
+    });
+
+    // Called when Edit Mode is disabled and a layer is edited and its coordinates have changed
+    drawnItems.on('pm:update', () => {
+      onChangeStop('pm:update');
+    });
+
+    // Called when the layer is being cut
+    drawnItems.on('pm:cut', event => {
+      drawnItems.removeLayer(event.originalLayer);
+
+      event.layer.options.pmIgnore = false;
+      event.layer.options.bubblingMouseEvents = false;
+      L.PM.reInitLayer(event.layer);
+
       drawnItems.addLayer(event.layer);
-      this.map.removeControl(drawControl);
-      this.map.addControl(editControl);
-    });
 
-    this.map.on(L.Draw.Event.DELETED, () => {
-      this.map.removeControl(editControl);
-      this.map.addControl(drawControl);
+      onChangeStop('pm:cut');
     });
-
-    this.map.on(L.Draw.Event.DRAWSTART, () => {
-      onChangeStart(L.Draw.Event.DRAWSTART);
-    });
-
-    this.map.on(L.Draw.Event.DRAWSTOP, () => {
-      onChangeStop(L.Draw.Event.DRAWSTOP);
-    });
-
-    this.map.on(L.Draw.Event.EDITSTART, () => {
-      onChangeStart(L.Draw.Event.EDITSTART);
-    });
-
-    this.map.on(L.Draw.Event.EDITSTOP, () => {
-      onChangeStop(L.Draw.Event.EDITSTOP);
-    });
-
-    this.map.on(L.Draw.Event.DELETESTART, () => {
-      onChangeStart(L.Draw.Event.DELETESTART);
-    });
-
-    this.map.on(L.Draw.Event.DELETESTOP, () => {
-      onChangeStop(L.Draw.Event.DELETESTOP);
-    });
-
-    return {
-      draw: drawControl,
-      edit: editControl
-    };
   }
 
   /**

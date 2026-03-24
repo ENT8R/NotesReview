@@ -18,6 +18,7 @@
   "license": "GPL-3.0",
   "dependencies": {
     "@badgateway/oauth2-client": "^3.3.1",
+    "@geoman-io/leaflet-geoman-free": "^2.19.2",
     "@github/relative-time-element": "^5.0.0",
     "@mapbox/tilebelt": "^2.0.3",
     "@mapbox/vector-tile": "^2.0.4",
@@ -25,7 +26,6 @@
     "@rapideditor/location-conflation": "^2.0.1",
     "leaflet": "^1.9.4",
     "leaflet-control-geocoder": "^3.3.1",
-    "leaflet-draw": "^1.0.4",
     "leaflet.markercluster": "^1.5.3",
     "linkify-string": "^4.3.2",
     "linkifyjs": "^4.3.2",

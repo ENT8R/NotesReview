@@ -42,12 +42,12 @@ export default class AreaSelector extends Modal {
       this.polygon();
     });
 
-    // If the list of countries is empty, parse the polygon input and notify the draw control about a new layer
+    // If the list of countries is empty, parse the polygon input, add it to the map and notify Geoman about it
     if (this.countries.length === 0 && this.polygonInput.value !== '') {
-      // See https://github.com/Leaflet/Leaflet.draw/issues/276
       const geojsonLayer = new L.GeoJSON(JSON.parse(this.polygonInput.value));
       geojsonLayer.eachLayer(layer => {
-        this.map.fire(L.Draw.Event.CREATED, {
+        this.drawnFeatures.addLayer(layer);
+        this.map.fire('pm:create', {
           layer
         });
       });
@@ -99,7 +99,7 @@ export default class AreaSelector extends Modal {
     // otherwise the earth will be included by default
     if (countries.length > 0) {
       // Remove the drawing toolbar
-      this.map.removeControl(this.controls.draw);
+      document.querySelector('.leaflet-pm-toolbar.leaflet-pm-draw').classList.add('d-hide');
 
       const result = locationConflation.resolveLocationSet({
         include: countries
@@ -110,7 +110,7 @@ export default class AreaSelector extends Modal {
         JSON.parse(JSON.stringify(result.feature))
       ));
     } else if (this.drawnFeatures.getLayers().length === 0) {
-      this.map.addControl(this.controls.draw);
+      document.querySelector('.leaflet-pm-toolbar.leaflet-pm-draw').classList.remove('d-hide');
     }
 
     this.polygon();
