@@ -1,3 +1,14 @@
+.note-marker-icon {
+  svg {
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
+    transition: transform 500ms var(--exponential-ease-out);
+    transform-origin: bottom;
+  }
+  &:focus svg {
+    transform: scale(1.2);
+  }
+}
+
 .marker {
   width: 25px;
   height: 40px;

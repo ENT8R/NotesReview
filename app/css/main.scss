@@ -196,17 +196,6 @@ textarea {
   min-height: 140px;
 }
 
-.marker-icon {
-  svg {
-    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
-    transition: transform 500ms var(--exponential-ease-out);
-    transform-origin: bottom;
-  }
-  &:focus svg {
-    transform: scale(1.2);
-  }
-}
-
 .overlay {
   position: fixed;
   top: 0;

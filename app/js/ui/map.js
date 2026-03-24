@@ -74,7 +74,7 @@ export default class Map {
         iconSize: [25, 40],// [width, height]
         iconAnchor: [25 / 2, 40], // [width / 2, height]
         popupAnchor: [0, -30],
-        className: 'marker-icon'
+        className: 'note-marker-icon'
       })
     });
 
