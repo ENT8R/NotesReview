@@ -90,8 +90,15 @@ function listener() {
   });
   document.getElementById('cancel').addEventListener('click', () => query.cancel());
 
-  document.querySelectorAll('.reset-trigger').forEach(element => {
+  document.querySelectorAll('.reset-filter-trigger').forEach(element => {
     element.addEventListener('click', () => query.reset());
+  });
+
+  document.querySelectorAll('.reset-settings-trigger').forEach(element => {
+    element.addEventListener('click', () => {
+      Preferences.reset();
+      settings();
+    });
   });
 
   document.getElementById('login').addEventListener('click', () => auth.login());
