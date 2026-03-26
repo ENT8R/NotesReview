@@ -297,6 +297,8 @@ function settings() {
   await Localizer.init();
   Modal.init();
 
+  settings();
+
   let parameter = new URL(window.location.href).searchParams;
   // Remove the query parameters to have a cleaner looking URL
   const uri = window.location.toString();
@@ -375,6 +377,5 @@ function settings() {
   ui = new UI(view);
 
   listener();
-  settings();
   search();
 })();

@@ -1,10 +1,8 @@
-import Preferences from './preferences.js';
-
 export const LIGHT = 'light';
 export const DARK = 'dark';
 export const SYSTEM = 'system';
 
-let theme = Preferences.get('theme') || SYSTEM;
+let theme;
 
 const query = window.matchMedia('(prefers-color-scheme: dark)');
 document.body.dataset.theme = get();
@@ -25,9 +23,9 @@ export function set(newTheme) {
   changed();
 
   if (theme === SYSTEM) {
-    query.addListener(changed);
+    query.addEventListener('change', changed);
   } else {
-    query.removeListener(changed);
+    query.removeEventListener('change', changed);
   }
 }
 
