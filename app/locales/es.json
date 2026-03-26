@@ -30,7 +30,6 @@
     "action": {
         "cancel": "Cancelar",
         "close": "Cerrar",
-        "copyLinkSuccess": "Enlace copiado correctamente",
         "save": "Guardar",
         "search": "Buscar",
         "more": "Más",
@@ -179,5 +178,8 @@
         "login": "Error a iniciar sesión, vuelva a intentarlo más tarde",
         "comment": "Error al comentar, vuelve a intentarlo más tarde.",
         "queryTimeout": "Tiempo de espera agotado, la consulta es demasiado compleja"
+    },
+    "success": {
+        "copy": "Enlace copiado correctamente"
     }
 }

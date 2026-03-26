@@ -22,7 +22,6 @@
     "action": {
         "cancel": "Annuler",
         "close": "Fermer",
-        "copyLinkSuccess": "Lien copié avec succès",
         "save": "Enregistrer",
         "search": "Chercher",
         "more": "Plus",
@@ -145,5 +144,8 @@
     "error": {
         "login": "La connexion a échoué, réessayez plus tard s'il vous plaît",
         "comment": "Le commentaire a échoué, réessayez plus tard s'il vous plaît"
+    },
+    "success": {
+        "copy": "Lien copié avec succès"
     }
 }

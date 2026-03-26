@@ -34,7 +34,6 @@
     "action": {
         "cancel": "Abbrechen",
         "close": "Schließen",
-        "copyLinkSuccess": "Link erfolgreich kopiert",
         "save": "Speichern",
         "search": "Suchen",
         "more": "Mehr",
@@ -184,5 +183,8 @@
         "comment": "Kommentieren fehlgeschlagen, bitte versuche es später erneut",
         "queryTimeout": "Zeitüberschreitung, Abfrage ist zu komplex",
         "queryAbort": "Suche wurde abgebrochen, vorherige Ergebnisse werden angezeigt"
+    },
+    "success": {
+        "copy": "Link erfolgreich kopiert"
     }
 }

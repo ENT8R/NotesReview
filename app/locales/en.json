@@ -34,7 +34,6 @@
     "action": {
         "cancel": "Cancel",
         "close": "Close",
-        "copyLinkSuccess": "Copied link successfully",
         "save": "Save",
         "search": "Search",
         "more": "More",
@@ -193,5 +192,8 @@
         "comment": "Commenting failed, please try again later",
         "queryTimeout": "Timeout, query is too complex",
         "queryAbort": "Query cancelled, showing previous results"
+    },
+    "success": {
+        "copy": "Copied link successfully"
     }
 }

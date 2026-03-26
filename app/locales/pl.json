@@ -30,7 +30,6 @@
     "action": {
         "cancel": "Anuluj",
         "close": "Zamknij",
-        "copyLinkSuccess": "Udało się skopiować link",
         "save": "Zapisz",
         "search": "Szukaj",
         "more": "Więcej",
@@ -174,5 +173,8 @@
     "error": {
         "login": "Logowanie się nie powiodło, spróbuj ponownie później",
         "comment": "Wysyłanie komentarza się nie powiodło, spróbuj ponownie później"
+    },
+    "success": {
+        "copy": "Udało się skopiować link"
     }
 }

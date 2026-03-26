@@ -34,7 +34,6 @@
     "action": {
         "cancel": "取消",
         "close": "關閉",
-        "copyLinkSuccess": "成功複製連結",
         "save": "儲存",
         "search": "搜尋",
         "more": "更多",
@@ -184,5 +183,8 @@
         "comment": "無法評論，請再試一次",
         "queryTimeout": "時間已到，檢索方式太複雜了",
         "queryAbort": "取消檢索，顯示先前的結果"
+    },
+    "success": {
+        "copy": "成功複製連結"
     }
 }

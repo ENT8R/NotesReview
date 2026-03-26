@@ -22,7 +22,6 @@
     "action": {
         "cancel": "キャンセル",
         "close": "クローズ",
-        "copyLinkSuccess": "リンクコピー完了",
         "save": "セーブ",
         "search": "検索",
         "openstreetmap": "OpenStreetMap",
@@ -138,5 +137,8 @@
     "error": {
         "login": "ログインに失敗しました。もう一度試してみてください。",
         "comment": "コメント追加に失敗しました。もう一度試してみてください。"
+    },
+    "success": {
+        "copy": "リンクコピー完了"
     }
 }

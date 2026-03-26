@@ -22,7 +22,6 @@
     "action": {
         "cancel": "Annuleren",
         "close": "Sluiten",
-        "copyLinkSuccess": "Link succesvol gekopieerd",
         "save": "Opslaan",
         "search": "Zoeken",
         "more": "Meer",
@@ -149,5 +148,8 @@
     "error": {
         "login": "Inloggen mislukt, probeer het later opnieuw",
         "comment": "Reageren mislukt, probeer het later opnieuw"
+    },
+    "success": {
+        "copy": "Link succesvol gekopieerd"
     }
 }
