@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 import { defineConfig } from 'vite';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import handlebars from 'vite-plugin-handlebars';
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons-ng';
 
 import pkg from './package.json' with { type: 'json' };
 import structuredData from './app/templates/includes/structuredData.json' with { type: 'json' };
@@ -68,7 +68,7 @@ export default () => {
       }),
       createSvgIconsPlugin({
         iconDirs: [resolve(root, 'svg')],
-        symbolId: '[dir]-[name]'
+        symbolId: 'svg-[dir]-[name]'
       })
     ]
   });

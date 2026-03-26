@@ -4,7 +4,7 @@
   <div class="mapillary-image p-relative">
     <img src="{{src}}" class="img-responsive" width="{{width}}" height="{{height}}">
     <a class="mapillary-image-link p-absolute px-2" href="https://www.mapillary.com/app/?pKey={{id}}&focus=photo" target="_blank" rel="noopener">
-      <svg class="icon icon-large"><use xlink:href="#assets-mapillary"></use></svg>
+      <svg class="icon icon-large"><use xlink:href="#svg-assets-mapillary"></use></svg>
     </a>
     <span class="mapillary-image-user p-absolute px-2 bg-dark">
       @{{user}}, <i>{{capturedAt}}</i>
@@ -18,13 +18,13 @@
 {{else}}
 <div class="empty col-12">
   <div class="empty-icon">
-    <svg><use xlink:href="#illustration-lost"></use></svg>
+    <svg><use xlink:href="#svg-illustration-lost"></use></svg>
   </div>
   <p class="empty-title h5">{{localizer 'mapillary.empty.title'}}</p>
   <p class="empty-subtitle">{{localizer 'mapillary.empty.subtitle'}}</p>
   <div class="empty-action">
     <a class="btn btn-primary" href="{{link}}" target="_blank" rel="noopener">
-      <svg class="icon"><use xlink:href="#icon-mapillary"></use></svg>
+      <svg class="icon"><use xlink:href="#svg-icon-mapillary"></use></svg>
       <span>{{localizer 'mapillary.empty.add'}}</span>
     </a>
   </div>

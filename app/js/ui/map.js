@@ -70,7 +70,7 @@ export default class Map {
 
     const marker = L.marker(note.coordinates, {
       icon: new L.divIcon({
-        html: `<svg class="marker ${color}"><use xlink:href="#marker-template"></use></svg>`,
+        html: `<svg class="marker ${color}"><use xlink:href="#svg-marker-template"></use></svg>`,
         iconSize: [25, 40],// [width, height]
         iconAnchor: [25 / 2, 40], // [width / 2, height]
         popupAnchor: [0, -30],

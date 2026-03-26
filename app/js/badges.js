@@ -117,7 +117,7 @@ export function status(action) {
 export function report(id) {
   return `<a href="${OPENSTREETMAP_SERVER}/reports/new?reportable_type=Note&reportable_id=${id}" target="_blank" rel="noopener">
             <span class="tooltip tooltip-bottom" data-tooltip="${Localizer.message('action.report')}">
-              <svg class="icon"><use xlink:href="#icon-flag"></use></svg>
+              <svg class="icon"><use xlink:href="#svg-icon-flag"></use></svg>
             </span>
           </a>`;
 }

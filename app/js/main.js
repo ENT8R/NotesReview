@@ -3,7 +3,7 @@ import 'spectre.css/dist/spectre.css';
 import 'spectre.css/dist/spectre-exp.css';
 /* -------------------------------------------------------------------------- */
 import '../css/main.scss';
-import 'virtual:svg-icons-register';
+import 'virtual:svg-icons/register';
 /* -------------------------------------------------------------------------- */
 import './polyfills.js';
 
