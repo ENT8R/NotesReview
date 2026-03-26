@@ -11,15 +11,19 @@ export default class SingleSelectionButtonGroup extends HTMLElement {
 
   connectedCallback() {
     this.querySelectorAll('button').forEach(button => {
-      button.addEventListener('click', () => {
-        this.value = button.dataset.value || null;
-      });
+      button.addEventListener('click', this.#onClick.bind(this));
     });
     this.value = this.activeButton.dataset.value || null;
   }
 
   formStateRestoreCallback(state) {
     this.value = state;
+  }
+
+  #onClick(event) {
+    this.value = event.target.dataset.value || null;
+    this.dispatchEvent(new Event('change'));
+    this.dispatchEvent(new Event('input'));
   }
 
   get value() {
@@ -42,10 +46,8 @@ export default class SingleSelectionButtonGroup extends HTMLElement {
     this.activeButton = nextButton;
     this.activeButton.classList.add('active');
 
-    // Set the new value and fire events
+    // Set the new value internally and update the form value
     this._v = v;
-    this._internals && 'setFormValue' in this._internals ? this._internals.setFormValue(this._v) : null; // eslint-disable-line no-unused-expressions
-    this.dispatchEvent(new Event('change'));
-    this.dispatchEvent(new Event('input'));
+    this._internals.setFormValue(this._v);
   }
 }
