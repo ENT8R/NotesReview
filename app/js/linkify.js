@@ -5,8 +5,8 @@ import * as Util from './util.js';
 
 const IMAGE_HOSTING_REGEX = {
   imgur: /(http(s)?:\/\/)?(i\.)?imgur\.com\/\w+\.(jpg|png)/i,
-  framapic: /(http(s)?:\/\/)?(www\.)?framapic\.org\/(random\?i=)?\w+\/\w+(\.(jpg|jpeg|png))?/i,
   westnordost: /https:\/\/westnordost\.de\/p\/[0-9]+\.jpg/i,
+  streetcomplete: /https:\/\/streetcomplete\.app\/p\/[0-9]+\.jpg/i,
   wikimedia: /http(?:s)?:\/\/upload\.wikimedia\.org\/wikipedia\/(.+?)\/(?:thumb\/)?(\w\/\w\w)\/(.+?\.(?:jpg|jpeg|png))(?:\/.+?\.(?:jpg|jpeg|png))?/i,
   commons: /http(?:s)?:\/\/commons\.wikimedia\.org\/wiki\/File:(.+?\.(?:jpg|jpeg|png|svg))/i,
   openstreetmap: /http(?:s)?:\/\/wiki\.openstreetmap\.org\/wiki\/File:(.+?\.(?:jpg|jpeg|png|svg))/i,
