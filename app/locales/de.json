@@ -185,6 +185,7 @@
         "queryAbort": "Suche wurde abgebrochen, vorherige Ergebnisse werden angezeigt"
     },
     "success": {
-        "copy": "Link erfolgreich kopiert"
+        "copy": "Link erfolgreich kopiert",
+        "saved": "Erfolgreich gespeichert"
     }
 }

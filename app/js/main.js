@@ -101,6 +101,12 @@ function listener() {
     });
   });
 
+  document.querySelectorAll('.save-feedback').forEach(element => {
+    element.addEventListener('click', () => {
+      new Toast(Localizer.message('success.saved'), 'toast-success').show();
+    });
+  });
+
   document.getElementById('login').addEventListener('click', () => auth.login());
 
   document.getElementById('logout').addEventListener('click', () => {

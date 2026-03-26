@@ -194,6 +194,7 @@
         "queryAbort": "Query cancelled, showing previous results"
     },
     "success": {
-        "copy": "Copied link successfully"
+        "copy": "Copied link successfully",
+        "saved": "Successfully saved"
     }
 }
