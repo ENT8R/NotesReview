@@ -119,6 +119,9 @@ function listener() {
     element.addEventListener('change', () => {
       Preferences.set({
         theme: document.getElementById('theme-selection').value,
+        content: {
+          images: document.getElementById('content-image-options').value,
+        },
         editors: {
           id: document.getElementById('editor-id').checked,
           rapid: document.getElementById('editor-rapid').checked,
@@ -223,6 +226,14 @@ function listener() {
   * @returns {void}
   */
 function settings() {
+  const theme = Preferences.get('theme');
+  document.getElementById('theme-selection').value = theme;
+  Theme.set(theme);
+
+  const content = Preferences.get('content');
+  document.getElementById('content-image-options').value = content.images;
+  document.body.dataset.contentImages = content.images;
+
   const editors = Preferences.get('editors');
   const tools = Preferences.get('tools');
 
@@ -241,10 +252,6 @@ function settings() {
   document.body.dataset.toolOpenstreetmap = tools.openstreetmap;
   document.body.dataset.toolMapillary = tools.mapillary;
   document.body.dataset.toolDeepl = tools.deepl;
-
-  const theme = Preferences.get('theme');
-  document.getElementById('theme-selection').value = theme;
-  Theme.set(theme);
 }
 
 /**

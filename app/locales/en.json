@@ -137,6 +137,15 @@
             "description": "Select your favorite tool(s)",
             "editors": "Editors",
             "other": "Other"
+        },
+        "content": {
+            "title": "Content preferences",
+            "images": {
+                "title": "Load images automatically",
+                "always": "Always",
+                "trusted": "Only from trusted sources",
+                "never": "Never"
+            }
         }
     },
     "note": {

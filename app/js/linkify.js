@@ -1,5 +1,6 @@
 import linkify from 'linkify-string';
 
+import Preferences from './preferences.js';
 import * as Util from './util.js';
 
 const IMAGE_HOSTING_REGEX = {
@@ -10,7 +11,11 @@ const IMAGE_HOSTING_REGEX = {
   commons: /http(?:s)?:\/\/commons\.wikimedia\.org\/wiki\/File:(.+?\.(?:jpg|jpeg|png|svg))/i,
   openstreetmap: /http(?:s)?:\/\/wiki\.openstreetmap\.org\/wiki\/File:(.+?\.(?:jpg|jpeg|png|svg))/i,
   mapillary: /http(?:s)?:\/\/(?:www\.)?mapillary\.com\/map\/im\/(\w+)/i,
-  all: /(http(s)?:\/\/)?(www\.)?.+\.(jpg|jpeg|png)/i
+};
+
+const IMAGE_HOSTING_REGEX_ALL = {
+  ...IMAGE_HOSTING_REGEX,
+  all: /(http(s)?:\/\/)?(www\.)?.+\.(jpg|jpeg|png)/i,
 };
 
 const IMAGE_HOSTING_ADDITIONAL_FORMATTING = {
@@ -28,8 +33,16 @@ const IMAGE_HOSTING_ADDITIONAL_FORMATTING = {
   * @returns {String}
   */
 export default function replace(input) {
+  let regexps = {};
+  const content = Preferences.get('content');
+  if (content.images === 'trusted') {
+    regexps = IMAGE_HOSTING_REGEX;
+  } else if (content.images === 'always') {
+    regexps = IMAGE_HOSTING_REGEX_ALL;
+  }
+
   const images = [];
-  const specialTransform = Object.entries(IMAGE_HOSTING_REGEX).map(([ provider, regex ]) => {
+  const specialTransform = Object.entries(regexps).map(([ provider, regex ]) => {
     return {
       test: regex,
       transform: url => {
@@ -41,7 +54,7 @@ export default function replace(input) {
         url = Util.escape(url);
         return {
           url,
-          image: `<img class="img-responsive img-preview p-1" src="${url}" alt="${url}">`
+          image: `<img class="img-responsive img-preview p-1" src="${url}" alt="${url}" referrerpolicy="no-referrer">`
         };
       }
     };
@@ -55,7 +68,7 @@ export default function replace(input) {
       // Check if any of the regexes match the link and transform accordingly
       for (const { test, transform } of specialTransform) {
         if (test.test(attributes.href)) {
-          const result = transform(content);
+          const result = transform(attributes.href);
           attributes.href = result.url;
           content = result.image;
           break;

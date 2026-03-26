@@ -8,6 +8,9 @@ const DEFAULTS = {
   },
   query: {},
   theme: 'system',
+  content: {
+    images: 'never',
+  },
   tools: {
     openstreetmap: true,
     mapillary: false,

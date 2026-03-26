@@ -15,6 +15,18 @@
 
   <div class="divider"></div>
 
+  <h5 data-i18n="settings.content.title">Content preferences</h5>
+  <div class="form-group">
+    <label class="form-label" for="content-image-options" data-i18n="settings.content.images.title">Load images automatically</label>
+    <single-selection-button-group id="content-image-options" class="btn-group btn-group-block setting">
+      <button class="btn" data-value="always" data-i18n="settings.content.images.always">Always</button>
+      <button class="btn" data-value="trusted" data-i18n="settings.content.images.trusted">Only from trusted sources</button>
+      <button class="btn active" data-value="never" data-i18n="settings.content.images.never">Never</button>
+    </single-selection-button-group>
+  </div>
+
+  <div class="divider"></div>
+
   <h5 data-i18n="settings.tools.title">Tools</h5>
   <p class="text-gray m-0" data-i18n="settings.tools.description">Select your favorite tool(s)</p>
   <div class="form-group">
