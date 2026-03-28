@@ -63,17 +63,23 @@ export default class Mapillary extends Modal {
 
     images.sort((a, b) => a.distance - b.distance);
     images = images.slice(0, LIMIT);
-    images = await Promise.all(images.map(async image => {
-      const url = `https://graph.mapillary.com/${image.id}?access_token=${MAPILLARY_CLIENT_ID}&fields=thumb_1024_url,width,height,creator,captured_at`;
-      const data = await Request(url);
-      return Object.assign(image, {
-        src: data.thumb_1024_url,
-        width: data.width,
-        height: data.height,
-        user: data.creator.username,
-        capturedAt: new Date(data.captured_at).toLocaleDateString()
+    images = await Promise.allSettled(images.map(image => {
+      return new Promise((resolve, reject) => {
+        const url = `https://graph.mapillary.com/${image.id}?access_token=${MAPILLARY_CLIENT_ID}&fields=thumb_1024_url,width,height,creator,captured_at`;
+        Request(url).then(data => {
+          resolve(Object.assign(image, {
+            src: data.thumb_1024_url,
+            width: data.width,
+            height: data.height,
+            user: data.creator.username,
+            capturedAt: new Date(data.captured_at).toLocaleDateString()
+          }));
+        }).catch(error => reject(error));
       });
-    }));
+    })).then(promises => {
+      // Filter out rejected promises and only return the value of the fulfilled ones
+      return promises.filter(promise => promise.status === 'fulfilled').map(promise => promise.value);
+    });
 
     content.innerHTML = template({
       images,
