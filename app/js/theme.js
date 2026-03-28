@@ -37,14 +37,14 @@ export function set(newTheme) {
   */
 export function get() {
   switch (theme) {
-  case LIGHT:
-    return LIGHT;
-  case DARK:
-    return DARK;
-  case SYSTEM:
-    return query.matches ? DARK : LIGHT;
-  default:
-    return LIGHT;
+    case LIGHT:
+      return LIGHT;
+    case DARK:
+      return DARK;
+    case SYSTEM:
+      return query.matches ? DARK : LIGHT;
+    default:
+      return LIGHT;
   }
 }
 

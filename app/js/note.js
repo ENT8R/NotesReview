@@ -152,15 +152,15 @@ export default class Note {
         let [ , type, id ] = match; // eslint-disable-line prefer-const
 
         switch (type) {
-        case 'n':
-          type = 'node';
-          break;
-        case 'w':
-          type = 'way';
-          break;
-        case 'r':
-          type = 'relation';
-          break;
+          case 'n':
+            type = 'node';
+            break;
+          case 'w':
+            type = 'way';
+            break;
+          case 'r':
+            type = 'relation';
+            break;
         }
 
         return {

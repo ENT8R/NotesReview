@@ -41,9 +41,7 @@ export default [
         allowTemplateLiterals: 'never',
       }],
       '@stylistic/js/brace-style': 'error',
-      // TODO: SwitchCase should already be 0 by default (no indentation), but at least with v5.2.2 of @stylistic/eslint-plugin it complains by default if omitted,
-      // This should be tested if this is still the case with future versions and maybe remove the option if possible again (as according to documentation, this is already the default)
-      '@stylistic/js/indent': ['error', 2, { 'SwitchCase': 0 }],
+      '@stylistic/js/indent': ['error', 2],
 
       'no-eval': 'error',
       'no-implied-eval': 'error',

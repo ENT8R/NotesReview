@@ -25,14 +25,14 @@ export default function request(url, mediaType = MEDIA_TYPE.JSON, options = {}, 
     }
 
     switch (mediaType) {
-    case MEDIA_TYPE.JSON:
-      return response.json();
-    case MEDIA_TYPE.PROTOBUF:
-      return response.arrayBuffer();
-    case MEDIA_TYPE.XML:
-      return response.text().then(text => new DOMParser().parseFromString(text, 'text/xml'));
-    default:
-      return response.text();
+      case MEDIA_TYPE.JSON:
+        return response.json();
+      case MEDIA_TYPE.PROTOBUF:
+        return response.arrayBuffer();
+      case MEDIA_TYPE.XML:
+        return response.text().then(text => new DOMParser().parseFromString(text, 'text/xml'));
+      default:
+        return response.text();
     }
   }).catch(error => {
     // Catch aborted requests and ignore them, rethrow all other errors
