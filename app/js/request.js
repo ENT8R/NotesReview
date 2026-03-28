@@ -20,20 +20,19 @@ export default function request(url, mediaType = MEDIA_TYPE.JSON, options = {}, 
   return fetch(url, Object.assign({
     signal: controller.signal
   }, options)).then(response => {
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+
     switch (mediaType) {
     case MEDIA_TYPE.JSON:
       return response.json();
     case MEDIA_TYPE.PROTOBUF:
       return response.arrayBuffer();
+    case MEDIA_TYPE.XML:
+      return response.text().then(text => new DOMParser().parseFromString(text, 'text/xml'));
     default:
       return response.text();
-    }
-  }).then(text => {
-    switch (mediaType) {
-    case MEDIA_TYPE.XML:
-      return new DOMParser().parseFromString(text, 'text/xml');
-    default:
-      return text;
     }
   }).catch(error => {
     // Catch aborted requests and ignore them, rethrow all other errors
