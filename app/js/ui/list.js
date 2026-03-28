@@ -1,6 +1,4 @@
-import * as Handlebars from 'handlebars';
-import t from '../../templates/dynamic/note.hbs?raw';
-const template = Handlebars.compile(t);
+import template from '../../templates/dynamic/note.hbs';
 
 export default class List {
   constructor() {

@@ -1,4 +1,3 @@
-import * as Localizer from '../localizer.js';
 import Modal from './modal.js';
 import Request, { MEDIA_TYPE } from '../request.js';
 
@@ -6,12 +5,7 @@ import * as tilebelt from '@mapbox/tilebelt';
 import { VectorTile } from '@mapbox/vector-tile';
 import Protobuf from 'pbf';
 
-import Handlebars from 'handlebars';
-import t from '../../templates/dynamic/mapillary.hbs?raw';
-const template = Handlebars.compile(t);
-Handlebars.registerHelper('localizer', key => {
-  return Localizer.message(key);
-});
+import template from '../../templates/dynamic/mapillary.hbs';
 
 export default class Mapillary extends Modal {
   /**

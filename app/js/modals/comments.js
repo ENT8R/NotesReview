@@ -1,8 +1,6 @@
 import Modal from './modal.js';
 
-import * as Handlebars from 'handlebars';
-import t from '../../templates/dynamic/comment.hbs?raw';
-const template = Handlebars.compile(t);
+import template from '../../templates/dynamic/comment.hbs';
 
 export default class Comments extends Modal {
   /**

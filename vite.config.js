@@ -5,7 +5,8 @@ import dotenv from 'dotenv';
 
 import { defineConfig } from 'vite';
 import basicSsl from '@vitejs/plugin-basic-ssl';
-import handlebars from 'vite-plugin-handlebars';
+import handlebarsCompiler from './plugins/handlebars-compiler.js';
+import handlebarsPlugin from 'vite-plugin-handlebars';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons-ng';
 
 import pkg from './package.json' with { type: 'json' };
@@ -54,7 +55,17 @@ export default () => {
     },
     plugins: [
       basicSsl(),
-      handlebars({
+      handlebarsCompiler({
+        globals: {
+          __VERSION__: pkg.version,
+          NOTESREVIEW_API_URL: process.env.NOTESREVIEW_API_URL,
+          OPENSTREETMAP_SERVER: process.env.OPENSTREETMAP_SERVER,
+        },
+        partials: {
+          actions: resolve(root, 'templates/dynamic/actions.hbs'),
+        }
+      }),
+      handlebarsPlugin({
         partialDirectory: [
           resolve(root, 'templates'),
           resolve(root, 'templates/includes'),

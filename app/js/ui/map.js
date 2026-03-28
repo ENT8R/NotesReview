@@ -2,9 +2,7 @@ import Leaflet from '../leaflet.js';
 import { STATUS } from '../query.js';
 import * as Util from '../util.js';
 
-import * as Handlebars from 'handlebars';
-import t from '../../templates/dynamic/comment.hbs?raw';
-const template = Handlebars.compile(t);
+import template from '../../templates/dynamic/comment.hbs';
 
 export default class Map {
   constructor() {
