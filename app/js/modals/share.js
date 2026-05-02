@@ -18,15 +18,23 @@ export default class Share extends Modal {
     document.querySelector('.modal[data-modal="share"]').addEventListener('modal-open', () => {
       document.getElementById('permalink').value = query.permalink;
 
-      document.getElementById('download').href = URL.createObjectURL(new Blob([JSON.stringify(query.result, null, 2)], {
-        type: 'application/json',
-      }));
-      document.getElementById('download').download = `NotesReview-${query.history[query.history.length - 1].time.toISOString()}.json`;
-
       // Only show the checkbox for adding the polygon shape if it would have an effect
       // (i.e. a custom area is used, no countries are selected but something was drawn on the map)
       document.getElementById('share-polygon-checkbox').style.display =
         (query.data.area === AREA.CUSTOM && query.data.countries === null && query.data.polygon !== null) ? 'block' : 'none';
+
+      // Do not show the button to download the data if there is no successful recent query
+      if (query.history.length === 0) {
+        document.getElementById('download').classList.add('d-hide');
+      } else {
+        document.getElementById('download').classList.remove('d-hide');
+
+        // Update the button for downloading the data as a JSON file
+        document.getElementById('download').href = URL.createObjectURL(new Blob([JSON.stringify(query.result, null, 2)], {
+          type: 'application/json',
+        }));
+        document.getElementById('download').download = `NotesReview-${query.history[query.history.length - 1].time.toISOString()}.json`;
+      }
     });
 
     // Update links if a parameter changed
