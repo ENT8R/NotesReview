@@ -20,7 +20,7 @@ export default class Auth {
     * @function
     * @returns {void}
     */
-  async login() {
+  static async login() {
     // Generate a security code which is needed for PKCE
     const codeVerifier = await generateCodeVerifier();
     // Generate a random state parameter
@@ -49,7 +49,7 @@ export default class Auth {
     * @param {String} url
     * @returns {void}
     */
-  async resume(url) {
+  static async resume(url) {
     // Retrieve previously stored values that are needed for the verification
     const codeVerifier = Preferences.get('codeVerifier', true);
     const state = Preferences.get('state', true);
@@ -80,7 +80,7 @@ export default class Auth {
     * @function
     * @returns {Promise}
     */
-  async isAuthenticated() {
+  static async isAuthenticated() {
     // Check whether there is a (valid) token in the localStorage
     const token = Preferences.get('oauth2_access_token');
     if (!token) {
@@ -107,7 +107,7 @@ export default class Auth {
     * @function
     * @returns {void}
     */
-  logout() {
+  static logout() {
     // Log out from the backend server before deleting the tokens
     Request(`${NOTESREVIEW_API_URL}/auth/logout`, MEDIA_TYPE.TEXT, {
       method: 'GET',
@@ -115,7 +115,6 @@ export default class Auth {
         'Authorization': `Bearer ${Preferences.get('oidc_token')}`
       }
     });
-
     Preferences.remove('oauth2_access_token');
     Preferences.remove('oidc_token');
   }

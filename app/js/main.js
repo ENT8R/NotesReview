@@ -29,8 +29,6 @@ window.customElements.define('single-selection-button-group', SingleSelectionBut
 
 let map, ui, query;
 
-const auth = new Auth();
-
 /**
   * Initiate a new query and do some UI changes before and after it
   *
@@ -99,10 +97,10 @@ function listener() {
     });
   });
 
-  document.getElementById('login').addEventListener('click', () => auth.login());
+  document.getElementById('login').addEventListener('click', () => Auth.login());
 
   document.getElementById('logout').addEventListener('click', () => {
-    auth.logout();
+    Auth.logout();
     Preferences.remove('uid');
     document.body.dataset.authenticated = false;
   });
@@ -325,7 +323,7 @@ function settings() {
   if (parameter.has('oauth_redirect_url')) {
     const redirectUrl = decodeURIComponent(parameter.get('oauth_redirect_url'));
     parameter.delete('oauth_redirect_url');
-    auth.resume(redirectUrl).then(() => OsmApi.userDetails()).then(result => {
+    Auth.resume(redirectUrl).then(() => OsmApi.userDetails()).then(result => {
       document.body.dataset.authenticated = true;
 
       const uid = result.user.id;
@@ -358,7 +356,7 @@ function settings() {
   const areaSelector = new AreaSelector(document.getElementById('countries'), document.getElementById('polygon')); // eslint-disable-line no-unused-vars
 
   // Check whether the user is already authenticated and update the UI accordingly
-  auth.isAuthenticated().then(authenticated => {
+  Auth.isAuthenticated().then(authenticated => {
     document.body.dataset.authenticated = authenticated;
     if (authenticated) {
       Users.avatar(Preferences.get('uid'));
