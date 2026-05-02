@@ -1,0 +1,62 @@
+{
+    "help": {
+        "colors": {
+            "darkgreen": "Verd fosc",
+            "green": "Verd",
+            "amber": "Ambre",
+            "orange": "Taronja",
+            "red": "Vermell"
+        }
+    },
+    "action": {
+        "cancel": "Cancel·la",
+        "close": "Tanca",
+        "save": "Actualitza",
+        "search": "Cerca",
+        "more": "Més",
+        "openstreetmap": "OpenStreetMap",
+        "edit": {
+            "id": "iD",
+            "josm": "JOSM",
+            "level0": "Level0",
+            "rapid": "Rapid"
+        },
+        "login": "Inicia sessió",
+        "logout": "Surt",
+        "comment": "Comenta",
+        "deepl": "Deepl"
+    },
+    "header": {
+        "share": "Comparteix",
+        "faq": "FAQ",
+        "about": "Informació",
+        "settings": "Configuració",
+        "user": "Usuari",
+        "author": "Autor"
+    },
+    "settings": {
+        "theme": {
+            "light": "Clar",
+            "dark": "Fosc"
+        }
+    },
+    "note": {
+        "comment": "1 comentari",
+        "comments": "%s comentaris"
+    },
+    "map": {
+        "attribution": "&copy; <a href=\"https://osm.org/copyright\">OpenStreetMap</a> col·laboradors, &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
+    },
+    "user": {
+        "created": "Usuari des de %s"
+    },
+    "description": {
+        "status": {
+            "all": "Tot"
+        },
+        "commented": {
+            "hide": "Ocultar",
+            "only": "Només"
+        }
+    }
+}

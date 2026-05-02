@@ -25,6 +25,10 @@
         "excludingUsers": {
             "title": "¿Es posible excluir a ciertos usuarios?",
             "description": "!HTML! Sí, escribiendo <kbd>NOT</kbd> o <kbd>-</kbd> delante del usuario que se va a excluir.<br> \nTambién es posible excluir a varios usuarios separándolos con una coma."
+        },
+        "outdatedNotes": {
+            "title": "¿Por qué algunas notas parecen estar desactualizadas?",
+            "description": "!HTML! Todas las notas se sincronizan cada 5 minutos con la API de OpenStreetMap. Puede ocurrir que algunas notas o comentarios que hayan sido ocultados por los moderadores sigan apareciendo en los resultados.<br>\nEsto se debe principalmente a que la API subyacente de OpenStreetMap no ofrece directamente la posibilidad de saber qué notas y comentarios han sido ocultados por los moderadores. Por lo tanto, el volcado completo de notas se analiza periódicamente a intervalos irregulares para detectar y corregir estas anomalías.<br>\nSi desea saber cuándo se realizó la última sincronización manual, consulte la <a href=\"{{api}}/status\" target=\"_blank\" rel=\"noopener\">página de estado</a> y busque el valor de <code>last_import</code> (para comentarios) o <code>last_sync</code> (para notas)."
         }
     },
     "action": {
@@ -132,6 +136,15 @@
             "description": "Selecciona tu herramienta(s) favorita",
             "editors": "Editores",
             "other": "Otros"
+        },
+        "content": {
+            "title": "Preferencias de contenido",
+            "images": {
+                "title": "Cargar imágenes automáticamente",
+                "always": "Siempre",
+                "trusted": "Solo de fuentes confiables",
+                "never": "Nunca"
+            }
         }
     },
     "note": {
@@ -177,9 +190,11 @@
     "error": {
         "login": "Error a iniciar sesión, vuelva a intentarlo más tarde",
         "comment": "Error al comentar, vuelve a intentarlo más tarde.",
-        "queryTimeout": "Tiempo de espera agotado, la consulta es demasiado compleja"
+        "queryTimeout": "Tiempo de espera agotado, la consulta es demasiado compleja",
+        "queryAbort": "Consulta cancelada, mostrando resultados previos"
     },
     "success": {
-        "copy": "Enlace copiado correctamente"
+        "copy": "Enlace copiado correctamente",
+        "saved": "Guardado con éxito"
     }
 }
