@@ -25,8 +25,11 @@ body {
   &[data-tool-mapillary="false"] .link-tool-mapillary,
   &[data-tool-deepl="false"] .link-tool-deepl,
 
-  &[data-authenticated="true"] .requires-no-authentication,
-  &[data-authenticated="false"] .requires-authentication,
+  &[data-authenticated-openstreetmap="true"] .requires-no-authentication,
+  &[data-authenticated-openstreetmap="false"] .requires-authentication,
+
+  &[data-authenticated-backend="true"] .requires-no-backend-authentication,
+  &[data-authenticated-backend="false"] .requires-backend-authentication,
 
   &[data-query-changed="true"] .requires-same-query,
   &[data-query-changed="false"] .requires-changed-query,

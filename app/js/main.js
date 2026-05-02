@@ -15,6 +15,7 @@ import * as Localizer from './localizer.js';
 import Mapillary from './modals/mapillary.js';
 import Modal from './modals/modal.js';
 import Note from './note.js';
+import NotesReview from './api/notesreview.js';
 import OsmApi from './api/openstreetmap.js';
 import Preferences from './preferences.js';
 import Query from './query.js';
@@ -100,9 +101,11 @@ function listener() {
   document.getElementById('login').addEventListener('click', () => Auth.login());
 
   document.getElementById('logout').addEventListener('click', () => {
+    NotesReview.logout();
     Auth.logout();
     Preferences.remove('uid');
-    document.body.dataset.authenticated = false;
+    document.body.dataset.authenticatedOpenstreetmap = false;
+    document.body.dataset.authenticatedBackend = false;
   });
 
   document.addEventListener('input', event => {
@@ -324,8 +327,6 @@ function settings() {
     const redirectUrl = decodeURIComponent(parameter.get('oauth_redirect_url'));
     parameter.delete('oauth_redirect_url');
     Auth.resume(redirectUrl).then(() => OsmApi.userDetails()).then(result => {
-      document.body.dataset.authenticated = true;
-
       const uid = result.user.id;
       Preferences.set({
         uid
@@ -333,9 +334,16 @@ function settings() {
 
       Users.add(result.user);
       Users.avatar(uid);
+    }).then(() => {
+      document.body.dataset.authenticatedOpenstreetmap = true;
+      NotesReview.login().then(() => {
+        document.body.dataset.authenticatedBackend = true;
+      }).catch(() => {
+        document.body.dataset.authenticatedBackend = false;
+      });
     }).catch(() => {
       new Toast(Localizer.message('error.login'), 'toast-error').show();
-      document.body.dataset.authenticated = false;
+      document.body.dataset.authenticatedOpenstreetmap = false;
     });
   }
 
@@ -357,10 +365,14 @@ function settings() {
 
   // Check whether the user is already authenticated and update the UI accordingly
   Auth.isAuthenticated().then(authenticated => {
-    document.body.dataset.authenticated = authenticated;
+    document.body.dataset.authenticatedOpenstreetmap = authenticated;
     if (authenticated) {
       Users.avatar(Preferences.get('uid'));
     }
+  });
+
+  NotesReview.isAuthenticated().then(authenticated => {
+    document.body.dataset.authenticatedBackend = authenticated;
   });
 
   const { default: UI } = await import('./ui/ui.js');

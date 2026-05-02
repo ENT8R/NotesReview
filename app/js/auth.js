@@ -59,14 +59,6 @@ export default class Auth {
       codeVerifier,
     });
 
-    // Use the OIDC id token to initiate the login process for the backend
-    Request(`${NOTESREVIEW_API_URL}/auth/login`, MEDIA_TYPE.TEXT, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token.idToken}`
-      }
-    });
-
     // Store the OAuth and OIDC token for use in following requests
     Preferences.set({
       oauth2_access_token: token.accessToken, // eslint-disable-line camelcase
@@ -102,19 +94,12 @@ export default class Auth {
   }
 
   /**
-    * Log out the current user
+    * Log out the current user by deleting the authentication tokens
     *
     * @function
     * @returns {void}
     */
   static logout() {
-    // Log out from the backend server before deleting the tokens
-    Request(`${NOTESREVIEW_API_URL}/auth/logout`, MEDIA_TYPE.TEXT, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${Preferences.get('oidc_token')}`
-      }
-    });
     Preferences.remove('oauth2_access_token');
     Preferences.remove('oidc_token');
   }
