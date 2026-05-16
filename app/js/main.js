@@ -221,6 +221,46 @@ function listener() {
         commentAction.classList.remove('loading');
       });
     }
+
+    const watchNoteTrigger = event.target.closest('.watch-note-trigger');
+    if (watchNoteTrigger) {
+      const id = Number.parseInt(watchNoteTrigger.dataset.noteId);
+      ui.watch(id).then(() => NotesReview.watch(id)).then(() => {
+        new Toast(Localizer.message('success.watchNote'), 'toast-success', false).addAction(
+          Localizer.message('action.undo'), 'icon-undo', (event, toast) => {
+            toast.hide();
+            ui.unwatch(id).then(() => NotesReview.unwatch(id));
+          }
+        ).show();
+      }).catch(() => {
+        new Toast(Localizer.message('error.watchNote'), 'toast-error').show();
+      });
+    }
+
+    const unwatchNoteTrigger = event.target.closest('.unwatch-note-trigger');
+    if (unwatchNoteTrigger) {
+      const id = Number.parseInt(unwatchNoteTrigger.dataset.noteId);
+      ui.unwatch(id).then(() => NotesReview.unwatch(id)).then(() => {
+        new Toast(Localizer.message('success.unwatchNote'), 'toast-success').show();
+      }).catch(() => {
+        new Toast(Localizer.message('error.unwatchNote'), 'toast-error').show();
+      });
+    }
+
+    const hideNoteTrigger = event.target.closest('.hide-note-trigger');
+    if (hideNoteTrigger) {
+      const id = Number.parseInt(hideNoteTrigger.dataset.noteId);
+      ui.hide(id).then(() => NotesReview.hide(id)).then(() => {
+        new Toast(Localizer.message('success.hideNote'), 'toast-success', false).addAction(
+          Localizer.message('action.undo'), 'icon-undo', (event, toast) => {
+            toast.hide();
+            ui.unhide(id).then(() => NotesReview.unhide(id));
+          }
+        ).show();
+      }).catch(() => {
+        new Toast(Localizer.message('error.hideNote'), 'toast-error').show();
+      });
+    }
   });
 }
 

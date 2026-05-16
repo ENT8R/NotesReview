@@ -171,6 +171,16 @@ body.deprecated-browser #deprecation-warning {
   margin: auto;
 }
 
+.w-100 {
+  width: 100%;
+}
+
+.flex-center-items {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .flex-grow {
   flex-grow: 1;
 }
@@ -252,6 +262,10 @@ textarea {
   > .toast {
     margin-top: 10px;
     cursor: default;
+    .btn.btn-primary {
+      background-color: rgba(255, 255, 255, 0.25);
+      border-color: transparent;
+    }
   }
 }
 

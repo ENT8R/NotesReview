@@ -73,7 +73,8 @@ export default class UI {
     * @returns {Boolean}
     */
   isNoteVisible(note, query) {
-    return (query.data.status === STATUS.OPEN ? note.status === STATUS.OPEN : true) &&
+    return !note.hidden &&
+           (query.data.status === STATUS.OPEN ? note.status === STATUS.OPEN : true) &&
            (query.data.status === STATUS.CLOSED ? note.status === STATUS.CLOSED : true);
   }
 
@@ -113,5 +114,53 @@ export default class UI {
     */
   reload() {
     return this.show(this.notes, this.query);
+  }
+
+  /**
+   * Update note accordingly to reflect the new status as being hidden
+   *
+   * @param {Number} id
+   * @returns {Promise}
+   */
+  hide(id) {
+    const note = this.get(id);
+    note.hidden = true;
+    return this.update(id, note);
+  }
+
+  /**
+   * Update note accordingly to reflect the new status as not being hidden anymore
+   *
+   * @param {Number} id
+   * @returns {Promise}
+   */
+  unhide(id) {
+    const note = this.get(id);
+    note.hidden = false;
+    return this.update(id, note);
+  }
+
+  /**
+   * Update note accordingly to reflect the new status as being on the watchlist
+   *
+   * @param {Number} id
+   * @returns {Promise}
+   */
+  watch(id) {
+    const note = this.get(id);
+    note.watchlist = true;
+    return this.update(id, note);
+  }
+
+  /**
+   * Update note accordingly to reflect the new status as not being on the watchlist anymore
+   *
+   * @param {Number} id
+   * @returns {Promise}
+   */
+  unwatch(id) {
+    const note = this.get(id);
+    note.watchlist = false;
+    return this.update(id, note);
   }
 }

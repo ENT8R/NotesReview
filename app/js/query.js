@@ -25,6 +25,12 @@ const COMMENTED = {
   ONLY: 'only'
 };
 
+const WATCHLIST = {
+  INCLUDE: 'include',
+  HIDE: 'hide',
+  ONLY: 'only'
+};
+
 export const AREA = {
   GLOBAL: 'global',
   VIEW: 'view',
@@ -49,6 +55,7 @@ const DEFAULTS = {
     status: STATUS.OPEN,
     anonymous: ANONYMOUS.INCLUDE,
     commented: COMMENTED.INCLUDE,
+    watchlist: WATCHLIST.INCLUDE,
     // Specific frontend values which are not send to the API but transformed to another value before
     sort: `${SORT.CREATED_AT}:${ORDER.DESCENDING}`,
     area: AREA.GLOBAL
@@ -58,6 +65,7 @@ const DEFAULTS = {
     status: STATUS.ALL,
     anonymous: ANONYMOUS.INCLUDE,
     commented: COMMENTED.INCLUDE,
+    watchlist: WATCHLIST.INCLUDE,
     // Specific API values which are not used for the permalink
     sort_by: SORT.UPDATED_AT, // eslint-disable-line camelcase
     order: ORDER.DESCENDING
@@ -150,6 +158,9 @@ export default class Query {
     }, {
       id: 'commented',
       handler: this.commented
+    }, {
+      id: 'watchlist',
+      handler: this.watchlist
     }, {
       id: 'sort',
       handler: this.sort
@@ -408,6 +419,18 @@ export default class Query {
     */
   commented(commented) {
     this.data.commented = commented;
+    return this;
+  }
+
+  /**
+    * Whether notes on the watchlist should be included, hidden or displayed as only results
+    *
+    * @function
+    * @param {WATCHLIST} watchlist
+    * @returns {Query}
+    */
+  watchlist(watchlist) {
+    this.data.watchlist = watchlist;
     return this;
   }
 

@@ -30,6 +30,9 @@ export default class Note {
 
     this.comments = feature.comments.map(comment => new Comment(comment));
 
+    this.hidden = false;
+    this.watchlist = feature.watchlist;
+
     this.users = this.comments.filter(comment => comment.uid !== null).map(comment => comment.uid);
     this.anonymous = this.comments[0].anonymous;
     this.user = this.comments[0].user;
@@ -183,7 +186,10 @@ export default class Note {
       comments: Badges.comments(this.comments.length - 1),
       country: Badges.country(this.coordinates),
       user: Badges.user(this.comments[0].uid, this.anonymous),
-      report: Badges.report(this.id)
+      report: Badges.report(this.id),
+      hide: Badges.hide(this.id),
+      watch: Badges.watch(this.id),
+      unwatch: Badges.unwatch(this.id)
     };
   }
 }

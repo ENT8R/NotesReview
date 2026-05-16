@@ -1,5 +1,14 @@
 <div data-note-id="{{id}}" data-status="{{status}}">
   <div class="note-comments">
+    <div class="column col-auto btn-group float-right">
+      {{{badges.report}}}
+      {{#if watchlist}}
+        {{{badges.unwatch}}}
+      {{else}}
+        {{{badges.watch}}}
+      {{/if}}
+      {{{badges.hide}}}
+    </div>
     {{#each comments}}
     <div class="tile">
       <div class="tile-content">

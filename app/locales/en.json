@@ -56,7 +56,11 @@
         "reset": "Reset",
         "center": "Center map to results",
         "deepl": "Deepl",
-        "download": "Download data (.json)"
+        "download": "Download data (.json)",
+        "hide": "Hide note from results",
+        "watch": "Add note to watchlist",
+        "unwatch": "Remove note from watchlist",
+        "undo": "Undo"
     },
     "header": {
         "share": "Share",
@@ -73,7 +77,8 @@
         "anonymous": "Anonymous notes",
         "area": "Search area",
         "commented": "Commented notes",
-        "author": "Author"
+        "author": "Author",
+        "watchlist": "Notes on my watchlist"
     },
     "description": {
         "share": "Copy this link to share the current query:",
@@ -121,7 +126,12 @@
         "author": "The author is the user who created the note",
         "user": "A user is any user who left a comment on the note\n(including the author)",
         "customArea": "Select countries by clicking on them or draw a custom shape using the toolbar on the left",
-        "sharePolygon": "Share shape for custom area selection"
+        "sharePolygon": "Share shape for custom area selection",
+        "watchlist": {
+            "include": "Include",
+            "hide": "Hide",
+            "only": "Only"
+        }
     },
     "settings": {
         "choose": "Choose an option",
@@ -191,10 +201,16 @@
         "login": "Login failed, please try again later",
         "comment": "Commenting failed, please try again later",
         "queryTimeout": "Timeout, query is too complex",
-        "queryAbort": "Query cancelled, showing previous results"
+        "queryAbort": "Query cancelled, showing previous results",
+        "hideNote": "Could not hide note, please try again later",
+        "watchNote": "Could not add note to watchlist, please try again later",
+        "unwatchNote": "Could not remove note from watchlist, please try again later"
     },
     "success": {
         "copy": "Copied link successfully",
-        "saved": "Successfully saved"
+        "saved": "Successfully saved",
+        "hideNote": "Note hidden",
+        "watchNote": "Added to watchlist",
+        "unwatchNote": "Removed from watchlist"
     }
 }

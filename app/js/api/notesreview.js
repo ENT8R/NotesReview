@@ -59,4 +59,83 @@ export default class NotesReview {
       }
     });
   }
+
+  /**
+    * Add a note to the blocklist
+    *
+    * @function
+    * @param {Number} id
+    * @returns {Promise}
+    */
+  static hide(id) {
+    return Request(`${NOTESREVIEW_API_URL}/notes/blocklist/${id}`, MEDIA_TYPE.TEXT, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${Preferences.get('oidc_token')}`
+      }
+    });
+  }
+
+  /**
+    * Remove a note from the blocklist
+    *
+    * @function
+    * @param {Number} id
+    * @returns {Promise}
+    */
+  static unhide(id) {
+    return Request(`${NOTESREVIEW_API_URL}/notes/blocklist/${id}`, MEDIA_TYPE.TEXT, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${Preferences.get('oidc_token')}`
+      }
+    });
+  }
+
+  /**
+    * Add a note to the watchlist
+    *
+    * @function
+    * @param {Number} id
+    * @returns {Promise}
+    */
+  static watch(id) {
+    return Request(`${NOTESREVIEW_API_URL}/notes/watchlist/${id}`, MEDIA_TYPE.TEXT, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${Preferences.get('oidc_token')}`
+      }
+    });
+  }
+
+  /**
+    * Remove a note from the watchlist
+    *
+    * @function
+    * @param {Number} id
+    * @returns {Promise}
+    */
+  static unwatch(id) {
+    return Request(`${NOTESREVIEW_API_URL}/notes/watchlist/${id}`, MEDIA_TYPE.TEXT, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${Preferences.get('oidc_token')}`
+      }
+    });
+  }
+
+  /**
+    * Get all notes that are currently on the watchlist
+    *
+    * @function
+    * @returns {Promise}
+    */
+  static watchlist() {
+    return Request(`${NOTESREVIEW_API_URL}/notes/watchlist`, MEDIA_TYPE.JSON, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${Preferences.get('oidc_token')}`
+      }
+    });
+  }
 }

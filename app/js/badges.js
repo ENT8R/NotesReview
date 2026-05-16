@@ -115,9 +115,51 @@ export function status(action) {
   * @returns {String}
   */
 export function report(id) {
-  return `<a href="${OPENSTREETMAP_SERVER}/reports/new?reportable_type=Note&reportable_id=${id}" target="_blank" rel="noopener">
-            <span class="tooltip tooltip-bottom" data-tooltip="${Localizer.message('action.report')}">
-              <svg class="icon"><use xlink:href="#svg-icon-flag"></use></svg>
-            </span>
+  return `<a class="btn btn-link tooltip tooltip-left"
+             data-tooltip="${Localizer.message('action.report')}"
+             href="${OPENSTREETMAP_SERVER}/reports/new?reportable_type=Note&reportable_id=${id}" target="_blank" rel="noopener">
+            <svg class="icon icon-small"><use xlink:href="#svg-icon-flag"></use></svg>
           </a>`;
+}
+
+/**
+  * Generate an icon to hide a note
+  *
+  * @function
+  * @param {Number} id
+  * @returns {String}
+  */
+export function hide(id) {
+  return `<button class="btn btn-link tooltip tooltip-left hide-note-trigger requires-backend-authentication"
+                  data-note-id="${id}" data-tooltip="${Localizer.message('action.hide')}">
+            <svg class="icon icon-small"><use xlink:href="#svg-icon-close"></use></svg>
+          </button>`;
+}
+
+/**
+  * Generate an icon to add a note to the watchlist
+  *
+  * @function
+  * @param {Number} id
+  * @returns {String}
+  */
+export function watch(id) {
+  return `<button class="btn btn-link tooltip tooltip-left watch-note-trigger requires-backend-authentication"
+                  data-note-id="${id}" data-tooltip="${Localizer.message('action.watch')}">
+            <svg class="icon icon-small"><use xlink:href="#svg-icon-bookmark"></use></svg>
+          </button>`;
+}
+
+/**
+  * Generate an icon to remove a note from the watchlist
+  *
+  * @function
+  * @param {Number} id
+  * @returns {String}
+  */
+export function unwatch(id) {
+  return `<button class="btn btn-link tooltip tooltip-left unwatch-note-trigger requires-backend-authentication"
+                  data-note-id="${id}" data-tooltip="${Localizer.message('action.unwatch')}">
+            <svg class="icon icon-small"><use xlink:href="#svg-icon-bookmark-fill"></use></svg>
+          </button>`;
 }

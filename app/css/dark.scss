@@ -54,8 +54,13 @@ body[data-theme="dark"] {
         border-color: $minor-color-surface;
       }
     }
-    &.btn-link:hover {
+    &.btn-link {
+      background-color: transparent;
       color: $text-color;
+      border-color: transparent;
+      &:hover {
+        color: $minor-color;
+      }
     }
     &.btn-clear:not(:focus) {
       background-color: transparent;
