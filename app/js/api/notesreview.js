@@ -61,6 +61,31 @@ export default class NotesReview {
   }
 
   /**
+    * Search for notes according to the query data
+    *
+    * @function
+    * @param {Object} data
+    * @param {AbortController} controller
+    * @returns {Promise}
+    */
+  static search(data, controller) {
+    const headers = {
+      'Content-Type': 'application/json'
+    };
+
+    const token = Preferences.get('oidc_token');
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
+
+    return Request(`${NOTESREVIEW_API_URL}/search`, MEDIA_TYPE.JSON, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(data)
+    }, controller);
+  }
+
+  /**
     * Add a note to the blocklist
     *
     * @function

@@ -1,6 +1,6 @@
 import * as Localizer from './localizer.js';
 import Note from './note.js';
-import Request, { MEDIA_TYPE } from './request.js';
+import NotesReview from './api/notesreview.js';
 import Toast from './toast.js';
 import Users from './users.js';
 import * as Util from './util.js';
@@ -588,17 +588,9 @@ export default class Query {
     const notes = new Set();
     let users = new Set();
 
-    const url = new URL(`${NOTESREVIEW_API_URL}/search`);
-    const data = this.clean();
-
     this.controller = new AbortController();
-    const result = await Request(url, MEDIA_TYPE.JSON, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }, this.controller);
+    const data = this.clean();
+    const result = await NotesReview.search(data, this.controller);
     const requestCancelled = this.controller.signal.aborted;
     this.controller = null;
 
@@ -619,8 +611,7 @@ export default class Query {
 
     this.history.push({
       time: new Date(),
-      data: this.data,
-      url: this.url
+      data: this.data
     });
 
     this.result = result;
