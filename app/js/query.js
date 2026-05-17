@@ -211,7 +211,7 @@ export default class Query {
 
       // If the corresponding value for an input field is available, try to set it
       const key = 'permalink' in input ? input.permalink : input.id;
-      const value = Object.prototype.hasOwnProperty.call(values, key) ? values[key] : (DEFAULTS.UI[key] || null);
+      const value = Object.prototype.hasOwnProperty.call(values, key) ? values[key] : (DEFAULTS.UI[key] || element.value);
       element.type === 'checkbox' ? element.checked = (value === true || value === 'true') : element.value = value; // eslint-disable-line no-unused-expressions
 
       // Call the handler by triggering a new change event on the element
