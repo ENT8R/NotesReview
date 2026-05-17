@@ -467,6 +467,7 @@ export default class Query {
       delete data.bbox;
     }
     if (data.area !== AREA.CUSTOM) {
+      delete data.countries;
       delete data.polygon;
     }
 
@@ -520,6 +521,7 @@ export default class Query {
       delete data.bbox;
     }
     if (data.area !== AREA.CUSTOM) {
+      delete data.countries;
       delete data.polygon;
     }
 
