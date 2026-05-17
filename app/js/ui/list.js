@@ -1,8 +1,9 @@
 import template from '../../templates/dynamic/note.hbs';
 
-export default class List {
+export default class ListView {
   constructor() {
     this.fragment = new DocumentFragment();
+    this.divs = new Map();
   }
 
   /**
@@ -22,10 +23,43 @@ export default class List {
       }
     });
     this.fragment.appendChild(div);
+    this.divs.set(note.id, div);
   }
 
   /**
-    * Shows all notes
+    * Update a single note (changes the content of the card)
+    *
+    * @param {Note} note
+    */
+  update(note) {
+    this.divs.get(note.id).innerHTML = template(note, {
+      allowedProtoProperties: {
+        actions: true,
+        badges: true
+      }
+    });
+  }
+
+  /**
+   * Show a note in the list of results (again)
+   *
+   * @param {Number} id
+   */
+  show(id) {
+    this.divs.get(id).classList.remove('d-hide');
+  }
+
+  /**
+    * Hide a note from the list of results
+    *
+    * @param {Number} id
+    */
+  hide(id) {
+    this.divs.get(id).classList.add('d-hide');
+  }
+
+  /**
+    * Show all notes in the list
     *
     * @function
     * @returns {void}
@@ -33,5 +67,16 @@ export default class List {
   apply() {
     const container = document.getElementById('list');
     container.replaceChildren(this.fragment);
+  }
+
+  /**
+    * Remove all notes from the list
+    *
+    * @function
+    * @returns {void}
+    */
+  removeAll() {
+    const container = document.getElementById('list');
+    container.replaceChildren();
   }
 }

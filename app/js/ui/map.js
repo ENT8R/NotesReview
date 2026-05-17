@@ -4,7 +4,7 @@ import * as Util from '../util.js';
 
 import template from '../../templates/dynamic/comment.hbs';
 
-export default class Map {
+export default class MapView {
   constructor() {
     this.map = new Leaflet('map-container');
     this.container = document.getElementById('note-container');
@@ -19,7 +19,7 @@ export default class Map {
       showCoverageOnHover: false
     });
     this.map.addLayer(this.cluster);
-    this.markers = [];
+    this.markers = new Map();
 
     this.halo = L.circleMarker([0, 0]);
     this.map.addLayer(this.halo);
@@ -75,6 +75,8 @@ export default class Map {
         className: 'note-marker-icon'
       })
     });
+
+    this.markers.set(note.id, marker);
 
     marker.on('click', () => {
       if (this.active === note) {
@@ -138,8 +140,45 @@ export default class Map {
         });
       }
     });
+  }
 
-    this.markers.push(marker);
+  /**
+    * Update a single note (only updates the container if the note is currently shown)
+    *
+    * @param {Note} note
+    */
+  update(note) {
+    if (this.active === note) {
+      this.container.innerHTML = template(note, {
+        allowedProtoProperties: {
+          actions: true,
+          badges: true
+        }
+      });
+    }
+  }
+
+  /**
+    * Show the marker of a note with a given id (again)
+    *
+    * @param {Number} id
+    */
+  show(id) {
+    const marker = this.markers.get(id);
+    if (!this.cluster.hasLayer(marker)) {
+      marker.addTo(this.cluster);
+      marker.fire('click');
+    }
+  }
+
+  /**
+    * Hide the marker of a note with a given id
+    *
+    * @param {Number} id
+    */
+  hide(id) {
+    this.clear();
+    this.markers.get(id).removeFrom(this.cluster);
   }
 
   /**
@@ -156,7 +195,7 @@ export default class Map {
   }
 
   /**
-    * Display all notes on the map and zoom the map to show them all
+    * Show all notes on the map
     *
     * @function
     * @returns {void}
@@ -166,8 +205,17 @@ export default class Map {
 
     this.clear();
     this.cluster.clearLayers();
-    this.cluster.addLayers(this.markers);
+    this.cluster.addLayers(Array.from(this.markers.values()));
+  }
 
-    this.markers = [];
+  /**
+    * Remove all markers from the map
+    *
+    * @function
+    * @returns {void}
+    */
+  removeAll() {
+    this.clear();
+    this.markers.clear();
   }
 }

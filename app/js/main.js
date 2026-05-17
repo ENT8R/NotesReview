@@ -213,7 +213,7 @@ function listener() {
       const text = commentAction.parentElement.parentElement.querySelector('.note-comment').value.trim();
 
       OsmApi.comment(id, text, commentAction.dataset.action).then(note => {
-        ui.update(id, Note.parse(note)).then(details);
+        ui.update(id, Note.parse(note));
         Comments.load(ui.get(id));
       }).catch(() => {
         new Toast(Localizer.message('error.comment'), 'toast-error').show();
@@ -225,14 +225,17 @@ function listener() {
     const watchNoteTrigger = event.target.closest('.watch-note-trigger');
     if (watchNoteTrigger) {
       const id = Number.parseInt(watchNoteTrigger.dataset.noteId);
-      ui.watch(id).then(() => NotesReview.watch(id)).then(() => {
+      ui.watch(id);
+      NotesReview.watch(id).then(() => {
         new Toast(Localizer.message('success.watchNote'), 'toast-success', false).addAction(
           Localizer.message('action.undo'), 'icon-undo', (event, toast) => {
             toast.hide();
-            ui.unwatch(id).then(() => NotesReview.unwatch(id));
+            ui.unwatch(id);
+            NotesReview.unwatch(id);
           }
         ).show();
       }).catch(() => {
+        ui.unwatch(id);
         new Toast(Localizer.message('error.watchNote'), 'toast-error').show();
       });
     }
@@ -240,9 +243,11 @@ function listener() {
     const unwatchNoteTrigger = event.target.closest('.unwatch-note-trigger');
     if (unwatchNoteTrigger) {
       const id = Number.parseInt(unwatchNoteTrigger.dataset.noteId);
-      ui.unwatch(id).then(() => NotesReview.unwatch(id)).then(() => {
+      ui.unwatch(id);
+      NotesReview.unwatch(id).then(() => {
         new Toast(Localizer.message('success.unwatchNote'), 'toast-success').show();
       }).catch(() => {
+        ui.watch(id);
         new Toast(Localizer.message('error.unwatchNote'), 'toast-error').show();
       });
     }
@@ -250,14 +255,17 @@ function listener() {
     const hideNoteTrigger = event.target.closest('.hide-note-trigger');
     if (hideNoteTrigger) {
       const id = Number.parseInt(hideNoteTrigger.dataset.noteId);
-      ui.hide(id).then(() => NotesReview.hide(id)).then(() => {
+      ui.hide(id);
+      NotesReview.hide(id).then(() => {
         new Toast(Localizer.message('success.hideNote'), 'toast-success', false).addAction(
           Localizer.message('action.undo'), 'icon-undo', (event, toast) => {
             toast.hide();
-            ui.unhide(id).then(() => NotesReview.unhide(id));
+            ui.unhide(id);
+            NotesReview.unhide(id);
           }
         ).show();
       }).catch(() => {
+        ui.unhide(id);
         new Toast(Localizer.message('error.hideNote'), 'toast-error').show();
       });
     }

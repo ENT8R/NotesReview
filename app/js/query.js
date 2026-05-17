@@ -611,7 +611,8 @@ export default class Query {
 
     this.history.push({
       time: new Date(),
-      data: this.data
+      data: this.data,
+      url: this.url
     });
 
     this.result = result;

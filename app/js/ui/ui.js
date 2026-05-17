@@ -15,7 +15,7 @@ export default class UI {
     * @param {View} view
     */
   constructor(view) {
-    this.notes = [];
+    this.notes = new Map();
     this.query = null;
     this.view = view;
   }
@@ -45,22 +45,30 @@ export default class UI {
     * @returns {Promise}
     */
   show(notes, query) {
-    this.query = query;
-    this.notes = notes;
+    this.notes.clear();
+    this._view.handler.removeAll();
 
-    const amount = notes.length;
-    const average = notes.reduce((accumulator, current) => accumulator + current.created.getTime(), 0) / amount;
+    this.query = query;
+
+    let visible = 0;
+    let accumulator = 0;
 
     notes.forEach(note => {
+      this.notes.set(note.id, note);
+      this._view.handler.add(note, query);
+
       if (this.isNoteVisible(note, query)) {
-        this._view.handler.add(note, query);
+        visible++;
+        accumulator += note.created.getTime();
+      } else {
+        this._view.handler.hide(note);
       }
     });
     this._view.handler.apply();
 
     return Promise.resolve({
-      amount,
-      average: new Date(average)
+      amount: visible,
+      average: new Date(accumulator / visible)
     });
   }
 
@@ -86,7 +94,7 @@ export default class UI {
     * @returns {Note}
     */
   get(id) {
-    return this.notes.find(note => note.id === id);
+    return this.notes.get(id);
   }
 
   /**
@@ -95,72 +103,79 @@ export default class UI {
     * @function
     * @param {Number} id
     * @param {Note} note
-    * @returns {Promise}
+    * @returns {void}
     */
   update(id, note) {
-    const index = this.notes.findIndex(element => element.id === id);
-    if (index === -1) {
-      throw new Error(`The note with the id ${id} could not be found in the array`);
+    if (!this.notes.has(id)) {
+      throw new Error(`The note with the id ${id} could not be found`);
     }
-    this.notes[index] = note;
-    return this.reload();
+
+    this.notes.set(id, note);
+
+    this._view.handler.update(note);
+
+    if (this.isNoteVisible(note, this.query)) {
+      this._view.handler.show(note.id);
+    } else {
+      this._view.handler.hide(note.id);
+    }
   }
 
   /**
-    * Reload the notes because another event happened like a changed filter
+    * Reload all notes
     *
     * @function
     * @returns {Promise}
     */
   reload() {
-    return this.show(this.notes, this.query);
+    return this.show(Array.from(this.notes.values()), this.query);
   }
 
   /**
-   * Update note accordingly to reflect the new status as being hidden
-   *
-   * @param {Number} id
-   * @returns {Promise}
-   */
+    * Update note to reflect the new status as being hidden
+    *
+    * @param {Number} id
+    * @returns {void}
+    */
   hide(id) {
     const note = this.get(id);
     note.hidden = true;
-    return this.update(id, note);
+    this.update(id, note);
   }
 
   /**
-   * Update note accordingly to reflect the new status as not being hidden anymore
-   *
-   * @param {Number} id
-   * @returns {Promise}
-   */
+    * Update note to reflect the new status as not being hidden anymore
+    *
+    * @param {Number} id
+    * @returns {void}
+    */
   unhide(id) {
     const note = this.get(id);
     note.hidden = false;
-    return this.update(id, note);
+    this.update(id, note);
   }
 
   /**
-   * Update note accordingly to reflect the new status as being on the watchlist
-   *
-   * @param {Number} id
-   * @returns {Promise}
-   */
+    * Update note to reflect the new status as being on the watchlist
+    *
+    * @param {Number} id
+    * @returns {void}
+    */
   watch(id) {
     const note = this.get(id);
     note.watchlist = true;
-    return this.update(id, note);
+    this.update(id, note);
   }
 
   /**
-   * Update note accordingly to reflect the new status as not being on the watchlist anymore
-   *
-   * @param {Number} id
-   * @returns {Promise}
-   */
+    * Update note to reflect the new status as not being on the watchlist anymore
+    *
+    * @param {Number} id
+    * @returns {void}
+    */
   unwatch(id) {
     const note = this.get(id);
     note.watchlist = false;
-    return this.update(id, note);
+    this.update(id, note);
   }
 }
