@@ -10,13 +10,11 @@ import * as CountryCoder from '@rapideditor/country-coder';
   * @function
   * @param {String} color
   * @param {Date} date A ISO 8601 date string (e.g. 2010-01-31)
-  * @param {Boolean} navigation Whether the badge should be shown in the navigation bar
   * @returns {String}
   */
-export function age(color, date, navigation) {
-  const location = navigation ? 'top' : 'bottom';
+export function age(color, date) {
   return `
-  <span class="label label-${color} my-1 c-default tooltip tooltip-${location}" data-tooltip="${date.toLocaleString()}">
+  <span class="label label-${color} my-1 c-default tooltip tooltip-right" data-tooltip="${date.toLocaleString()}">
     <relative-time tense="past" datetime="${date}" title="">
       ${date.toLocaleDateString()}
     </relative-time>
@@ -83,7 +81,8 @@ export function user(uid, anonymous) {
     const initials = Util.initials(user.name);
     return `<figure class="avatar" data-initial="${initials}">${image}</figure>
             <a href="${OPENSTREETMAP_SERVER}/user/${user.name}" target="_blank" rel="noopener">
-              <span class="tooltip tooltip-bottom" data-tooltip="${Localizer.message('user.created', user.created.toLocaleDateString())}">
+              <span class="tooltip tooltip-right"
+                    data-tooltip="${Localizer.message('user.created', user.created.toLocaleDateString())}\n${Localizer.message('user.changesets', user.changesets)}">
                 ${user.name}
               </span>
             </a>`;
