@@ -140,7 +140,9 @@ function getProperty(propertyName, translations) {
   const parts = propertyName.split('.');
   let property = translations;
   for (let i = 0; i < parts.length; i++) {
-    if (typeof property[parts[i]] !== 'undefined') {
+    if (typeof property[parts[i]] === 'undefined') {
+      return null;
+    } else {
       property = property[parts[i]];
     }
   }
