@@ -29,6 +29,12 @@
         "outdatedNotes": {
             "title": "Why do some notes appear to be outdated?",
             "description": "!HTML! All notes are synchronized every 5 minutes with the OpenStreetMap API. It can happen that notes or comments which have been hidden by the moderators still appear in the results.<br>\nThis is mainly due to the fact that the underlying API of OpenStreetMap does not directly offer the possibility to know which notes and comments have been hidden by moderators. As a result, the complete notes dump is analyzed from time to time in irregular intervals in order to find and fix these anomalies.<br>\nIf you want to know the last time the manual synchronization was performed, take a look at the <a href=\"{{api}}/status\" target=\"_blank\" rel=\"noopener\">status page</a> with regard to the value of <code>last_import</code> (for comments) or <code>last_sync</code> (for notes)."
+        },
+        "reset": {
+            "title": "Why can I no longer hide notes or add them to my watchlist?",
+            "description": "!HTML! To prevent excessive use of backend server resources, a certain limit on the maximum number of hidden notes and notes on the watchlist is enforced. Once this limit is reached, it will be no longer possible for you to hide notes or add them to your watchlist.<br>\nYou can prevent this by removing potentially old and forgotten entries from your watchlist or directly reset your choice of hidden notes and all notes on the watchlist below:",
+            "blocklist": "Show all hidden notes again",
+            "watchlist": "Remove all notes from watchlist"
         }
     },
     "action": {
@@ -205,13 +211,17 @@
         "queryAbort": "Query cancelled, showing previous results",
         "hideNote": "Could not hide note, please try again later",
         "watchNote": "Could not add note to watchlist, please try again later",
-        "unwatchNote": "Could not remove note from watchlist, please try again later"
+        "unwatchNote": "Could not remove note from watchlist, please try again later",
+        "resetBlocklist": "Could not reset blocklist, please try again later",
+        "resetWatchlist": "Could not reset watchlist, please try again later"
     },
     "success": {
         "copy": "Copied link successfully",
         "saved": "Successfully saved",
         "hideNote": "Note hidden",
         "watchNote": "Added to watchlist",
-        "unwatchNote": "Removed from watchlist"
+        "unwatchNote": "Removed from watchlist",
+        "resetBlocklist": "Removed all notes from the blocklist",
+        "resetWatchlist": "Removed all notes from the watchlist"
     }
 }

@@ -269,6 +269,24 @@ function listener() {
         new Toast(Localizer.message('error.hideNote'), 'toast-error').show();
       });
     }
+
+    const resetBlocklistTrigger = event.target.closest('.reset-blocklist-trigger');
+    if (resetBlocklistTrigger) {
+      NotesReview.deleteBlocklist().then(() => {
+        new Toast(Localizer.message('success.resetBlocklist'), 'toast-success').show();
+      }).catch(() => {
+        new Toast(Localizer.message('error.resetBlocklist'), 'toast-error').show();
+      });
+    }
+
+    const resetWatchlistTrigger = event.target.closest('.reset-watchlist-trigger');
+    if (resetWatchlistTrigger) {
+      NotesReview.deleteWatchlist().then(() => {
+        new Toast(Localizer.message('success.resetWatchlist'), 'toast-success').show();
+      }).catch(() => {
+        new Toast(Localizer.message('error.resetWatchlist'), 'toast-error').show();
+      });
+    }
   });
 }
 

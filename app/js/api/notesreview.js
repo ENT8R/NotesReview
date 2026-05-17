@@ -118,6 +118,36 @@ export default class NotesReview {
   }
 
   /**
+    * Get all notes that are currently on the blocklist
+    *
+    * @function
+    * @returns {Promise}
+    */
+  static blocklist() {
+    return Request(`${NOTESREVIEW_API_URL}/notes/blocklist`, MEDIA_TYPE.JSON, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${Preferences.get('oidc_token')}`
+      }
+    });
+  }
+
+  /**
+    * Delete all notes that are currently on the blocklist
+    *
+    * @function
+    * @returns {Promise}
+    */
+  static deleteBlocklist() {
+    return Request(`${NOTESREVIEW_API_URL}/notes/blocklist`, MEDIA_TYPE.TEXT, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${Preferences.get('oidc_token')}`
+      }
+    });
+  }
+
+  /**
     * Add a note to the watchlist
     *
     * @function
@@ -158,6 +188,21 @@ export default class NotesReview {
   static watchlist() {
     return Request(`${NOTESREVIEW_API_URL}/notes/watchlist`, MEDIA_TYPE.JSON, {
       method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${Preferences.get('oidc_token')}`
+      }
+    });
+  }
+
+  /**
+    * Delete all notes that are currently on the watchlist
+    *
+    * @function
+    * @returns {Promise}
+    */
+  static deleteWatchlist() {
+    return Request(`${NOTESREVIEW_API_URL}/notes/watchlist`, MEDIA_TYPE.TEXT, {
+      method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${Preferences.get('oidc_token')}`
       }
