@@ -8,21 +8,21 @@ import 'virtual:svg-icons/register';
 import './polyfills.js';
 
 import Auth from './auth.js';
-import AreaSelector from './modals/area-selector.js';
-import Comments from './modals/comments.js';
 import Leaflet from './leaflet.js';
 import * as Localizer from './localizer.js';
-import Mapillary from './modals/mapillary.js';
-import Modal from './modals/modal.js';
 import Note from './note.js';
 import NotesReview from './api/notesreview.js';
 import OsmApi from './api/openstreetmap.js';
 import Preferences from './preferences.js';
 import Query from './query.js';
-import Share from './modals/share.js';
 import * as Theme from './theme.js';
 import Toast from './toast.js';
 import Users from './users.js';
+
+import AreaSelector from './modals/area-selector.js';
+import Comments from './modals/comments.js';
+import Mapillary from './modals/mapillary.js';
+import Share from './modals/share.js';
 
 // Custom elements
 import SingleSelectionButtonGroup from './elements/SingleSelectionButtonGroup.js';
@@ -193,18 +193,6 @@ function listener() {
 
   // Dynamic listeners
   document.addEventListener('click', event => {
-    const commentsModalTrigger = event.target.closest('.comments-modal-trigger');
-    if (commentsModalTrigger) {
-      const id = Number.parseInt(commentsModalTrigger.closest('[data-note-id]').dataset.noteId);
-      Comments.load(ui.get(id));
-    }
-
-    const mapillaryModalTrigger = event.target.closest('.link-tool-mapillary');
-    if (mapillaryModalTrigger) {
-      const id = Number.parseInt(mapillaryModalTrigger.closest('[data-note-id]').dataset.noteId);
-      Mapillary.load(ui.get(id));
-    }
-
     const commentAction = event.target.closest('.comment-action');
     if (commentAction) {
       commentAction.classList.add('loading');
@@ -354,7 +342,6 @@ function settings() {
   await import('@github/relative-time-element');
 
   await Localizer.init();
-  Modal.init();
 
   settings();
 
@@ -426,9 +413,6 @@ function settings() {
   map = new Leaflet('map-container', position, bounds);
   query = new Query(map, parameter);
 
-  const share = new Share(query); // eslint-disable-line no-unused-vars
-  const areaSelector = new AreaSelector(document.getElementById('countries'), document.getElementById('polygon')); // eslint-disable-line no-unused-vars
-
   // Check whether the user is already authenticated and update the UI accordingly
   Auth.isAuthenticated().then(authenticated => {
     document.body.dataset.authenticatedOpenstreetmap = authenticated;
@@ -443,6 +427,14 @@ function settings() {
 
   const { default: UI } = await import('./ui/ui.js');
   ui = new UI(view);
+
+  // Initialize all modals used by this application
+  const modals = { // eslint-disable-line no-unused-vars
+    'area-selector': new AreaSelector(document.getElementById('countries'), document.getElementById('polygon')),
+    'comments': new Comments(),
+    'mapillary': new Mapillary(),
+    'share': new Share(query)
+  };
 
   listener();
   search();

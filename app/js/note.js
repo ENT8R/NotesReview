@@ -105,9 +105,10 @@ export default class Note {
         text: Localizer.message('action.edit.level0')
       },
       mapillary: {
-        class: 'link-tool-mapillary',
+        class: 'link-tool-mapillary modal-trigger',
         icon: 'mapillary',
-        text: Localizer.message('action.mapillary')
+        text: Localizer.message('action.mapillary'),
+        modal: 'mapillary'
       },
       deepl: {
         class: 'link-tool-deepl',
@@ -116,9 +117,10 @@ export default class Note {
         text: Localizer.message('action.deepl')
       },
       comment: {
-        class: 'comments-modal-trigger requires-authentication',
+        class: 'modal-trigger requires-authentication',
         icon: 'chat',
-        text: Localizer.message('action.comment')
+        text: Localizer.message('action.comment'),
+        modal: 'comments'
       }
     };
 

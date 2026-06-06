@@ -3,6 +3,10 @@ import Modal from './modal.js';
 import template from '../../templates/dynamic/comment.hbs';
 
 export default class Comments extends Modal {
+  constructor() {
+    super('comments');
+  }
+
   /**
     * Show all comments of a given note in a modal
     *
@@ -11,9 +15,7 @@ export default class Comments extends Modal {
     * @param {Note} note
     * @returns {void}
     */
-  static load(note) {
-    super.open('comments');
-
+  load(note) {
     const content = document.getElementById('modal-comments-content');
     content.innerHTML = template(note, {
       allowedProtoProperties: {

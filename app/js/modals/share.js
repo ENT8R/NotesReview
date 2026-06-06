@@ -12,7 +12,7 @@ export default class Share extends Modal {
     * @returns {void}
     */
   constructor(query) {
-    super();
+    super('share');
 
     // Update links if the share modal is opened
     document.querySelector('.modal[data-modal="share"]').addEventListener('modal-open', () => {

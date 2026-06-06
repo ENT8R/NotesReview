@@ -18,7 +18,7 @@ export default class AreaSelector extends Modal {
     * @returns {void}
     */
   constructor(countryInput, polygonInput) {
-    super();
+    super('area-selector');
 
     this.countryInput = countryInput;
     this.countries = countryInput.value === '' ? [] : countryInput.value.split(',');

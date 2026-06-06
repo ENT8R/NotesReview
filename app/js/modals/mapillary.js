@@ -8,6 +8,10 @@ import Protobuf from 'pbf';
 import template from '../../templates/dynamic/mapillary.hbs';
 
 export default class Mapillary extends Modal {
+  constructor() {
+    super('mapillary');
+  }
+
   /**
     * Show all Mapillary images near a given note in a modal
     *
@@ -15,9 +19,7 @@ export default class Mapillary extends Modal {
     * @param {Note} note
     * @returns {void}
     */
-  static async load(note) {
-    super.open('mapillary');
-
+  async load(note) {
     const content = document.getElementById('mapillary');
     content.classList.add('loading', 'loading-lg');
 

@@ -31,7 +31,7 @@ export function age(color, date) {
 export function comments(amount) {
   if (amount > 0) {
     const text = amount === 1 ? Localizer.message('note.comment') : Localizer.message('note.comments', amount);
-    return `<span class="label label-primary my-1 comments-modal-trigger c-hand">${text}</span>`;
+    return `<span class="label label-primary my-1 modal-trigger c-hand" data-modal="comments">${text}</span>`;
   }
 }
 

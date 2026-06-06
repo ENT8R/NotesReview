@@ -38,7 +38,7 @@ body {
   [data-status="closed"] .comment-action[data-action="comment"],
   [data-status="closed"] .comment-action[data-action="close"],
 
-  #note-container .comments-modal-trigger {
+  #note-container .modal-trigger[data-modal="comments"] {
     display: none;
   }
 }
