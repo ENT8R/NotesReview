@@ -1,38 +1,32 @@
 import { STATUS } from '../query.js';
-import MapView from './map.js';
-import ListView from './list.js';
-
-const Views = {
-  map: new MapView(),
-  list: new ListView()
-};
 
 export default class UI {
-  /**
-    * Constructor for controlling the view (e.g. a map or a list)
-    *
-    * @constructor
-    * @param {View} view
-    */
-  constructor(view) {
-    this.notes = new Map();
-    this.query = null;
-    this.view = view;
+  static notes = new Map();
+  static query = null;
+
+  static _views = {};
+  static _view = null;
+
+  static registerView(name, handler) {
+    if (this._views[name]) {
+      throw new Error(`A view with the name ${name} is already registered`);
+    }
+    this._views[name] = handler;
   }
 
-  set view(view) {
-    const values = Object.keys(Views);
+  static set view(view) {
+    const values = Object.keys(this._views);
     if (!values.includes(view)) {
       throw new TypeError(`Argument must be one of ${values.join(', ')}`);
     }
     this._view = {
       name: view,
-      handler: Views[view]
+      handler: this._views[view]
     };
     this.reload();
   }
 
-  get view() {
+  static get view() {
     return this._view.name;
   }
 
@@ -44,7 +38,7 @@ export default class UI {
     * @param {Query} query
     * @returns {Promise}
     */
-  show(notes, query) {
+  static show(notes, query) {
     this.notes.clear();
     this._view.handler.removeAll();
 
@@ -80,7 +74,7 @@ export default class UI {
     * @param {Query} query The query which was used in order to find the note
     * @returns {Boolean}
     */
-  isNoteVisible(note, query) {
+  static isNoteVisible(note, query) {
     return !note.hidden &&
            (query.data.status === STATUS.OPEN ? note.status === STATUS.OPEN : true) &&
            (query.data.status === STATUS.CLOSED ? note.status === STATUS.CLOSED : true);
@@ -93,7 +87,7 @@ export default class UI {
     * @param {Number} id
     * @returns {Note}
     */
-  get(id) {
+  static get(id) {
     return this.notes.get(id);
   }
 
@@ -105,7 +99,7 @@ export default class UI {
     * @param {Note} note
     * @returns {void}
     */
-  update(id, note) {
+  static update(id, note) {
     if (!this.notes.has(id)) {
       throw new Error(`The note with the id ${id} could not be found`);
     }
@@ -127,7 +121,7 @@ export default class UI {
     * @function
     * @returns {Promise}
     */
-  reload() {
+  static reload() {
     return this.show(Array.from(this.notes.values()), this.query);
   }
 
@@ -137,7 +131,7 @@ export default class UI {
     * @param {Number} id
     * @returns {void}
     */
-  hide(id) {
+  static hide(id) {
     const note = this.get(id);
     note.hidden = true;
     this.update(id, note);
@@ -149,7 +143,7 @@ export default class UI {
     * @param {Number} id
     * @returns {void}
     */
-  unhide(id) {
+  static unhide(id) {
     const note = this.get(id);
     note.hidden = false;
     this.update(id, note);
@@ -161,7 +155,7 @@ export default class UI {
     * @param {Number} id
     * @returns {void}
     */
-  watch(id) {
+  static watch(id) {
     const note = this.get(id);
     note.watchlist = true;
     this.update(id, note);
@@ -173,7 +167,7 @@ export default class UI {
     * @param {Number} id
     * @returns {void}
     */
-  unwatch(id) {
+  static unwatch(id) {
     const note = this.get(id);
     note.watchlist = false;
     this.update(id, note);

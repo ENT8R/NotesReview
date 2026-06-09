@@ -19,16 +19,21 @@ import * as Theme from './theme.js';
 import Toast from './toast.js';
 import Users from './users.js';
 
+import Modal from './modals/modal.js';
 import AreaSelector from './modals/area-selector.js';
 import Comments from './modals/comments.js';
 import Mapillary from './modals/mapillary.js';
 import Share from './modals/share.js';
 
+import UI from './ui/ui.js';
+import MapView from './ui/map.js';
+import ListView from './ui/list.js';
+
 // Custom elements
 import SingleSelectionButtonGroup from './elements/SingleSelectionButtonGroup.js';
 window.customElements.define('single-selection-button-group', SingleSelectionButtonGroup);
 
-let map, ui, query;
+let map, query;
 
 /**
   * Initiate a new query and do some UI changes before and after it
@@ -40,7 +45,7 @@ let map, ui, query;
 function search() {
   document.getElementById('preloader').classList.remove('d-hide');
   query.search().then(notes => {
-    ui.show(Array.from(notes), query).then(details);
+    UI.show(Array.from(notes), query).then(details);
   }).catch(error => {
     if (error.name === 'AbortError') {
       new Toast(Localizer.message('error.queryAbort'), 'toast-warning').show(Toast.DURATION_LONG);
@@ -154,7 +159,7 @@ function listener() {
     const { view } = next.dataset;
     document.querySelector(`#${active.dataset.view}`).classList.add('d-hide');
     document.querySelector(`#${view}`).classList.remove('d-hide');
-    ui.view = view;
+    UI.view = view;
     document.body.dataset.view = view;
   });
 
@@ -181,7 +186,7 @@ function listener() {
       // Save the current state of the map and query which will be restored when visiting the page again
       const center = map.center();
       Preferences.set({
-        view: ui.view,
+        view: UI.view,
         map: {
           center: [center.lat, center.lng],
           zoom: map.zoom()
@@ -201,8 +206,8 @@ function listener() {
       const text = commentAction.parentElement.parentElement.querySelector('.note-comment').value.trim();
 
       OsmApi.comment(id, text, commentAction.dataset.action).then(note => {
-        ui.update(id, Note.parse(note));
-        Comments.load(ui.get(id));
+        UI.update(id, Note.parse(note));
+        Modal.open('comments', id);
       }).catch(() => {
         new Toast(Localizer.message('error.comment'), 'toast-error').show();
       }).finally(() => {
@@ -213,17 +218,17 @@ function listener() {
     const watchNoteTrigger = event.target.closest('.watch-note-trigger');
     if (watchNoteTrigger) {
       const id = Number.parseInt(watchNoteTrigger.dataset.noteId);
-      ui.watch(id);
+      UI.watch(id);
       NotesReview.watch(id).then(() => {
         new Toast(Localizer.message('success.watchNote'), 'toast-success', false).addAction(
           Localizer.message('action.undo'), 'icon-undo', (event, toast) => {
             toast.hide();
-            ui.unwatch(id);
+            UI.unwatch(id);
             NotesReview.unwatch(id);
           }
         ).show();
       }).catch(() => {
-        ui.unwatch(id);
+        UI.unwatch(id);
         new Toast(Localizer.message('error.watchNote'), 'toast-error').show();
       });
     }
@@ -231,11 +236,11 @@ function listener() {
     const unwatchNoteTrigger = event.target.closest('.unwatch-note-trigger');
     if (unwatchNoteTrigger) {
       const id = Number.parseInt(unwatchNoteTrigger.dataset.noteId);
-      ui.unwatch(id);
+      UI.unwatch(id);
       NotesReview.unwatch(id).then(() => {
         new Toast(Localizer.message('success.unwatchNote'), 'toast-success').show();
       }).catch(() => {
-        ui.watch(id);
+        UI.watch(id);
         new Toast(Localizer.message('error.unwatchNote'), 'toast-error').show();
       });
     }
@@ -243,17 +248,17 @@ function listener() {
     const hideNoteTrigger = event.target.closest('.hide-note-trigger');
     if (hideNoteTrigger) {
       const id = Number.parseInt(hideNoteTrigger.dataset.noteId);
-      ui.hide(id);
+      UI.hide(id);
       NotesReview.hide(id).then(() => {
         new Toast(Localizer.message('success.hideNote'), 'toast-success', false).addAction(
           Localizer.message('action.undo'), 'icon-undo', (event, toast) => {
             toast.hide();
-            ui.unhide(id);
+            UI.unhide(id);
             NotesReview.unhide(id);
           }
         ).show();
       }).catch(() => {
-        ui.unhide(id);
+        UI.unhide(id);
         new Toast(Localizer.message('error.hideNote'), 'toast-error').show();
       });
     }
@@ -425,9 +430,6 @@ function settings() {
     document.body.dataset.authenticatedBackend = authenticated;
   });
 
-  const { default: UI } = await import('./ui/ui.js');
-  ui = new UI(view);
-
   // Initialize all modals used by this application
   const modals = { // eslint-disable-line no-unused-vars
     'area-selector': new AreaSelector(document.getElementById('countries'), document.getElementById('polygon')),
@@ -435,6 +437,10 @@ function settings() {
     'mapillary': new Mapillary(),
     'share': new Share(query)
   };
+
+  UI.registerView('map', new MapView());
+  UI.registerView('list', new ListView());
+  UI.view = view;
 
   listener();
   search();
