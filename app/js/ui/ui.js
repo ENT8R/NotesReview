@@ -150,6 +150,18 @@ export default class UI {
   }
 
   /**
+    * Update all notes to reflect the new status as not being hidden anymore
+    *
+    * @returns {void}
+    */
+  static unhideAll() {
+    this.#notes.forEach((note, id) => {
+      note.hidden = false;
+      this.update(id, note);
+    });
+  }
+
+  /**
     * Update note to reflect the new status as being on the watchlist
     *
     * @param {Number} id
@@ -171,5 +183,17 @@ export default class UI {
     const note = this.get(id);
     note.watchlist = false;
     this.update(id, note);
+  }
+
+  /**
+    * Update all notes to reflect the new status as not being on the watchlist anymore
+    *
+    * @returns {void}
+    */
+  static unwatchAll() {
+    this.#notes.forEach((note, id) => {
+      note.watchlist = false;
+      this.update(id, note);
+    });
   }
 }

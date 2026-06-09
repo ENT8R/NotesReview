@@ -267,6 +267,7 @@ function listener(map, query) {
     const resetBlocklistTrigger = event.target.closest('.reset-blocklist-trigger');
     if (resetBlocklistTrigger) {
       NotesReview.deleteBlocklist().then(() => {
+        UI.unhideAll();
         new Toast(Localizer.message('success.resetBlocklist'), 'toast-success').show();
       }).catch(() => {
         new Toast(Localizer.message('error.resetBlocklist'), 'toast-error').show();
@@ -276,6 +277,7 @@ function listener(map, query) {
     const resetWatchlistTrigger = event.target.closest('.reset-watchlist-trigger');
     if (resetWatchlistTrigger) {
       NotesReview.deleteWatchlist().then(() => {
+        UI.unwatchAll();
         new Toast(Localizer.message('success.resetWatchlist'), 'toast-success').show();
       }).catch(() => {
         new Toast(Localizer.message('error.resetWatchlist'), 'toast-error').show();
