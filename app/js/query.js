@@ -587,9 +587,6 @@ export default class Query {
     * @returns {Promise}
     */
   async search() {
-    const notes = new Set();
-    let users = new Set();
-
     this.controller = new AbortController();
     const data = this.clean();
     const result = await NotesReview.search(data, this.controller);
@@ -608,7 +605,7 @@ export default class Query {
         throw new TimeoutError();
       }
 
-      return notes;
+      return new Set();
     }
 
     this.history.push({
@@ -622,11 +619,13 @@ export default class Query {
     // Set the information that the query changed to false, because the request was just done moments ago
     document.body.dataset.queryChanged = false;
 
+    const notes = new Set();
+    const users = new Set();
     result.forEach(feature => {
       try {
         const note = new Note(feature);
         notes.add(note);
-        users = new Set([...users, ...note.users]);
+        note.users.forEach(user => users.add(user));
       } catch (e) {
         console.error(e); // eslint-disable-line no-console
       }
