@@ -1,33 +1,33 @@
 import { STATUS } from '../query.js';
 
 export default class UI {
-  static notes = new Map();
-  static query = null;
+  static #notes = new Map();
+  static #query = null;
 
-  static _views = {};
-  static _view = null;
+  static #views = {};
+  static #currentView = null;
 
   static registerView(name, handler) {
-    if (this._views[name]) {
+    if (this.#views[name]) {
       throw new Error(`A view with the name ${name} is already registered`);
     }
-    this._views[name] = handler;
+    this.#views[name] = handler;
   }
 
   static set view(view) {
-    const values = Object.keys(this._views);
+    const values = Object.keys(this.#views);
     if (!values.includes(view)) {
       throw new TypeError(`Argument must be one of ${values.join(', ')}`);
     }
-    this._view = {
+    this.#currentView = {
       name: view,
-      handler: this._views[view]
+      handler: this.#views[view]
     };
     this.reload();
   }
 
   static get view() {
-    return this._view.name;
+    return this.#currentView.name;
   }
 
   /**
@@ -39,26 +39,26 @@ export default class UI {
     * @returns {Promise}
     */
   static show(notes, query) {
-    this.notes.clear();
-    this._view.handler.removeAll();
+    this.#notes.clear();
+    this.#currentView.handler.removeAll();
 
-    this.query = query;
+    this.#query = query;
 
     let visible = 0;
     let accumulator = 0;
 
     notes.forEach(note => {
-      this.notes.set(note.id, note);
-      this._view.handler.add(note, query);
+      this.#notes.set(note.id, note);
+      this.#currentView.handler.add(note, query);
 
       if (this.isNoteVisible(note, query)) {
         visible++;
         accumulator += note.created.getTime();
       } else {
-        this._view.handler.hide(note);
+        this.#currentView.handler.hide(note);
       }
     });
-    this._view.handler.apply();
+    this.#currentView.handler.apply();
 
     return Promise.resolve({
       amount: visible,
@@ -88,7 +88,7 @@ export default class UI {
     * @returns {Note}
     */
   static get(id) {
-    return this.notes.get(id);
+    return this.#notes.get(id);
   }
 
   /**
@@ -100,18 +100,18 @@ export default class UI {
     * @returns {void}
     */
   static update(id, note) {
-    if (!this.notes.has(id)) {
+    if (!this.#notes.has(id)) {
       throw new Error(`The note with the id ${id} could not be found`);
     }
 
-    this.notes.set(id, note);
+    this.#notes.set(id, note);
 
-    this._view.handler.update(note);
+    this.#currentView.handler.update(note);
 
-    if (this.isNoteVisible(note, this.query)) {
-      this._view.handler.show(note.id);
+    if (this.isNoteVisible(note, this.#query)) {
+      this.#currentView.handler.show(note.id);
     } else {
-      this._view.handler.hide(note.id);
+      this.#currentView.handler.hide(note.id);
     }
   }
 
@@ -122,7 +122,7 @@ export default class UI {
     * @returns {Promise}
     */
   static reload() {
-    return this.show(Array.from(this.notes.values()), this.query);
+    return this.show(Array.from(this.#notes.values()), this.#query);
   }
 
   /**
