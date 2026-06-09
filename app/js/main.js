@@ -33,16 +33,15 @@ import ListView from './ui/list.js';
 import SingleSelectionButtonGroup from './elements/SingleSelectionButtonGroup.js';
 window.customElements.define('single-selection-button-group', SingleSelectionButtonGroup);
 
-let map, query;
-
 /**
   * Initiate a new query and do some UI changes before and after it
   *
   * @function
   * @private
+  * @param {Query} query
   * @returns {void}
   */
-function search() {
+function search(query) {
   document.getElementById('preloader').classList.remove('d-hide');
   query.search().then(notes => {
     UI.show(Array.from(notes), query).then(details);
@@ -78,11 +77,13 @@ function details(result) {
   *
   * @function
   * @private
+  * @param {Leaflet} map
+  * @param {Query} query
   * @returns {void}
   */
-function listener() {
+function listener(map, query) {
   document.querySelectorAll('.search-trigger').forEach(element => {
-    element.addEventListener('click', () => search());
+    element.addEventListener('click', () => search(query));
   });
   document.getElementById('cancel').addEventListener('click', () => query.cancel());
 
@@ -170,7 +171,7 @@ function listener() {
         query.cancel();
       } else if (document.querySelector('.modal[data-modal="filter"]').classList.contains('active')) {
         // Only start a new search if the filter modal is currently open and no search is currently ongoing
-        search();
+        search(query);
       }
     }
   });
@@ -415,8 +416,8 @@ function settings() {
   // which is the last used query before the page was closed the last time
   parameter = Object.keys(parameter).length > 0 ? parameter : Preferences.get('query');
 
-  map = new Leaflet('map-container', position, bounds);
-  query = new Query(map, parameter);
+  const map = new Leaflet('map-container', position, bounds);
+  const query = new Query(map, parameter);
 
   // Check whether the user is already authenticated and update the UI accordingly
   Auth.isAuthenticated().then(authenticated => {
@@ -442,6 +443,6 @@ function settings() {
   UI.registerView('list', new ListView());
   UI.view = view;
 
-  listener();
-  search();
+  listener(map, query);
+  search(query);
 })();
