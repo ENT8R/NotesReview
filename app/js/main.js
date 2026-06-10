@@ -50,6 +50,8 @@ function search(query) {
       new Toast(Localizer.message('error.queryAbort'), 'toast-warning').show(Toast.DURATION_LONG);
     } else if (error.name === 'TimeoutError') {
       new Toast(Localizer.message('error.queryTimeout'), 'toast-error').show(Toast.DURATION_LONG);
+    } else {
+      new Toast(Localizer.message('error.queryError'), 'toast-error').show(Toast.DURATION_LONG);
     }
   }).finally(() => {
     document.getElementById('preloader').classList.add('d-hide');

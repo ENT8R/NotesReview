@@ -213,7 +213,8 @@
         "watchNote": "Could not add note to watchlist, please try again later",
         "unwatchNote": "Could not remove note from watchlist, please try again later",
         "resetBlocklist": "Could not reset blocklist, please try again later",
-        "resetWatchlist": "Could not reset watchlist, please try again later"
+        "resetWatchlist": "Could not reset watchlist, please try again later",
+        "queryError": "Query failed, please try again later"
     },
     "success": {
         "copy": "Copied link successfully",
