@@ -6,6 +6,11 @@ export default class Toast {
   static DURATION_DEFAULT = 4000;
   static DURATION_LONG = 8000;
 
+  static TYPE_PRIMARY = 'toast-primary';
+  static TYPE_SUCCESS = 'toast-success';
+  static TYPE_WARNING = 'toast-warning';
+  static TYPE_ERROR = 'toast-error';
+
   /**
     * Initialize a small toast notification with the given message
     *
@@ -18,7 +23,7 @@ export default class Toast {
     this.container = document.getElementById('toast-container');
 
     this.toast = document.createElement('div');
-    this.toast.classList.add('toast', type || 'toast-primary');
+    this.toast.classList.add('toast', type || this.TYPE_PRIMARY);
 
     // Add the message of the toast
     this.toast.appendChild(document.createTextNode(message));

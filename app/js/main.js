@@ -47,11 +47,11 @@ function search(query) {
     UI.show(Array.from(notes), query).then(details);
   }).catch(error => {
     if (error.name === 'AbortError') {
-      new Toast(Localizer.message('error.queryAbort'), 'toast-warning').show(Toast.DURATION_LONG);
+      new Toast(Localizer.message('error.queryAbort'), Toast.TYPE_WARNING).show(Toast.DURATION_LONG);
     } else if (error.name === 'TimeoutError') {
-      new Toast(Localizer.message('error.queryTimeout'), 'toast-error').show(Toast.DURATION_LONG);
+      new Toast(Localizer.message('error.queryTimeout'), Toast.TYPE_ERROR).show(Toast.DURATION_LONG);
     } else {
-      new Toast(Localizer.message('error.queryError'), 'toast-error').show(Toast.DURATION_LONG);
+      new Toast(Localizer.message('error.queryError'), Toast.TYPE_ERROR).show(Toast.DURATION_LONG);
     }
   }).finally(() => {
     document.getElementById('preloader').classList.add('d-hide');
@@ -68,9 +68,9 @@ function search(query) {
   */
 function details(result) {
   if (result.amount === 0) {
-    new Toast(Localizer.message('description.nothingFound'), 'toast-error').show();
+    new Toast(Localizer.message('description.nothingFound'), Toast.TYPE_ERROR).show();
   } else {
-    new Toast(Localizer.message('description.statistics', result.amount), 'toast-success').show();
+    new Toast(Localizer.message('description.statistics', result.amount), Toast.TYPE_SUCCESS).show();
   }
 }
 
@@ -102,7 +102,7 @@ function listener(map, query) {
 
   document.querySelectorAll('.save-feedback').forEach(element => {
     element.addEventListener('click', () => {
-      new Toast(Localizer.message('success.saved'), 'toast-success').show();
+      new Toast(Localizer.message('success.saved'), Toast.TYPE_SUCCESS).show();
     });
   });
 
@@ -212,7 +212,7 @@ function listener(map, query) {
         UI.update(id, Note.parse(note));
         Modal.open('comments', id);
       }).catch(() => {
-        new Toast(Localizer.message('error.comment'), 'toast-error').show();
+        new Toast(Localizer.message('error.comment'), Toast.TYPE_ERROR).show();
       }).finally(() => {
         commentAction.classList.remove('loading');
       });
@@ -223,7 +223,7 @@ function listener(map, query) {
       const id = Number.parseInt(watchNoteTrigger.dataset.noteId);
       UI.watch(id);
       NotesReview.watch(id).then(() => {
-        new Toast(Localizer.message('success.watchNote'), 'toast-success', false).addAction(
+        new Toast(Localizer.message('success.watchNote'), Toast.TYPE_SUCCESS, false).addAction(
           Localizer.message('action.undo'), 'icon-undo', (event, toast) => {
             toast.hide();
             UI.unwatch(id);
@@ -232,7 +232,7 @@ function listener(map, query) {
         ).show();
       }).catch(() => {
         UI.unwatch(id);
-        new Toast(Localizer.message('error.watchNote'), 'toast-error').show();
+        new Toast(Localizer.message('error.watchNote'), Toast.TYPE_ERROR).show();
       });
     }
 
@@ -241,10 +241,10 @@ function listener(map, query) {
       const id = Number.parseInt(unwatchNoteTrigger.dataset.noteId);
       UI.unwatch(id);
       NotesReview.unwatch(id).then(() => {
-        new Toast(Localizer.message('success.unwatchNote'), 'toast-success').show();
+        new Toast(Localizer.message('success.unwatchNote'), Toast.TYPE_SUCCESS).show();
       }).catch(() => {
         UI.watch(id);
-        new Toast(Localizer.message('error.unwatchNote'), 'toast-error').show();
+        new Toast(Localizer.message('error.unwatchNote'), Toast.TYPE_ERROR).show();
       });
     }
 
@@ -253,7 +253,7 @@ function listener(map, query) {
       const id = Number.parseInt(hideNoteTrigger.dataset.noteId);
       UI.hide(id);
       NotesReview.hide(id).then(() => {
-        new Toast(Localizer.message('success.hideNote'), 'toast-success', false).addAction(
+        new Toast(Localizer.message('success.hideNote'), Toast.TYPE_SUCCESS, false).addAction(
           Localizer.message('action.undo'), 'icon-undo', (event, toast) => {
             toast.hide();
             UI.unhide(id);
@@ -262,7 +262,7 @@ function listener(map, query) {
         ).show();
       }).catch(() => {
         UI.unhide(id);
-        new Toast(Localizer.message('error.hideNote'), 'toast-error').show();
+        new Toast(Localizer.message('error.hideNote'), Toast.TYPE_ERROR).show();
       });
     }
 
@@ -270,9 +270,9 @@ function listener(map, query) {
     if (resetBlocklistTrigger) {
       NotesReview.deleteBlocklist().then(() => {
         UI.unhideAll();
-        new Toast(Localizer.message('success.resetBlocklist'), 'toast-success').show();
+        new Toast(Localizer.message('success.resetBlocklist'), Toast.TYPE_SUCCESS).show();
       }).catch(() => {
-        new Toast(Localizer.message('error.resetBlocklist'), 'toast-error').show();
+        new Toast(Localizer.message('error.resetBlocklist'), Toast.TYPE_ERROR).show();
       });
     }
 
@@ -280,9 +280,9 @@ function listener(map, query) {
     if (resetWatchlistTrigger) {
       NotesReview.deleteWatchlist().then(() => {
         UI.unwatchAll();
-        new Toast(Localizer.message('success.resetWatchlist'), 'toast-success').show();
+        new Toast(Localizer.message('success.resetWatchlist'), Toast.TYPE_SUCCESS).show();
       }).catch(() => {
-        new Toast(Localizer.message('error.resetWatchlist'), 'toast-error').show();
+        new Toast(Localizer.message('error.resetWatchlist'), Toast.TYPE_ERROR).show();
       });
     }
   });
@@ -405,7 +405,7 @@ function settings() {
         document.body.dataset.authenticatedBackend = false;
       });
     }).catch(() => {
-      new Toast(Localizer.message('error.login'), 'toast-error').show();
+      new Toast(Localizer.message('error.login'), Toast.TYPE_ERROR).show();
       document.body.dataset.authenticatedOpenstreetmap = false;
     });
   }

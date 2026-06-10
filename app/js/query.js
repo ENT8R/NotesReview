@@ -304,7 +304,7 @@ export default class Query {
     if (limit > MAX_LIMIT) {
       limit = MAX_LIMIT;
       document.getElementById('limit').value = MAX_LIMIT;
-      new Toast(Localizer.message('description.autoLimit'), 'toast-warning').show();
+      new Toast(Localizer.message('description.autoLimit'), Toast.TYPE_WARNING).show();
     }
 
     this.data.limit = limit;

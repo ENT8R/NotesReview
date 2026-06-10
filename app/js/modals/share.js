@@ -63,6 +63,6 @@ export default class Share extends Modal {
   copy() {
     document.getElementById('permalink').select();
     document.execCommand('copy');
-    new Toast(Localizer.message('success.copy'), 'toast-success').show();
+    new Toast(Localizer.message('success.copy'), Toast.TYPE_SUCCESS).show();
   }
 }
