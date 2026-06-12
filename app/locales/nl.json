@@ -64,7 +64,7 @@
         "showList": "In een lijst weergeven",
         "showMap": "Op een kaart weergeven",
         "nothingFound": "Niets gevonden!",
-        "autoLimit": "Limiet automatisch op 250 gezet, omdat hogere waarden niet toegestaan zijn",
+        "autoLimit": "Limiet automatisch op %s gezet, omdat hogere waarden niet toegestaan zijn",
         "deprecationWarning": "De browser die u momenteel gebruikt ondersteund NotesReview niet. Overweeg om naar een andere browser over te schakelen om NotesReview te kunnen zien.",
         "sort": {
             "created": {

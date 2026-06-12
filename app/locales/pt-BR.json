@@ -82,7 +82,7 @@
         "showList": "Mostrar em uma lista",
         "showMap": "Mostrar em um mapa",
         "nothingFound": "Nada encontrado!",
-        "autoLimit": "Definir limite automaticamente para 250, porque valores mais altos não são permitidos",
+        "autoLimit": "Definir limite automaticamente para %s, porque valores mais altos não são permitidos",
         "deprecationWarning": "O navegador que você está usando atualmente não oferece suporte a NotesReview. Considere mudar para outro navegador para poder usar o NotesReview.",
         "sort": {
             "created": {

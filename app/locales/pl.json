@@ -76,7 +76,7 @@
         "showList": "Pokaż na liście",
         "showMap": "Pokaż na mapie",
         "nothingFound": "Nic nie znaleziono!",
-        "autoLimit": "Automatycznie ustawiono limit 250, bo większe wartości nie są dozwolone",
+        "autoLimit": "Automatycznie ustawiono limit %s, bo większe wartości nie są dozwolone",
         "deprecationWarning": "Przeglądarka, którą obecnie używasz nie wspiera NotesReview. Proszę rozważ zmianę przeglądarki, aby móc używać NotesReview.",
         "sort": {
             "created": {

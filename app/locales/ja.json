@@ -62,7 +62,7 @@
         "showList": "リスト表示",
         "showMap": "マップ表示",
         "nothingFound": "検索結果がありません！",
-        "autoLimit": "検索結果が多すぎるため、250件までを表示します",
+        "autoLimit": "検索結果が多すぎるため、%s件までを表示します",
         "deprecationWarning": "お使いのブラウザがNotesReviewに対応していません。NoteReviewを利用する場合、他のブラウザを利用してみてください。",
         "sort": {
             "created": {

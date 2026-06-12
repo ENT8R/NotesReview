@@ -82,7 +82,7 @@
         "showList": "以列表顯示",
         "showMap": "顯示在地圖上面",
         "nothingFound": "什麼都找不到！",
-        "autoLimit": "自動設定限制為 250，因為不能允許更高的數值",
+        "autoLimit": "自動設定限制為 %s，因為不能允許更高的數值",
         "deprecationWarning": "你目前使用的瀏覽器並不支援 NotesReview，請考慮換到其他瀏覽器才能使用 NotesReview。",
         "sort": {
             "created": {

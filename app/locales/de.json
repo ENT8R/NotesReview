@@ -82,7 +82,7 @@
         "showList": "Als Liste zeigen",
         "showMap": "Auf Karte zeigen",
         "nothingFound": "Nichts gefunden!",
-        "autoLimit": "Limit automatisch auf 250 gesetzt, da höhere Werte nicht erlaubt sind",
+        "autoLimit": "Limit automatisch auf %s gesetzt, da höhere Werte nicht erlaubt sind",
         "deprecationWarning": "Dein momentaner Browser funktioniert leider nicht zusammen mit NotesReview. Bitte denke darüber nach deinen Browser zu wechseln, um NotesReview verwenden zu können.",
         "sort": {
             "created": {
