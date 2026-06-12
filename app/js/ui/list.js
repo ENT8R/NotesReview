@@ -4,6 +4,7 @@ export default class ListView {
   constructor() {
     this.fragment = new DocumentFragment();
     this.divs = new Map();
+    this.container = document.getElementById('list');
   }
 
   /**
@@ -65,8 +66,7 @@ export default class ListView {
     * @returns {void}
     */
   apply() {
-    const container = document.getElementById('list');
-    container.replaceChildren(this.fragment);
+    this.container.replaceChildren(this.fragment);
   }
 
   /**
@@ -76,7 +76,6 @@ export default class ListView {
     * @returns {void}
     */
   removeAll() {
-    const container = document.getElementById('list');
-    container.replaceChildren();
+    this.container.replaceChildren();
   }
 }
