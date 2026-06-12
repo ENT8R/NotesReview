@@ -3,7 +3,7 @@ import Request, { MEDIA_TYPE } from '../request.js';
 
 import * as tilebelt from '@mapbox/tilebelt';
 import { VectorTile } from '@mapbox/vector-tile';
-import Protobuf from 'pbf';
+import { PbfReader } from 'pbf';
 
 import template from '../../templates/dynamic/mapillary.hbs';
 
@@ -39,7 +39,7 @@ export default class Mapillary extends Modal {
     );
 
     let images = [];
-    const vt = new VectorTile(new Protobuf(data));
+    const vt = new VectorTile(new PbfReader(data));
     const layer = 'layers' in vt && 'image' in vt.layers ? vt.layers.image : [];
 
     for (let i = 0; i < layer.length; i++) {
