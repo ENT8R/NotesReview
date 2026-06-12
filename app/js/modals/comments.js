@@ -18,6 +18,9 @@ export default class Comments extends Modal {
   load(note) {
     const content = document.getElementById('modal-comments-content');
     content.innerHTML = template(note, {
+      data: {
+        reduced: true
+      },
       allowedProtoProperties: {
         // Explicitly disable the access to the actions property,
         // because the actions should not be shown (again) in the comments modal

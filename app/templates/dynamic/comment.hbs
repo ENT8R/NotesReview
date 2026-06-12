@@ -1,21 +1,29 @@
 <div data-note-id="{{id}}" data-status="{{status}}">
   <div class="note-comments">
-    <div class="column col-auto btn-group float-right">
-      {{{badges.report}}}
-      {{#if watchlist}}
-        {{{badges.unwatch}}}
-      {{else}}
-        {{{badges.watch}}}
-      {{/if}}
-      {{{badges.hide}}}
-    </div>
     {{#each comments}}
     <div class="tile">
       <div class="tile-content">
         <div class="tile-title note-badges">
-          {{{badges.user}}}
-          {{{badges.age}}}
-          {{{badges.status}}}
+          <div class="columns col-gapless">
+            <div class="column flex-center-items">
+              {{{badges.user}}}
+              {{{badges.age}}}
+              {{{badges.status}}}
+            </div>
+            {{#if @first}}
+            {{#unless @reduced}}
+            <div class="column col-auto btn-group">
+              {{{../badges.report}}}
+              {{#if ../watchlist}}
+                {{{../badges.unwatch}}}
+              {{else}}
+                {{{../badges.watch}}}
+              {{/if}}
+              {{{../badges.hide}}}
+            </div>
+            {{/unless}}
+            {{/if}}
+          </div>
         </div>
         <p class="tile-subtitle text-break">{{{html}}}</p>
       </div>
@@ -37,7 +45,9 @@
 
   <div class="divider requires-authentication"></div>
 
+  {{#unless @reduced}}
   <div class="note-actions">
     {{> actions actions}}
   </div>
+  {{/unless}}
 </div>
