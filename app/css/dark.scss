@@ -59,7 +59,7 @@ body[data-theme="dark"] {
       color: $text-color;
       border-color: transparent;
       &:hover {
-        color: $minor-color;
+        color: $minor-color-surface;
       }
     }
     &.btn-clear:not(:focus) {
@@ -76,6 +76,11 @@ body[data-theme="dark"] {
 
   ::selection, .selection-indicator {
     background-color: $main-color-surface-light-variant;
+  }
+
+  .form-input:focus,
+  .form-select:focus {
+    border-color: $link-color;
   }
 
   a {
@@ -102,6 +107,10 @@ body[data-theme="dark"] {
 
   img:not(.leaflet-tile) {
     filter: brightness(.8) contrast(1.2);
+  }
+
+  .progress:indeterminate {
+    background: #eef0f3 linear-gradient(to right, $link-color 30%, #eef0f3 30%) top left/150% 150% no-repeat;
   }
 
   .leaflet-control-geocoder-icon {
