@@ -75,11 +75,13 @@ main {
 }
 
 #note-container {
+  resize: both;
+  min-width: 420px;
   .note-actions {
     position: sticky;
     bottom: 0;
     z-index: 1;
-    padding-top: 20%;
+    padding-top: 48px;
     padding-bottom: 12px;
     background-image: linear-gradient(to bottom, transparent, var(--background-color) 50%);
   }
