@@ -1,5 +1,5 @@
 <div class="columns px-2">
-  <div class="column col-12">
+  <div class="column col-8 col-sm-12">
     <label class="form-label" for="query">
       <span data-i18n="header.query">Query</span>
       <span class="tooltip tooltip-right" data-tooltip="A word or phrase mentioned in the note" data-i18n data-i18n-data-tooltip="description.query">
@@ -7,6 +7,14 @@
       </span>
     </label>
     <input class="form-input" id="query" type="text">
+  </div>
+
+  <div class="column col-4 col-sm-12">
+    <label class="form-label" for="scope" data-i18n="header.scope">Search in</label>
+    <single-selection-button-group id="scope" class="btn-group btn-group-block">
+      <button class="btn active" data-value="first" data-i18n="description.scope.first">Initial comment</button>
+      <button class="btn" data-value="all" data-i18n="description.scope.all">All comments</button>
+    </single-selection-button-group>
   </div>
 
   <div class="column col-4 col-sm-12">

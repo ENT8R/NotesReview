@@ -84,7 +84,8 @@
         "area": "Search area",
         "commented": "Commented notes",
         "author": "Author",
-        "watchlist": "Notes on my watchlist"
+        "watchlist": "Notes on my watchlist",
+        "scope": "Search in"
     },
     "description": {
         "share": "Copy this link to share the current query:",
@@ -137,6 +138,10 @@
             "include": "Include",
             "hide": "Hide",
             "only": "Only"
+        },
+        "scope": {
+            "first": "Initial comment",
+            "all": "All comments"
         }
     },
     "settings": {

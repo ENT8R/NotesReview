@@ -7,6 +7,11 @@ import * as Util from './util.js';
 
 const MAX_LIMIT = 500;
 
+export const SCOPE = {
+  ALL_COMMENTS: 'all',
+  FIRST_COMMENT: 'first'
+};
+
 export const STATUS = {
   ALL: 'all',
   OPEN: 'open',
@@ -51,6 +56,7 @@ const ORDER = {
 // Values which are null by default are not included, because they are removed in a different step.
 const DEFAULTS = {
   UI: {
+    scope: SCOPE.FIRST_COMMENT,
     limit: 50,
     status: STATUS.OPEN,
     anonymous: ANONYMOUS.INCLUDE,
@@ -61,6 +67,7 @@ const DEFAULTS = {
     area: AREA.GLOBAL
   },
   API: {
+    scope: SCOPE.FIRST_COMMENT,
     limit: 50,
     status: STATUS.ALL,
     anonymous: ANONYMOUS.INCLUDE,
@@ -120,6 +127,9 @@ export default class Query {
     this.input = [{
       id: 'query',
       handler: this.query
+    }, {
+      id: 'scope',
+      handler: this.scope
     }, {
       id: 'bbox',
       handler: this.bbox
@@ -238,6 +248,18 @@ export default class Query {
     */
   query(query) {
     this.data.query = query;
+    return this;
+  }
+
+  /**
+    * Specify the scope of the query (i.e. in what comments to search in for the given string)
+    *
+    * @function
+    * @param {String} scope
+    * @returns {Query}
+    */
+  scope(scope) {
+    this.data.scope = scope;
     return this;
   }
 
@@ -461,6 +483,10 @@ export default class Query {
     // Create a copy of the current values in order to make specific changes
     // that are necessary for the construction of the URL
     const data = Object.assign({}, this.data);
+
+    if (data.query === null) {
+      delete data.scope;
+    }
 
     // Do not use the bounding box/polygon if the user does not want to do the respective search
     if (data.area !== AREA.VIEW) {
