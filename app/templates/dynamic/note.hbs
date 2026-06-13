@@ -1,21 +1,19 @@
 <div class="card" data-note-id="{{id}}">
-  <div class="card-header note-badges p-2">
-    <div class="columns col-gapless">
-      <div class="column flex-center-items">
-        {{{badges.user}}}
-        {{{badges.age}}}
-        {{{badges.comments}}}
-        {{{badges.country}}}
-      </div>
-      <div class="column col-auto btn-group">
-        {{{badges.report}}}
-        {{#if watchlist}}
-          {{{badges.unwatch}}}
-        {{else}}
-          {{{badges.watch}}}
-        {{/if}}
-        {{{badges.hide}}}
-      </div>
+  <div class="card-header note-badges">
+    <div class="flex-center-items">
+      {{{badges.user}}}
+      {{{badges.age}}}
+      {{{badges.comments}}}
+      {{{badges.country}}}
+    </div>
+    <div class="flex-no-shrink ml-auto btn-group">
+      {{{badges.report}}}
+      {{#if watchlist}}
+        {{{badges.unwatch}}}
+      {{else}}
+        {{{badges.watch}}}
+      {{/if}}
+      {{{badges.hide}}}
     </div>
   </div>
 

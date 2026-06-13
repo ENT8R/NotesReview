@@ -4,26 +4,24 @@
     <div class="tile">
       <div class="tile-content">
         <div class="tile-title note-badges">
-          <div class="columns col-gapless">
-            <div class="column flex-center-items">
-              {{{badges.user}}}
-              {{{badges.age}}}
-              {{{badges.status}}}
-            </div>
-            {{#if @first}}
-            {{#unless @reduced}}
-            <div class="column col-auto btn-group">
-              {{{../badges.report}}}
-              {{#if ../watchlist}}
-                {{{../badges.unwatch}}}
-              {{else}}
-                {{{../badges.watch}}}
-              {{/if}}
-              {{{../badges.hide}}}
-            </div>
-            {{/unless}}
-            {{/if}}
+          <div class="flex-center-items">
+            {{{badges.user}}}
+            {{{badges.age}}}
+            {{{badges.status}}}
           </div>
+          {{#if @first}}
+          {{#unless @reduced}}
+          <div class="flex-no-shrink ml-auto btn-group">
+            {{{../badges.report}}}
+            {{#if ../watchlist}}
+              {{{../badges.unwatch}}}
+            {{else}}
+              {{{../badges.watch}}}
+            {{/if}}
+            {{{../badges.hide}}}
+          </div>
+          {{/unless}}
+          {{/if}}
         </div>
         <p class="tile-subtitle text-break">{{{html}}}</p>
       </div>

@@ -86,6 +86,9 @@ main {
 }
 
 .note-badges {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-top: .4rem !important;
   font-size: 90%;
 }
 
@@ -171,18 +174,27 @@ body.deprecated-browser #deprecation-warning {
   margin: auto;
 }
 
+.ml-auto {
+  margin-left: auto;
+}
+
 .w-100 {
   width: 100%;
 }
 
 .flex-center-items {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 4px;
 }
 
 .flex-grow {
   flex-grow: 1;
+}
+
+.flex-no-shrink {
+  flex-shrink: 0;
 }
 
 .text-center {

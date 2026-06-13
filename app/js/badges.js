@@ -79,12 +79,11 @@ export function user(uid, anonymous) {
 
     const image = user.image ? `<img src="${user.image}">` : '';
     const initials = Util.initials(user.name);
-    return `<figure class="avatar" data-initial="${initials}">${image}</figure>
-            <a href="${OPENSTREETMAP_SERVER}/user/${user.name}" target="_blank" rel="noopener">
-              <span class="tooltip tooltip-right"
-                    data-tooltip="${Localizer.message('user.created', user.created.toLocaleDateString())}\n${Localizer.message('user.changesets', user.changesets)}">
-                ${user.name}
-              </span>
+    return `<figure class="avatar flex-no-shrink" data-initial="${initials}">${image}</figure>
+            <a href="${OPENSTREETMAP_SERVER}/user/${user.name}" target="_blank" rel="noopener"
+               class="tooltip tooltip-right"
+               data-tooltip="${Localizer.message('user.created', user.created.toLocaleDateString())}\n${Localizer.message('user.changesets', user.changesets)}">
+              ${user.name}
             </a>`;
   }
 }
