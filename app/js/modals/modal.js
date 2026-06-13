@@ -88,6 +88,7 @@ export default class Modal {
         note
       }
     }));
+    document.body.style.overflow = 'hidden';
   }
 
   /**
@@ -101,5 +102,6 @@ export default class Modal {
     modal.classList.remove('active');
     modal.querySelectorAll('.clear-on-modal-close').forEach(element => element.innerHTML = '');
     modal.dispatchEvent(new Event('modal-close'));
+    document.body.style.overflow = '';
   }
 }
