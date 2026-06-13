@@ -70,8 +70,12 @@ body[data-theme="dark"] {
     }
   }
 
-  ::selection {
-    background-color: $minor-color;
+  single-selection-button-group {
+    background-color: $main-color-surface;
+  }
+
+  ::selection, .selection-indicator {
+    background-color: $main-color-surface-light-variant;
   }
 
   a {

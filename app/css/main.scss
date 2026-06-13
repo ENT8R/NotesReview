@@ -114,6 +114,17 @@ main {
   height: 50vh;
 }
 
+/*---------- Single Selection Button Group ------------*/
+single-selection-button-group button {
+  background: transparent !important;
+}
+
+.selection-indicator {
+  position: absolute;
+  transition: left 500ms var(--exponential-ease-out), width 250ms var(--exponential-ease-out);
+  background-color: #4b48d6;
+}
+
 /*---------- Leaflet ------------*/
 #map, #map-container {
   height: 100%;
