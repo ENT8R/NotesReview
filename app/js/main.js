@@ -23,6 +23,7 @@ import Modal from './modals/modal.js';
 import AreaSelector from './modals/area-selector.js';
 import Comments from './modals/comments.js';
 import Mapillary from './modals/mapillary.js';
+import Panoramax from './modals/panoramax.js';
 import Share from './modals/share.js';
 
 import UI from './ui/ui.js';
@@ -145,6 +146,7 @@ function listener(map, query) {
         tools: {
           openstreetmap: document.getElementById('tool-openstreetmap').checked,
           mapillary: document.getElementById('tool-mapillary').checked,
+          panoramax: document.getElementById('tool-panoramax').checked,
           deepl: document.getElementById('tool-deepl').checked
         }
       });
@@ -313,6 +315,7 @@ function settings() {
   document.getElementById('editor-level0').checked = editors.level0;
   document.getElementById('tool-openstreetmap').checked = tools.openstreetmap;
   document.getElementById('tool-mapillary').checked = tools.mapillary;
+  document.getElementById('tool-panoramax').checked = tools.panoramax;
   document.getElementById('tool-deepl').checked = tools.deepl;
 
   document.body.dataset.editorId = editors.id;
@@ -321,6 +324,7 @@ function settings() {
   document.body.dataset.editorLevel0 = editors.level0;
   document.body.dataset.toolOpenstreetmap = tools.openstreetmap;
   document.body.dataset.toolMapillary = tools.mapillary;
+  document.body.dataset.toolPanoramax = tools.panoramax;
   document.body.dataset.toolDeepl = tools.deepl;
 }
 
@@ -440,6 +444,7 @@ function settings() {
     'area-selector': new AreaSelector(document.getElementById('countries'), document.getElementById('polygon')),
     'comments': new Comments(),
     'mapillary': new Mapillary(),
+    'panoramax': new Panoramax(),
     'share': new Share(query)
   };
 

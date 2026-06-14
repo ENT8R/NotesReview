@@ -56,6 +56,7 @@
         "commentClose": "Comment and close",
         "commentReopen": "Reopen and comment",
         "mapillary": "Mapillary",
+        "panoramax": "Panoramax",
         "report": "Report note",
         "filter": "Filter",
         "refresh": "Refresh",
@@ -229,5 +230,12 @@
         "unwatchNote": "Removed from watchlist",
         "resetBlocklist": "Removed all notes from the blocklist",
         "resetWatchlist": "Removed all notes from the watchlist"
+    },
+    "panoramax": {
+        "empty": {
+            "add": "Add photos of this place",
+            "title": "There are no photos of this place yet",
+            "subtitle": "You can help other mappers by uploading street-level imagery to Panoramax."
+        }
     }
 }

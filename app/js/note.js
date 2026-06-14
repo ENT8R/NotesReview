@@ -110,6 +110,12 @@ export default class Note {
         text: Localizer.message('action.mapillary'),
         modal: 'mapillary'
       },
+      panoramax: {
+        class: 'link-tool-panoramax modal-trigger',
+        icon: 'panorama',
+        text: Localizer.message('action.panoramax'),
+        modal: 'panoramax'
+      },
       deepl: {
         class: 'link-tool-deepl',
         link: `https://www.deepl.com/translator#auto/${Localizer.LANGUAGE}/${encodeURIComponent(this.comments[0].text).replace(/%2F/g, '\\%2F')}`,

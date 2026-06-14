@@ -14,6 +14,7 @@ const DEFAULTS = {
   tools: {
     openstreetmap: true,
     mapillary: false,
+    panoramax: false,
     deepl: false
   },
   editors: {
