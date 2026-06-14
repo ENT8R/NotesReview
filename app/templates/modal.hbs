@@ -4,6 +4,20 @@
   </span>
 
   <div class="modal-container">
-    {{> (lookup . 'id')}}
+    {{#> (lookup . 'id') }}
+      {{!-- Default content of the modal container if no matching partial for this id could be found --}}
+      <div class="modal-body">
+        <div id="modal-{{id}}-content" class="columns clear-on-modal-close"></div>
+      </div>
+
+      <div class="modal-footer">
+        <a id="modal-{{id}}-link" class="btn btn-primary float-left" href="#" target="_blank" rel="noopener">
+          <svg class="icon"><use xlink:href="#svg-icon-external"></use></svg>
+          <span data-i18n="action.{{id}}"></span>
+        </a>
+        <button class="btn btn-link modal-close" data-i18n="action.close">Close</button>
+      </div>
+
+    {{/undefined}} {{!-- See https://github.com/handlebars-lang/handlebars-parser/issues/9 --}}
   </div>
 </div>

@@ -20,11 +20,11 @@ export default class Mapillary extends Modal {
     * @returns {void}
     */
   async load(note) {
-    const content = document.getElementById('mapillary');
+    const content = document.getElementById('modal-mapillary-content');
     content.classList.add('loading', 'loading-lg');
 
     const link = `https://www.mapillary.com/app/?lat=${note.coordinates[0]}&lng=${note.coordinates[1]}&z=17&focus=map`;
-    document.getElementById('mapillary-link').href = link;
+    document.getElementById('modal-mapillary-link').href = link;
 
     // The Mapillary image layer is only available at a zoom value of 14
     const ZOOM = 14;
