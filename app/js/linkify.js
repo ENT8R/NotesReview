@@ -9,7 +9,8 @@ const IMAGE_HOSTING_REGEX = {
   streetcomplete: /^https:\/\/streetcomplete\.app\.?\/p\/[0-9]+\.jpg/i,
   wikimedia: /^(?:https?:\/\/)?upload\.wikimedia\.org\.?\/wikipedia\/([^/]+)\/(?:thumb\/)?(([0-9a-fA-F])\/\3[0-9a-fA-F])\/(?<file>[\w\-%.]+?\.(?:jpe?g|png|webp))(?:\/[0-9]{3,}px-\k<file>(?:\.(?:jpe?g|png|webp))?)?/i,
   commons: /^(?:https?:\/\/)?commons\.(?:m\.)?wikimedia\.org\.?\/wiki\/File:(?<file>[\w\-%.(),:]+?\.(?:jpe?g|png|svg|webp))/i,
-  openstreetmap: /^(?:https?:\/\/)?(?:osm\.wiki\.?|wiki\.openstreetmap\.org\.?\/wiki)\/File:(?<file>[\w\-%.(),;]+?\.(?:jpe?g|png|svg|webp))/i
+  openstreetmap: /^(?:https?:\/\/)?(?:osm\.wiki\.?|wiki\.openstreetmap\.org\.?\/wiki)\/File:(?<file>[\w\-%.(),;]+?\.(?:jpe?g|png|svg|webp))/i,
+  panoramax: /^https:\/\/(?<host>api\.panoramax\.xyz|explore\.panoramax\.fr|panoramax\.openstreetmap\.fr|panoramax\.ign\.fr)\.?\/(?:[a-zA-Z]{2}\/index\?|#)?.+(?:pic=|p)(?<pic>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i
 };
 
 const IMAGE_HOSTING_REGEX_ALL = {
@@ -20,7 +21,8 @@ const IMAGE_HOSTING_REGEX_ALL = {
 const IMAGE_HOSTING_ADDITIONAL_FORMATTING = {
   wikimedia: 'https://upload.wikimedia.org/wikipedia/$1/thumb/$2/$<file>/330px-$<file>',
   commons: 'https://commons.wikimedia.org/wiki/Special:FilePath/$<file>?width=300',
-  openstreetmap: 'https://wiki.openstreetmap.org/wiki/Special:FilePath/$<file>?width=300'
+  openstreetmap: 'https://wiki.openstreetmap.org/wiki/Special:FilePath/$<file>?width=300',
+  panoramax: 'https://$<host>/api/pictures/$<pic>/thumb.jpg'
 };
 
 /**
@@ -47,7 +49,10 @@ export default function replace(input) {
         images.push(url);
         const formatting = IMAGE_HOSTING_ADDITIONAL_FORMATTING[provider];
         if (formatting) {
-          url = url.replace(regex, formatting);
+          // Execute the regular expression against the url again to obtain the url
+          // without any trailing query parameters that are not part of the regex
+          const [ matched ] = regex.exec(url);
+          url = matched.replace(regex, formatting);
         }
         url = Util.escape(url);
         return {
@@ -67,7 +72,7 @@ export default function replace(input) {
       for (const { test, transform } of specialTransform) {
         if (test.test(encodeURI(attributes.href))) {
           const result = transform(attributes.href);
-          attributes.href = result.url;
+          // attributes.href = result.url;
           content = result.image;
           break;
         }
