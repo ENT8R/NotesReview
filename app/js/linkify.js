@@ -4,25 +4,23 @@ import Preferences from './preferences.js';
 import * as Util from './util.js';
 
 const IMAGE_HOSTING_REGEX = {
-  imgur: /(http(s)?:\/\/)?(i\.)?imgur\.com\/\w+\.(jpg|png)/i,
-  westnordost: /https:\/\/westnordost\.de\/p\/[0-9]+\.jpg/i,
-  streetcomplete: /https:\/\/streetcomplete\.app\/p\/[0-9]+\.jpg/i,
-  wikimedia: /http(?:s)?:\/\/upload\.wikimedia\.org\/wikipedia\/(.+?)\/(?:thumb\/)?(\w\/\w\w)\/(.+?\.(?:jpg|jpeg|png))(?:\/.+?\.(?:jpg|jpeg|png))?/i,
-  commons: /http(?:s)?:\/\/commons\.wikimedia\.org\/wiki\/File:(.+?\.(?:jpg|jpeg|png|svg))/i,
-  openstreetmap: /http(?:s)?:\/\/wiki\.openstreetmap\.org\/wiki\/File:(.+?\.(?:jpg|jpeg|png|svg))/i,
-  mapillary: /http(?:s)?:\/\/(?:www\.)?mapillary\.com\/map\/im\/(\w+)/i,
+  imgur: /^(?:https?:\/\/)?(?:i\.)?imgur\.com\.?\/\w+\.(?:jpe?g|png|webp)/i,
+  westnordost: /^https:\/\/westnordost\.de\.?\/p\/[0-9]+\.jpg/i,
+  streetcomplete: /^https:\/\/streetcomplete\.app\.?\/p\/[0-9]+\.jpg/i,
+  wikimedia: /^(?:https?:\/\/)?upload\.wikimedia\.org\.?\/wikipedia\/([^/]+)\/(?:thumb\/)?(([0-9a-fA-F])\/\3[0-9a-fA-F])\/(?<file>[\w\-%.]+?\.(?:jpe?g|png|webp))(?:\/[0-9]{3,}px-\k<file>(?:\.(?:jpe?g|png|webp))?)?/i,
+  commons: /^(?:https?:\/\/)?commons\.(?:m\.)?wikimedia\.org\.?\/wiki\/File:(?<file>[\w\-%.(),:]+?\.(?:jpe?g|png|svg|webp))/i,
+  openstreetmap: /^(?:https?:\/\/)?(?:osm\.wiki\.?|wiki\.openstreetmap\.org\.?\/wiki)\/File:(?<file>[\w\-%.(),;]+?\.(?:jpe?g|png|svg|webp))/i
 };
 
 const IMAGE_HOSTING_REGEX_ALL = {
   ...IMAGE_HOSTING_REGEX,
-  all: /(http(s)?:\/\/)?(www\.)?.+\.(jpg|jpeg|png)/i,
+  all: /^(?:https?:\/\/)?(?:www\.)?(?:[\w-]+\.)*(?:[\w-]+)\.(?:[a-z]{2,})\.?\/(?:(?:[\w\-.~%!$&'()*+,;=:@]|%[0-9A-Fa-f]{2})\/?)+\.(jpe?g|png|svg|webp)/i
 };
 
 const IMAGE_HOSTING_ADDITIONAL_FORMATTING = {
-  wikimedia: 'https://upload.wikimedia.org/wikipedia/$1/thumb/$2/$3/300px-$3',
-  commons: 'https://commons.wikimedia.org/wiki/Special:FilePath/$1?width=300',
-  openstreetmap: 'https://wiki.openstreetmap.org/wiki/Special:FilePath/$1?width=300',
-  mapillary: 'https://images.mapillary.com/$1/thumb-320.jpg'
+  wikimedia: 'https://upload.wikimedia.org/wikipedia/$1/thumb/$2/$<file>/330px-$<file>',
+  commons: 'https://commons.wikimedia.org/wiki/Special:FilePath/$<file>?width=300',
+  openstreetmap: 'https://wiki.openstreetmap.org/wiki/Special:FilePath/$<file>?width=300'
 };
 
 /**
@@ -67,7 +65,7 @@ export default function replace(input) {
     render: ({ tagName, attributes, content }) => {
       // Check if any of the regexes match the link and transform accordingly
       for (const { test, transform } of specialTransform) {
-        if (test.test(attributes.href)) {
+        if (test.test(encodeURI(attributes.href))) {
           const result = transform(attributes.href);
           attributes.href = result.url;
           content = result.image;
