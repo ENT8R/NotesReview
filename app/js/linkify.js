@@ -52,7 +52,7 @@ export default function replace(input) {
         url = Util.escape(url);
         return {
           url,
-          image: `<img class="img-responsive img-preview p-1" src="${url}" alt="${url}" referrerpolicy="no-referrer">`
+          image: `<img class="img-responsive img-preview p-1" src="${url}" alt="${url}" referrerpolicy="no-referrer" loading="lazy">`
         };
       }
     };
@@ -76,7 +76,7 @@ export default function replace(input) {
       attributes = Object.entries(attributes).map(([k, v]) => `${k}="${v}"`).join(' ');
       return `<${tagName} ${attributes}>${content}</${tagName}>`;
     }
-  }).replace(/(\/a>)(<br>\n?)(<a)/g, '$1$3'); // Remove all line breaks between consecutive links/images
+  }).replace(/(\/a>)(<br>\n?)(<a)/g, '$1 $3'); // Remove all line breaks between consecutive links/images
 
   return {
     images,
