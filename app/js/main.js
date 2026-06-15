@@ -51,6 +51,8 @@ function search(query) {
       new Toast(Localizer.message('error.queryAbort'), Toast.TYPE_WARNING).show(Toast.DURATION_LONG);
     } else if (error.name === 'TimeoutError') {
       new Toast(Localizer.message('error.queryTimeout'), Toast.TYPE_ERROR).show(Toast.DURATION_LONG);
+    } else if (error.name === 'RequestError') {
+      new Toast(error.message, Toast.TYPE_ERROR).show(Toast.DURATION_LONG);
     } else {
       new Toast(Localizer.message('error.queryError'), Toast.TYPE_ERROR).show(Toast.DURATION_LONG);
     }

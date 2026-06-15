@@ -23,7 +23,7 @@ export default class Toast {
     this.container = document.getElementById('toast-container');
 
     this.toast = document.createElement('div');
-    this.toast.classList.add('toast', type || this.TYPE_PRIMARY);
+    this.toast.classList.add('toast', type || this.TYPE_PRIMARY, 'text-pre');
 
     // Add the message of the toast
     this.toast.appendChild(document.createTextNode(message));

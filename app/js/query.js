@@ -96,19 +96,6 @@ export class AbortError extends Error {
   }
 }
 
-export class TimeoutError extends Error {
-  /**
-   * Error class for timeout errors
-   *
-   * @constructor
-   * @param {...*} params
-   */
-  constructor(...params) {
-    super(...params);
-    this.name = 'TimeoutError';
-  }
-}
-
 export default class Query {
   /**
     * Constructor for a new query
@@ -626,11 +613,6 @@ export default class Query {
 
     // Return as early as possible if there were no results
     if (!result || !result.length || result.length === 0) {
-      // Throw a more specific error if there were no results due to a timeout
-      if (result && result.status === 503 && result.message === 'Response Timeout') {
-        throw new TimeoutError();
-      }
-
       return new Set();
     }
 
