@@ -1,7 +1,3 @@
-import 'spectre.css/dist/spectre.css';
-// Experimental features are needed because of the progress bar https://picturepan2.github.io/spectre/experimentals/progress.html
-import 'spectre.css/dist/spectre-exp.css';
-/* -------------------------------------------------------------------------- */
 import '../css/main.scss';
 import 'virtual:svg-icons/register';
 /* -------------------------------------------------------------------------- */

@@ -1,4 +1,20 @@
+// Default values as defined in _variables.scss: https://github.com/picturepan2/spectre/blob/master/src/_variables.scss
+$primary-color: #5755d9 !default;
+$dark-color: #303742 !default;
+/*$light-color: #fff !default;
+$success-color: #32b643 !default;
+$warning-color: #ffb700 !default;
+$error-color: #e85600 !default;
+$code-color: #d73e48 !default;
+$highlight-color: #ffe9b3 !default;
+$link-color: $primary-color !default;*/
+
 :root {
+  --primary-color: #{$primary-color};
+
+  --background-color: white;
+  --box-shadow-color: #546e7a;
+
   --green-dark-primary: #2e7d32;
   --green-dark-secondary: #286c2b;
 

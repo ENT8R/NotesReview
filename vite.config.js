@@ -53,6 +53,13 @@ export default () => {
         }
       }
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          quietDeps: true,
+        }
+      }
+    },
     plugins: [
       basicSsl(),
       handlebarsCompiler({

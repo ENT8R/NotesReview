@@ -3,10 +3,19 @@
 @use 'markers';
 @use 'dark';
 
-:root {
-  --background-color: white;
-  --box-shadow-color: #546e7a;
+// Import full Spectre source code
+@use 'spectre.css/src/spectre' as spectre with (
+  $primary-color: colors.$primary-color,
+  $dark-color: colors.$dark-color,
+);
 
+// Experimental features are needed because of the progress bar https://picturepan2.github.io/spectre/experimentals/progress.html
+@use 'spectre.css/src/spectre-exp' as spectre-exp with (
+  $primary-color: colors.$primary-color,
+  $dark-color: colors.$dark-color,
+);
+
+:root {
   --exponential-ease-out: cubic-bezier(.2, 1, .2, 1);
 }
 
@@ -123,7 +132,7 @@ single-selection-button-group button {
 .selection-indicator {
   position: absolute;
   transition: left 500ms var(--exponential-ease-out), width 250ms var(--exponential-ease-out);
-  background-color: #4b48d6;
+  background-color: var(--primary-color);
 }
 
 /*---------- Leaflet ------------*/
@@ -245,7 +254,7 @@ textarea {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   z-index: 500;
 }
 
