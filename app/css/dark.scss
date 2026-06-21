@@ -1,23 +1,28 @@
-$main-color: #263238; // blue-grey darken-4
-$main-color-surface: #37474f; // blue-grey darken-3
-$main-color-surface-light: #455a64; // blue-grey darken-2
-$main-color-surface-light-variant: #546e7a; // blue-grey darken-1
-$minor-color: #78909c; // blue-grey lighten-1
-$minor-color-surface: #90a4ae; // blue-grey lighten-2
+// The colors are taken from the 2014 Material Design color palette
+// See https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors or https://materializecss.com/color.html
+// This dark theme uses Blue Gray 900 as its primary color and Blue Gray 400 as its secondary color
+$primary-color: #263238; // blue-grey darken-4
+$primary-color-surface: #37474f; // blue-grey darken-3
+$primary-color-surface-light: #455a64; // blue-grey darken-2
+$primary-color-surface-light-variant: #546e7a; // blue-grey darken-1
+$secondary-color: #78909c; // blue-grey lighten-1
+$secondary-color-surface: #90a4ae; // blue-grey lighten-2
 
 $link-color: #81d4fa; // light-blue lighten-3
 $text-color: rgba(255, 255, 255, 0.8);
 
 body[data-theme="dark"] {
   & {
-    --background-color: #{$main-color};
+    --primary-color: #{$primary-color};
+
+    --background-color: #{$primary-color};
     --box-shadow-color: #090909;
   }
 
   &,
   .modal-container,
   .modal-header {
-    background-color: $main-color;
+    background-color: $primary-color;
     color: $text-color;
   }
 
@@ -35,7 +40,7 @@ body[data-theme="dark"] {
   .leaflet-control-geocoder-icon,
   .leaflet-control-geocoder-address-context,
   .leaflet-control-geocoder-alternatives li:hover {
-    background-color: $main-color-surface !important;
+    background-color: $primary-color-surface !important;
     color: $text-color;
   }
 
@@ -44,14 +49,14 @@ body[data-theme="dark"] {
   }
 
   .btn {
-    background-color: $main-color-surface-light;
+    background-color: $primary-color-surface-light;
     color: $text-color;
-    border-color: $minor-color;
+    border-color: $secondary-color;
     &.btn-primary {
-      background-color: $main-color-surface-light-variant;
+      background-color: $primary-color-surface-light-variant;
       &:focus,
       &:hover {
-        border-color: $minor-color-surface;
+        border-color: $secondary-color-surface;
       }
     }
     &.btn-link {
@@ -59,23 +64,23 @@ body[data-theme="dark"] {
       color: $text-color;
       border-color: transparent;
       &:hover {
-        color: $minor-color-surface;
+        color: $secondary-color-surface;
       }
     }
     &.btn-clear:not(:focus) {
       background-color: transparent;
     }
     &.active {
-      background-color: $main-color-surface;
+      background-color: $primary-color-surface;
     }
   }
 
   single-selection-button-group {
-    background-color: $main-color-surface;
+    background-color: $primary-color-surface;
   }
 
   ::selection, .selection-indicator {
-    background-color: $main-color-surface-light-variant;
+    background-color: $primary-color-surface-light-variant;
   }
 
   .form-input:focus,
@@ -92,7 +97,7 @@ body[data-theme="dark"] {
   }
 
   .divider {
-    border-top-color: $main-color-surface-light;
+    border-top-color: $primary-color-surface-light;
   }
 
   .modal {
@@ -102,7 +107,7 @@ body[data-theme="dark"] {
   }
 
   .badge:not([data-badge])::after, .badge[data-badge]::after {
-    background-color: $minor-color;
+    background-color: $secondary-color;
   }
 
   img:not(.leaflet-tile) {
