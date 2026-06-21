@@ -56,7 +56,6 @@
         "commentClose": "Comment and close",
         "commentReopen": "Reopen and comment",
         "mapillary": "Mapillary",
-        "panoramax": "Panoramax",
         "report": "Report note",
         "filter": "Filter",
         "refresh": "Refresh",
@@ -67,7 +66,8 @@
         "hide": "Hide note from results",
         "watch": "Add note to watchlist",
         "unwatch": "Remove note from watchlist",
-        "undo": "Undo"
+        "undo": "Undo",
+        "panoramax": "Panoramax"
     },
     "header": {
         "share": "Share",

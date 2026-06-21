@@ -56,7 +56,11 @@
         "reset": "重設",
         "center": "置中地圖到結果",
         "deepl": "Deepl",
-        "download": "下載資料 (.json)"
+        "download": "下載資料 (.json)",
+        "hide": "從結果隱藏註解",
+        "watch": "將註解加到追蹤清單",
+        "unwatch": "從追蹤清單移除註解",
+        "undo": "復原"
     },
     "header": {
         "share": "分享",
@@ -73,7 +77,8 @@
         "anonymous": "暱名的註解",
         "area": "搜尋區域",
         "commented": "有留言的註解",
-        "author": "作者"
+        "author": "作者",
+        "watchlist": "我的追蹤清單上的註解"
     },
     "description": {
         "share": "複製這連結來分享目前檢索：",
@@ -121,7 +126,12 @@
         "author": "作者是新增加註解的使用者",
         "user": "使用者是任何留言在註解的使用者\n(包括作者)",
         "customArea": "點按國家，或是用左側工具欄繪製客製化形狀來選取國家",
-        "sharePolygon": "分享客製化區域的選擇"
+        "sharePolygon": "分享客製化區域的選擇",
+        "watchlist": {
+            "include": "包括",
+            "hide": "隱藏",
+            "only": "只有"
+        }
     },
     "settings": {
         "choose": "選擇選項",
@@ -136,6 +146,15 @@
             "description": "選擇你最愛的工具",
             "editors": "編輯器",
             "other": "其他"
+        },
+        "content": {
+            "title": "內容選項",
+            "images": {
+                "title": "自動載入影像",
+                "always": "總是",
+                "trusted": "只有從信任的來源",
+                "never": "總不"
+            }
         }
     },
     "note": {
@@ -182,9 +201,16 @@
         "login": "無法登入，請再試一次",
         "comment": "無法評論，請再試一次",
         "queryTimeout": "時間已到，檢索方式太複雜了",
-        "queryAbort": "取消檢索，顯示先前的結果"
+        "queryAbort": "取消檢索，顯示先前的結果",
+        "hideNote": "無法隱藏註解，請稍後再試一次",
+        "watchNote": "無法將註解加到追蹤清單，請稍後再試一次",
+        "unwatchNote": "無法將註解從追蹤清單移除，請稍後再試一次"
     },
     "success": {
-        "copy": "成功複製連結"
+        "copy": "成功複製連結",
+        "saved": "成功儲存了",
+        "hideNote": "已經隱藏的註解",
+        "watchNote": "新增到追蹤清單",
+        "unwatchNote": "從追蹤清單移除"
     }
 }

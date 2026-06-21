@@ -29,6 +29,12 @@
         "outdatedNotes": {
             "title": "Warum scheinen einige Notizen veraltet zu sein?",
             "description": "!HTML! Die Notizen werden alle 5 Minuten mit der OpenStreetMap-API synchronisiert. Es kann trotzdem vorkommen, dass Notizen oder Kommentare, die von den Moderatoren ausgeblendet wurden, weiterhin in den Ergebnissen erscheinen.<br>\nDas liegt vor allem daran, dass die verwendete OpenStreetMap-API keine direkte Möglichkeit bietet, zu erfahren, welche Notizen und Kommentare von den Moderatoren ausgeblendet wurden. Aus diesem Grund wird der gesamte tägliche Notes-Dump in unregelmäßigen Abständen analysiert, um diese Anomalien zu finden und zu beheben.<br>\nWenn du wissen möchtest, wann die letzte manuelle Synchronisation mit dem Notes-Dump durchgeführt wurde, schaue auf der <a href=\"{{api}}/status\" target=\"_blank\" rel=\"noopener\">Statusseite</a> nach dem Wert von <code>last_import</code> (für Kommentare) oder <code>last_sync</code> (für Notizen)."
+        },
+        "reset": {
+            "title": "Warum kann ich keine Notizen mehr verstecken oder zu meiner Watchlist hinzufügen?",
+            "description": "!HTML! Um übermäßige Ressourcennutzung des Backend-Servers vorzubeugen, wird ein bestimmtes Limit an maximalen versteckten Notizen und Notizen auf der Watchlist umgesetzt. Sobald dieses Limit erreicht ist, kannst du keine weiteren Notizen verstecken oder zu deiner Watchlist hinzufügen.<br>\nDu kannst dies umgehen indem du möglicherweise ältere und vergessene Einträge von deiner Watchlist entfernst oder im Folgenden direkt deine gesamten versteckten Notizen und Notizen auf der Watchlist löschst:",
+            "blocklist": "Alle versteckten Notizen wieder anzeigen",
+            "watchlist": "Entferne alle Notizen von meiner Watchlist"
         }
     },
     "action": {
@@ -56,7 +62,12 @@
         "reset": "Zurücksetzen",
         "center": "Karte auf Ergebnisse zentrieren",
         "deepl": "Deepl",
-        "download": "Daten herunterladen (.json)"
+        "download": "Daten herunterladen (.json)",
+        "hide": "Notiz verstecken",
+        "watch": "Zur Watchlist hinzufügen",
+        "unwatch": "Von Watchlist entfernen",
+        "undo": "Rückgängig",
+        "panoramax": "Panoramax"
     },
     "header": {
         "share": "Teilen",
@@ -73,7 +84,9 @@
         "anonymous": "Anonyme Notizen",
         "area": "Suchgebiet",
         "commented": "Kommentierte Notizen",
-        "author": "Verfasser"
+        "author": "Verfasser",
+        "watchlist": "Notizen auf meiner Watchlist",
+        "scope": "Suchumfang"
     },
     "description": {
         "share": "Kopiere diesen Link um die aktuelle Abfrage zu teilen:",
@@ -121,7 +134,16 @@
         "author": "Der Verfasser ist der Benutzer, der die Notiz erstellt hat",
         "user": "Ein Benutzer ist jeder Nutzer, der einen Kommentar hinterlassen hat\n(einschließlich des Verfassers)",
         "customArea": "Wähle Länder durch Klicken aus, oder zeichne eine eigene Form mit Hilfe der Symbolleiste auf der linken Seite",
-        "sharePolygon": "Benutzerdefinierte Bereichsauswahl mitgeben"
+        "sharePolygon": "Benutzerdefinierte Bereichsauswahl mitgeben",
+        "watchlist": {
+            "include": "Anzeigen",
+            "hide": "Verstecken",
+            "only": "Ausschließlich"
+        },
+        "scope": {
+            "first": "Erster Kommentar",
+            "all": "Alle Kommentare"
+        }
     },
     "settings": {
         "choose": "Wähle eine Option",
@@ -136,6 +158,15 @@
             "description": "Wähle dein(e) Lieblingstool(s)",
             "editors": "Editors",
             "other": "Andere"
+        },
+        "content": {
+            "title": "Inhaltseinstellungen",
+            "images": {
+                "title": "Bilder automatisch laden",
+                "always": "Immer",
+                "trusted": "Nur aus vertrauenswürdigen Quellen",
+                "never": "Nie"
+            }
         }
     },
     "note": {
@@ -170,7 +201,8 @@
         }
     },
     "user": {
-        "created": "Nutzer seit %s"
+        "created": "Nutzer seit %s",
+        "changesets": "Verfasser von %s Änderungssätzen"
     },
     "about": {
         "description": "!HTML! NotesReview ist ein quelloffenes Projekt. Du benutzt gerade Version {{version}}. Der Quellcode ist auf <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\" rel=\"noopener\">Github</a> verfügbar.",
@@ -182,10 +214,28 @@
         "login": "Anmeldung fehlgeschlagen, bitte versuche es später erneut",
         "comment": "Kommentieren fehlgeschlagen, bitte versuche es später erneut",
         "queryTimeout": "Zeitüberschreitung, Abfrage ist zu komplex",
-        "queryAbort": "Suche wurde abgebrochen, vorherige Ergebnisse werden angezeigt"
+        "queryAbort": "Suche wurde abgebrochen, vorherige Ergebnisse werden angezeigt",
+        "hideNote": "Notiz konnte nicht ausgeblendet werden, versuche es später erneut",
+        "watchNote": "Notiz konnte nicht zur Watchlist hinzugefügt werden, versuche es später erneut",
+        "unwatchNote": "Notiz konnte nicht von der Watchlist entfernt werden, versuche es später erneut",
+        "resetBlocklist": "Blocklist konnte nicht zurückgesetzt werden, versuche es später erneut",
+        "resetWatchlist": "Watchlist konnte nicht zurückgesetzt werden, versuche es später erneut",
+        "queryError": "Suche fehlgeschlagen, bitte versuche es später erneut"
     },
     "success": {
         "copy": "Link erfolgreich kopiert",
-        "saved": "Erfolgreich gespeichert"
+        "saved": "Erfolgreich gespeichert",
+        "hideNote": "Notiz versteckt",
+        "watchNote": "Zur Watchlist hinzugefügt",
+        "unwatchNote": "Von Watchlist entfernt",
+        "resetBlocklist": "Alle Notizen wurden von der Blocklist entfernt",
+        "resetWatchlist": "Alle Notizen wurden von der Watchlist entfernt"
+    },
+    "panoramax": {
+        "empty": {
+            "add": "Fotos von diesem Ort hinzufügen",
+            "title": "Es gibt noch keine Fotos von diesem Ort",
+            "subtitle": "Du kannst anderen Mappern helfen, indem du Bilder auf Panoramax hochlädst."
+        }
     }
 }
