@@ -35,7 +35,7 @@ export default class Panoramax extends Modal {
     const data = await Request(
       // The documentation of this endpoint can be found here: https://docs.panoramax.fr/backend/api/openapi/
       `https://panoramax.openstreetmap.fr/api/map/${tile[2]}/${tile[0]}/${tile[1]}.pbf`,
-      MEDIA_TYPE.PROTOBUF
+      MEDIA_TYPE.MVT
     );
 
     let images = [];

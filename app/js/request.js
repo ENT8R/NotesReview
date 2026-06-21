@@ -2,7 +2,8 @@ export const MEDIA_TYPE = {
   TEXT: 'text/plain',
   JSON: 'application/json',
   XML: 'text/xml',
-  PROTOBUF: 'application/x-protobuf'
+  PROTOBUF: 'application/x-protobuf',
+  MVT: 'application/vnd.mapbox-vector-tile'
 };
 
 export class RequestError extends Error {
@@ -47,6 +48,7 @@ function readResponse(response, mediaType) {
     case MEDIA_TYPE.JSON:
       return response.json();
     case MEDIA_TYPE.PROTOBUF:
+    case MEDIA_TYPE.MVT:
       return response.arrayBuffer();
     case MEDIA_TYPE.XML:
       return response.text().then(text => new DOMParser().parseFromString(text, 'text/xml'));
