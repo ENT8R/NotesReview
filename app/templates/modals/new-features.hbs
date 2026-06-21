@@ -1,0 +1,58 @@
+<div class="modal-header">
+  <div class="modal-title h2 text-center">🎉 <b>New Features</b></div>
+</div>
+
+<div class="modal-body">
+  <div class="divider"></div>
+
+  <h4 class="text-center">🔍 <u>Enhanced Search Query Language</u></h4>
+  <p>
+    It has been requested for quite a long time and now it is finally here!
+    <br><br>
+    The search functionality has been extended from single-term matching
+    to a versatile Boolean query language supporting both logical operators and phrase searches with these features:
+    <ul>
+        <li>Logical operations: <kbd>AND</kbd>, <kbd>OR</kbd>, <kbd>NOT</kbd> as well as their operator aliases: <kbd>,</kbd> <kbd>|</kbd> <kbd>-</kbd></li>
+        <li>Exact phrase searches using quotation marks</li>
+        <li>Implicit <kbd>AND</kbd> between adjacent search terms</li>
+    </ul>
+    <b>Here are some examples:</b>
+    <ul>
+        <li><code><b>StreetComplete AND housenumber</b></code> returns all notes that contain both terms,
+        the <kbd>AND</kbd> operator can even be omitted since this is always the implicit default</li>
+        <li><code><b>"Organic Maps" OR CoMaps</b></code> returns all notes that contain either of the two terms
+        (notice the quotation marks around the first term, otherwise the first term would be interpreted as <kbd>Organic AND Maps</kbd>)</li>
+        <li><code><b>StreetComplete -"Attached photo"</b></code> returns all notes with the first term in them but without the second</li>
+    </ul>
+  </p>
+
+  <div class="divider"></div>
+
+  <h4 class="text-center">👀 <u>Watchlist</u></h4>
+  <p>
+    If you are logged in with your OpenStreetMap account, you might have already noticed two new icons appearing in the corner of each note.
+    <br><br>
+    With one of them you can now add up to 500 notes to your personal watchlist. This might be helpful in cases where you want to come back later
+    to a note because it is currently not solvable given the available information.
+    <br><br>
+    At some point in the future, there might be automatic email notifications when someone comments on notes that are on your watchlist.
+    Until then, you can simply adapt the filter to only include notes that are on your watchlist to view all of them and check if anything changed.
+  </p>
+
+  <div class="divider"></div>
+
+  <h4 class="text-center">⛔ <u>Blocklist</u></h4>
+  <p>
+    The last new big feature that is worth mentioning is that you are now able to block up to 500 notes.
+    All notes on your personal blocklist are blocked from all searches and will not appear in any following query.
+    <br><br>
+    If you accidentally hide a note, you will have a few seconds to undo it, otherwise you can reset your complete blocklist
+    (and watchlist as well) in the <svg class="icon icon-small"><use xlink:href="#svg-icon-help"></use></svg> help section.
+  </p>
+
+  <div class="divider"></div>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-link modal-close">Close</button>
+</div>

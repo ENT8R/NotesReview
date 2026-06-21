@@ -450,6 +450,17 @@ function settings() {
     'share': new Share(query)
   };
 
+  // Show the modal for showcasing new features only if it was never shown before
+  // or it was shown before the last update that contained these features
+  const newFeatureModalShownAt = Preferences.get('new-feature-modal-shown-at');
+  if (!newFeatureModalShownAt || new Date(newFeatureModalShownAt) < new Date(2026, 5, 15)) {
+    Modal.open('new-features').addEventListener('modal-close', () => {
+      Preferences.set({
+        'new-feature-modal-shown-at': new Date().toISOString()
+      });
+    });
+  }
+
   UI.registerView('map', new MapView());
   UI.registerView('list', new ListView());
   UI.view = view;

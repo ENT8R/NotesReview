@@ -76,7 +76,7 @@ export default class Modal {
     * @function
     * @param {String} id
     * @param {Number|null} note
-    * @returns {void}
+    * @returns {HTMLElement}
     */
   static open(id, note) {
     const modal = document.querySelector(`.modal[data-modal="${id}"]`);
@@ -89,6 +89,7 @@ export default class Modal {
       }
     }));
     document.body.style.overflow = 'hidden';
+    return modal;
   }
 
   /**
