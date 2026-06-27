@@ -47,6 +47,42 @@
 
   <div class="divider"></div>
 
+  <h4 data-i18n="help.queryPossibilities.title">Is it possible to search for more than a single word?</h4>
+  <p>
+    <span data-i18n="help.queryPossibilities.introduction">
+      Yes, the query filter allows you to search for individual terms as well as using a versatile Boolean query language.
+      Logical operators and searches for multiple words are supported with these features:
+    </span>
+    <ul>
+        <li data-i18n="help.queryPossibilities.features.operators">Logical operators: <kbd>AND</kbd>, <kbd>OR</kbd>, <kbd>NOT</kbd> as well as their aliases: <kbd>,</kbd> <kbd>|</kbd> <kbd>-</kbd></li>
+        <li data-i18n="help.queryPossibilities.features.exact">Exact search for entire phrases using quotation marks</li>
+        <li data-i18n="help.queryPossibilities.features.implicit">Implicit <kbd>AND</kbd> between adjacent search terms</li>
+    </ul>
+    <b data-i18n="help.queryPossibilities.examples.title">Here are a some examples:</b>
+    <ul>
+        <li>
+          <code><b>StreetComplete AND housenumber</b></code>
+          <span data-i18n="help.queryPossibilities.examples.and">
+            returns all notes containing both terms, the <kbd>AND</kbd> operator can even be omitted, as this is always the implicit default
+          </span>
+        </li>
+        <li>
+          <code><b>"Organic Maps" OR CoMaps</b></code>
+          <span data-i18n="help.queryPossibilities.examples.or">
+            returns all notes containing either of the two terms (notice the quotation marks around the first term, as it would otherwise be interpreted as <kbd>Organic AND Maps</kbd>)
+          </span>
+        </li>
+        <li>
+          <code><b>StreetComplete -"Attached photo"</b></code>
+          <span data-i18n="help.queryPossibilities.examples.not">
+            returns all notes that contain the first term but not the second
+          </span>
+        </li>
+    </ul>
+  </p>
+
+  <div class="divider"></div>
+
   <h4 data-i18n="help.multipleUsers.title">Is it possible to search for multiple users?</h4>
   <p data-i18n="help.multipleUsers.description">
     Yes, by using a comma to separate each user.<br>

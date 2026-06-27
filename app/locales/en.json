@@ -35,6 +35,21 @@
             "description": "!HTML! To prevent excessive use of backend server resources, a certain limit on the maximum number of hidden notes and notes on the watchlist is enforced. Once this limit is reached, it will be no longer possible for you to hide notes or add them to your watchlist.<br>\nYou can prevent this by removing potentially old and forgotten entries from your watchlist or directly reset your choice of hidden notes and all notes on the watchlist below:",
             "blocklist": "Show all hidden notes again",
             "watchlist": "Remove all notes from watchlist"
+        },
+        "queryPossibilities": {
+            "title": "Is it possible to search for more than a single word?",
+            "introduction": "Yes, the query filter allows you to search for individual terms as well as using a versatile Boolean query language.\nLogical operators and searches for multiple words are supported with these features:",
+            "features": {
+                "operators": "!HTML! Logical operators: <kbd>AND</kbd>, <kbd>OR</kbd>, <kbd>NOT</kbd> as well as their aliases: <kbd>,</kbd> <kbd>|</kbd> <kbd>-</kbd>",
+                "exact": "Exact search for entire phrases using quotation marks",
+                "implicit": "!HTML! Implicit <kbd>AND</kbd> between adjacent search terms"
+            },
+            "examples": {
+                "title": "Here are a some examples:",
+                "and": "!HTML! returns all notes containing both terms, the <kbd>AND</kbd> operator can even be omitted, as this is always the implicit default",
+                "or": "!HTML! returns all notes containing either of the two terms (notice the quotation marks around the first term, as it would otherwise be interpreted as <kbd>Organic AND Maps</kbd>)",
+                "not": "returns all notes that contain the first term but not the second"
+            }
         }
     },
     "action": {
@@ -107,7 +122,7 @@
                 "asc": "Least recently updated"
             }
         },
-        "query": "A word or phrase mentioned in the note",
+        "query": "Word(s) mentioned in the note",
         "status": {
             "all": "All",
             "open": "Open",
