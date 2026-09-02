@@ -27,7 +27,8 @@ export default () => {
     OPENSTREETMAP_SERVER: JSON.stringify(process.env.OPENSTREETMAP_SERVER),
     OPENSTREETMAP_OAUTH_CLIENT_ID: JSON.stringify(process.env.OPENSTREETMAP_OAUTH_CLIENT_ID),
     OPENSTREETMAP_OAUTH_CLIENT_SECRET: JSON.stringify(process.env.OPENSTREETMAP_OAUTH_CLIENT_SECRET),
-    MAPILLARY_CLIENT_ID: JSON.stringify(process.env.MAPILLARY_CLIENT_ID)
+    MAPILLARY_CLIENT_ID: JSON.stringify(process.env.MAPILLARY_CLIENT_ID),
+    CARTO_API_KEY: JSON.stringify(process.env.CARTO_API_KEY),
   };
 
   return defineConfig({

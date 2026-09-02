@@ -27,6 +27,7 @@ export default [
         OPENSTREETMAP_OAUTH_CLIENT_ID: 'readonly',
         OPENSTREETMAP_OAUTH_CLIENT_SECRET: 'readonly',
         MAPILLARY_CLIENT_ID: 'readonly',
+        CARTO_API_KEY: 'readonly',
       },
       ecmaVersion: 2025,
       sourceType: 'module',

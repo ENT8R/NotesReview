@@ -229,7 +229,7 @@ export default class Leaflet {
     const theme = Theme.get() === Theme.DARK ? 'dark_all' : 'light_all';
     const retina = L.Browser.retina ? '@2x' : '';
 
-    tileLayer = L.tileLayer(`https://{s}.basemaps.cartocdn.com/${theme}/{z}/{x}/{y}${retina}.png`, {
+    tileLayer = L.tileLayer(`https://{s}.basemaps.cartocdn.com/${theme}/{z}/{x}/{y}${retina}.png?key=${CARTO_API_KEY}`, {
       maxZoom: OPTIONS.maxZoom,
       subdomains: 'abcd',
       attribution: Localizer.message('map.attribution')
