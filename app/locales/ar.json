@@ -1,0 +1,144 @@
+{
+    "help": {
+        "colors": {
+            "title": "ما هو معنى الألوان؟",
+            "description": "يمثل كل لون عمر الملاحظة",
+            "darkgreen": "الأخضر الغامق",
+            "green": "الأخضر",
+            "amber": "الكهرماني",
+            "orange": "البرتقالي",
+            "red": "الأحمر",
+            "descriptions": {
+                "darkgreen": "ما بين ثانية واحدة ويوم واحد",
+                "green": "ما بين يوم واحد و 31 يوما",
+                "amber": "ما بين ستة أشهر وسنة واحدة",
+                "orange": "ما بين سنة إلى سنتين",
+                "red": "سنتان أو أكثر"
+            }
+        },
+        "multipleUsers": {
+            "title": "هل من الممكن البحث عن عدة مستخدمين؟"
+        },
+        "outdatedNotes": {
+            "title": "لماذا تبدو بعض الملاحظات قديمة؟"
+        }
+    },
+    "action": {
+        "cancel": "إلغاء",
+        "close": "إغلاق",
+        "save": "حفظ",
+        "search": "بحث",
+        "more": "المزيد",
+        "openstreetmap": "خريطة الشارع المفتوحة",
+        "edit": {
+            "id": "iD",
+            "josm": "JOSM",
+            "level0": "المستوى 0",
+            "rapid": "Rapid"
+        },
+        "login": "تسجيل الدخول",
+        "logout": "تسجيل الخروج",
+        "comment": "تعليق",
+        "commentClose": "تعليق و غلق",
+        "commentReopen": "فتح و تعليق",
+        "mapillary": "Mapillary",
+        "report": "إبلاغ عن الملاحظة",
+        "refresh": "تحديث",
+        "reset": "اعادة تعيين",
+        "center": "توسيط الخريطة على النتائج"
+    },
+    "header": {
+        "share": "مشاركة",
+        "faq": "الأسئلة الشائعة",
+        "about": "عن",
+        "settings": "الإعدادات",
+        "query": "بحث",
+        "limit": "الحد",
+        "user": "المستخدم",
+        "from": "من",
+        "to": "إلى",
+        "sort": "فرز حسب",
+        "anonymous": "ملاحظات مجهولة المصدر",
+        "area": "منطقة البحث",
+        "author": "المؤلف"
+    },
+    "description": {
+        "share": "انسخ هذا الرابط لمشاركة البحث الحالي:",
+        "startQuery": "ابدأ البحث مباشرة بعد فتح الرابط",
+        "shareView": "شارك العرض الحالي للخريطة",
+        "showList": "عرض في قائمة",
+        "showMap": "عرض على الخريطة",
+        "nothingFound": "لم يتم العثور على شيء!",
+        "sort": {
+            "created": {
+                "desc": "الأحدث",
+                "asc": "الأقدم"
+            },
+            "updated": {
+                "desc": "تم التحديث مؤخراً",
+                "asc": "تم التحديث منذ مدة"
+            }
+        },
+        "query": "الكلمة (الكلمات) المذكورة في الملاحظة",
+        "status": {
+            "all": "الكل"
+        },
+        "area": {
+            "global": "عالمي",
+            "custom": "منطقة مخصصة"
+        },
+        "commented": {
+            "hide": "اخف",
+            "only": "فقط"
+        },
+        "author": "المؤلف هو المستخدم الذي أنشأ الملاحظة",
+        "user": "المستخدم هو أي مستخدم ترك تعليقًا على الملاحظة (بما في ذلك المؤلف)"
+    },
+    "settings": {
+        "choose": "اختر أحد الخيارات",
+        "theme": {
+            "title": "اختر المظهر",
+            "light": "فاتح",
+            "dark": "غامق",
+            "system": "استخدم إعدادات النظام"
+        },
+        "tools": {
+            "title": "الأدوات",
+            "description": "اختر أداتك (أدواتك) المفضلة",
+            "editors": "ادوات التحرير",
+            "other": "اخرى"
+        }
+    },
+    "note": {
+        "anonymous": "مجهول",
+        "comment": "1 تعليق",
+        "comments": "%s تعليقات\n",
+        "action": {
+            "opened": "ملاحظة تم إنشاؤها",
+            "closed": "ملاحظة مغلقة",
+            "reopened": "ملاحظة معاد فتحها"
+        }
+    },
+    "comments": {
+        "inputPlaceholder": "اكتب تعليق لجميع المستخدمين"
+    },
+    "accessibility": {
+        "shareQuery": "شارك البحث الحالي"
+    },
+    "mapillary": {
+        "empty": {
+            "add": "أضف صورًا لهذا المكان",
+            "title": "لا توجد صور لهذا المكان حتى الآن",
+            "subtitle": "يمكنك مساعدة المساهمين الآخرين عن طريق تحميل صور من مستوى الشارع الى موقع Mapillary."
+        }
+    },
+    "user": {
+        "created": "مستخدم منذ %s"
+    },
+    "about": {
+        "description": "!HTML! NotesReview هو مشروع مفتوح المصدر. أنت تستخدم حاليًا الإصدار {{version}}. السورس متاح على <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\" rel=\"noopener\">Github</a>.",
+        "contribution": "\n!HTML! يمكنك دعم المشروع عن طريق <a href=\"https://poeditor.com/join/project/oVilUChBdf\" target=\"_blank\" rel=\"noopener\">ترجمته</a> أو من خلال <a href=\"https://github.com/ENT8R/NotesReview/issues\" target=\"_blank\" rel=\"noopener\">الإبلاغ عن الأخطاء</a>.",
+        "author": "!HTML! صُنع بـ ❤️ بواسطة <a href=\"mailto:info.ent8r@gmail.com\">ENT8R</a>",
+        "donate": "التبرع"
+    }
+}

@@ -19,11 +19,11 @@
             "lime": "Limettengrün"
         },
         "multipleUsers": {
-            "title": "Ist es möglich nach mehreren Nutzern zu suchen?",
+            "title": "Ist es möglich, nach mehreren Nutzern zu suchen?",
             "description": "!HTML! Ja, indem ein Komma zur Trennung der Namen verwendet wird.<br>\nBei der Suche nach Verfassern einer Notiz wird nach Notizen gesucht, die von irgendeinem der genannten Nutzer geöffnet wurde.<br>\nBei der Suche nach Benutzern einer Notiz wird nach Notizen gesucht, die von allen genannten Nutzern kommentiert wurden."
         },
         "excludingUsers": {
-            "title": "Ist es möglich Nutzer von der Suche auszuschließen?",
+            "title": "Ist es möglich, Nutzer von der Suche auszuschließen?",
             "description": "!HTML! Ja, indem entweder <kbd>NOT</kbd> oder <kbd>-</kbd> vor den Nutzer gestellt wird, der ausgeschlossen werden soll.<br>\nEs ist ebenfalls möglich, mehrere Nutzer auszuschließen, indem diese mit einem Komma getrennt werden."
         },
         "outdatedNotes": {
@@ -35,6 +35,21 @@
             "description": "!HTML! Um übermäßige Ressourcennutzung des Backend-Servers vorzubeugen, wird ein bestimmtes Limit an maximalen versteckten Notizen und Notizen auf der Watchlist umgesetzt. Sobald dieses Limit erreicht ist, kannst du keine weiteren Notizen verstecken oder zu deiner Watchlist hinzufügen.<br>\nDu kannst dies umgehen indem du möglicherweise ältere und vergessene Einträge von deiner Watchlist entfernst oder im Folgenden direkt deine gesamten versteckten Notizen und Notizen auf der Watchlist löschst:",
             "blocklist": "Alle versteckten Notizen wieder anzeigen",
             "watchlist": "Entferne alle Notizen von meiner Watchlist"
+        },
+        "queryPossibilities": {
+            "title": "Ist es möglich, nach mehr als einem einzigen Wort zu suchen?",
+            "introduction": "Ja, der Suchfilter ermöglicht es, sowohl nach einzelnen Begriffen zu suchen, als auch eine vielseitige boolesche Abfragesprache zu verwenden.\nLogische Operatoren und die Suche nach mehreren Wörtern werden mit folgenden Funktionen unterstützt:",
+            "features": {
+                "operators": "!HTML! Logische Operatoren: <kbd>AND</kbd>, <kbd>OR</kbd>, <kbd>NOT</kbd> sowie deren Aliase: <kbd>,</kbd> <kbd>|</kbd> <kbd>-</kbd>",
+                "exact": "Exakte Suche nach ganzen Sätzen mithilfe von Anführungszeichen",
+                "implicit": "!HTML! Implizites <kbd>AND</kbd> zwischen benachbarten Suchbegriffen"
+            },
+            "examples": {
+                "title": "Hier sind einige Beispiele:",
+                "and": "!HTML! liefert alle Notizen, die beide Begriffe enthalten, der <kbd>AND</kbd>-Operator kann dabei sogar weggelassen werden, da dies immer der implizite Standard ist",
+                "or": "!HTML! liefert alle Notizen, die einen der beiden Begriffe enthalten (wichtig sind hier die Anführungszeichen um die ersten beiden Wörter, da diese sonst als <kbd>Organic AND Maps</kbd> interpretiert werden)",
+                "not": "gibt alle Notizen zurück, die den ersten Begriff enthalten, nicht aber den zweiten"
+            }
         }
     },
     "action": {
@@ -107,7 +122,7 @@
                 "asc": "Am wenigsten kürzlich aktualisiert"
             }
         },
-        "query": "Ein Wort oder ein Satz, der in der Notiz enthalten ist",
+        "query": "Wort/Wörter, die in der Notiz erwähnt werden",
         "status": {
             "all": "Alle",
             "open": "Offen",

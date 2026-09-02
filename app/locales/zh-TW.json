@@ -29,6 +29,27 @@
         "outdatedNotes": {
             "title": "為什麼有些註解過時了？",
             "description": "!HTML! 所有註解會每5分鐘透過開放街圖API同步，所以也許註解被管理員隱藏，導致仍出現在結果當中。<br>\n會有上述狀況出現主要是開放街圖沒有直接提供註解以及留言是否被管理員隱藏的結果。因此，整個註解下載包會不定期分析來找出不正常之處，並且嘗試修正。<br>\n如果你想知道上次手動同步是什麼時間，請檢視<a href=\"{{api}}/status\" target=\"_blank\" rel=\"noopener\">狀態頁面</a>的<code>上次匯入</code> (留言) 或是<code>上次同步</code> (註解) 的值。"
+        },
+        "reset": {
+            "title": "為什麼我無法隱藏註記或者是新增註記到我的監視清單？",
+            "description": "!html! 要防止過度使用後端伺服器的資源，監視列表會強制有已隱藏註解與註解的最大數量上限。一旦到達上限，就無法再隱藏註解或是新增註解到您的監視列表。<br>\n要防止上述狀況發生，您可以將有點舊的以及已經忘記的項目從您的監視列表或是直接在監視列表下方的重設隱藏與所有註解的選項：",
+            "blocklist": "再次顯示所有已隱藏註解",
+            "watchlist": "從監視列表移除所有註解"
+        },
+        "queryPossibilities": {
+            "title": "有可能搜尋超過一個字嗎？",
+            "introduction": "是，檢索篩選允許您",
+            "features": {
+                "operators": "!HTML! 邏輯運算子：<kbd>AND</kbd>、<kbd>OR</kbd>、<kbd>NOT</kbd>以及他們的別稱：<kbd>,</kbd> <kbd>|</kbd> <kbd>-</kbd>\n",
+                "exact": "精準搜尋請用引號將整個字串包起來",
+                "implicit": "!HTML! 無保留<kbd>AND</kbd> 在相鄰搜尋字串"
+            },
+            "examples": {
+                "title": "以下有一些範例",
+                "and": "!HTML! 回傳所有包括這一字串的註解，<kbd>AND</kbd> 邏輯運算子可以忽略，因為總是預設啟用",
+                "or": "!HTML! 回傳所有包含這兩個字串的註解 (注意引號是包在第一個字串，會被視為<kbd>Organic AND Maps</kbd>)",
+                "not": "回傳所有包含第一個字串但不含第二個字串的註解"
+            }
         }
     },
     "action": {
@@ -60,7 +81,8 @@
         "hide": "從結果隱藏註解",
         "watch": "將註解加到追蹤清單",
         "unwatch": "從追蹤清單移除註解",
-        "undo": "復原"
+        "undo": "復原",
+        "panoramax": "Panoramax"
     },
     "header": {
         "share": "分享",
@@ -78,7 +100,8 @@
         "area": "搜尋區域",
         "commented": "有留言的註解",
         "author": "作者",
-        "watchlist": "我的追蹤清單上的註解"
+        "watchlist": "我的追蹤清單上的註解",
+        "scope": "在這裡搜尋"
     },
     "description": {
         "share": "複製這連結來分享目前檢索：",
@@ -131,6 +154,10 @@
             "include": "包括",
             "hide": "隱藏",
             "only": "只有"
+        },
+        "scope": {
+            "first": "最初的評論",
+            "all": "所有的評論"
         }
     },
     "settings": {
@@ -189,7 +216,8 @@
         }
     },
     "user": {
-        "created": "自 %s 加入的使用者"
+        "created": "自 %s 加入的使用者",
+        "changesets": "%s 變更集的作者"
     },
     "about": {
         "description": "!HTML! NotesReview 是開放源碼的專案，你目前使用 {{version}} 版本，原始碼在 <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\" rel=\"noopener\">Github</a> 上面。",
@@ -204,13 +232,25 @@
         "queryAbort": "取消檢索，顯示先前的結果",
         "hideNote": "無法隱藏註解，請稍後再試一次",
         "watchNote": "無法將註解加到追蹤清單，請稍後再試一次",
-        "unwatchNote": "無法將註解從追蹤清單移除，請稍後再試一次"
+        "unwatchNote": "無法將註解從追蹤清單移除，請稍後再試一次",
+        "resetBlocklist": "無法重設封鎖列表，請稍後再試一次",
+        "resetWatchlist": "無法重設監視列表，請稍後再試一次",
+        "queryError": "檢索失敗，請稍後再試一次"
     },
     "success": {
         "copy": "成功複製連結",
         "saved": "成功儲存了",
         "hideNote": "已經隱藏的註解",
         "watchNote": "新增到追蹤清單",
-        "unwatchNote": "從追蹤清單移除"
+        "unwatchNote": "從追蹤清單移除",
+        "resetBlocklist": "從封鎖列表移除所有註解",
+        "resetWatchlist": "從監視列表移除所有註解"
+    },
+    "panoramax": {
+        "empty": {
+            "add": "新增照片到這一地點",
+            "title": "這一地點還沒有照片",
+            "subtitle": "您可以透過上傳街景照片到 Panoramax 來幫助其他圖客。"
+        }
     }
 }
