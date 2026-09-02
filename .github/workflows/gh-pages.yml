@@ -27,6 +27,7 @@ jobs:
           openstreetmap-oauth-client-id: ${{ secrets.OPENSTREETMAP_OAUTH_CLIENT_ID }}
           openstreetmap-oauth-client-secret: ${{ secrets.OPENSTREETMAP_OAUTH_CLIENT_SECRET }}
           mapillary-client-id: ${{ secrets.MAPILLARY_CLIENT_ID }}
+          carto-api-key: ${{ secrets.CARTO_API_KEY }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:

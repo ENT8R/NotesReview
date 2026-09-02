@@ -11,6 +11,8 @@ inputs:
     description: 'The OpenStreetMap OAuth client secret'
   mapillary-client-id:
     description: 'The Mapillary client id'
+  carto-api-key:
+    description: 'The Carto API key'
 
 runs:
   using: 'composite'
@@ -24,6 +26,7 @@ runs:
         OPENSTREETMAP_OAUTH_CLIENT_ID: ${{ inputs.openstreetmap-oauth-client-id }}
         OPENSTREETMAP_OAUTH_CLIENT_SECRET: ${{ inputs.openstreetmap-oauth-client-secret }}
         MAPILLARY_CLIENT_ID: ${{ inputs.mapillary-client-id }}
+        CARTO_API_KEY: ${{ inputs.carto-api-key }}
       run: |
         npm ci
         npm run build
