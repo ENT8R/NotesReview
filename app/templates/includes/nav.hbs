@@ -72,7 +72,17 @@
     </select>
   </div>
 
-  <div class="column col-6 col-sm-12">
+  <div class="column col-4 col-sm-12">
+    <label class="form-label" for="max_changesets">
+      <span data-i18n="header.max_author_changesets">Maximum author changesets</span>
+      <span class="tooltip tooltip-right" data-tooltip="Filter out authors with many changesets" data-i18n data-i18n-data-tooltip="description.max_author_changesets">
+        <svg class="icon icon-small"><use xlink:href="#svg-icon-help"></use></svg>
+      </span>
+    </label>
+    <input class="form-input" id="max_changesets" type="number">
+  </div>
+
+  <div class="column col-4 col-sm-12">
     <label class="form-label" for="status" data-i18n="header.status">Status</label>
     <single-selection-button-group id="status" class="btn-group btn-group-block">
       <button class="btn" data-value="all" data-i18n="description.status.all">All</button>
@@ -81,7 +91,7 @@
     </single-selection-button-group>
   </div>
 
-  <div class="column col-6 col-sm-12">
+  <div class="column col-4 col-sm-12">
     <label class="form-label" for="anonymous" data-i18n="header.anonymous">Anonymous notes</label>
     <single-selection-button-group id="anonymous" class="btn-group btn-group-block">
       <button class="btn active" data-value="include" data-i18n="description.anonymous.include">Include</button>

@@ -139,6 +139,9 @@ export default class Query {
       id: 'author',
       handler: this.author
     }, {
+      id: 'max_changesets',
+      handler: this.max_changesets
+    }, {
       id: 'user',
       handler: this.user
     }, {
@@ -353,6 +356,18 @@ export default class Query {
     */
   user(user) {
     this.data.user = user;
+    return this;
+  }
+
+  /**
+    * Only show notes where the user has less than max_changesets made
+    *
+    * @function
+    * @param {Number} max_changesets
+    * @returns {Query}
+    */
+  max_changesets(max_changesets) {
+    this.data.max_changesets = Number.parseInt(max_changesets);
     return this;
   }
 

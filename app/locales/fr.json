@@ -52,6 +52,7 @@
         "from": "Du",
         "to": "Au",
         "sort": "Tri",
+        "max_author_changesets": "Changeset maximum par l'auteur",
         "status": "L’état",
         "anonymous": "Remarques anonymes"
     },
@@ -59,6 +60,7 @@
         "share": "Copiez ce lien pour partager la recherche courante :",
         "startQuery": "Démarrer la recherche automatiquement à l'ouverture du lien",
         "shareView": "Partagez aussi l'affichage de la carte",
+        "max_author_changesets": "Ignorer les notes d'utilisateurs avec beaucoup de changesets",
         "showList": "Afficher la liste",
         "showMap": "Afficher la carte",
         "nothingFound": "Aucun résultat !",

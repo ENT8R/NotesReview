@@ -1,4 +1,5 @@
 import { STATUS } from '../query.js';
+import Users from '../users.js';
 
 export default class UI {
   static #notes = new Map();
@@ -75,9 +76,12 @@ export default class UI {
     * @returns {Boolean}
     */
   static isNoteVisible(note, query) {
-    return !note.hidden &&
-           (query.data.status === STATUS.OPEN ? note.status === STATUS.OPEN : true) &&
-           (query.data.status === STATUS.CLOSED ? note.status === STATUS.CLOSED : true);
+    let user = Users.get(note.users[0]);
+
+    return  !note.hidden &&
+             (query.data.status === STATUS.OPEN ? note.status === STATUS.OPEN : true) &&
+             (Number.isNaN(query.data.max_changesets) || user === undefined || (query.data.max_changesets > user.changesets)) &&
+             (query.data.status === STATUS.CLOSED ? note.status === STATUS.CLOSED : true);
   }
 
   /**

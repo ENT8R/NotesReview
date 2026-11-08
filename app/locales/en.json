@@ -95,6 +95,7 @@
         "from": "From",
         "to": "To",
         "sort": "Sort by",
+        "max_author_changesets": "Maximum author changesets",
         "status": "Status",
         "anonymous": "Anonymous notes",
         "area": "Search area",
@@ -147,6 +148,7 @@
             "only": "Only"
         },
         "author": "The author is the user who created the note",
+        "max_author_changesets": "Filter out authors with many changesets",
         "user": "A user is any user who left a comment on the note\n(including the author)",
         "customArea": "Select countries by clicking on them or draw a custom shape using the toolbar on the left",
         "sharePolygon": "Share shape for custom area selection",
