@@ -47,7 +47,7 @@ export default class ListView {
    * @param {Number} id
    */
   show(id) {
-    this.divs.get(id).classList.remove('d-hide');
+    this.divs.get(id.id).classList.remove('d-hide');
   }
 
   /**
@@ -56,7 +56,7 @@ export default class ListView {
     * @param {Number} id
     */
   hide(id) {
-    this.divs.get(id).classList.add('d-hide');
+    this.divs.get(id.id).classList.add('d-hide');
   }
 
   /**
