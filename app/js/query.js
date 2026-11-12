@@ -83,6 +83,17 @@ const NOT_MODIFIABLE_BY_USER = [
   'bbox', 'countries', 'polygon', 'sort_by', 'order'
 ];
 
+const CATEGORIES = {
+  ADVANCED: [
+    'authored-more-than',
+    'authored-less-than',
+    'first-after',
+    'first-before',
+    'last-after',
+    'last-before'
+  ],
+};
+
 export class AbortError extends Error {
   /**
    * Error class for aborted requests
@@ -665,7 +676,17 @@ export default class Query {
       .reduce((a, [key, value]) =>
         ((value == null || NOT_MODIFIABLE_BY_USER.includes(key))
           ? a : (a[key] = value, a)), {});
+
     const amountOfNonDefaults = Object.keys(nonDefaults).length;
+
+    // Group the non-default values by their category
+    const nonDefaultsByCategory = Object.entries(nonDefaults).reduce((a, [key, _]) => {
+      const category = Object.entries(CATEGORIES).find(([_, keys]) => keys.includes(key));
+      const name = category ? category[0] : 'DEFAULT';
+      a[name] = a[name] || new Set();
+      a[name].add(key);
+      return a;
+    }, {});
 
     // Show a small badge with the amount of applied filters (that are not default)
     const filterBadge = document.getElementById('filter-badge');
@@ -674,6 +695,14 @@ export default class Query {
       filterBadge.dataset.badge = amountOfNonDefaults;
     } else {
       filterBadge.classList.remove('badge', 'badge-small');
+    }
+
+    const advancedOptionsBadge = document.getElementById('advanced-options-badge');
+    if (nonDefaultsByCategory.ADVANCED) {
+      advancedOptionsBadge.classList.add('badge', 'badge-small');
+      advancedOptionsBadge.dataset.badge = nonDefaultsByCategory.ADVANCED.size;
+    } else {
+      advancedOptionsBadge.classList.remove('badge', 'badge-small');
     }
   }
 
