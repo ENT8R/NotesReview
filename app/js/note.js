@@ -18,6 +18,10 @@ export default class Note {
     * @param {Object} feature
     */
   constructor(feature) {
+    if (!feature || !feature._id || !feature.status || !feature.coordinates || !feature.comments) {
+      throw new Error(`Note can not be parsed because the object is missing required properties: ${JSON.stringify(feature)}`);
+    }
+
     /** Exclude invalid notes
       * See {@link https://github.com/openstreetmap/openstreetmap-website/issues/2146} */
     if (feature.comments.length === 0) {
@@ -152,7 +156,7 @@ export default class Note {
     * @returns {Object}
     */
   get linked() {
-    if (!('html' in this.comments[0])) {
+    if (!('html' in this.comments[0]) || !this.comments[0].html) {
       return null;
     }
 
