@@ -36,7 +36,6 @@
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@vitejs/plugin-basic-ssl": "^2.3.0",
-    "dotenv": "^17.4.2",
     "eslint": "^10.14.0",
     "eslint-plugin-jsdoc": "^65.4.5",
     "fast-glob": "^3.3.3",

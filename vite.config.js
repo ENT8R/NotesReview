@@ -1,8 +1,6 @@
 /* global process */
 import { resolve } from 'path';
 
-import dotenv from 'dotenv';
-
 import { defineConfig } from 'vite';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import handlebarsCompiler from './plugins/handlebars-compiler.js';
@@ -16,10 +14,7 @@ structuredData.softwareVersion = pkg.version;
 export default () => {
   const __dirname = import.meta.dirname;
   const root = resolve(__dirname, 'app');
-  dotenv.config({
-    path: resolve(root, '.env'),
-    quiet: true
-  });
+  process.loadEnvFile(resolve(root, '.env'));
 
   const globals = {
     __VERSION__: JSON.stringify(pkg.version),
