@@ -438,7 +438,7 @@ function settings() {
   });
 
   // Initialize all modals used by this application
-  const modals = { // eslint-disable-line no-unused-vars
+  const _ = {
     'area-selector': new AreaSelector(document.getElementById('countries'), document.getElementById('polygon')),
     'comments': new Comments(),
     'mapillary': new Mapillary(),

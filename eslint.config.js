@@ -94,6 +94,13 @@ export default [
 
       'wrap-iife': ['error', 'inside'],
       'no-unused-expressions': 'error',
+      'no-unused-vars': ['error', {
+        vars: 'all',
+        varsIgnorePattern: '^_$',
+        argsIgnorePattern: '^_$',
+        caughtErrorsIgnorePattern: '^_$',
+        destructuredArrayIgnorePattern: '^_$',
+      }],
       'no-useless-constructor': 'error',
       'no-console': 'error',
       'require-atomic-updates': 'warn',

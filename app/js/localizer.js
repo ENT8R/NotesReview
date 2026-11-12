@@ -173,7 +173,7 @@ export async function init() {
   try {
     const { default: main } = await import(`../locales/${LANGUAGE}.json`);
     STRINGS.main = main;
-  } catch (error) { // eslint-disable-line no-unused-vars
+  } catch (_) {
     console.error( // eslint-disable-line no-console
       new Error(`${LANGUAGE}.json does not exist, ${FALLBACK_LANGUAGE}.json is used instead`)
     );
