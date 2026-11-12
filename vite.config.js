@@ -1,4 +1,5 @@
 /* global process */
+import { existsSync } from 'fs';
 import { resolve } from 'path';
 
 import { defineConfig } from 'vite';
@@ -14,7 +15,12 @@ structuredData.softwareVersion = pkg.version;
 export default () => {
   const __dirname = import.meta.dirname;
   const root = resolve(__dirname, 'app');
-  process.loadEnvFile(resolve(root, '.env'));
+  const envFile = resolve(root, '.env');
+  if (existsSync(envFile)) {
+    process.loadEnvFile(envFile);
+  } else {
+    console.warn(`Warning: Environment file ${envFile} not found. Using system environment variables instead.`); // eslint-disable-line no-console
+  }
 
   const globals = {
     __VERSION__: JSON.stringify(pkg.version),
