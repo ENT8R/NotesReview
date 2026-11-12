@@ -81,15 +81,6 @@
     </single-selection-button-group>
   </div>
 
-  <div class="column col-6 col-sm-12">
-    <label class="form-label" for="anonymous" data-i18n="header.anonymous">Anonymous notes</label>
-    <single-selection-button-group id="anonymous" class="btn-group btn-group-block">
-      <button class="btn active" data-value="include" data-i18n="description.anonymous.include">Include</button>
-      <button class="btn" data-value="hide" data-i18n="description.anonymous.hide">Hide</button>
-      <button class="btn" data-value="only" data-i18n="description.anonymous.only">Only</button>
-    </single-selection-button-group>
-  </div>
-
   <!-- Dummy input (should not be visible or modifiable by the user) -->
   <div class="column col-12 d-hide">
     <label class="form-label" for="bbox">Bounding Box</label>
@@ -126,6 +117,15 @@
     </single-selection-button-group>
   </div>
 
+  <div class="column col-6 col-sm-12">
+    <label class="form-label" for="anonymous" data-i18n="header.anonymous">Anonymous notes</label>
+    <single-selection-button-group id="anonymous" class="btn-group btn-group-block">
+      <button class="btn active" data-value="include" data-i18n="description.anonymous.include">Include</button>
+      <button class="btn" data-value="hide" data-i18n="description.anonymous.hide">Hide</button>
+      <button class="btn" data-value="only" data-i18n="description.anonymous.only">Only</button>
+    </single-selection-button-group>
+  </div>
+
   <div class="column col-6 col-sm-12 requires-backend-authentication">
     <label class="form-label" for="watchlist" data-i18n="header.watchlist">Notes on my watchlist</label>
     <single-selection-button-group id="watchlist" class="btn-group btn-group-block">
@@ -133,5 +133,74 @@
       <button class="btn" data-value="hide" data-i18n="description.watchlist.hide">Hide</button>
       <button class="btn" data-value="only" data-i18n="description.watchlist.only">Only</button>
     </single-selection-button-group>
+  </div>
+
+  <div class="column col-12 accordion">
+    <input type="checkbox" id="advanced-options" name="accordion-checkbox" hidden>
+    <label class="accordion-header c-hand" for="advanced-options">
+      <svg class="icon icon-small"><use xlink:href="#svg-icon-caret-right"></use></svg>
+      <b data-i18n="header.advanced-options">Advanced options</b>
+    </label>
+    <div class="accordion-body columns">
+      <div class="column col-6 col-sm-12">
+        <div class="columns w-100">
+          <label class="form-label column col-auto" for="authored-more-than" >
+            <span data-i18n="header.authored-more-than">Minimum number of notes created by author</span>
+          </label>
+          <input class="form-input column" id="authored-more-than" type="number" min="0">
+        </div>
+      </div>
+
+      <div class="column col-6 col-sm-12">
+        <div class="columns w-100">
+          <label class="form-label column col-auto" for="authored-less-than" >
+            <span data-i18n="header.authored-less-than">Maximum number of notes created by author</span>
+          </label>
+          <input class="form-input column" id="authored-less-than" type="number" min="0">
+        </div>
+      </div>
+
+      <div class="column col-12 divider"></div>
+
+      <div class="column col-3 col-sm-6">
+        <label class="form-label" for="first-after">
+          <span data-i18n="header.first-after">First note opened after</span>
+          <span class="tooltip tooltip-right" data-tooltip="" data-i18n data-i18n-data-tooltip="description.first-after">
+            <svg class="icon icon-small"><use xlink:href="#svg-icon-help"></use></svg>
+          </span>
+        </label>
+        <input class="form-input" id="first-after" type="date" min="2013-04-23">
+      </div>
+
+      <div class="column col-3 col-sm-6">
+        <label class="form-label" for="first-before">
+          <span data-i18n="header.first-before">First note opened before</span>
+          <span class="tooltip tooltip-right" data-tooltip="" data-i18n data-i18n-data-tooltip="description.first-before">
+            <svg class="icon icon-small"><use xlink:href="#svg-icon-help"></use></svg>
+          </span>
+        </label>
+        <input class="form-input" id="first-before" type="date" min="2013-04-23">
+      </div>
+
+      <div class="column col-3 col-sm-6">
+        <label class="form-label" for="last-after">
+          <span data-i18n="header.last-after">Last note opened after</span>
+          <span class="tooltip tooltip-left" data-tooltip="" data-i18n data-i18n-data-tooltip="description.last-after">
+            <svg class="icon icon-small"><use xlink:href="#svg-icon-help"></use></svg>
+          </span>
+        </label>
+        <input class="form-input" id="last-after" type="date" min="2013-04-23">
+      </div>
+
+      <div class="column col-3 col-sm-6">
+        <label class="form-label" for="last-before">
+          <span data-i18n="header.last-before">Last note opened before</span>
+          <span class="tooltip tooltip-left" data-tooltip="" data-i18n data-i18n-data-tooltip="description.last-before">
+            <svg class="icon icon-small"><use xlink:href="#svg-icon-help"></use></svg>
+          </span>
+        </label>
+        <input class="form-input" id="last-before" type="date" min="2013-04-23">
+      </div>
+    </div>
   </div>
 </div>

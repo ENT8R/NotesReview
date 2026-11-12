@@ -101,7 +101,14 @@
         "commented": "Commented notes",
         "author": "Author",
         "watchlist": "Notes on my watchlist",
-        "scope": "Search in"
+        "scope": "Search in",
+        "advanced-options": "Advanced options",
+        "authored-more-than": "Minimum number of notes created by author",
+        "authored-less-than": "Maximum number of notes created by author",
+        "first-after": "First note opened after",
+        "first-before": "First note opened before",
+        "last-after": "Last note opened after",
+        "last-before": "Last note opened before"
     },
     "description": {
         "share": "Copy this link to share the current query:",
@@ -158,7 +165,11 @@
         "scope": {
             "first": "Initial comment",
             "all": "All comments"
-        }
+        },
+        "first-after": "Only show notes created by authors who\ncreated their first note after this date (UTC)",
+        "first-before": "Only show notes created by authors who\ncreated their first note before this date (UTC)",
+        "last-after": "Only show notes created by authors who\ncreated their last note after this date (UTC)",
+        "last-before": "Only show notes created by authors who\ncreated their last note before this date (UTC)"
     },
     "settings": {
         "choose": "Choose an option",

@@ -156,6 +156,24 @@ export default class Query {
       id: 'commented',
       handler: this.commented
     }, {
+      id: 'authored-more-than',
+      handler: this.authoredMoreThan
+    }, {
+      id: 'authored-less-than',
+      handler: this.authoredLessThan
+    }, {
+      id: 'first-after',
+      handler: this.firstAfter
+    }, {
+      id: 'first-before',
+      handler: this.firstBefore
+    }, {
+      id: 'last-after',
+      handler: this.lastAfter
+    }, {
+      id: 'last-before',
+      handler: this.lastBefore
+    }, {
       id: 'watchlist',
       handler: this.watchlist
     }, {
@@ -428,6 +446,72 @@ export default class Query {
     */
   commented(commented) {
     this.data.commented = commented;
+    return this;
+  }
+
+  /**
+   * Filter notes by the minimum number of notes created by the author of the note
+   *
+   * @param {Number} count
+   * @returns {Query}
+   */
+  authoredMoreThan(count) {
+    this.data['authored-more-than'] = count;
+    return this;
+  }
+
+  /**
+   * Filter notes by the maximum number of notes created by the author of the note
+   *
+   * @param {Number} count
+   * @returns {Query}
+   */
+  authoredLessThan(count) {
+    this.data['authored-less-than'] = count;
+    return this;
+  }
+
+  /**
+   * Only show notes created by authors who created their first note after the given date
+   *
+   * @param {Date} date
+   * @returns {Query}
+   */
+  firstAfter(date) {
+    this.data['first-after'] = date;
+    return this;
+  }
+
+  /**
+   * Only show notes created by authors who created their first note before the given date
+   *
+   * @param {Date} date
+   * @returns {Query}
+   */
+  firstBefore(date) {
+    this.data['first-before'] = date;
+    return this;
+  }
+
+  /**
+   * Only show notes created by authors who created their last note after the given date
+   *
+   * @param {Date} date
+   * @returns {Query}
+   */
+  lastAfter(date) {
+    this.data['last-after'] = date;
+    return this;
+  }
+
+  /**
+   * Only show notes created by authors who created their last note before the given date
+   *
+   * @param {Date} date
+   * @returns {Query}
+   */
+  lastBefore(date) {
+    this.data['last-before'] = date;
     return this;
   }
 
