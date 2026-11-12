@@ -55,7 +55,7 @@ export default class UI {
         visible++;
         accumulator += note.created.getTime();
       } else {
-        this.#currentView.handler.hide(note);
+        this.#currentView.handler.hide(note.id);
       }
     });
     this.#currentView.handler.apply();
