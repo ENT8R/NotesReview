@@ -228,7 +228,9 @@
     },
     "user": {
         "created": "User since %s",
-        "changesets": "Author of %s changesets"
+        "changesets": "Author of %s changesets",
+        "notes": "Author of %s notes",
+        "firstNote": "First note opened on %s"
     },
     "about": {
         "description": "!HTML! NotesReview is an open source project. You are currently using version {{version}}. The source code is available on <a href=\"https://github.com/ENT8R/NotesReview\" target=\"_blank\" rel=\"noopener\">Github</a>.",

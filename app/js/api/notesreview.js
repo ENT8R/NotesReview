@@ -86,6 +86,19 @@ export default class NotesReview {
   }
 
   /**
+    * Get the stats of multiple users by their ids
+    *
+    * @function
+    * @param {Array} ids
+    * @returns {Promise}
+    */
+  static stats(ids) {
+    return Request(`${NOTESREVIEW_API_URL}/stats?ids=${ids.join(',')}`, MEDIA_TYPE.JSON, {
+      method: 'GET'
+    });
+  }
+
+  /**
     * Add a note to the blocklist
     *
     * @function

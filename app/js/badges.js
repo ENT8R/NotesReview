@@ -77,12 +77,23 @@ export function user(uid, anonymous) {
       return `<span class="label label-secondary">${Localizer.message('note.unknown')}</span>`;
     }
 
+    const tooltip = [
+      Localizer.message('user.created', user.created.toLocaleDateString()),
+      Localizer.message('user.changesets', user.changesets),
+    ];
+    if (user.stats) {
+      tooltip.push(
+        Localizer.message('user.notes', user.stats.notes),
+        Localizer.message('user.firstNote', user.stats.firstNote.toLocaleDateString()),
+      );
+    }
+
     const image = user.image ? `<img src="${user.image}">` : '';
     const initials = Util.initials(user.name);
     return `<figure class="avatar flex-no-shrink" data-initial="${initials}">${image}</figure>
             <a href="${OPENSTREETMAP_SERVER}/user/${user.name}" target="_blank" rel="noopener"
                class="tooltip tooltip-right"
-               data-tooltip="${Localizer.message('user.created', user.created.toLocaleDateString())}\n${Localizer.message('user.changesets', user.changesets)}">
+               data-tooltip="${tooltip.join('\n')}">
               ${user.name}
             </a>`;
   }
